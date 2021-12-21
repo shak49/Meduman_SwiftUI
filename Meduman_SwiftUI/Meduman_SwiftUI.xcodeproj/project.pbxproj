@@ -24,13 +24,6 @@
 			remoteGlobalIDString = 6D82EF5C277266AA0010E25B;
 			remoteInfo = Meduman_SwiftUI;
 		};
-		6D82EF78277266AE0010E25B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6D82EF55277266AA0010E25B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6D82EF5C277266AA0010E25B;
-			remoteInfo = Meduman_SwiftUI;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +34,6 @@
 		6D82EF67277266AD0010E25B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6D82EF6D277266AE0010E25B /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF71277266AE0010E25B /* UserInfoValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoValidationTests.swift; sourceTree = "<group>"; };
-		6D82EF77277266AE0010E25B /* Meduman_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF90277271270010E25B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D82EF922772726E0010E25B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,13 +47,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6D82EF6A277266AE0010E25B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6D82EF74277266AE0010E25B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -85,7 +70,6 @@
 			children = (
 				6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */,
 				6D82EF6D277266AE0010E25B /* Meduman_SwiftUITests.xctest */,
-				6D82EF77277266AE0010E25B /* Meduman_SwiftUIUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,24 +189,6 @@
 			productReference = 6D82EF6D277266AE0010E25B /* Meduman_SwiftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		6D82EF76277266AE0010E25B /* Meduman_SwiftUIUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6D82EF87277266AF0010E25B /* Build configuration list for PBXNativeTarget "Meduman_SwiftUIUITests" */;
-			buildPhases = (
-				6D82EF73277266AE0010E25B /* Sources */,
-				6D82EF74277266AE0010E25B /* Frameworks */,
-				6D82EF75277266AE0010E25B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6D82EF79277266AE0010E25B /* PBXTargetDependency */,
-			);
-			name = Meduman_SwiftUIUITests;
-			productName = Meduman_SwiftUIUITests;
-			productReference = 6D82EF77277266AE0010E25B /* Meduman_SwiftUIUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -237,10 +203,6 @@
 						CreatedOnToolsVersion = 13.1;
 					};
 					6D82EF6C277266AE0010E25B = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 6D82EF5C277266AA0010E25B;
-					};
-					6D82EF76277266AE0010E25B = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 6D82EF5C277266AA0010E25B;
 					};
@@ -261,7 +223,6 @@
 			targets = (
 				6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */,
 				6D82EF6C277266AE0010E25B /* Meduman_SwiftUITests */,
-				6D82EF76277266AE0010E25B /* Meduman_SwiftUIUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -277,13 +238,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6D82EF6B277266AE0010E25B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6D82EF75277266AE0010E25B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -312,13 +266,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D82EF73277266AE0010E25B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -326,11 +273,6 @@
 			isa = PBXTargetDependency;
 			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
 			targetProxy = 6D82EF6E277266AE0010E25B /* PBXContainerItemProxy */;
-		};
-		6D82EF79277266AE0010E25B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
-			targetProxy = 6D82EF78277266AE0010E25B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -559,52 +501,6 @@
 			};
 			name = Release;
 		};
-		6D82EF88277266AF0010E25B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6T94248RU7;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUIUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Meduman_SwiftUI;
-			};
-			name = Debug;
-		};
-		6D82EF89277266AF0010E25B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6T94248RU7;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUIUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Meduman_SwiftUI;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -631,15 +527,6 @@
 			buildConfigurations = (
 				6D82EF85277266AF0010E25B /* Debug */,
 				6D82EF86277266AF0010E25B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6D82EF87277266AF0010E25B /* Build configuration list for PBXNativeTarget "Meduman_SwiftUIUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6D82EF88277266AF0010E25B /* Debug */,
-				6D82EF89277266AF0010E25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

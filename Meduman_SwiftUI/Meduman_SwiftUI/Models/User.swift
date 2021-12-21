@@ -31,13 +31,25 @@ extension User: Equatable {
 }
 
 extension User {
-    func isValidFirstName() -> Bool {
+    func validateFirstName() -> Bool {
         guard let firstName = firstName else { return false }
         return firstName.count > 3
     }
     
-    func isValidLastName() -> Bool {
+    func validateLastName() -> Bool {
         guard let lastName = lastName else { return false }
         return lastName.count > 3
+    }
+    
+    func validateEmail() -> Bool {
+        guard let email = email else { return false }
+        return email.contains("@") && email.contains(".")
+    }
+    
+    func validatePhoneNumber() -> Bool {
+        guard let phoneNumber = phoneNumber else { return false }
+        let phoneRegex = "\\+?1?\\s?[2-9][0-9]{2}\\s?[2-9][0-9]{2}\\s?[0-9]{4}"
+        let phoneCheck = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phoneCheck.evaluate(with: phoneNumber)
     }
 }
