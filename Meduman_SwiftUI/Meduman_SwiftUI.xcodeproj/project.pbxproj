@@ -12,8 +12,6 @@
 		6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF64277266AD0010E25B /* Assets.xcassets */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
 		6D82EF72277266AE0010E25B /* Meduman_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF71277266AE0010E25B /* Meduman_SwiftUITests.swift */; };
-		6D82EF7C277266AE0010E25B /* Meduman_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF7B277266AE0010E25B /* Meduman_SwiftUIUITests.swift */; };
-		6D82EF7E277266AF0010E25B /* Meduman_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF7D277266AF0010E25B /* Meduman_SwiftUIUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +40,6 @@
 		6D82EF6D277266AE0010E25B /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF71277266AE0010E25B /* Meduman_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUITests.swift; sourceTree = "<group>"; };
 		6D82EF77277266AE0010E25B /* Meduman_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D82EF7B277266AE0010E25B /* Meduman_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIUITests.swift; sourceTree = "<group>"; };
-		6D82EF7D277266AF0010E25B /* Meduman_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +72,6 @@
 			children = (
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D82EF70277266AE0010E25B /* Meduman_SwiftUITests */,
-				6D82EF7A277266AE0010E25B /* Meduman_SwiftUIUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,9 +89,10 @@
 		6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
-				6D82EF62277266AB0010E25B /* ContentView.swift */,
-				6D82EF64277266AD0010E25B /* Assets.xcassets */,
+				6D82EF8A277267740010E25B /* Helpers & Extensions */,
+				6D82EF8B277267880010E25B /* Models */,
+				6D82EF8C277267990010E25B /* Views */,
+				6D82EF8D277267BC0010E25B /* Resources */,
 				6D82EF66277266AD0010E25B /* Preview Content */,
 			);
 			path = Meduman_SwiftUI;
@@ -118,13 +114,35 @@
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
 		};
-		6D82EF7A277266AE0010E25B /* Meduman_SwiftUIUITests */ = {
+		6D82EF8A277267740010E25B /* Helpers & Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6D82EF7B277266AE0010E25B /* Meduman_SwiftUIUITests.swift */,
-				6D82EF7D277266AF0010E25B /* Meduman_SwiftUIUITestsLaunchTests.swift */,
 			);
-			path = Meduman_SwiftUIUITests;
+			path = "Helpers & Extensions";
+			sourceTree = "<group>";
+		};
+		6D82EF8B277267880010E25B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6D82EF8C277267990010E25B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D82EF62277266AB0010E25B /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D82EF8D277267BC0010E25B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
+				6D82EF64277266AD0010E25B /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,8 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D82EF7E277266AF0010E25B /* Meduman_SwiftUIUITestsLaunchTests.swift in Sources */,
-				6D82EF7C277266AE0010E25B /* Meduman_SwiftUIUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
