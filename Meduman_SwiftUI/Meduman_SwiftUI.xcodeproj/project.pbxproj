@@ -11,7 +11,9 @@
 		6D82EF63277266AB0010E25B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF62277266AB0010E25B /* ContentView.swift */; };
 		6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF64277266AD0010E25B /* Assets.xcassets */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
-		6D82EF72277266AE0010E25B /* Meduman_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF71277266AE0010E25B /* Meduman_SwiftUITests.swift */; };
+		6D82EF72277266AE0010E25B /* UserInfoValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF71277266AE0010E25B /* UserInfoValidationTests.swift */; };
+		6D82EF91277271270010E25B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF90277271270010E25B /* User.swift */; };
+		6D82EF932772726E0010E25B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF922772726E0010E25B /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +40,10 @@
 		6D82EF64277266AD0010E25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D82EF67277266AD0010E25B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6D82EF6D277266AE0010E25B /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D82EF71277266AE0010E25B /* Meduman_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUITests.swift; sourceTree = "<group>"; };
+		6D82EF71277266AE0010E25B /* UserInfoValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoValidationTests.swift; sourceTree = "<group>"; };
 		6D82EF77277266AE0010E25B /* Meduman_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D82EF90277271270010E25B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6D82EF922772726E0010E25B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +113,8 @@
 		6D82EF70277266AE0010E25B /* Meduman_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
-				6D82EF71277266AE0010E25B /* Meduman_SwiftUITests.swift */,
+				6D82EF8F277268CC0010E25B /* Helpers & Extensions */,
+				6D82EF8E277268BC0010E25B /* User Auth & Reg */,
 			);
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 		6D82EF8B277267880010E25B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6D82EF90277271270010E25B /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +149,22 @@
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6D82EF8E277268BC0010E25B /* User Auth & Reg */ = {
+			isa = PBXGroup;
+			children = (
+				6D82EF71277266AE0010E25B /* UserInfoValidationTests.swift */,
+			);
+			path = "User Auth & Reg";
+			sourceTree = "<group>";
+		};
+		6D82EF8F277268CC0010E25B /* Helpers & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D82EF922772726E0010E25B /* Person.swift */,
+			);
+			path = "Helpers & Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +299,7 @@
 			files = (
 				6D82EF63277266AB0010E25B /* ContentView.swift in Sources */,
 				6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */,
+				6D82EF91277271270010E25B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D82EF72277266AE0010E25B /* Meduman_SwiftUITests.swift in Sources */,
+				6D82EF932772726E0010E25B /* Person.swift in Sources */,
+				6D82EF72277266AE0010E25B /* UserInfoValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
