@@ -68,4 +68,15 @@ class FBAuthManagerTests: XCTestCase {
         })
         wait(for: [expectation], timeout: 5)
     }
+    
+    func testFBAuthManager_SignOut_CanSignOut() {
+        let expectation = expectation(description: "Sign-Out function can sign out.")
+        var isTriggered = false
+        if (sut?.signOut()) != nil {
+            isTriggered = true
+            expectation.fulfill()
+        }
+        XCTAssertTrue(isTriggered)
+        wait(for: [expectation], timeout: 5)
+    }
 }

@@ -19,8 +19,8 @@ protocol FirebaseAuth {
     
     // SHAK: Functions
     func signUp(firstName: String?, lastName: String?, email: String?, password: String?, phoneNumber: String?, completion: @escaping CompletionHandler)
-    func singIn(email: String?, password: String?, completion: @escaping CompletionHandler)
-    func singOut()
+    func signIn(email: String?, password: String?, completion: @escaping CompletionHandler)
+    func signOut()
 }
 
 protocol FirebaseFirestore {

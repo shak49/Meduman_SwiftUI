@@ -6,13 +6,12 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
 class FBFirestoreManager: FirebaseFirestore {
     // SHAK: Properties
-    var shared: FBFirestoreManager? = FBFirestoreManager()
     var db = Firestore.firestore()
     
     // SHAK: Functions

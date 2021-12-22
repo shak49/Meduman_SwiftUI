@@ -28,7 +28,7 @@ class FBAuthManager: FirebaseAuth {
             guard let userResult = result?.user else { return }
             print("User \(userResult.uid) signed up.")
             let user = User(uid: userResult.uid, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber)
-            self?.firebaseFirestoreManager.shared?.createUserProfile(user: user, completion: { [weak self] (user, error) in
+            self?.firebaseFirestoreManager.createUserProfile(user: user, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while creating user profile \(error)")
                     completion(nil, error)
@@ -50,7 +50,7 @@ class FBAuthManager: FirebaseAuth {
             }
             guard let user = result?.user else { return }
             print("User \(user.uid) signed in.")
-            self?.firebaseFirestoreManager.shared?.fetchUserProfile(userUID: user.uid, completion: { [weak self] (user, error) in
+            self?.firebaseFirestoreManager.fetchUserProfile(userUID: user.uid, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     completion(nil, error)
@@ -62,7 +62,7 @@ class FBAuthManager: FirebaseAuth {
         }
     }
     
-    func singOut() {
+    func signOut() {
         do {
             try auth.signOut()
             self.user = nil
