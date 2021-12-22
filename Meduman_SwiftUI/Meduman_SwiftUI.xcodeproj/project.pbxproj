@@ -23,6 +23,7 @@
 		6D82EFA6277398F80010E25B /* FirebaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA5277398F80010E25B /* FirebaseProtocol.swift */; };
 		6D82EFA827739A020010E25B /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* DatabaseError.swift */; };
 		6D82EFAA2773A0CB0010E25B /* FBFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA92773A0CB0010E25B /* FBFirestoreManager.swift */; };
+		6D82EFAC2773A82D0010E25B /* GoogleService.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EFAB2773A82D0010E25B /* GoogleService.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		6D82EFA5277398F80010E25B /* FirebaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProtocol.swift; sourceTree = "<group>"; };
 		6D82EFA727739A020010E25B /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		6D82EFA92773A0CB0010E25B /* FBFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFirestoreManager.swift; sourceTree = "<group>"; };
+		6D82EFAB2773A82D0010E25B /* GoogleService.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GoogleService.plist; path = ../../../../Users/shakfeizi/Downloads/GoogleService.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		6D82EF54277266AA0010E25B = {
 			isa = PBXGroup;
 			children = (
+				6D82EFAB2773A82D0010E25B /* GoogleService.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D82EF70277266AE0010E25B /* Meduman_SwiftUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
@@ -282,6 +285,7 @@
 			files = (
 				6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */,
 				6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */,
+				6D82EFAC2773A82D0010E25B /* GoogleService.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

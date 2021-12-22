@@ -30,5 +30,5 @@ protocol FirebaseFirestore {
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping CompletionHandler)
-    func fetchUserProfile(user: User?, completion: @escaping CompletionHandler)
+    func fetchUserProfile(userUID: String?, completion: @escaping CompletionHandler)
 }
