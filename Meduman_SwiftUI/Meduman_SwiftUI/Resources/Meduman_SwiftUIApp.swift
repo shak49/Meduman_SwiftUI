@@ -15,7 +15,7 @@ struct Meduman_SwiftUIApp: App {
         if ProcessInfo.processInfo.environment["unit_tests"] == "true" {
           print("Setting up Firebase emulator localhost:8080")
           let settings = Firestore.firestore().settings
-          settings.host = "localhost:8080"
+          settings.host = "localhost:8081"
           settings.isPersistenceEnabled = false
           settings.isSSLEnabled = false
           Firestore.firestore().settings = settings
