@@ -8,8 +8,74 @@
 import SwiftUI
 
 struct SignInView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack {
+                Image("Background.Image")
+                    .resizable()
+                    .scaledToFill()
+                .scaleEffect(1.5)
+                VStack {
+                    TextField("Enter your email...", text: $email)
+                        .frame(width: 350, height: 50)
+                        .background(.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray, radius: -2, x: 0, y: 0)
+                    SecureField("Enter your password...", text: $password)
+                        .frame(width: 350, height: 50)
+                        .background(.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray, radius: -2, x: 0, y: 0)
+                    Button {
+                        
+                    } label: {
+                        Text("Sign In")
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 350, height: 50)
+                    .background(.black)
+                    .cornerRadius(10)
+                    Divider()
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            Image("google.logo")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .background(.white)
+                                .cornerRadius(20)
+                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        }
+                        Button {
+                            
+                        } label: {
+                            Image("apple.logo")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .background(.white)
+                                .cornerRadius(20)
+                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        }
+                        Button {
+                            
+                        } label: {
+                            Image("facebook.logo")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .background(.white)
+                                .cornerRadius(20)
+                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        }
+                    }
+                    Divider()
+                }
+            }
+                .navigationTitle("Sign In")
+        }
     }
 }
 
