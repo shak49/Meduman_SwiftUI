@@ -39,6 +39,8 @@ struct SignInView: View {
                     .background(.black)
                     .cornerRadius(10)
                     Divider()
+                    Text("or sign in with")
+                        .frame(width: 150, height: 25)
                     HStack {
                         Button {
                             
