@@ -23,12 +23,12 @@ struct SignInView: View {
                         .frame(width: 350, height: 50)
                         .background(.white)
                         .cornerRadius(10)
-                        .shadow(color: .gray, radius: -2, x: 0, y: 0)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
                     SecureField("Enter your password...", text: $password)
                         .frame(width: 350, height: 50)
                         .background(.white)
                         .cornerRadius(10)
-                        .shadow(color: .gray, radius: -2, x: 0, y: 0)
+                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
                     Button {
                         
                     } label: {
