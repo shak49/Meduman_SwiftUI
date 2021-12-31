@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D365DB5277E64180008FCA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D365DB4277E64180008FCA6 /* GoogleService-Info.plist */; };
 		6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */; };
 		6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF64277266AD0010E25B /* Assets.xcassets */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
@@ -19,8 +20,6 @@
 		6D82EFA827739A020010E25B /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* DatabaseError.swift */; };
 		6D82EFAA2773A0CB0010E25B /* FBFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA92773A0CB0010E25B /* FBFirestoreManager.swift */; };
 		6D82EFB02773BD350010E25B /* FBFirestoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFAF2773BD350010E25B /* FBFirestoreManagerTests.swift */; };
-		6D82EFB32773C0D80010E25B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EFB22773C0D80010E25B /* GoogleService-Info.plist */; };
-		6D82EFB42773C0D80010E25B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EFB22773C0D80010E25B /* GoogleService-Info.plist */; };
 		6DAEBC4E277D6196004E344C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAEBC4D277D6196004E344C /* FirebaseAnalytics */; };
 		6DAEBC50277D6196004E344C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAEBC4F277D6196004E344C /* FirebaseAuth */; };
 		6DAEBC52277D6196004E344C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAEBC51277D6196004E344C /* FirebaseFirestore */; };
@@ -42,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D365DB4277E64180008FCA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Users/shakfeizi/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIApp.swift; sourceTree = "<group>"; };
 		6D82EF64277266AD0010E25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,7 +56,6 @@
 		6D82EFA727739A020010E25B /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		6D82EFA92773A0CB0010E25B /* FBFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFirestoreManager.swift; sourceTree = "<group>"; };
 		6D82EFAF2773BD350010E25B /* FBFirestoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFirestoreManagerTests.swift; sourceTree = "<group>"; };
-		6D82EFB22773C0D80010E25B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Users/shakfeizi/.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +87,7 @@
 		6D82EF54277266AA0010E25B = {
 			isa = PBXGroup;
 			children = (
-				6D82EFB22773C0D80010E25B /* GoogleService-Info.plist */,
+				6D365DB4277E64180008FCA6 /* GoogleService-Info.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D82EF70277266AE0010E25B /* Meduman_SwiftUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
@@ -298,7 +297,7 @@
 			files = (
 				6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */,
 				6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */,
-				6D82EFB32773C0D80010E25B /* GoogleService-Info.plist in Resources */,
+				6D365DB5277E64180008FCA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +305,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D82EFB42773C0D80010E25B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
