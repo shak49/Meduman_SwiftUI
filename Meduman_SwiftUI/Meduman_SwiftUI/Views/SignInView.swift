@@ -24,7 +24,7 @@ struct SignInView: View {
                         .background(.white)
                         .cornerRadius(10)
                         .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        .padding()
+                        .padding(.top)
                     SecureField("Enter your password...", text: $password)
                         .frame(width: 350, height: 50)
                         .background(.white)
@@ -40,10 +40,11 @@ struct SignInView: View {
                     .frame(width: 350, height: 50)
                     .background(.black)
                     .cornerRadius(10)
+                    .padding(.top, 50)
                     Divider()
                     Text("or sign in with")
                         .frame(width: 150, height: 25)
-                        .padding()
+                        .foregroundColor(.gray)
                     HStack {
                         Button {
                             
@@ -80,10 +81,26 @@ struct SignInView: View {
                         .padding()
                     }
                     Divider()
+                    VStack {
+                        Button {
+                            
+                        } label: {
+                            Text("Forgot your password?")
+                                .foregroundColor(.gray)
+                        }
+                        Button {
+                            
+                        } label: {
+                            Text("Create a new account.")
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                    }
+                    Spacer()
                 }
+                .padding(.top, 50)
             }
                 .navigationTitle("Sign In")
-                .padding()
         }
     }
 }
