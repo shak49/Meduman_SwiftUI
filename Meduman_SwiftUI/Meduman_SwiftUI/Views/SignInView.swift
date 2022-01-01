@@ -24,11 +24,13 @@ struct SignInView: View {
                         .background(.white)
                         .cornerRadius(10)
                         .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        .padding()
                     SecureField("Enter your password...", text: $password)
                         .frame(width: 350, height: 50)
                         .background(.white)
                         .cornerRadius(10)
                         .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        .padding()
                     Button {
                         
                     } label: {
@@ -41,6 +43,7 @@ struct SignInView: View {
                     Divider()
                     Text("or sign in with")
                         .frame(width: 150, height: 25)
+                        .padding()
                     HStack {
                         Button {
                             
@@ -52,6 +55,7 @@ struct SignInView: View {
                                 .cornerRadius(20)
                                 .shadow(color: .gray, radius: 2, x: 0, y: 0)
                         }
+                        .padding()
                         Button {
                             
                         } label: {
@@ -62,6 +66,7 @@ struct SignInView: View {
                                 .cornerRadius(20)
                                 .shadow(color: .gray, radius: 2, x: 0, y: 0)
                         }
+                        .padding()
                         Button {
                             
                         } label: {
@@ -72,11 +77,13 @@ struct SignInView: View {
                                 .cornerRadius(20)
                                 .shadow(color: .gray, radius: 2, x: 0, y: 0)
                         }
+                        .padding()
                     }
                     Divider()
                 }
             }
                 .navigationTitle("Sign In")
+                .padding()
         }
     }
 }
