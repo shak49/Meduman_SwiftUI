@@ -20,17 +20,16 @@ struct SignInView: View {
                     .scaledToFill()
                 .scaleEffect(1.5)
                 VStack {
-                    TextField("Enter your email...", text: $email)
-                        .frame(width: 350, height: 50)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        .padding(.top)
-                    SecureField("Enter your password...", text: $password)
-                        .frame(width: 350, height: 50)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                    VStack {
+                        TextField("Enter your email...", text: $email)
+                            .frame(width: 350, height: 50)
+                        Divider()
+                    }
+                    VStack {
+                        SecureField("Enter your password...", text: $password)
+                            .frame(width: 350, height: 50)
+                        Divider()
+                    }
                         .padding()
                     Button {
                         
@@ -98,11 +97,11 @@ struct SignInView: View {
                         }
                         .padding()
                     }
-                    Spacer()
                 }
-                .padding(.top, 50)
+                .padding(.top)
             }
                 .navigationTitle("Sign In")
+                .padding()
         }
     }
 }
