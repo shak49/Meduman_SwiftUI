@@ -101,7 +101,6 @@ struct SignInView: View {
                 .padding(.top)
             }
                 .navigationTitle("Sign In")
-                .padding()
         }
     }
 }
