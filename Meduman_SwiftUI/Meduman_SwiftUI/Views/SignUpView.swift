@@ -45,8 +45,18 @@ struct SignUpView: View {
                         Divider()
                     }
                     VStack {
-                        TextField("Phone number...", text: $phoneNumber)
-                            .frame(width: 350, height: 50)
+                        HStack {
+                            Button {
+                                
+                            } label: {
+                                Text("+1")
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            TextField("Phone number...", text: $phoneNumber)
+                                .frame(width: 350, height: 50)
+                        }
+                        .padding(.leading, 25)
                         Divider()
                     }
                     Button {
@@ -59,6 +69,7 @@ struct SignUpView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
+                    Divider()
                     Spacer()
                 }
                 .padding(.top, 50)

@@ -41,11 +41,13 @@ struct SignInView: View {
                     .background(.black)
                     .cornerRadius(10)
                     .padding(.top, 50)
-                    Divider()
-                        .padding(.top)
-                    Text("or sign in with")
-                        .frame(width: 150, height: 25)
-                        .foregroundColor(.gray)
+                    ZStack {
+                        Divider()
+                        Text("or sign in with")
+                            .frame(width: 125, height: 25)
+                            
+                            .foregroundColor(.gray)
+                    }
                     HStack {
                         Button {
                             
