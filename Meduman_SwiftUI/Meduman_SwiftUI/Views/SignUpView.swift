@@ -65,7 +65,7 @@ struct SignUpView: View {
                         Text("Sign Up")
                     }
                     .frame(width: 350, height: 50)
-                    .background(.blue)
+                    .background(.black)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
