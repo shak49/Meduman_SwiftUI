@@ -10,6 +10,16 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
+protocol FirebaseFirestore {
+    // SHAK: Properties
+    var db: Firestore { get }
+    typealias CompletionHandler = (User?, DatabaseError?) -> Void
+    
+    // SHAK: Functions
+    func createUserProfile(user: User?, completion: @escaping CompletionHandler)
+    func fetchUserProfile(userUID: String?, completion: @escaping CompletionHandler)
+}
+
 class FBFirestoreManager: FirebaseFirestore {
     // SHAK: Properties
     var db = Firestore.firestore()

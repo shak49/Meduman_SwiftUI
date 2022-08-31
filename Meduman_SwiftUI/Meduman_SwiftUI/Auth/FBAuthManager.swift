@@ -9,6 +9,18 @@ import Foundation
 import FirebaseAuth
 
 
+protocol FirebaseAuth {
+    // SHAK: Properties
+    var auth: Auth { get }
+    var user: User? { get }
+    typealias CompletionHandler = (User?, DatabaseError?) -> Void
+    
+    // SHAK: Functions
+    func signUp(firstName: String?, lastName: String?, email: String?, password: String?, phoneNumber: String?, completion: @escaping CompletionHandler)
+    func signIn(email: String?, password: String?, completion: @escaping CompletionHandler)
+    func signOut()
+}
+
 class FBAuthManager: FirebaseAuth {
     // SHAK: Properties
     static var shared: FBAuthManager? = FBAuthManager()
