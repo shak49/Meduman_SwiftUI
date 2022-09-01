@@ -9,14 +9,14 @@ import Foundation
 
 
 class User: Identifiable, Codable {
-    let uid: String
+    let id: String
     let firstName: String?
     let lastName: String?
     let email: String?
     let phoneNumber: String?
     
     init(uid: String = "", firstName: String? = "", lastName: String? = "", email: String? = "", phoneNumber: String? = "") {
-        self.uid = uid
+        self.id = uid
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
@@ -26,7 +26,7 @@ class User: Identifiable, Codable {
 
 extension User: Equatable {
     static public func ==(lhs: User, rhs: User) -> Bool {
-        return lhs.uid == rhs.uid
+        return lhs.id == rhs.id
     }
 }
 

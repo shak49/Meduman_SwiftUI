@@ -17,8 +17,9 @@ protocol FirebaseFirestore {
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping CompletionHandler)
-    func fetchUserProfile(userUID: String?, completion: @escaping CompletionHandler)
+    func fetchUserProfile(userId: String?, completion: @escaping CompletionHandler)
 }
+
 
 class FBFirestoreManager: FirebaseFirestore {
     // SHAK: Properties
@@ -26,7 +27,7 @@ class FBFirestoreManager: FirebaseFirestore {
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping CompletionHandler) {
-        guard let uid = user?.uid else { return }
+        guard let uid = user?.id else { return }
         do {
             try db.collection("User").document(uid).setData(from: user)
             completion(user, .unableToCreate)
@@ -36,8 +37,8 @@ class FBFirestoreManager: FirebaseFirestore {
         }
     }
     
-    func fetchUserProfile(userUID: String?, completion: @escaping CompletionHandler) {
-        guard let userUID = userUID else { return }
+    func fetchUserProfile(userId: String?, completion: @escaping CompletionHandler) {
+        guard let userUID = userId else { return }
         db.collection("User").document(userUID).getDocument { [weak self] (snapshot, error) in
             let userProfile = try? snapshot?.data(as: User.self)
             completion(userProfile, .noData)

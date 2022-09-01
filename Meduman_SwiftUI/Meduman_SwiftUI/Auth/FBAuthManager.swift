@@ -21,6 +21,7 @@ protocol FirebaseAuth {
     func signOut()
 }
 
+
 class FBAuthManager: FirebaseAuth {
     // SHAK: Properties
     static var shared: FBAuthManager? = FBAuthManager()
@@ -62,7 +63,7 @@ class FBAuthManager: FirebaseAuth {
             }
             guard let user = result?.user else { return }
             print("User \(user.uid) signed in.")
-            self?.firebaseFirestoreManager.fetchUserProfile(userUID: user.uid, completion: { [weak self] (user, error) in
+            self?.firebaseFirestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     completion(nil, error)

@@ -41,64 +41,67 @@ struct SignInView: View {
                     .background(.black)
                     .cornerRadius(10)
                     .padding(.top, 50)
-                    ZStack {
-                        Divider()
-                        Text("or sign in with")
-                            .frame(width: 125, height: 25)
-                            
-                            .foregroundColor(.gray)
-                    }
-                    HStack {
-                        Button {
-                            
-                        } label: {
-                            Image("google.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                        Button {
-                            
-                        } label: {
-                            Image("apple.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                        Button {
-                            
-                        } label: {
-                            Image("facebook.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                    }
+//                    ZStack {
+//                        Divider()
+//                        Text("or sign in with")
+//                            .frame(width: 125, height: 25)
+//
+//                            .foregroundColor(.gray)
+//                    }
+//                    HStack {
+//                        Button {
+//
+//                        } label: {
+//                            Image("google.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                        Button {
+//
+//                        } label: {
+//                            Image("apple.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                        Button {
+//
+//                        } label: {
+//                            Image("facebook.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                    }
                     Divider()
+                        .padding(.top, 25)
                     VStack {
                         Button {
                             
                         } label: {
                             Text("Forgot your password?")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.blue)
                         }
                         Button {
+                            print("CREATE NEW ACOUNT PRESSED!")
                             
                         } label: {
                             Text("Create a new account.")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.blue)
                         }
                         .padding()
                     }
+                    .padding(.top, 35)
                 }
                 .padding(.top)
             }

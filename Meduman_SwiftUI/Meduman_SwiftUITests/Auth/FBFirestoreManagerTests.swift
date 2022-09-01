@@ -46,7 +46,7 @@ class FBFirestoreManagerTests: XCTestCase {
     
     func testFBFirestoreManager_CanFetchUserProfile() {
         let expectation = expectation(description: "It can fetch user profile.")
-        sut?.fetchUserProfile(userUID: "xiHaHI19ToS57HV1XLaB2VZB0hE2", completion: { [weak self] (user, error) in
+        sut?.fetchUserProfile(userId: "xiHaHI19ToS57HV1XLaB2VZB0hE2", completion: { [weak self] (user, error) in
             print(user?.email)
             expectation.fulfill()
             XCTAssertNotNil(user)
@@ -56,7 +56,7 @@ class FBFirestoreManagerTests: XCTestCase {
     
     func testFBFirestoreManager_CanFetch_ReturnError() {
         let expectation = expectation(description: "It can return error.")
-        sut?.fetchUserProfile(userUID: "2354", completion: { [weak self] (user, error) in
+        sut?.fetchUserProfile(userId: "2354", completion: { [weak self] (user, error) in
             expectation.fulfill()
             XCTAssertNotNil(error)
         })
