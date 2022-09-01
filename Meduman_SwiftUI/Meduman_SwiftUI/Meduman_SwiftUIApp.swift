@@ -25,6 +25,7 @@ struct Meduman_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             SignInView()
+            //SignUpView()
         }
     }
 }

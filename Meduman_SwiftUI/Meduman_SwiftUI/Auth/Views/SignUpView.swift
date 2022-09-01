@@ -114,7 +114,7 @@ struct SignUpView: View {
                     Divider()
                     Text("Return to Sign In")
                         .frame(width: 150, height: 25)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.blue)
                         .padding()
                 }
                 .padding(.top, 50)
