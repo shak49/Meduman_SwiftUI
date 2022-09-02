@@ -15,8 +15,8 @@ class User: Identifiable, Codable {
     let email: String?
     let phoneNumber: String?
     
-    init(uid: String = "", firstName: String? = "", lastName: String? = "", email: String? = "", phoneNumber: String? = "") {
-        self.id = uid
+    init(id: String, firstName: String?, lastName: String?, email: String?, phoneNumber: String?) {
+        self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.email = email

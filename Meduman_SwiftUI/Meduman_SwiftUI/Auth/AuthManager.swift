@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 
-protocol FirebaseAuth {
+protocol AuthProtocol {
     // SHAK: Properties
     var auth: Auth { get }
     var user: User? { get }
@@ -22,12 +22,12 @@ protocol FirebaseAuth {
 }
 
 
-class FBAuthManager: FirebaseAuth {
+class AuthManager: AuthProtocol {
     // SHAK: Properties
-    static var shared: FBAuthManager? = FBAuthManager()
+    static var shared: AuthManager? = AuthManager()
     var auth = Auth.auth()
     var user: User?
-    var firebaseFirestoreManager = FBFirestoreManager()
+    var firebaseFirestoreManager = FirestoreManager()
     
     // SHAK: Functions
     func signUp(firstName: String?, lastName: String?, email: String?, password: String?, phoneNumber: String?, completion: @escaping CompletionHandler) {
@@ -40,7 +40,7 @@ class FBAuthManager: FirebaseAuth {
             }
             guard let userResult = result?.user else { return }
             print("User \(userResult.uid) signed up.")
-            let user = User(uid: userResult.uid, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber)
+            let user = User(id: userResult.uid, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber)
             self?.firebaseFirestoreManager.createUserProfile(user: user, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while creating user profile \(error)")

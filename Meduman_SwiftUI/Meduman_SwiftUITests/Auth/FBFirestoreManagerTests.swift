@@ -10,12 +10,12 @@ import XCTest
 
 class FBFirestoreManagerTests: XCTestCase {
     // SHAK: Properties
-    var sut: FBFirestoreManager?
+    var sut: FirestoreManager?
     
     // SHAK: Lifecycle
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = FBFirestoreManager()
+        sut = FirestoreManager()
     }
 
     override func tearDownWithError() throws {

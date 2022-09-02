@@ -94,7 +94,6 @@ struct SignInView: View {
                                 .foregroundColor(.blue)
                         }
                         Button {
-                            print("CREATE NEW ACOUNT PRESSED!")
                             self.isPresented.toggle()
                         } label: {
                             Text("Create a new account.")

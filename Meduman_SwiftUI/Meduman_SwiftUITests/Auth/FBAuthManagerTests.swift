@@ -10,12 +10,12 @@ import XCTest
 
 class FBAuthManagerTests: XCTestCase {
     // SHAK: Properties
-    var sut: FBAuthManager?
+    var sut: AuthManager?
     
     // SHAK: Lifecycle
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = FBAuthManager()
+        sut = AuthManager()
     }
 
     override func tearDownWithError() throws {
