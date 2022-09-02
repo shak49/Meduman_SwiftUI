@@ -69,53 +69,49 @@ struct SignUpView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
-                    ZStack {
-                        Divider()
-                        Text("or sign in with")
-                            .frame(width: 125, height: 25)
-                            .foregroundColor(.gray)
-                    }
-                    .padding(.top, 1)
-                    HStack {
-                        Button {
-                            
-                        } label: {
-                            Image("google.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                        Button {
-                            
-                        } label: {
-                            Image("apple.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                        Button {
-                            
-                        } label: {
-                            Image("facebook.logo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .background(.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                        }
-                        .padding()
-                    }
+//                    ZStack {
+//                        Divider()
+//                        Text("or sign in with")
+//                            .frame(width: 125, height: 25)
+//                            .foregroundColor(.gray)
+//                    }
+//                    .padding(.top, 1)
+//                    HStack {
+//                        Button {
+//                            
+//                        } label: {
+//                            Image("google.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                        Button {
+//                            
+//                        } label: {
+//                            Image("apple.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                        Button {
+//                            
+//                        } label: {
+//                            Image("facebook.logo")
+//                                .resizable()
+//                                .frame(width: 40, height: 40)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+//                        }
+//                        .padding()
+//                    }
                     Divider()
-                    Text("Return to Sign In")
-                        .frame(width: 150, height: 25)
-                        .foregroundColor(.blue)
-                        .padding()
                 }
                 .padding(.top, 50)
                 Spacer()

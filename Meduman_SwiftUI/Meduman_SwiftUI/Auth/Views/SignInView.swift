@@ -11,6 +11,7 @@ import SwiftUI
 struct SignInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var isPresented: Bool = false
     
     var body: some View {
         NavigationView {
@@ -94,11 +95,14 @@ struct SignInView: View {
                         }
                         Button {
                             print("CREATE NEW ACOUNT PRESSED!")
-                            
+                            self.isPresented.toggle()
                         } label: {
                             Text("Create a new account.")
                                 .foregroundColor(.blue)
                         }
+                        .popover(isPresented: $isPresented, content: {
+                            SignUpView()
+                        })
                         .padding()
                     }
                     .padding(.top, 35)
