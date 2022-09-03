@@ -16,7 +16,7 @@ protocol AuthProtocol {
     typealias CompletionHandler = (User?, DatabaseError?) -> Void
     
     // SHAK: Functions
-    func signUp(firstName: String?, lastName: String?, email: String?, password: String?, phoneNumber: String?, completion: @escaping CompletionHandler)
+    func signUp(user: User?, completion: @escaping CompletionHandler)
     func signIn(email: String?, password: String?, completion: @escaping CompletionHandler)
     func signOut()
 }
@@ -27,21 +27,19 @@ class AuthManager: AuthProtocol {
     static var shared: AuthManager? = AuthManager()
     var auth = Auth.auth()
     var user: User?
-    var firebaseFirestoreManager = FirestoreManager()
+    var firestoreManager = FirestoreManager()
     
     // SHAK: Functions
-    func signUp(firstName: String?, lastName: String?, email: String?, password: String?, phoneNumber: String?, completion: @escaping CompletionHandler) {
-        guard let email = email, let password = password else { return }
-        auth.createUser(withEmail: email, password: password) { [weak self] (result, error) in
+    func signUp(user: User?, completion: @escaping CompletionHandler) {
+        guard let user = user else { return }
+        auth.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (_, error) in
             if let error = error {
                 print("Error: \(error)")
                 completion(nil, .unableToCreate)
                 return
             }
-            guard let userResult = result?.user else { return }
-            print("User \(userResult.uid) signed up.")
-            let user = User(id: userResult.uid, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber)
-            self?.firebaseFirestoreManager.createUserProfile(user: user, completion: { [weak self] (user, error) in
+            let user = User(id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, phoneNumber: user.phoneNumber)
+            self?.firestoreManager.createUserProfile(user: user, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while creating user profile \(error)")
                     completion(nil, error)
@@ -63,7 +61,7 @@ class AuthManager: AuthProtocol {
             }
             guard let user = result?.user else { return }
             print("User \(user.uid) signed in.")
-            self?.firebaseFirestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in
+            self?.firestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     completion(nil, error)

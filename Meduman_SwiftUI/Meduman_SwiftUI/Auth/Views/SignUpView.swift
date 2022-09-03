@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignUpView: View {
     // SHAK: Properties
+    @ObservedObject private var model = SignUpViewModel()
+    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
@@ -40,7 +42,7 @@ struct SignUpView: View {
                         Divider()
                     }
                     VStack {
-                        TextField("Password...", text: $password)
+                        SecureField("Password...", text: $password)
                             .frame(width: 350, height: 50)
                         Divider()
                     }
@@ -60,7 +62,7 @@ struct SignUpView: View {
                         Divider()
                     }
                     Button {
-                        
+                        model.singUp(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
                     } label: {
                         Text("Sign Up")
                     }
