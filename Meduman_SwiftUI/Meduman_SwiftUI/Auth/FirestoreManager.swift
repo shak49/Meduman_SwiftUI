@@ -29,7 +29,7 @@ class FirestoreManager: FirebaseFirestoreProtocol {
     func createUserProfile(user: User?, completion: @escaping CompletionHandler) {
         guard let user = user else { return }
         do {
-            try db.collection("user").document(user.id).setData(from: user)
+            try db.collection("user").document(user.id ?? "").setData(from: user)
             completion(user, .unableToCreate)
         } catch let error {
             print("Error writing user to Firestore: \(error)")
