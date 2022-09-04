@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     // SHAK: Properties
-    @ObservedObject private var model = SignUpViewModel()
+    @ObservedObject private var model = AuthViewModel()
     
     @State private var firstName: String = ""
     @State private var lastName: String = ""
