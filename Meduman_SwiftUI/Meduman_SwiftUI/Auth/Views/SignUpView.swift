@@ -39,11 +39,13 @@ struct SignUpView: View {
                     VStack {
                         TextField("Email...", text: $email)
                             .frame(width: 350, height: 50)
+                            .textCase(.lowercase)
                         Divider()
                     }
                     VStack {
                         SecureField("Password...", text: $password)
                             .frame(width: 350, height: 50)
+                            .textCase(.none)
                         Divider()
                     }
                     VStack {
@@ -57,6 +59,7 @@ struct SignUpView: View {
                             .padding()
                             TextField("Phone number...", text: $phoneNumber)
                                 .frame(width: 350, height: 50)
+                                .keyboardType(.decimalPad)
                         }
                         .padding(.leading, 25)
                         Divider()

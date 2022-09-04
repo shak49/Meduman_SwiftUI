@@ -24,11 +24,13 @@ struct SignInView: View {
                     VStack {
                         TextField("Enter your email...", text: $email)
                             .frame(width: 350, height: 50)
+                            .textCase(.lowercase)
                         Divider()
                     }
                     VStack {
                         SecureField("Enter your password...", text: $password)
                             .frame(width: 350, height: 50)
+                            .textCase(.none)
                         Divider()
                     }
                         .padding()
