@@ -32,13 +32,14 @@ class AuthManager: AuthProtocol {
     // SHAK: Functions
     func signUp(user: User?, completion: @escaping CompletionHandler) {
         guard let user = user else { return }
-        auth.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (_, error) in
+        auth.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (result, error) in
             if let error = error {
                 print("Error: \(error)")
                 completion(nil, .unableToCreate)
                 return
             }
-            let user = User(id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, phoneNumber: user.phoneNumber)
+            completion(user, nil)
+            let user = User(id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, password: "Confidential", phoneNumber: user.phoneNumber)
             self?.firestoreManager.createUserProfile(user: user, completion: { [weak self] (user, error) in
                 if let error = error {
                     print("Error while creating user profile \(error)")
