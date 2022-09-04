@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct SignInView: View {
+    @ObservedObject private var model = AuthViewModel()
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPresented: Bool = false
@@ -35,11 +37,14 @@ struct SignInView: View {
                     }
                         .padding()
                     Button {
-                        
+                        model.signIn(email: email, password: password)
                     } label: {
                         Text("Sign In")
                             .foregroundColor(.white)
                     }
+                    .fullScreenCover(isPresented: $model.isIdentified, content: {
+                        RecordView()
+                    })
                     .frame(width: 350, height: 50)
                     .background(.black)
                     .cornerRadius(10)

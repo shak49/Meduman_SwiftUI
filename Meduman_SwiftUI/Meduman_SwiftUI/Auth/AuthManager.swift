@@ -60,17 +60,21 @@ class AuthManager: AuthProtocol {
                 completion(nil, .noData)
                 return
             }
-            guard let user = result?.user else { return }
-            print("User \(user.uid) signed in.")
-            self?.firestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in
-                if let error = error {
-                    print("Error while fetching the user profile: \(error)")
-                    completion(nil, error)
-                    return
-                }
-                self?.user = user
-                completion(user, nil)
-            })
+            print("RESULT: \(result?.user)")
+            let user = result?.user
+            print("\(user)")
+            completion(user, nil)
+//            guard let user = result?.user else { return }
+//            print("User \(user.uid) signed in.")
+//            self?.firestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in
+//                if let error = error {
+//                    print("Error while fetching the user profile: \(error)")
+//                    completion(nil, error)
+//                    return
+//                }
+//                self?.user = user
+//                completion(user, nil)
+//            })
         }
     }
     
