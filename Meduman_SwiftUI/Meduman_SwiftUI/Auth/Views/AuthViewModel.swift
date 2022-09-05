@@ -16,7 +16,7 @@ protocol AuthViewModelProtocol {
 
 class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     //MARK: - Properties
-    var isIdentified: Bool = false
+    @Published var isAuthenticated: Bool = false
     
     //MARK: - Functions
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
@@ -32,9 +32,9 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
                 print("ERROR: \(error)")
             }
             if let user = user {
-                self.isIdentified = true
+                self.isAuthenticated = true
+                print("USER: \(user)")
             }
-            print("USER: \(user)")
         })
     }
 }
