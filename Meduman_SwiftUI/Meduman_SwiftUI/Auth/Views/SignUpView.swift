@@ -39,13 +39,13 @@ struct SignUpView: View {
                     VStack {
                         TextField("Email...", text: $email)
                             .frame(width: 350, height: 50)
-                            .textCase(.lowercase)
+                            .autocapitalization(.none)
                         Divider()
                     }
                     VStack {
                         SecureField("Password...", text: $password)
                             .frame(width: 350, height: 50)
-                            .textCase(.none)
+                            .autocapitalization(.none)
                         Divider()
                     }
                     VStack {
