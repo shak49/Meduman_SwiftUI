@@ -10,10 +10,10 @@ import SwiftUI
 
 struct SignInView: View {
     @ObservedObject private var model = AuthViewModel()
-    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPresented: Bool = false
+    @State private var isVisible: Bool = false
     
     var body: some View {
         NavigationView {
@@ -26,13 +26,27 @@ struct SignInView: View {
                     VStack {
                         TextField("Enter your email...", text: $email)
                             .frame(width: 350, height: 50)
-                            .textCase(.lowercase)
+                            .autocapitalization(.none)
                         Divider()
                     }
                     VStack {
-                        SecureField("Enter your password...", text: $password)
-                            .frame(width: 350, height: 50)
-                            .textCase(.none)
+                        HStack {
+                            if isVisible {
+                                TextField("Enter your password...", text: $password)
+                                    .frame(width: 350, height: 50)
+                                    .autocapitalization(.none)
+                            } else {
+                                SecureField("Enter your password...", text: $password)
+                                    .frame(width: 350, height: 50)
+                                    .autocapitalization(.none)
+                            }
+                        }
+                        .overlay(alignment: .trailing) {
+                            Image(systemName: isVisible ? "eye" : "eye.slash")
+                                .onTapGesture {
+                                    self.isVisible.toggle()
+                                }
+                        }
                         Divider()
                     }
                         .padding()
