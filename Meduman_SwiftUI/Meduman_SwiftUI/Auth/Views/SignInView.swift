@@ -42,13 +42,11 @@ struct SignInView: View {
                         Text("Sign In")
                             .foregroundColor(.white)
                     }
-                    .fullScreenCover(isPresented: $model.isIdentified, content: {
-                        RecordView()
-                    })
                     .frame(width: 350, height: 50)
                     .background(.black)
                     .cornerRadius(10)
                     .padding(.top, 50)
+                    .fullScreenCover(isPresented: $model.isAuthenticated, content: RecordView.init)
 //                    ZStack {
 //                        Divider()
 //                        Text("or sign in with")

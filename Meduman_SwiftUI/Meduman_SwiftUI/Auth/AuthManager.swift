@@ -13,11 +13,11 @@ protocol AuthProtocol {
     // SHAK: Properties
     var auth: Auth { get }
     var user: User? { get }
-    typealias CompletionHandler = (User?, DatabaseError?) -> Void
+    //typealias CompletionHandler = (User?, DatabaseError?) -> Void
     
     // SHAK: Functions
-    func signUp(user: User?, completion: @escaping CompletionHandler)
-    func signIn(email: String?, password: String?, completion: @escaping CompletionHandler)
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
     func signOut()
 }
 
@@ -30,7 +30,7 @@ class AuthManager: AuthProtocol {
     var firestoreManager = FirestoreManager()
     
     // SHAK: Functions
-    func signUp(user: User?, completion: @escaping CompletionHandler) {
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void) {
         guard let user = user else { return }
         auth.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (result, error) in
             if let error = error {
@@ -46,13 +46,13 @@ class AuthManager: AuthProtocol {
                     completion(nil, error)
                     return
                 }
-                self?.user = user
+                //self?.user = user
                 completion(user, nil)
             })
         }
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping CompletionHandler) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
         guard let email = email, let password = password else { return }
         auth.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
@@ -61,9 +61,7 @@ class AuthManager: AuthProtocol {
                 return
             }
             print("RESULT: \(result?.user)")
-            let user = result?.user
-            print("\(user)")
-            completion(user, nil)
+            completion(result?.user, nil)
 //            guard let user = result?.user else { return }
 //            print("User \(user.uid) signed in.")
 //            self?.firestoreManager.fetchUserProfile(userId: user.uid, completion: { [weak self] (user, error) in

@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum DatabaseError: Error {
+enum DatabaseError: LocalizedError {
     case unableToCreate
     case thrownError(Error)
     case noData
