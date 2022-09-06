@@ -10,21 +10,22 @@ import SwiftUI
 struct SignUpView: View {
     // SHAK: Properties
     @ObservedObject private var model = AuthViewModel()
-    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var phoneNumber: String = ""
+    @State private var isVisible: Bool = false
     
     // SHAK: Body
     var body: some View {
         NavigationView {
             ZStack {
-                Image("Background.Image")
+                Image("background.jpg")
                     .resizable()
                     .scaledToFill()
-                .scaleEffect(1.5)
+                    .opacity(0.25)
+                    .ignoresSafeArea()
                 VStack {
                     VStack {
                         TextField("First name...", text: $firstName)
@@ -43,9 +44,23 @@ struct SignUpView: View {
                         Divider()
                     }
                     VStack {
-                        SecureField("Password...", text: $password)
-                            .frame(width: 350, height: 50)
-                            .autocapitalization(.none)
+                        HStack {
+                            if isVisible {
+                                TextField("Enter your password...", text: $password)
+                                    .frame(width: 350, height: 50)
+                                    .autocapitalization(.none)
+                            } else {
+                                SecureField("Enter your password...", text: $password)
+                                    .frame(width: 350, height: 50)
+                                    .autocapitalization(.none)
+                            }
+                        }
+                        .overlay(alignment: .trailing) {
+                            Image(systemName: isVisible ? "eye" : "eye.slash")
+                                .onTapGesture {
+                                    self.isVisible.toggle()
+                                }
+                        }
                         Divider()
                     }
                     VStack {
@@ -56,10 +71,11 @@ struct SignUpView: View {
                                 Text("+1")
                                     .foregroundColor(.gray)
                             }
+                            .frame(width: 25, height: 25)
                             .padding()
                             TextField("Phone number...", text: $phoneNumber)
                                 .frame(width: 350, height: 50)
-                                .keyboardType(.decimalPad)
+                                .keyboardType(.numberPad)
                         }
                         .padding(.leading, 25)
                         Divider()
