@@ -18,10 +18,11 @@ struct SignInView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Image("Background.Image")
+                Image("background.jpg")
                     .resizable()
                     .scaledToFill()
-                .scaleEffect(1.5)
+                    .opacity(0.25)
+                    .ignoresSafeArea()
                 VStack {
                     VStack {
                         TextField("Enter your email...", text: $email)
@@ -110,13 +111,13 @@ struct SignInView: View {
                             
                         } label: {
                             Text("Forgot your password?")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.gray)
                         }
                         Button {
                             self.isPresented.toggle()
                         } label: {
                             Text("Create a new account.")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.gray)
                         }
                         .popover(isPresented: $isPresented, content: {
                             SignUpView()
