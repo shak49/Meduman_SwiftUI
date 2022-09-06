@@ -44,6 +44,7 @@ struct SignInView: View {
                         }
                         .overlay(alignment: .trailing) {
                             Image(systemName: isVisible ? "eye" : "eye.slash")
+                                .foregroundColor(.gray)
                                 .onTapGesture {
                                     self.isVisible.toggle()
                                 }
