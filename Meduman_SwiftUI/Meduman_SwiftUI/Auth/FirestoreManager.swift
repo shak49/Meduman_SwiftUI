@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-protocol FirebaseFirestoreProtocol {
+protocol FirestoreProtocol {
     // SHAK: Properties
     var db: Firestore { get }
     typealias CompletionHandler = (User?, DatabaseError?) -> Void
@@ -21,7 +21,7 @@ protocol FirebaseFirestoreProtocol {
 }
 
 
-class FirestoreManager: FirebaseFirestoreProtocol {
+class FirestoreManager: FirestoreProtocol {
     // SHAK: Properties
     var db = Firestore.firestore()
     
