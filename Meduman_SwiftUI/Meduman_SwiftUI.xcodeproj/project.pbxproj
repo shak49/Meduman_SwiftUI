@@ -116,6 +116,27 @@
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
 		};
+		6D63A36428CA6CA40076BB1E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6D63A36528CA6CB70076BB1E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6D63A36628CA6CC30076BB1E /* Presentor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentor;
+			sourceTree = "<group>";
+		};
 		6D82EF54277266AA0010E25B = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +159,9 @@
 		6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				6D63A36428CA6CA40076BB1E /* Data */,
+				6D63A36528CA6CB70076BB1E /* Domain */,
+				6D63A36628CA6CC30076BB1E /* Presentor */,
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
 				6DD3A57F28BFAEC600405C26 /* Auth */,
