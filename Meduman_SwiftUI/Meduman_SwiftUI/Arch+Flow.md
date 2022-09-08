@@ -4,7 +4,7 @@
 -Clean Architecture + MVVM-
 
 
-Data
+- Data
     - Firebase
         - FBAuthRepo
         - FBFirestoreRepo
@@ -22,7 +22,7 @@ Data
         - UserDefaultRepo
         - RealmRepo
     
-Domain
+- Domain
     - Entity
         - User
         - Record
@@ -33,5 +33,5 @@ Domain
         - RecordManager
         - ReminderManager
 
-Presentor(MVVM)
+- Presentor(MVVM)
 
