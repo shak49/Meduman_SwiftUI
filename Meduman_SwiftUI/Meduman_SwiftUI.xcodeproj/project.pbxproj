@@ -44,7 +44,7 @@
 		6D2C0AB027862DE5003D36DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		6D63A35C28C2DD770076BB1E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		6D63A36228C52D0E0076BB1E /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		6D63A36928CA94C40076BB1E /* Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Arch+Flow.md"; sourceTree = "<group>"; };
+		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIApp.swift; sourceTree = "<group>"; };
 		6D82EF64277266AD0010E25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */,
+				6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D82EF70277266AE0010E25B /* Meduman_SwiftUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
@@ -160,7 +161,6 @@
 		6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A36928CA94C40076BB1E /* Arch+Flow.md */,
 				6D63A36428CA6CA40076BB1E /* Data */,
 				6D63A36528CA6CB70076BB1E /* Domain */,
 				6D63A36628CA6CC30076BB1E /* Presentor */,
