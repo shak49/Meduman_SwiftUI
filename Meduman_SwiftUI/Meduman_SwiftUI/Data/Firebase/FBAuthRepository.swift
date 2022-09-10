@@ -12,48 +12,51 @@ import FirebaseAuth
 protocol FBAuthProtocol {
     // SHAK: Properties
     var auth: Auth? { get }
-    //var user: User? { get }
+    var user: User? { get }
     
     // SHAK: Functions
-    func signUp(user: User?)
-    func signIn(email: String?, password: String?)
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
     func signOut()
 }
 
 class FBAuthRepository: FBAuthProtocol {
     //MARK: - Properties
-    var firestoreRepo = FBFirestoreRepository()
     var auth: Auth?
-    //var user: User?
+    var user: User?
     
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func signUp(user: User?) {
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void) {
         guard let user = user else { return }
         self.auth?.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (result, error) in
             if let error = error {
                 print("Error: \(error)")
+                completion(nil, .unableToCreate)
                 return
             }
+            completion(user, nil)
         }
     }
     
-    func signIn(email: String?, password: String?) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
         guard let email = email, let password = password else { return }
         self.auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
                 print("Error signing in: (error)")
+                completion(nil, .noData)
                 return
             }
             print("RESULT: \(result?.user)")
+            completion(result?.user, nil)
         }
     }
     
     func signOut() {
         do {
             try self.auth?.signOut()
-            //self.user = nil
+            self.user = nil
         } catch let signOutError as NSError {
             print("Error signning-out: \(signOutError)")
         }
