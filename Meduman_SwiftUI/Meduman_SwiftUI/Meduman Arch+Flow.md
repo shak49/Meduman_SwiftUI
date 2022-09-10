@@ -1,7 +1,7 @@
-#  Meduman Architect & Flow
+#  Meduman
 
 
-- Meduman Structure
+- Structure
     - Data
         - Utility
             - Extensions
@@ -60,9 +60,11 @@
                 - View
                 - ViewModel
                 
-
+-------------------------------------------------------------------
 
 - Design Patterns
     - MVVM
     - Singleton
     - Dependency Injection
+    
+-------------------------------------------------------------------
