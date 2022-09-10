@@ -15,8 +15,8 @@ protocol UserAuthProtocol {
     var user: User? { get }
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(Result<FirebaseAuth.User?, DatabaseError>) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(Result<User, DatabaseError>) -> Void)
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError) -> Void)
     func SignOut()
     func createProfile(user: User?)
 }
@@ -24,18 +24,34 @@ protocol UserAuthProtocol {
 
 class UserManager: UserAuthProtocol {
     //MARK: - Properties
-    var authRepo = FBAuthRepository()
-    var firestorRepo = FBFirestoreRepository()
+    var authRepo: FBAuthProtocol
+    var firestorRepo: FBFirestoreProtocol
     var user: User?
     
-    //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(Result<FirebaseAuth.User?, DatabaseError>) -> Void) {
-        self.authRepo.signUp(user: user)
-        createProfile(user: user)
+    //MARK: - Lifecycles
+    init(authRepo: FBAuthProtocol, firestoreRepo: FBFirestoreProtocol) {
+        self.authRepo = authRepo
+        self.firestorRepo = firestoreRepo
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping (Result<User, DatabaseError>) -> Void) {
-        self.authRepo.signIn(email: email, password: password)
+    //MARK: - Functions
+    func signUp(user: User?, completion: @escaping(User?, DatabaseError) -> Void) {
+        self.authRepo.signUp(user: user) { user, error in
+            if error != nil {
+                print("Sign Up Error: \(error)!")
+            }
+            completion(user, error as! DatabaseError)
+            self.createProfile(user: user)
+        }
+    }
+    
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError) -> Void) {
+        self.authRepo.signIn(email: email, password: password) { user, error in
+            if error != nil {
+                print("Error: \(error)")
+            }
+            completion(user, error as! DatabaseError)
+        }
     }
     
     func SignOut() {
@@ -44,6 +60,9 @@ class UserManager: UserAuthProtocol {
     
     func createProfile(user: User?) {
         let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
-        self.firestorRepo.createUserProfile(user: user)
+        self.firestorRepo.createUserProfile(user: user) { user, error in
+            print("Create Profile Error: \(error)!")
+            print("Profile User: \(user)!")
+        }
     }
 }
