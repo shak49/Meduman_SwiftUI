@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-protocol UserAuthProtocol {
+protocol UserManagerProtocol {
     //MARK: - Properties
     var user: User? { get }
     
@@ -22,7 +22,7 @@ protocol UserAuthProtocol {
 }
 
 
-class UserManager: UserAuthProtocol {
+class UserManager: UserManagerProtocol {
     //MARK: - Properties
     var authRepo: FBAuthProtocol
     var firestorRepo: FBFirestoreProtocol
