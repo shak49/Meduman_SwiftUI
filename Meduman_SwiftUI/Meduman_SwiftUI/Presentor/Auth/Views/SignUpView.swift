@@ -1,20 +1,23 @@
 //
-//  SignInView.swift
+//  SignUpView.swift
 //  Meduman_SwiftUI
 //
-//  Created by Shak Feizi on 12/28/21.
+//  Created by Shak Feizi on 1/5/22.
 //
 
 import SwiftUI
 
-
-struct SignInView: View {
-    @ObservedObject private var model = AuthViewModel()
+struct SignUpView: View {
+    // SHAK: Properties
+    @EnvironmentObject private var model: AuthViewModel
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var isPresented: Bool = false
+    @State private var phoneNumber: String = ""
     @State private var isVisible: Bool = false
     
+    // SHAK: Body
     var body: some View {
         NavigationView {
             ZStack {
@@ -25,7 +28,17 @@ struct SignInView: View {
                     .ignoresSafeArea()
                 VStack {
                     VStack {
-                        TextField("Enter your email...", text: $email)
+                        TextField("First name...", text: $firstName)
+                            .frame(width: 350, height: 50)
+                        Divider()
+                    }
+                    VStack {
+                        TextField("Last name...", text: $lastName)
+                            .frame(width: 350, height: 50)
+                        Divider()
+                    }
+                    VStack {
+                        TextField("Email...", text: $email)
                             .frame(width: 350, height: 50)
                             .autocapitalization(.none)
                         Divider()
@@ -51,28 +64,43 @@ struct SignInView: View {
                         }
                         Divider()
                     }
-                        .padding()
+                    VStack {
+                        HStack {
+                            Button {
+                                
+                            } label: {
+                                Text("+1")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(width: 25, height: 25)
+                            .padding()
+                            TextField("Phone number...", text: $phoneNumber)
+                                .frame(width: 350, height: 50)
+                                .keyboardType(.numberPad)
+                        }
+                        .padding(.leading, 25)
+                        Divider()
+                    }
                     Button {
-                        model.signIn(email: email, password: password)
+                        model.singUp(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
                     } label: {
-                        Text("Sign In")
-                            .foregroundColor(.white)
+                        Text("Sign Up")
                     }
                     .frame(width: 350, height: 50)
                     .background(.black)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
-                    .padding(.top, 50)
-                    .fullScreenCover(isPresented: $model.isAuthenticated, content: RecordView.init)
+                    .padding()
 //                    ZStack {
 //                        Divider()
 //                        Text("or sign in with")
 //                            .frame(width: 125, height: 25)
-//
 //                            .foregroundColor(.gray)
 //                    }
+//                    .padding(.top, 1)
 //                    HStack {
 //                        Button {
-//
+//                            
 //                        } label: {
 //                            Image("google.logo")
 //                                .resizable()
@@ -83,7 +111,7 @@ struct SignInView: View {
 //                        }
 //                        .padding()
 //                        Button {
-//
+//                            
 //                        } label: {
 //                            Image("apple.logo")
 //                                .resizable()
@@ -94,7 +122,7 @@ struct SignInView: View {
 //                        }
 //                        .padding()
 //                        Button {
-//
+//                            
 //                        } label: {
 //                            Image("facebook.logo")
 //                                .resizable()
@@ -106,36 +134,17 @@ struct SignInView: View {
 //                        .padding()
 //                    }
                     Divider()
-                        .padding(.top, 25)
-                    VStack {
-                        Button {
-                            
-                        } label: {
-                            Text("Forgot your password?")
-                                .foregroundColor(.gray)
-                        }
-                        Button {
-                            self.isPresented.toggle()
-                        } label: {
-                            Text("Create a new account.")
-                                .foregroundColor(.gray)
-                        }
-                        .popover(isPresented: $isPresented, content: {
-                            SignUpView()
-                        })
-                        .padding()
-                    }
-                    .padding(.top, 35)
                 }
-                .padding(.top)
+                .padding(.top, 50)
+                Spacer()
             }
-                .navigationTitle("Sign In")
+            .navigationTitle("Sign Up")
         }
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignUpView()
     }
 }
