@@ -9,11 +9,17 @@ import SwiftUI
 
 
 struct SignInView: View {
-    @EnvironmentObject private var model: AuthViewModel
+    //MARK: - Properties
+    @StateObject private var model: AuthViewModel
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPresented: Bool = false
     @State private var isVisible: Bool = false
+    
+    //MARK: - Lifecycles
+    public init(userManager: UserManager) {
+        self._model = StateObject(wrappedValue: AuthViewModel(userManager: userManager))
+    }
     
     var body: some View {
         NavigationView {
@@ -121,7 +127,10 @@ struct SignInView: View {
                                 .foregroundColor(.gray)
                         }
                         .popover(isPresented: $isPresented, content: {
-                            SignUpView()
+                            let authRepo = FBAuthRepository()
+                            let firestoreRepo = FBFirestoreRepository()
+                            let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+                            SignUpView(userManager: userManager)
                         })
                         .padding()
                     }
@@ -135,7 +144,11 @@ struct SignInView: View {
 }
 
 struct SignInView_Previews: PreviewProvider {
+    static let authRepo = FBAuthRepository()
+    static let firestoreRepo = FBFirestoreRepository()
+    static let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+    
     static var previews: some View {
-        SignInView()
+        SignInView(userManager: userManager)
     }
 }
