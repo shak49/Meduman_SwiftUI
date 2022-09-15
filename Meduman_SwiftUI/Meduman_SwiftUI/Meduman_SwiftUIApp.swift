@@ -23,12 +23,8 @@ struct Meduman_SwiftUIApp: App {
     }
     
     var body: some Scene {
-        let authRepo = FBAuthRepository()
-        let firestoreRepo = FBFirestoreRepository()
-        let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
-        
         WindowGroup {
-            SignInView(userManager: userManager)
+            SignInView()
             //SignUpView()
         }
     }

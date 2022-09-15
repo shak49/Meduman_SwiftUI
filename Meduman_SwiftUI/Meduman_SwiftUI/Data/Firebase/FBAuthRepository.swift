@@ -30,7 +30,7 @@ class FBAuthRepository: FBAuthProtocol {
     //MARK: - Functions
     func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void) {
         guard let user = user else { return }
-        self.auth?.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (result, error) in
+        auth?.createUser(withEmail: user.email ?? "", password: user.password ?? "") { [weak self] (result, error) in
             if let error = error {
                 print("Error: \(error)")
                 completion(nil, .unableToCreate)
@@ -42,20 +42,20 @@ class FBAuthRepository: FBAuthProtocol {
     
     func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
         guard let email = email, let password = password else { return }
-        self.auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
+        auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
-                print("Error signing in: (error)")
+                print("Error signing in: \(error)")
                 completion(nil, .noData)
                 return
             }
-            print("RESULT: \(result?.user)")
+            print("RESULT: \(result?.user.uid)")
             completion(result?.user, nil)
         }
     }
     
     func signOut() {
         do {
-            try self.auth?.signOut()
+            try auth?.signOut()
             self.user = nil
         } catch let signOutError as NSError {
             print("Error signning-out: \(signOutError)")
