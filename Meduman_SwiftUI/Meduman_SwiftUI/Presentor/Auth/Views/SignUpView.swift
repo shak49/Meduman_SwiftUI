@@ -93,6 +93,7 @@ struct SignUpView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
+                    .fullScreenCover(isPresented: $model.isAuthenticated, content: RecordView.init)
 //                    ZStack {
 //                        Divider()
 //                        Text("or sign in with")

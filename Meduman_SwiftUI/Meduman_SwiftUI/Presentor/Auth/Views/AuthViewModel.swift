@@ -24,13 +24,20 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
         let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
         UserManager.shared.signUp(user: user, completion: { (user, error) in
-            print("USER: \(user)")
+            if let error = error {
+                print("VM ERROR: \(error)!")
+                return
+            }
+            if let user = user {
+                self.isAuthenticated = true
+                print("VM USER: \(user)!")
+            }
         })
     }
     
     func signIn(email: String, password: String) {
         UserManager.shared.signIn(email: email, password: password, completion: { user, error in
-            if error != nil {
+            if let error = error {
                 print("ERROR: \(error)")
             }
             if let user = user {
