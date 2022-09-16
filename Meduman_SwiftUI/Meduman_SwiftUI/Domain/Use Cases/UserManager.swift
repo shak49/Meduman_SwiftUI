@@ -15,7 +15,7 @@ protocol UserManagerProtocol {
     var user: User? { get }
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void)
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
     func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
     func SignOut()
     func createProfile(user: User?)
@@ -32,14 +32,17 @@ class UserManager: UserManagerProtocol {
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(User?, DatabaseError?) -> Void) {
-        authRepo.signUp(user: user) { user, error in
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
+        guard let user = user else { return }
+        authRepo.signUp(user: user) { (user, error) in
             if let error = error {
-                print("Sign Up Error: \(error)!")
+                print("UM ERROR: \(error)!")
+                return
             }
-            completion(user, error as? DatabaseError)
-            self.createProfile(user: user)
+            print("UM USER: \(user)")
+            completion(user, error)
         }
+        self.createProfile(user: user)
     }
     
     func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
@@ -48,7 +51,7 @@ class UserManager: UserManagerProtocol {
                 print("Error: \(error)")
             }
             print("USER: \(user?.uid)")
-            completion(user, error as? DatabaseError)
+            completion(user, error)
         }
     }
     
@@ -60,7 +63,7 @@ class UserManager: UserManagerProtocol {
         let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
         firestorRepo.createUserProfile(user: user) { user, error in
             print("Create Profile Error: \(error)!")
-            print("Profile User: \(user)!")
+            print("Profile User: \(user?.email)!")
         }
     }
 }
