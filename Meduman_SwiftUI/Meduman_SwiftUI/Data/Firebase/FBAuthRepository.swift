@@ -44,12 +44,10 @@ class FBAuthRepository: FBAuthProtocol {
         guard let email = email, let password = password else { return }
         auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
-                print("Error signing in: \(error)")
                 completion(nil, .noData)
                 return
             }
             guard let result = result else { return }
-            print("RESULT: \(result.user.uid)")
             completion(result.user, nil)
         }
     }
