@@ -36,10 +36,10 @@ class UserManager: UserManagerProtocol {
         guard let user = user else { return }
         authRepo.signUp(user: user) { (user, error) in
             if let error = error {
-                print("UM ERROR: \(error)!")
+                print("ERROR: \(error)!")
                 return
             }
-            print("UM USER: \(user)")
+            print("USER: \(user)")
             completion(user, error)
         }
         self.createProfile(user: user)
@@ -56,7 +56,7 @@ class UserManager: UserManagerProtocol {
     }
     
     func SignOut() {
-        self.authRepo.signOut()
+        authRepo.signOut()
     }
     
     func createProfile(user: User?) {

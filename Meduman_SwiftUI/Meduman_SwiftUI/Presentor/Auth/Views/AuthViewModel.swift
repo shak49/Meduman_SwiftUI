@@ -46,4 +46,8 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
             }
         })
     }
+    
+    func signOut() {
+        
+    }
 }
