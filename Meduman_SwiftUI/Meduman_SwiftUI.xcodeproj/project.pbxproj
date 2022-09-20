@@ -24,7 +24,7 @@
 		6D82EF91277271270010E25B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF90277271270010E25B /* User.swift */; };
 		6D82EF932772726E0010E25B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF922772726E0010E25B /* Person.swift */; };
 		6D82EF972773944F0010E25B /* FBAuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF962773944F0010E25B /* FBAuthManagerTests.swift */; };
-		6D82EFA827739A020010E25B /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* DatabaseError.swift */; };
+		6D82EFA827739A020010E25B /* UserAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* UserAuthError.swift */; };
 		6D82EFB02773BD350010E25B /* FBFirestoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFAF2773BD350010E25B /* FBFirestoreManagerTests.swift */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
@@ -57,7 +57,7 @@
 		6D82EF90277271270010E25B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D82EF922772726E0010E25B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		6D82EF962773944F0010E25B /* FBAuthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthManagerTests.swift; sourceTree = "<group>"; };
-		6D82EFA727739A020010E25B /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		6D82EFA727739A020010E25B /* UserAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthError.swift; sourceTree = "<group>"; };
 		6D82EFAF2773BD350010E25B /* FBFirestoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFirestoreManagerTests.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -140,7 +140,6 @@
 		6D63A37128CC029B0076BB1E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				6D82EFA727739A020010E25B /* DatabaseError.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -179,6 +178,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6D63A3A628D9433D0076BB1E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				6D82EFA727739A020010E25B /* UserAuthError.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		6D82EF54277266AA0010E25B = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +211,7 @@
 				6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */,
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
+				6D63A3A628D9433D0076BB1E /* Utility */,
 				6D63A36428CA6CA40076BB1E /* Data */,
 				6D63A36528CA6CB70076BB1E /* Domain */,
 				6D63A36628CA6CC30076BB1E /* Presentor */,
@@ -366,7 +374,7 @@
 				6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */,
 				6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */,
 				6D63A39728CEC38F0076BB1E /* AuthViewModel.swift in Sources */,
-				6D82EFA827739A020010E25B /* DatabaseError.swift in Sources */,
+				6D82EFA827739A020010E25B /* UserAuthError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
