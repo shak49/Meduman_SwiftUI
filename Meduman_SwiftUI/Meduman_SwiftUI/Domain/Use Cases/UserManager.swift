@@ -15,8 +15,8 @@ protocol UserManagerProtocol {
     var user: User? { get }
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
     func SignOut()
     func createProfile(user: User?)
 }
@@ -26,13 +26,13 @@ class UserManager: UserManagerProtocol {
     //MARK: - Properties
     static let shared = UserManager()
     var authRepo: FBAuthRepository = FBAuthRepository()
-    var firestorRepo: FBFirestoreRepository = FBFirestoreRepository()
+    var firestoreRepo: FBFirestoreRepository = FBFirestoreRepository()
     var user: User?
     
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
         guard let user = user else { return }
         authRepo.signUp(user: user) { (user, error) in
             if let error = error {
@@ -45,7 +45,7 @@ class UserManager: UserManagerProtocol {
         self.createProfile(user: user)
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
         authRepo.signIn(email: email, password: password) { user, error in
             if let error = error {
                 print("Error: \(error)")
@@ -61,7 +61,7 @@ class UserManager: UserManagerProtocol {
     
     func createProfile(user: User?) {
         let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
-        firestorRepo.createUserProfile(user: user) { user, error in
+        firestoreRepo.createUserProfile(user: user) { user, error in
             print("Create Profile Error: \(error)!")
             print("Profile User: \(user?.email)!")
         }

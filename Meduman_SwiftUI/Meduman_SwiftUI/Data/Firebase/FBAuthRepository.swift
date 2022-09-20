@@ -15,8 +15,8 @@ protocol FBAuthProtocol {
     var user: User? { get }
     
     // SHAK: Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void)
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
     func signOut()
 }
 
@@ -28,23 +28,23 @@ class FBAuthRepository: FBAuthProtocol {
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
         guard let email = user?.email, let password = user?.password else { return }
         auth?.createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Error: \(error)")
-                completion(nil, .unableToCreate)
+                completion(nil, .unableToCreateUser)
                 return
             }
             completion(result?.user, nil)
         }
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, DatabaseError?) -> Void) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
         guard let email = email, let password = password else { return }
         auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
-                completion(nil, .noData)
+                completion(nil, .noUser)
                 return
             }
             guard let result = result else { return }

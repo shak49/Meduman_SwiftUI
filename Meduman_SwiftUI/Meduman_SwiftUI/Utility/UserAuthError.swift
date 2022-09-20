@@ -8,18 +8,18 @@
 import Foundation
 
 
-enum DatabaseError: LocalizedError {
-    case unableToCreate
+enum UserAuthError: LocalizedError {
+    case unableToCreateUser
     case thrownError(Error)
-    case noData
+    case noUser
     
     var errorDescription: String {
         switch self {
-        case .unableToCreate:
+        case .unableToCreateUser:
             return "Unable to create the user."
         case .thrownError(let error):
             return "Error: \(error.localizedDescription) -> \(error)"
-        case .noData:
+        case .noUser:
             return "The server responded with no data."
         }
     }

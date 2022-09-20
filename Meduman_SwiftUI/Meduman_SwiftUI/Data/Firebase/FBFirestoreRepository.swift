@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 protocol FBFirestoreProtocol {
     // SHAK: Properties
     var firestore: Firestore { get }
-    typealias CompletionHandler = (User?, DatabaseError?) -> Void
+    typealias CompletionHandler = (User?, UserAuthError?) -> Void
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping CompletionHandler)
@@ -31,10 +31,10 @@ class FBFirestoreRepository: FBFirestoreProtocol {
         guard let user = user else { return }
         do {
             try firestore.collection("user").document(user.id ?? "").setData(from: user)
-            completion(user, .unableToCreate)
+            completion(user, .unableToCreateUser)
         } catch let error {
             print("Error writing user to Firestore: \(error)")
-            completion(nil, error as? DatabaseError)
+            completion(nil, error as? UserAuthError)
         }
     }
     
@@ -42,7 +42,7 @@ class FBFirestoreRepository: FBFirestoreProtocol {
         guard let userId = userId else { return }
         firestore.collection("User").document(userId).getDocument { [weak self] (snapshot, error) in
             let userProfile = try? snapshot?.data(as: User.self)
-            completion(userProfile, .noData)
+            completion(userProfile, .noUser)
         }
     }
 }
