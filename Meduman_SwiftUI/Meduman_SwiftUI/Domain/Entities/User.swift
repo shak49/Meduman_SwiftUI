@@ -48,6 +48,12 @@ extension User {
         return email.contains("@") && email.contains(".")
     }
     
+    func validPassword() -> Bool {
+        guard let password = password else { return false }
+        let predicate = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[$@$#!%*?&]).{6,}$")
+        return predicate.evaluate(with: password)
+    }
+    
     func validatePhoneNumber() -> Bool {
         guard let phoneNumber = phoneNumber else { return false }
         let phoneRegex = "\\+?1?\\s?[2-9][0-9]{2}\\s?[2-9][0-9]{2}\\s?[0-9]{4}"
