@@ -24,12 +24,15 @@ protocol UserManagerProtocol {
 
 class UserManager: UserManagerProtocol {
     //MARK: - Properties
-    static let shared = UserManager()
-    var authRepo: FBAuthRepository = FBAuthRepository()
-    var firestoreRepo: FBFirestoreRepository = FBFirestoreRepository()
+    var authRepo: FBAuthRepository
+    var firestoreRepo: FBFirestoreRepository
     var user: User?
     
     //MARK: - Lifecycles
+    init(authRepo: FBAuthRepository, firestoreRepo: FBFirestoreRepository) {
+        self.authRepo = authRepo
+        self.firestoreRepo = firestoreRepo
+    }
     
     //MARK: - Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
