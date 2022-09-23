@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     // SHAK: Properties
-    @ObservedObject private var model: AuthViewModel = AuthViewModel()
+    @ObservedObject private var model: AuthViewModel
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
@@ -17,7 +17,14 @@ struct SignUpView: View {
     @State private var phoneNumber: String = ""
     @State private var isVisible: Bool = false
     
+    static let authRepo = FBAuthRepository()
+    static let firestoreRepo = FBFirestoreRepository()
+    static let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+    
     //MARK: - Lifecycles
+    init(userManger: UserManager = userManager) {
+        self.model = AuthViewModel(userManager: userManger)
+    }
     
     // SHAK: Body
     var body: some View {

@@ -10,13 +10,20 @@ import SwiftUI
 
 struct SignInView: View {
     //MARK: - Properties
-    @ObservedObject private var model: AuthViewModel = AuthViewModel()
+    @ObservedObject private var model: AuthViewModel
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isPresented: Bool = false
     @State private var isVisible: Bool = false
     
+    static let authRepo = FBAuthRepository()
+    static let firestoreRepo = FBFirestoreRepository()
+    static let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+    
     //MARK: - Lifecycles
+    init(userManager: UserManager = userManager) {
+        self.model = AuthViewModel(userManager: userManager)
+    }
     
     var body: some View {
         NavigationView {
