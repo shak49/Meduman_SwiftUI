@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 
-protocol FBAuthProtocol {
+protocol AuthProtocol {
     // SHAK: Properties
     var auth: Auth? { get }
     var user: User? { get }
@@ -20,7 +20,8 @@ protocol FBAuthProtocol {
     func signOut()
 }
 
-class FBAuthRepository: FBAuthProtocol {
+
+class AuthRepository: AuthProtocol {
     //MARK: - Properties
     var auth: Auth? = Auth.auth()
     var user: User?

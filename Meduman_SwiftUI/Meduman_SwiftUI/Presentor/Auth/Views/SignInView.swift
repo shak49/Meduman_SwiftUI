@@ -15,9 +15,8 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var isPresented: Bool = false
     @State private var isVisible: Bool = false
-    
-    static let authRepo = FBAuthRepository()
-    static let firestoreRepo = FBFirestoreRepository()
+    static let authRepo = AuthRepository()
+    static let firestoreRepo = FirestoreRepository()
     static let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
     
     //MARK: - Lifecycles
@@ -25,13 +24,14 @@ struct SignInView: View {
         self.model = AuthViewModel(userManager: userManager)
     }
     
+    //MARK: - Body
     var body: some View {
         NavigationView {
             ZStack {
                 Image("background.jpg")
                     .resizable()
                     .scaledToFill()
-                    .opacity(0.25)
+                    .opacity(0.50)
                     .ignoresSafeArea()
                 VStack {
                     VStack {

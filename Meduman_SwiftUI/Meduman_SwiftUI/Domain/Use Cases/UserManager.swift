@@ -24,12 +24,12 @@ protocol UserManagerProtocol {
 
 class UserManager: UserManagerProtocol {
     //MARK: - Properties
-    var authRepo: FBAuthRepository
-    var firestoreRepo: FBFirestoreRepository
+    var authRepo: AuthRepository
+    var firestoreRepo: FirestoreRepository
     var user: User?
     
     //MARK: - Lifecycles
-    init(authRepo: FBAuthRepository, firestoreRepo: FBFirestoreRepository) {
+    init(authRepo: AuthRepository, firestoreRepo: FirestoreRepository) {
         self.authRepo = authRepo
         self.firestoreRepo = firestoreRepo
     }
