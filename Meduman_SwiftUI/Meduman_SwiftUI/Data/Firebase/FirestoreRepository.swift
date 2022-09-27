@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-protocol FBFirestoreProtocol {
+protocol FirestoreProtocol {
     // SHAK: Properties
     var firestore: Firestore { get }
     typealias CompletionHandler = (User?, UserAuthError?) -> Void
@@ -20,7 +20,8 @@ protocol FBFirestoreProtocol {
     func fetchUserProfile(userId: String?, completion: @escaping CompletionHandler)
 }
 
-class FBFirestoreRepository: FBFirestoreProtocol {
+
+class FirestoreRepository: FirestoreProtocol {
     //MARK: - Properties
     var firestore = Firestore.firestore()
     
