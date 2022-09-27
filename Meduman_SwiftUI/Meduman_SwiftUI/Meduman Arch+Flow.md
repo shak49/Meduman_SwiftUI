@@ -11,10 +11,10 @@
                 - FirebaseError
                 - DatabaseError
         - Firebase
-            - FBAuthRepo
-            - FBFirestoreRepo
-        - HealthKit
-            - HealthKitRepo
+            - AuthRepo
+            - FirestoreRepo
+        - Health
+            - HealthRepo
         - Notification
             - Local-NotificationRepo
             - Push-NotificationRepo
