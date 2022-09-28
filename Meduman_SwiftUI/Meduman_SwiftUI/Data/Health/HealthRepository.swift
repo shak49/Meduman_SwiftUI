@@ -16,8 +16,15 @@ protocol HealthProtocol {
     
     //MARK: - Functions
     func requestAuthorization()
-    func wirteHealthTypes(record: String?)
-    func readHealthTypes(category: String?)
-    func identifyTypeByCategory(category: String?) -> HKQuantityTypeIdentifier
-    func identifyTepeByRecord() -> Any
+    func writeCharacteristicTypeSample()
+    func readCharacteristicTypeSample()
+    func writeQuantityTypeSample()
+    func readQuantityTypeSample()
+    func writeCategoryTypeSample()
+    func readCategoryTypeSample()
+}
+
+
+class HealthRepository {
+    
 }
