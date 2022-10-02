@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 protocol FirestoreProtocol {
     // SHAK: Properties
     var firestore: Firestore { get }
-    typealias CompletionHandler = (User?, UserAuthError?) -> Void
+    typealias CompletionHandler = (User?, AuthError?) -> Void
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping CompletionHandler)
@@ -35,7 +35,7 @@ class FirestoreRepository: FirestoreProtocol {
             completion(user, .unableToCreateUser)
         } catch let error {
             print("Error writing user to Firestore: \(error)")
-            completion(nil, error as? UserAuthError)
+            completion(nil, error as? AuthError)
         }
     }
     
