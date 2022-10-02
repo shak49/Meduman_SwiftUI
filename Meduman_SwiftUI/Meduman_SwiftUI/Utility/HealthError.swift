@@ -1,25 +1,25 @@
 //
-//  DatabaseError.swift
+//  HealthError.swift
 //  Meduman_SwiftUI
 //
-//  Created by Shak Feizi on 12/22/21.
+//  Created by Shak Feizi on 10/1/22.
 //
 
 import Foundation
 
 
-enum UserAuthError: LocalizedError {
-    case unableToCreateUser
+enum HealthError: LocalizedError {
+    case unableToWriteHealthRecord
     case thrownError(Error)
-    case noUser
+    case unableToReadHealthRecord
     
     var errorDescription: String {
         switch self {
-        case .unableToCreateUser:
+        case .unableToWriteHealthRecord:
             return "Unable to create the user."
         case .thrownError(let error):
             return "Error: \(error.localizedDescription) -> \(error)"
-        case .noUser:
+        case .unableToReadHealthRecord:
             return "The server responded with no data."
         }
     }

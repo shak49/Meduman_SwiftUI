@@ -15,8 +15,8 @@ protocol UserManagerProtocol {
     var user: User? { get }
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
     func SignOut()
     func createProfile(user: User?)
 }
@@ -35,7 +35,7 @@ class UserManager: UserManagerProtocol {
     }
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
         guard let user = user else { return }
         authRepo.signUp(user: user) { (user, error) in
             if let error = error {
@@ -48,7 +48,7 @@ class UserManager: UserManagerProtocol {
         self.createProfile(user: user)
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
         authRepo.signIn(email: email, password: password) { user, error in
             if let error = error {
                 print("Error: \(error)")

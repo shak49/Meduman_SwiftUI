@@ -6,6 +6,7 @@
 //
 
 import HealthKit
+import Combine
 
 
 protocol HealthProtocol {
@@ -15,7 +16,7 @@ protocol HealthProtocol {
     var healthQuary: HKStatisticsCollectionQuery? { get }
     
     //MARK: - Functions
-    func requestAuthorization()
+    func requestAuthorization() -> AnyPublisher<Bool, HealthError>
     func writeCharacteristicTypeSample()
     func readCharacteristicTypeSample()
     func writeQuantityTypeSample()

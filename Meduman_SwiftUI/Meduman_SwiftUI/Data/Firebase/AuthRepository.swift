@@ -15,8 +15,8 @@ protocol AuthProtocol {
     var user: User? { get }
     
     // SHAK: Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void)
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
     func signOut()
 }
 
@@ -29,7 +29,7 @@ class AuthRepository: AuthProtocol {
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
+    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
         guard let email = user?.email, let password = user?.password else { return }
         auth?.createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -41,7 +41,7 @@ class AuthRepository: AuthProtocol {
         }
     }
     
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, UserAuthError?) -> Void) {
+    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
         guard let email = email, let password = password else { return }
         auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error = error {
