@@ -6,16 +6,16 @@
 //
 
 import XCTest
-import Combine
 @testable import Meduman_SwiftUI
 
 class HealthRepoTests: XCTestCase {
     //MARK: - Properties
     var healthRepo: HealthRepository?
+    var mockHealthStore: HealthStoreMock?
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
-        
+        self.healthRepo = healthRepo(healtStore: mockHealthStore)
     }
 
     override func tearDownWithError() throws {
@@ -23,7 +23,7 @@ class HealthRepoTests: XCTestCase {
     }
 
     //MARK: - Functions
-    func testRequestAuthorizationReturnTrue() -> AnyPublisher<Bool, HealthError> {
+    func testRequestAuthorizationReturnTrue() {
         
     }
 }

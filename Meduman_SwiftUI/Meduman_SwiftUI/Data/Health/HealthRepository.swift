@@ -9,7 +9,7 @@ import HealthKit
 import Combine
 
 
-protocol HealthProtocol {
+protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
     var healthTypes: Set<HKObjectType> { get }
@@ -26,6 +26,6 @@ protocol HealthProtocol {
 }
 
 
-class HealthRepository {
-    
+class HealthRepository: HealthRepoProtocol {
+    var healthStore: HKHealthStore?
 }
