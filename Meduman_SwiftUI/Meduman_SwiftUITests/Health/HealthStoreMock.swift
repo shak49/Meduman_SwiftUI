@@ -7,10 +7,14 @@
 
 import HealthKit
 import Combine
-@testable import Meduman_SwiftUI
-
 
 protocol HealthStoreMockProtocol {
+    //MARK: - Properties
+    
+    //MARK: - Functions
+    func requestAuthorization(toShare: Set<HKSampleType>?, read: Set<HKObjectType>?) -> AnyPublisher<Bool, Error>
+    func save(_ of: HKObject) -> AnyPublisher<Bool, Error>
+    func delete(_ of: HKObject) -> AnyPublisher<Bool, Error>
     
 }
 
