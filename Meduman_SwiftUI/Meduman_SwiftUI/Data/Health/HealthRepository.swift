@@ -28,4 +28,10 @@ protocol HealthRepoProtocol {
 
 class HealthRepository: HealthRepoProtocol {
     var healthStore: HKHealthStore?
+    var healthQuary: HKStatisticsCollectionQuery?
+    
+    init(healthStore: HKHealthStore?, healthQuary: HKStatisticsCollectionQuery?) {
+        self.healthStore = healthStore
+        self.healthQuary = healthQuary
+    }
 }
