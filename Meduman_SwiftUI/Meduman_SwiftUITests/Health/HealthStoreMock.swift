@@ -18,6 +18,19 @@ protocol HealthStoreMockProtocol {
     
 }
 
-class HealthStoreMock: HealthStoreMockProtocol {
+class HealthStoreMock: HKHealthStore, HealthStoreMockProtocol {
+    //MARK: - Properties
     
+    //MARK: - Functions
+    func requestAuthorization(toShare: Set<HKSampleType>?, read: Set<HKObjectType>?) -> AnyPublisher<Bool, Error> {
+        <#code#>
+    }
+    
+    func save(_ of: HKObject) -> AnyPublisher<Bool, Error> {
+        <#code#>
+    }
+    
+    func delete(_ of: HKObject) -> AnyPublisher<Bool, Error> {
+        <#code#>
+    }
 }
