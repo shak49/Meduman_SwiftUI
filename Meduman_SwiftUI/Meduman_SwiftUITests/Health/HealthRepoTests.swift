@@ -17,7 +17,6 @@ class HealthRepoTests: XCTestCase {
     //MARK: - Lifecycle
     override func setUpWithError() throws {
         self.healthRepo = HealthRepository(healthStore: mockHealthStore, healthQuary: mockHealthQuery)
-        
     }
 
     override func tearDownWithError() throws {

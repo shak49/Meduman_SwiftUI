@@ -12,8 +12,8 @@ import Combine
 protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
-    var healthTypes: Set<HKObjectType> { get }
     var healthQuary: HKStatisticsCollectionQuery? { get }
+    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Functions
     func requestAuthorization() -> AnyPublisher<Bool, HealthError>

@@ -22,6 +22,6 @@ protocol HKStatisticsCollectionQueryMockProtocol {
     init(quantityType: HKQuantityType?, quantitySamplePredicate: NSPredicate?, options: HKStatisticsOptions?, anchorDate: Date?, intervalComponents: DateComponents?)
 }
 
-class HealthQueryMock: HKStatisticsCollectionQueryMockProtocol {
+class HealthQueryMock: HKStatisticsCollectionQuery, HKStatisticsCollectionQueryMockProtocol {
     
 }
