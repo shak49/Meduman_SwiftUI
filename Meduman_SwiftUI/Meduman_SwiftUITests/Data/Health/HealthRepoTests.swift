@@ -10,17 +10,14 @@ import XCTest
 
 class HealthRepoTests: XCTestCase {
     //MARK: - Properties
-    var healthRepo: HealthRepository?
-    var mockHealthStore: HealthStoreMock?
-    var mockHealthQuery: HealthQueryMock?
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
-        self.healthRepo = HealthRepository(healthStore: mockHealthStore, healthQuary: mockHealthQuery)
+        
     }
 
     override func tearDownWithError() throws {
-        self.healthRepo = nil
+        
     }
 
     //MARK: - Functions
