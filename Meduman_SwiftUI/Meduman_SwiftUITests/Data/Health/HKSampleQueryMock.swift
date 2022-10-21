@@ -8,18 +8,19 @@
 import HealthKit
 
 
-class HKSampleQueryMock {
+class HKSampleQueryMock: HKSampleQuery {
     //MARK: - Properties
     let sampleQuery: HKSampleQuery?
     let sample: [HKSample]?
     let error: Error?
     
     //MARK: - Lifecycles
-    init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping (HKSampleQuery?, [HKSample]?, Error?) -> Void) {
-        if sampleType != nil, predicate != nil, limit != nil, sortDescriptors != nil {
-            resultsHandler(self.sampleQuery, self.sample, nil)
-        } else {
-            resultsHandler(nil, nil, self.error)
+    override init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping (HKSampleQuery, [HKSample]?, Error?) -> Void) {
+        let query = self.sampleQuery
+        let sample = self.sample
+        let error = self.error
+        super.init(sampleType: sampleType, predicate: predicate, limit: limit, sortDescriptors: sortDescriptors) { sampleQuery, samples, error in
+            resultsHandler(query, sample, error)
         }
     }
 }
