@@ -24,6 +24,7 @@
 		6D63A3B928E9287E0076BB1E /* HealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B828E9287E0076BB1E /* HealthError.swift */; };
 		6D63A3C528F798B80076BB1E /* HKHealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3C428F798B80076BB1E /* HKHealthStoreMock.swift */; };
 		6D63A3C728F7A0590076BB1E /* HKSampleQueryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3C628F7A0580076BB1E /* HKSampleQueryMock.swift */; };
+		6D63A3CA2908D0D30076BB1E /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 6D63A3C92908D0D30076BB1E /* Mockingbird */; };
 		6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */; };
 		6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF64277266AD0010E25B /* Assets.xcassets */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
@@ -85,6 +86,7 @@
 			files = (
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
+				6D63A3CA2908D0D30076BB1E /* Mockingbird in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
 				6D63A3A328D2D1560076BB1E /* FirebaseFirestoreSwift in Frameworks */,
 				6D63A3B028E3DF2C0076BB1E /* HealthKit.framework in Frameworks */,
@@ -332,6 +334,7 @@
 				6D63A39E28D2D1560076BB1E /* FirebaseAuth */,
 				6D63A3A028D2D1560076BB1E /* FirebaseFirestore */,
 				6D63A3A228D2D1560076BB1E /* FirebaseFirestoreSwift */,
+				6D63A3C92908D0D30076BB1E /* Mockingbird */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -385,6 +388,7 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6D63A3C82908D0D20076BB1E /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -733,6 +737,14 @@
 				kind = branch;
 			};
 		};
+		6D63A3C82908D0D20076BB1E /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/birdrides/mockingbird.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -755,6 +767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		6D63A3C92908D0D30076BB1E /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D63A3C82908D0D20076BB1E /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
