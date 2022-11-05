@@ -6,17 +6,19 @@
 //
 
 import XCTest
+import Mockingbird
+import HealthKit
 @testable import Meduman_SwiftUI
 
 class HealthRepoTests: XCTestCase {
     //MARK: - Properties
     var healthRepo: HealthRepository?
-    var mockHealthStore: HKHealthStoreMock?
-    var mockHealthQuery: HKSampleQueryMock?
+    var healthStoreMock: HKHealthStore? = mock(HKHealthStore.self)
+    var healthQueryMock: HKSampleQuery? = mock(HKSampleQuery.self)
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
-        self.healthRepo = HealthRepository(healthStore: mockHealthStore, healthQuary: mockHealthQuery)
+        self.healthRepo = HealthRepository(healthStore: healthStoreMock, healthQuary: healthQueryMock)
     }
 
     override func tearDownWithError() throws {

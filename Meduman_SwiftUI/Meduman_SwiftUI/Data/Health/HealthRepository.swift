@@ -27,11 +27,19 @@ protocol HealthRepoProtocol {
 
 
 class HealthRepository: HealthRepoProtocol {
+    //MARK: - Properties
     var healthStore: HKHealthStore?
     var healthQuary: HKSampleQuery?
+    var healthTypes: Set<HKObjectType> = []
     
+    //MARK: - Lifecycles
     init(healthStore: HKHealthStore?, healthQuary: HKSampleQuery?) {
         self.healthStore = healthStore
         self.healthQuary = healthQuary
+    }
+    
+    //MARK: - Functions
+    func requestAuthorization() -> AnyPublisher<Bool, HealthError> {
+        
     }
 }
