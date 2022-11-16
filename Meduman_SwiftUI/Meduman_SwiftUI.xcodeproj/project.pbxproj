@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2C0AB027862DE5003D36DC /* SignUpView.swift */; };
+		6D2CB45229243766002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D63A3CB2919ECEB0076BB1E /* XCTest.framework */; };
+		6D2CB45329243789002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D63A3CB2919ECEB0076BB1E /* XCTest.framework */; };
+		6D2CB45729248C24002BF0A4 /* Meduman_SwiftUI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D2CB45629248C24002BF0A4 /* Meduman_SwiftUI.plist */; };
 		6D63A36328C52D0E0076BB1E /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* RecordView.swift */; };
 		6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */; };
 		6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */; };
@@ -48,18 +51,19 @@
 
 /* Begin PBXFileReference section */
 		6D2C0AB027862DE5003D36DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		6D2CB45629248C24002BF0A4 /* Meduman_SwiftUI.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.entitlements; path = Meduman_SwiftUI.plist; sourceTree = "<group>"; };
 		6D63A36228C52D0E0076BB1E /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
 		6D63A37228CC03050076BB1E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meduman_SwiftUI.entitlements; sourceTree = "<group>"; };
 		6D63A3AF28E3DF2C0076BB1E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		6D63A3B128E4BBE90076BB1E /* HealthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepository.swift; sourceTree = "<group>"; };
 		6D63A3B328E694AF0076BB1E /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		6D63A3B628E924890076BB1E /* HealthRepoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepoTests.swift; sourceTree = "<group>"; };
 		6D63A3B828E9287E0076BB1E /* HealthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthError.swift; sourceTree = "<group>"; };
+		6D63A3CB2919ECEB0076BB1E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIApp.swift; sourceTree = "<group>"; };
 		6D82EF64277266AD0010E25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2CB45329243789002BF0A4 /* XCTest.framework in Frameworks */,
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
 				6D63A3CA2908D0D30076BB1E /* Mockingbird in Frameworks */,
@@ -93,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2CB45229243766002BF0A4 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +212,7 @@
 		6D63A3AB28E33E320076BB1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D63A3CB2919ECEB0076BB1E /* XCTest.framework */,
 				6D63A3AF28E3DF2C0076BB1E /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -259,7 +266,7 @@
 		6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */,
+				6D2CB45629248C24002BF0A4 /* Meduman_SwiftUI.plist */,
 				6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */,
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
@@ -399,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2CB45729248C24002BF0A4 /* Meduman_SwiftUI.plist in Resources */,
 				6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */,
 				6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */,
 				6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */,
@@ -580,10 +588,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meduman_SwiftUI/Meduman_SwiftUI.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meduman_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T94248RU7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Meduman needs your permission to record your health data.";
@@ -600,6 +609,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -612,10 +622,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meduman_SwiftUI/Meduman_SwiftUI.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meduman_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T94248RU7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Meduman needs your permission to record your health data.";
@@ -632,6 +643,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
