@@ -16,18 +16,18 @@ protocol AuthViewModelProtocol {
 
 class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     //MARK: - Properties
-    var userManger: UserManager
+    var manager: UserManager
     @Published var isAuthenticated: Bool = false
     
     //MARK: - Lifecycles
-    init(userManager: UserManager) {
-        self.userManger = userManager
+    init(manager: UserManager) {
+        self.manager = manager
     }
     
     //MARK: - Functions
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
         let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
-        userManger.signUp(user: user, completion: { (user, error) in
+        manager.signUp(user: user, completion: { (user, error) in
             if let error = error {
                 print("VM ERROR: \(error)!")
                 return
@@ -40,7 +40,7 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     }
     
     func signIn(email: String, password: String) {
-        userManger.signIn(email: email, password: password, completion: { user, error in
+        manager.signIn(email: email, password: password, completion: { user, error in
             if let error = error {
                 print("ERROR: \(error)")
             }
