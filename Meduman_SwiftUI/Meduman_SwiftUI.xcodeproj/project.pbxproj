@@ -23,7 +23,6 @@
 		6D63A3B728E924890076BB1E /* HealthRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B628E924890076BB1E /* HealthRepoTests.swift */; };
 		6D63A3B928E9287E0076BB1E /* HealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B828E9287E0076BB1E /* HealthError.swift */; };
 		6D63A3CA2908D0D30076BB1E /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 6D63A3C92908D0D30076BB1E /* Mockingbird */; };
-		6D63A3CC2919ECEC0076BB1E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D63A3CB2919ECEB0076BB1E /* XCTest.framework */; };
 		6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */; };
 		6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF64277266AD0010E25B /* Assets.xcassets */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
@@ -61,7 +60,6 @@
 		6D63A3B328E694AF0076BB1E /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		6D63A3B628E924890076BB1E /* HealthRepoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepoTests.swift; sourceTree = "<group>"; };
 		6D63A3B828E9287E0076BB1E /* HealthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthError.swift; sourceTree = "<group>"; };
-		6D63A3CB2919ECEB0076BB1E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIApp.swift; sourceTree = "<group>"; };
 		6D82EF64277266AD0010E25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D63A3CC2919ECEC0076BB1E /* XCTest.framework in Frameworks */,
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
 				6D63A3CA2908D0D30076BB1E /* Mockingbird in Frameworks */,
@@ -209,7 +206,6 @@
 		6D63A3AB28E33E320076BB1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A3CB2919ECEB0076BB1E /* XCTest.framework */,
 				6D63A3AF28E3DF2C0076BB1E /* HealthKit.framework */,
 			);
 			name = Frameworks;

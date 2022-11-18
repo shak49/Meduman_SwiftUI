@@ -35,6 +35,6 @@ class HealthRepoTests: XCTestCase {
                 expectation.fulfill()
                 XCTAssertTrue(authorized)
             })
-        wait(for: [expectation], timeout: 2)
+        wait(for: [expectation], timeout: 1)
     }
 }
