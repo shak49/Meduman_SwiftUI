@@ -9,25 +9,30 @@ import HealthKit
 @testable import Meduman_SwiftUI
 
 
-enum HKAuthorizationStatusMock {
-    case notDetermined
-    case sharingAuthorized
-    case sharingDenied
-}
-
-class HKHealthStoreMock: HKHealthStore {
+protocol HKHealthStoreProtocol {
     //MARK: - Properties
+    var hasAccess: Bool? { get }
     
     //MARK: - Functions
-    override func authorizationStatus(for type: HKObjectType) -> HKAuthorizationStatusMock {
-        
-    }
+    func requestAccess(completion: (@escaping(Result<Bool, Error>) -> Void))
+    func save(session: Health, completion: (@escaping(Result<Bool, Error>) -> Void))
+    func loadSessions(completion: (@escaping(Result<[Health], Error>) -> Void))
+}
+
+class HKHealthStoreMock: HKHealthStore, HKHealthStoreProtocol {
+    //MARK: - Properties
+    var hasAccess: Bool?
     
-    override func requestAuthorization(toShare typesToShare: Set<HKSampleType>?, read typesToRead: Set<HKObjectType>?, completion: @escaping (Bool, Error?) -> Void) {
+    //MARK: - Functions
+    func requestAccess(completion: @escaping ((Result<Bool, Error>) -> Void)) {
         <#code#>
     }
     
-    override func save(_ objects: [HKObject]) async throws {
+    func save(session: Health, completion: @escaping ((Result<Bool, Error>) -> Void)) {
+        <#code#>
+    }
+    
+    func loadSessions(completion: @escaping ((Result<[Health], Error>) -> Void)) {
         <#code#>
     }
 }
