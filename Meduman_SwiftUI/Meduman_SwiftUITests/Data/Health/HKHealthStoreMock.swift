@@ -6,6 +6,7 @@
 //
 
 import HealthKit
+@testable import Meduman_SwiftUI
 
 
 class HKHealthStoreMock: HKHealthStore {

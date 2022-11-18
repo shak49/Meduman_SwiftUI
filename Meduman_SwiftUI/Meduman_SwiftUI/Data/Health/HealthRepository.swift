@@ -12,7 +12,7 @@ import Combine
 protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
-    var healthQuary: HKQuantitySeriesSampleQuery? { get }
+    var healthQuary: HKStatisticsCollectionQuery? { get }
     var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Functions
@@ -28,9 +28,9 @@ protocol HealthRepoProtocol {
 
 class HealthRepository: HealthRepoProtocol {
     var healthStore: HKHealthStore?
-    var healthQuary: HKQuantitySeriesSampleQuery?
+    var healthQuary: HKStatisticsCollectionQuery?
     
-    init(healthStore: HKHealthStore?, healthQuary: HKQuantitySeriesSampleQuery?) {
+    init(healthStore: HKHealthStore?, healthQuary: HKStatisticsCollectionQuery?) {
         self.healthStore = healthStore
         self.healthQuary = healthQuary
     }
