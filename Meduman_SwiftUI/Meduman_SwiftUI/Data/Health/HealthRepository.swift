@@ -13,7 +13,7 @@ protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
     var healthQuary: HKSampleQuery? { get }
-    //var healthTypes: Set<HKSampleType> { get }
+    var healthTypes: Set<HKSampleType> { get }
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError>
@@ -30,10 +30,7 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
     var healthQuary: HKSampleQuery?
-    let healthTypes = Set([
-        HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
-        HKSampleType.quantityType(forIdentifier: .heartRate)!
-    ])
+    var healthTypes: Set<HKSampleType> = []
     
     //MARK: - Lifecycles
     init(healthStore: HKHealthStore?, healthQuary: HKSampleQuery?) {
@@ -44,20 +41,13 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError> {
         Future { [unowned self] promise in
-            guard HKHealthStore.isHealthDataAvailable() else {
-                promise(.failure(.unavailableOnThisDevice))
-                return
-            }
-            self.healthStore?.requestAuthorization(toShare: healthTypes, read: healthTypes, completion: { authorized, error in
+            healthStore?.requestAuthorization(toShare: healthTypes, read: healthTypes, completion: { authorized, error in
                 guard error == nil else {
                     print("HEALTHKIT AUTHORIZATION ERROR: ", error?.localizedDescription)
                     promise(.failure(.unableToAuthorize))
                     return
                 }
-                print("Authorized: \(authorized)")
-                if authorized {
-                    promise(.success(true))
-                }
+                promise(.success(authorized))
             })
         }
     }

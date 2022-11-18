@@ -9,7 +9,6 @@ import Foundation
 
 
 enum HealthError: LocalizedError {
-    case unavailableOnThisDevice
     case unableToAuthorize
     case unableToWriteHealthRecord
     case thrownError(Error)
@@ -17,8 +16,6 @@ enum HealthError: LocalizedError {
     
     var errorDescription: String {
         switch self {
-        case .unavailableOnThisDevice:
-            return "Unavailable on this device."
         case .unableToAuthorize:
             return "Unable to authorize access."
         case .unableToWriteHealthRecord:
