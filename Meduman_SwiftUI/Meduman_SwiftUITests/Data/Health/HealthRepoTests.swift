@@ -12,27 +12,26 @@ import HealthKit
 
 class HealthRepoTests: XCTestCase {
     //MARK: - Properties
-    var sut: HealthRepository?
+    var healthRepo: HealthRepository?
     var healthStoreMock: HKHealthStore? = mock(HKHealthStore.self)
     var healthQueryMock: HKSampleQuery? = mock(HKSampleQuery.self)
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
-        self.sut = HealthRepository(healthStore: healthStoreMock, healthQuary: healthQueryMock)
+        self.healthRepo = HealthRepository(healthStore: healthStoreMock, healthQuary: healthQueryMock)
     }
 
     override func tearDownWithError() throws {
-        self.sut = nil
+        self.healthRepo = nil
     }
 
     //MARK: - Functions
-    func testRequestAuthorization_CanReturnTrue() {
-        let expectation = expectation(description: "\"requestAuthorization\" function can return true!")
-        sut?.requestAuthorization()
+    func testRequestAuthorizationReturnTrue() {
+        let expectation = expectation(description: "requestAuthorization function can authorize access!")
+        healthRepo?.requestAuthorization()
             .sink(receiveCompletion: { _ in
                 print("FINISHED!")
             }, receiveValue: { authorized in
-                print("AUTHORIZED: \(authorized)!")
                 expectation.fulfill()
                 XCTAssertTrue(authorized)
             })
