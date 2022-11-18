@@ -207,17 +207,9 @@
 			path = Health;
 			sourceTree = "<group>";
 		};
-		6D63A3B528E924400076BB1E /* Health */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Health;
-			sourceTree = "<group>";
-		};
 		6D63A3C028F13F5F0076BB1E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A3B528E924400076BB1E /* Health */,
 			);
 			path = Data;
 			sourceTree = "<group>";
