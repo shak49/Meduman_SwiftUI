@@ -15,10 +15,11 @@ class HealthRepoTests: XCTestCase {
     //MARK: - Properties
     var sut: HealthRepository?
     var healthStoreMock: HKHealthStore? = mock(HKHealthStore.self)
+    var healthQueryMock: HKSampleQuery? = mock(HKSampleQuery.self)
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
-        sut?.healthStore = healthStoreMock
+        self.sut = HealthRepository(healthStore: healthStoreMock, healthQuary: healthQueryMock)
     }
 
     override func tearDownWithError() throws {
@@ -33,8 +34,10 @@ class HealthRepoTests: XCTestCase {
                 print("FINISHED!")
             }, receiveValue: { [unowned self] authorized in
                 print("AUTHORIZED: \(authorized)!")
-                XCTAssertTrue(authorized)
-                expectation.fulfill()
+                if authorized {
+                    XCTAssertTrue(authorized)
+                    expectation.fulfill()
+                }
             })
         wait(for: [expectation], timeout: 2)
     }
