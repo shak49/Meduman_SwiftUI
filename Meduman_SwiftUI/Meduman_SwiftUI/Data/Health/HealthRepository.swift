@@ -16,7 +16,7 @@ protocol HealthRepoProtocol {
 //    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Functions
-//    func requestAuthorization() -> AnyPublisher<Bool, HealthError>
+    func requestAuthorization() -> Future<Bool, HealthError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeQuantityTypeSample()
@@ -29,7 +29,18 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
+    var allTypes: Set<HKSampleType> = []
     
     //MARK: - Functions
+    func requestAuthorization() -> Future<Bool, HealthError> {
+        Future { promise in
+            self.healthStore?.requestAuthorization(toShare: self.allTypes, read: self.allTypes, completion: { authorized, error in
+                if error != nil {
+                    promise(.failure(.thrownError(error!)))
+                }
+                promise(.success(authorized))
+            })
+        }
+    }
     
 }
