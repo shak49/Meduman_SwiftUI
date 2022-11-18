@@ -12,7 +12,7 @@ class HealthRepoTests: XCTestCase {
     //MARK: - Properties
     var healthRepo: HealthRepository?
     var mockHealthStore: HKHealthStoreMock?
-    var mockHealthQuery: HKSampleQueryMock?
+    var mockHealthQuery: HKQuantitySeriesSampleQueryMock?
 
     //MARK: - Lifecycle
     override func setUpWithError() throws {
