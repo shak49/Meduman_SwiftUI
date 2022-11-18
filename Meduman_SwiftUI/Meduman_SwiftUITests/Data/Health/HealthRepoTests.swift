@@ -8,7 +8,6 @@
 import XCTest
 import Mockingbird
 import HealthKit
-import Combine
 @testable import Meduman_SwiftUI
 
 class HealthRepoTests: XCTestCase {
@@ -32,12 +31,10 @@ class HealthRepoTests: XCTestCase {
         sut?.requestAuthorization()
             .sink(receiveCompletion: { _ in
                 print("FINISHED!")
-            }, receiveValue: { [unowned self] authorized in
+            }, receiveValue: { authorized in
                 print("AUTHORIZED: \(authorized)!")
-                if authorized {
-                    XCTAssertTrue(authorized)
-                    expectation.fulfill()
-                }
+                expectation.fulfill()
+                XCTAssertTrue(authorized)
             })
         wait(for: [expectation], timeout: 2)
     }
