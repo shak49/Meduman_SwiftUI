@@ -15,6 +15,9 @@ protocol HealthRepoProtocol {
 //    var healthQuary: HKSampleQuery? { get }
 //    var healthTypes: Set<HKObjectType> { get }
     
+    //MARK: - Lifecycles
+    init(healthStore: HKHealthStore)
+    
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError>
 //    func writeCharacteristicTypeSample()
@@ -30,6 +33,11 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
     var allTypes: Set<HKSampleType> = []
+    
+    //MARK: - Lifecycles
+    required init(healthStore: HKHealthStore) {
+        self.healthStore = healthStore
+    }
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError> {
