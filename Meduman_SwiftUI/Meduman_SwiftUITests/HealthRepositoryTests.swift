@@ -14,6 +14,7 @@ class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
     var sut: HealthRepository?
     var mock = HealthStoreMock()
+    var cancellables = Set<AnyCancellable>()
 
     //MARK: - Lifecycles
     override func setUpWithError() throws {
@@ -26,16 +27,17 @@ class HealthRepositoryTests: XCTestCase {
 
     //MARK: - Functions
     func testRequestAuthorization_CanReturnTrue() {
-        let expectation = expectation(description: "Successfully tested \"requestAuthorization\" by returning true.")
-        var result: Bool?
-        sut?.requestAuthorization()
-            .sink(receiveCompletion: { error in
-                print("AUTH REQ ERROR: \(error)")
-            }, receiveValue: { authorized in
-                result = authorized
-            })
-        XCTAssertTrue(result != nil)
-        expectation.fulfill()
+        let expectation = expectation(description: "Successfully tested requestAuthorization by returning true.")
+        sut?.requestAuthorization { results in
+            switch results {
+            case .failure(let error):
+                print(error)
+            case .success(let authorized):
+                XCTAssertTrue(authorized)
+                expectation.fulfill()
+            }
+        }
         wait(for: [expectation], timeout: 2)
     }
 }
+
