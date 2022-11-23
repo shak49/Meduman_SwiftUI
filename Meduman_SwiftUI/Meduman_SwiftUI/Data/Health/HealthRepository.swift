@@ -19,7 +19,8 @@ protocol HealthRepoProtocol {
     init(healthStore: HKHealthStore)
     
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HealthError>
+    func requestAuthorization(completion: @escaping(Result<Bool, HealthError>) -> Void)
+//    func requestAuthorization() -> Future<Bool, HealthError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeQuantityTypeSample()
@@ -40,15 +41,15 @@ class HealthRepository: HealthRepoProtocol {
     }
     
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HealthError> {
-        Future { promise in
-            self.healthStore?.requestAuthorization(toShare: self.allTypes, read: self.allTypes, completion: { authorized, error in
-                if error != nil {
-                    promise(.failure(.thrownError(error!)))
-                }
-                promise(.success(authorized))
-            })
-        }
+    func requestAuthorization(completion: @escaping (Result<Bool, HealthError>) -> Void) {
+        self.healthStore?.requestAuthorization(toShare: self.allTypes, read: self.allTypes, completion: { authorized, error in
+            if error != nil {
+                print("ERROR: \(error)")
+                completion(.failure(.unableToAuthorizeAccess))
+            }
+            if authorized {
+                completion(.success(true))
+            }
+        })
     }
-    
 }

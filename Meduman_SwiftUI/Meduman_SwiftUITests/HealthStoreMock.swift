@@ -9,13 +9,6 @@ import HealthKit
 @testable import Meduman_SwiftUI
 
 
-protocol HealthStore {
-    //MARK: - Properties
-    
-    //MARK: - Functions
-    func requestAuthorization(toShare typesToShare: Set<HKSampleType>?, read typesToRead: Set<HKObjectType>?, completion: @escaping (Bool, Error?) -> Void)
-}
-
 class HealthStoreMock: HKHealthStore {
     //MARK: - Properties
     var invokedRequestAuthorization = false
@@ -31,6 +24,7 @@ class HealthStoreMock: HKHealthStore {
         invokedRequestAuthorizationParameters = (typesToShare, typesToRead)
         invokedRequestAuthorizationParametersList.append((typesToShare, typesToRead))
         if let result = stubbedRequestAuthorizationCompletionResult {
+            print("RESULT: \(result)")
             completion(result.0, result.1)
         }
     }

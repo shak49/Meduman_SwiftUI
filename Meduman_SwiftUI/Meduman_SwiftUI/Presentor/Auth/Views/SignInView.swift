@@ -17,11 +17,11 @@ struct SignInView: View {
     @State private var isVisible: Bool = false
     static let authRepo = AuthRepository()
     static let firestoreRepo = FirestoreRepository()
-    static let userManager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+    static let manager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
     
     //MARK: - Lifecycles
-    init(userManager: UserManager = userManager) {
-        self.model = AuthViewModel(userManager: userManager)
+    init(manager: UserManager = manager) {
+        self.model = AuthViewModel(manager: manager)
     }
     
     //MARK: - Body
@@ -72,7 +72,7 @@ struct SignInView: View {
                     .background(.black)
                     .cornerRadius(10)
                     .padding(.top, 50)
-                    .fullScreenCover(isPresented: $model.isAuthenticated, content: RecordView.init)
+                    .fullScreenCover(isPresented: $model.isAuthenticated, content: HealthRecordView.init)
 //                    ZStack {
 //                        Divider()
 //                        Text("or sign in with")
