@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2C0AB027862DE5003D36DC /* SignUpView.swift */; };
 		6D2CB4CA2928412E002BF0A4 /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */; };
-		6D2CB4CF292AA9A2002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; };
+		6D2CB4CF292AA9A2002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D2CB4D1292AF2F4002BF0A4 /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D0292AF2F4002BF0A4 /* HealthStoreMock.swift */; };
 		6D2CB4D5292DCF00002BF0A4 /* HealthManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D4292DCF00002BF0A4 /* HealthManger.swift */; };
 		6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */; };
+		6D2CB4D82932B33E002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D63A36328C52D0E0076BB1E /* HealthRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */; };
 		6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */; };
 		6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2CB4D82932B33E002BF0A4 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

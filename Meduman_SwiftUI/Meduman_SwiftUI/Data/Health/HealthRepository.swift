@@ -33,7 +33,10 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
-    var allTypes: Set<HKSampleType> = []
+    let allTypes = Set([
+        HKObjectType.quantityType(forIdentifier: .bloodGlucose)!,
+        HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!,
+    ])
     
     //MARK: - Lifecycles
     required init(healthStore: HKHealthStore) {
@@ -42,7 +45,7 @@ class HealthRepository: HealthRepoProtocol {
     
     //MARK: - Functions
     func requestAuthorization(completion: @escaping (Result<Bool, HealthError>) -> Void) {
-        self.healthStore?.requestAuthorization(toShare: self.allTypes, read: self.allTypes, completion: { authorized, error in
+        self.healthStore?.requestAuthorization(toShare: self.allTypes as? Set<HKSampleType>, read: self.allTypes, completion: { authorized, error in
             if error != nil {
                 print("ERROR: \(error)")
                 completion(.failure(.unableToAuthorizeAccess))
