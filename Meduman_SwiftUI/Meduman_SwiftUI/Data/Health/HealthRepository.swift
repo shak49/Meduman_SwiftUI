@@ -19,7 +19,7 @@ protocol HealthRepoProtocol {
     init(healthStore: HKHealthStore)
     
     //MARK: - Functions
-    func requestAuthorization(completion: @escaping(Result<Bool, HealthError>) -> Void)
+    func requestAuthorization(completion: @escaping(Bool?, HealthError?) -> Void)
 //    func requestAuthorization() -> Future<Bool, HealthError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
@@ -33,7 +33,7 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
-    let allTypes = Set([
+    let allTypes: Set<HKObjectType> = Set([
         HKObjectType.quantityType(forIdentifier: .bloodGlucose)!,
         HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!,
     ])
@@ -44,15 +44,13 @@ class HealthRepository: HealthRepoProtocol {
     }
     
     //MARK: - Functions
-    func requestAuthorization(completion: @escaping (Result<Bool, HealthError>) -> Void) {
+    func requestAuthorization(completion: @escaping(Bool?, HealthError?) -> Void) {
         self.healthStore?.requestAuthorization(toShare: self.allTypes as? Set<HKSampleType>, read: self.allTypes, completion: { authorized, error in
             if error != nil {
                 print("ERROR: \(error)")
-                completion(.failure(.unableToAuthorizeAccess))
+                completion(nil, .unableToAuthorizeAccess)
             }
-            if authorized {
-                completion(.success(true))
-            }
+            completion(authorized, nil)
         })
     }
 }

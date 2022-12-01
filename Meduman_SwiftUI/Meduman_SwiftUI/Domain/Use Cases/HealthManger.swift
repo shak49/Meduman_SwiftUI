@@ -6,6 +6,7 @@
 //
 
 import HealthKit
+import XCTest
 
 
 protocol HealthManagerProtocol {
@@ -30,13 +31,12 @@ class HealthManager: HealthManagerProtocol {
     
     //MARK: - Functions
     func requestAuthorization() {
-        repo.requestAuthorization { results in
-            switch results {
-            case .failure(let error):
+        repo.requestAuthorization { authorized, error in
+            if error != nil {
                 print(error)
-            case .success(let authorized):
-                print(authorized)
             }
+            guard let authorized = authorized else { return }
+            XCTAssertTrue(authorized)
         }
     }
 }

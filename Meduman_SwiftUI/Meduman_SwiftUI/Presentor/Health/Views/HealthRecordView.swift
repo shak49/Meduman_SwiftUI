@@ -24,13 +24,9 @@ struct HealthRecordView: View {
     var body: some View {
         NavigationView {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                .onAppear(perform: authorize)
+                .onAppear(perform: model.authorize)
         }
         .navigationTitle(Text("Health Records"))
-    }
-    
-    func authorize() {
-        model.authorize()
     }
 }
 
