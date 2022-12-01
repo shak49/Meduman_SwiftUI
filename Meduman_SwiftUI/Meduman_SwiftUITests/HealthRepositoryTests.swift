@@ -28,14 +28,13 @@ class HealthRepositoryTests: XCTestCase {
     //MARK: - Functions
     func testRequestAuthorization_CanReturnTrue() {
         let expectation = expectation(description: "Successfully tested requestAuthorization by returning true.")
-        sut?.requestAuthorization { results in
-            switch results {
-            case .failure(let error):
-                print(error)
-            case .success(let authorized):
-                XCTAssertTrue(authorized)
-                expectation.fulfill()
+        sut?.requestAuthorization { authorized, error in
+            if error != nil {
+                print(error!)
             }
+            guard let authorized = authorized else { return }
+            XCTAssertTrue(authorized)
+            expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2)
     }

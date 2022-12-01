@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2C0AB027862DE5003D36DC /* SignUpView.swift */; };
-		6D2CB4CA2928412E002BF0A4 /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */; };
 		6D2CB4CF292AA9A2002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		6D2CB4D1292AF2F4002BF0A4 /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D0292AF2F4002BF0A4 /* HealthStoreMock.swift */; };
 		6D2CB4D5292DCF00002BF0A4 /* HealthManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D4292DCF00002BF0A4 /* HealthManger.swift */; };
 		6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */; };
-		6D2CB4D82932B33E002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6D2CB4E82935B44D002BF0A4 /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */; };
+		6D2CB4E92935B44D002BF0A4 /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D0292AF2F4002BF0A4 /* HealthStoreMock.swift */; };
 		6D63A36328C52D0E0076BB1E /* HealthRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */; };
 		6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */; };
 		6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */; };
@@ -37,7 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6D2CB4C4292840CC002BF0A4 /* PBXContainerItemProxy */ = {
+		6D2CB4E32935B445002BF0A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6D82EF55277266AA0010E25B /* Project object */;
 			proxyType = 1;
@@ -48,12 +47,12 @@
 
 /* Begin PBXFileReference section */
 		6D2C0AB027862DE5003D36DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		6D2CB4C0292840CB002BF0A4 /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepositoryTests.swift; sourceTree = "<group>"; };
 		6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6D2CB4D0292AF2F4002BF0A4 /* HealthStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreMock.swift; sourceTree = "<group>"; };
 		6D2CB4D4292DCF00002BF0A4 /* HealthManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManger.swift; sourceTree = "<group>"; };
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
+		6D2CB4DF2935B445002BF0A4 /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordView.swift; sourceTree = "<group>"; };
 		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -76,11 +75,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6D2CB4BD292840CB002BF0A4 /* Frameworks */ = {
+		6D2CB4DC2935B445002BF0A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2CB4D82932B33E002BF0A4 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +98,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6D2CB4C1292840CC002BF0A4 /* Meduman_SwiftUITests */ = {
+		6D2CB4E02935B445002BF0A4 /* Meduman_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
 				6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */,
@@ -237,7 +235,7 @@
 			children = (
 				6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
-				6D2CB4C1292840CC002BF0A4 /* Meduman_SwiftUITests */,
+				6D2CB4E02935B445002BF0A4 /* Meduman_SwiftUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
 				6D63A3AB28E33E320076BB1E /* Frameworks */,
 			);
@@ -247,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */,
-				6D2CB4C0292840CB002BF0A4 /* Meduman_SwiftUITests.xctest */,
+				6D2CB4DF2935B445002BF0A4 /* Meduman_SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,22 +277,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6D2CB4BF292840CB002BF0A4 /* Meduman_SwiftUITests */ = {
+		6D2CB4DE2935B445002BF0A4 /* Meduman_SwiftUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D2CB4C6292840CC002BF0A4 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */;
+			buildConfigurationList = 6D2CB4E52935B445002BF0A4 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */;
 			buildPhases = (
-				6D2CB4BC292840CB002BF0A4 /* Sources */,
-				6D2CB4BD292840CB002BF0A4 /* Frameworks */,
-				6D2CB4BE292840CB002BF0A4 /* Resources */,
+				6D2CB4DB2935B445002BF0A4 /* Sources */,
+				6D2CB4DC2935B445002BF0A4 /* Frameworks */,
+				6D2CB4DD2935B445002BF0A4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6D2CB4C5292840CC002BF0A4 /* PBXTargetDependency */,
+				6D2CB4E42935B445002BF0A4 /* PBXTargetDependency */,
 			);
 			name = Meduman_SwiftUITests;
 			productName = Meduman_SwiftUITests;
-			productReference = 6D2CB4C0292840CB002BF0A4 /* Meduman_SwiftUITests.xctest */;
+			productReference = 6D2CB4DF2935B445002BF0A4 /* Meduman_SwiftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */ = {
@@ -330,9 +328,8 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					6D2CB4BF292840CB002BF0A4 = {
+					6D2CB4DE2935B445002BF0A4 = {
 						CreatedOnToolsVersion = 13.4.1;
-						LastSwiftMigration = 1340;
 						TestTargetID = 6D82EF5C277266AA0010E25B;
 					};
 					6D82EF5C277266AA0010E25B = {
@@ -357,13 +354,13 @@
 			projectRoot = "";
 			targets = (
 				6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */,
-				6D2CB4BF292840CB002BF0A4 /* Meduman_SwiftUITests */,
+				6D2CB4DE2935B445002BF0A4 /* Meduman_SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6D2CB4BE292840CB002BF0A4 /* Resources */ = {
+		6D2CB4DD2935B445002BF0A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -383,12 +380,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6D2CB4BC292840CB002BF0A4 /* Sources */ = {
+		6D2CB4DB2935B445002BF0A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2CB4CA2928412E002BF0A4 /* HealthRepositoryTests.swift in Sources */,
-				6D2CB4D1292AF2F4002BF0A4 /* HealthStoreMock.swift in Sources */,
+				6D2CB4E82935B44D002BF0A4 /* HealthRepositoryTests.swift in Sources */,
+				6D2CB4E92935B44D002BF0A4 /* HealthStoreMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,55 +414,42 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6D2CB4C5292840CC002BF0A4 /* PBXTargetDependency */ = {
+		6D2CB4E42935B445002BF0A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
-			targetProxy = 6D2CB4C4292840CC002BF0A4 /* PBXContainerItemProxy */;
+			targetProxy = 6D2CB4E32935B445002BF0A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		6D2CB4C7292840CC002BF0A4 /* Debug */ = {
+		6D2CB4E62935B445002BF0A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6T94248RU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meduman_SwiftUI.app/Meduman_SwiftUI";
 			};
 			name = Debug;
 		};
-		6D2CB4C8292840CC002BF0A4 /* Release */ = {
+		6D2CB4E72935B445002BF0A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6T94248RU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ShakFeizi.Meduman-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -661,11 +645,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6D2CB4C6292840CC002BF0A4 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */ = {
+		6D2CB4E52935B445002BF0A4 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6D2CB4C7292840CC002BF0A4 /* Debug */,
-				6D2CB4C8292840CC002BF0A4 /* Release */,
+				6D2CB4E62935B445002BF0A4 /* Debug */,
+				6D2CB4E72935B445002BF0A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
