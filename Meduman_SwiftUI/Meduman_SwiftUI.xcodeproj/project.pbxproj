@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2C0AB027862DE5003D36DC /* SignUpView.swift */; };
-		6D2CB4CF292AA9A2002BF0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D2CB4D5292DCF00002BF0A4 /* HealthManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D4292DCF00002BF0A4 /* HealthManger.swift */; };
 		6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */; };
 		6D2CB4E82935B44D002BF0A4 /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4C92928412E002BF0A4 /* HealthRepositoryTests.swift */; };
@@ -53,6 +52,7 @@
 		6D2CB4D4292DCF00002BF0A4 /* HealthManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManger.swift; sourceTree = "<group>"; };
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
 		6D2CB4DF2935B445002BF0A4 /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2CB575293E8688002BF0A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordView.swift; sourceTree = "<group>"; };
 		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -86,7 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2CB4CF292AA9A2002BF0A4 /* XCTest.framework in Frameworks */,
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
@@ -216,6 +215,7 @@
 		6D63A3AB28E33E320076BB1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D2CB575293E8688002BF0A4 /* AssetsLibrary.framework */,
 				6D2CB4CE292AA9A2002BF0A4 /* XCTest.framework */,
 				6D63A3AF28E3DF2C0076BB1E /* HealthKit.framework */,
 			);
