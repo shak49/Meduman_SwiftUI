@@ -6,7 +6,6 @@
 //
 
 import HealthKit
-import XCTest
 
 
 protocol HealthManagerProtocol {
@@ -35,8 +34,7 @@ class HealthManager: HealthManagerProtocol {
             if error != nil {
                 print(error)
             }
-            guard let authorized = authorized else { return }
-            XCTAssertTrue(authorized)
+            print("AUTHORIZED: \(authorized)!")
         }
     }
 }
