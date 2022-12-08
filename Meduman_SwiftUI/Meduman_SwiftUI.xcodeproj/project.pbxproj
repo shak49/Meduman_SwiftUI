@@ -28,9 +28,21 @@
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
 		6D82EF91277271270010E25B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF90277271270010E25B /* User.swift */; };
 		6D82EFA827739A020010E25B /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* AuthError.swift */; };
+		6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */; };
+		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D96C702294165FA00A9AA4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D82EF55277266AA0010E25B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D82EF5C277266AA0010E25B;
+			remoteInfo = Meduman_SwiftUI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6D2C0AB027862DE5003D36DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -54,6 +66,9 @@
 		6D82EF67277266AD0010E25B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6D82EF90277271270010E25B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D82EFA727739A020010E25B /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepositoryTests.swift; sourceTree = "<group>"; };
+		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,12 +86,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D96C6FB294165FA00A9AA4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6D2CB5B5293E8D10002BF0A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D96C7092941689300A9AA4C /* XCTest.framework */,
 				6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -201,6 +225,7 @@
 			children = (
 				6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
+				6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
 				6D2CB5B5293E8D10002BF0A4 /* Frameworks */,
 			);
@@ -211,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */,
+				6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,6 +266,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */,
+			);
+			path = Meduman_SwiftUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -266,6 +300,24 @@
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6D96C6FD294165FA00A9AA4C /* Meduman_SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D96C704294165FA00A9AA4C /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */;
+			buildPhases = (
+				6D96C6FA294165FA00A9AA4C /* Sources */,
+				6D96C6FB294165FA00A9AA4C /* Frameworks */,
+				6D96C6FC294165FA00A9AA4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D96C703294165FA00A9AA4C /* PBXTargetDependency */,
+			);
+			name = Meduman_SwiftUITests;
+			productName = Meduman_SwiftUITests;
+			productReference = 6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -278,6 +330,10 @@
 				TargetAttributes = {
 					6D82EF5C277266AA0010E25B = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					6D96C6FD294165FA00A9AA4C = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 6D82EF5C277266AA0010E25B;
 					};
 				};
 			};
@@ -298,6 +354,7 @@
 			projectRoot = "";
 			targets = (
 				6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */,
+				6D96C6FD294165FA00A9AA4C /* Meduman_SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -310,6 +367,13 @@
 				6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */,
 				6D82EF65277266AD0010E25B /* Assets.xcassets in Resources */,
 				6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D96C6FC294165FA00A9AA4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +402,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D96C6FA294165FA00A9AA4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D96C703294165FA00A9AA4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
+			targetProxy = 6D96C702294165FA00A9AA4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6D82EF7F277266AF0010E25B /* Debug */ = {
@@ -381,7 +461,7 @@
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -447,7 +527,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
-				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -542,6 +622,40 @@
 			};
 			name = Release;
 		};
+		6D96C705294165FA00A9AA4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shakfeizi.Meduman-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meduman_SwiftUI.app/Meduman_SwiftUI";
+			};
+			name = Debug;
+		};
+		6D96C706294165FA00A9AA4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shakfeizi.Meduman-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meduman_SwiftUI.app/Meduman_SwiftUI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -559,6 +673,15 @@
 			buildConfigurations = (
 				6D82EF82277266AF0010E25B /* Debug */,
 				6D82EF83277266AF0010E25B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D96C704294165FA00A9AA4C /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D96C705294165FA00A9AA4C /* Debug */,
+				6D96C706294165FA00A9AA4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
