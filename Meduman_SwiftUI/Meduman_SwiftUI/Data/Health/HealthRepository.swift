@@ -36,6 +36,7 @@ class HealthRepository: HealthRepoProtocol {
     let allTypes: Set<HKObjectType> = Set([
         HKObjectType.quantityType(forIdentifier: .bloodGlucose)!,
         HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!,
+        HKObjectType.clinicalType(forIdentifier: .labResultRecord)!
     ])
     
     //MARK: - Lifecycles
