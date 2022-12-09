@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum HealthError: LocalizedError {
+enum HKError: LocalizedError {
     case unableToAuthorizeAccess
     case unableToWriteHealthRecord
     case thrownError(Error)

@@ -30,11 +30,12 @@ class HealthManager: HealthManagerProtocol {
     
     //MARK: - Functions
     func requestAuthorization() {
-        repo.requestAuthorization { authorized, error in
-            if error != nil {
+        repo.requestAuthorization()
+            .sink { error in
                 print(error)
+            } receiveValue: { result in
+                print("RESULT FOR REQ AUTH: \(result)")
             }
-            print("AUTHORIZED: \(authorized)!")
-        }
+            
     }
 }

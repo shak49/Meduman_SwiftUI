@@ -19,8 +19,7 @@ protocol HealthRepoProtocol {
     init(healthStore: HKHealthStore)
     
     //MARK: - Functions
-    func requestAuthorization(completion: @escaping(Bool?, HealthError?) -> Void)
-//    func requestAuthorization() -> Future<Bool, HealthError>
+    func requestAuthorization() -> Future<Bool, HKError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeQuantityTypeSample()
@@ -33,10 +32,11 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
-    let allTypes: Set<HKObjectType> = Set([
+    let allTypes = Set([
         HKObjectType.quantityType(forIdentifier: .bloodGlucose)!,
+        HKObjectType.quantityType(forIdentifier: .heartRate)!,
         HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!,
-        HKObjectType.clinicalType(forIdentifier: .labResultRecord)!
+        //HKObjectType.clinicalType(forIdentifier: .labResultRecord)!
     ])
     
     //MARK: - Lifecycles
@@ -45,13 +45,17 @@ class HealthRepository: HealthRepoProtocol {
     }
     
     //MARK: - Functions
-    func requestAuthorization(completion: @escaping(Bool?, HealthError?) -> Void) {
-        self.healthStore?.requestAuthorization(toShare: self.allTypes as? Set<HKSampleType>, read: self.allTypes, completion: { authorized, error in
-            if error != nil {
-                print("ERROR: \(error)")
-                completion(nil, .unableToAuthorizeAccess)
-            }
-            completion(authorized, nil)
-        })
+    func requestAuthorization() -> Future<Bool, HKError> {
+        Future { [weak self] promise in
+            self?.healthStore?.requestAuthorization(toShare: self?.allTypes as? Set<HKSampleType>, read: self?.allTypes, completion: { success, error in
+                guard error == nil else {
+                    print("Request Auth Error: \(error)")
+                    promise(.failure(.unableToAuthorizeAccess))
+                    return
+                }
+                print(success)
+                promise(.success(success))
+            })
+        }
     }
 }
