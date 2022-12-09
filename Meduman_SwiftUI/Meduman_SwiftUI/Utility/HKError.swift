@@ -9,6 +9,7 @@ import Foundation
 
 
 enum HKError: LocalizedError {
+    case unableToAccessRecordsForThisDevice
     case unableToAuthorizeAccess
     case unableToWriteHealthRecord
     case thrownError(Error)
@@ -16,6 +17,8 @@ enum HKError: LocalizedError {
     
     var errorDescription: String {
         switch self {
+        case .unableToAccessRecordsForThisDevice:
+            return "Unable to access health records for this device."
         case .unableToAuthorizeAccess:
             return "Unable to authorize access."
         case .unableToWriteHealthRecord:

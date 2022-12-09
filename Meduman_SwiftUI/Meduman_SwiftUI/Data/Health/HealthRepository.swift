@@ -36,7 +36,6 @@ class HealthRepository: HealthRepoProtocol {
         HKObjectType.quantityType(forIdentifier: .bloodGlucose)!,
         HKObjectType.quantityType(forIdentifier: .heartRate)!,
         HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!,
-        //HKObjectType.clinicalType(forIdentifier: .labResultRecord)!
     ])
     
     //MARK: - Lifecycles
@@ -47,6 +46,10 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError> {
         Future { [weak self] promise in
+            guard HKHealthStore.isHealthDataAvailable() else {
+                promise(.failure(.unableToAccessRecordsForThisDevice))
+                return
+            }
             self?.healthStore?.requestAuthorization(toShare: self?.allTypes as? Set<HKSampleType>, read: self?.allTypes, completion: { success, error in
                 guard error == nil else {
                     print("Request Auth Error: \(error)")
