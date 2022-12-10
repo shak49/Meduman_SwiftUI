@@ -43,16 +43,17 @@ class HealthRepositoryTests: XCTestCase {
     
     func test_writeQuantityTypeSample_canSuccessfullyWrite() {
         let record = 18.00
-        //let expectation = expectation(description: "")
+        let expectation = expectation(description: "")
         sut.writeQuantityTypeSample(record: record)
             .sink { completion in
                 print("COMPLETION: \(completion)")
-                //expectation.fulfill()
+                expectation.fulfill()
             } receiveValue: { success in
                 print("SUCCESS: \(success)")
-                //XCTAssertTrue(success)
+                XCTAssertTrue(success)
             }
-        //wait(for: [expectation], timeout: 2)
+            .store(in: &cancellables)
+        wait(for: [expectation], timeout: 2)
     }
     
     func test_WriteQuantityTypeSample_CanReturnError() {
