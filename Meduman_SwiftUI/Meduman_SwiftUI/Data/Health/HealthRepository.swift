@@ -20,7 +20,7 @@ protocol HealthRepoProtocol {
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
-    func writeQuantityTypeSample(record: Double?) -> AnyPublisher<Bool, HKError>
+    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError>
     //func readQuantityTypeSample()
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
@@ -62,25 +62,23 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeQuantityTypeSample(record: Double?) -> AnyPublisher<Bool, HKError> {
-        let subject = PassthroughSubject<Bool, HKError>()
-        if let record = record {
-            guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-                fatalError("Step Count Type is no longer available in HealthKit")
+    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError> {
+        Future { promise in
+            if let record = record {
+                guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
+                    fatalError("Step Count Type is no longer available in HealthKit")
+                }
+                let unit = HKUnit(from: "mg/dL")
+                let quantity = HKQuantity(unit: unit, doubleValue: record)
+                let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
+                self.healthStore?.save(sample, withCompletion: { success, error in
+                    guard error == nil else {
+                        promise(.failure(.unableToWriteHealthRecord))
+                        return
+                    }
+                    promise(.success(success))
+                })
             }
-            let unit = HKUnit(from: "mg/dL")
-            let quantity = HKQuantity(unit: unit, doubleValue: record)
-            let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
-            self.healthStore?.save(sample, withCompletion: { success, error in
-                guard error == nil else {
-                    subject.send(completion: .failure(.unableToWriteHealthRecord))
-                    return
-                }
-                if success != nil {
-                    subject.send(true)
-                }
-            })
         }
-        return subject.eraseToAnyPublisher()
     }
 }
