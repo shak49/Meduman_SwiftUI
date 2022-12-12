@@ -26,7 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO">
+      shouldUseLaunchSchemeArgsEnv = "NO"
+      codeCoverageEnabled = "YES">
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "unit_tests"
@@ -39,7 +40,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D82EF6C277266AE0010E25B"
+               BlueprintIdentifier = "6D96C6FD294165FA00A9AA4C"
                BuildableName = "Meduman_SwiftUITests.xctest"
                BlueprintName = "Meduman_SwiftUITests"
                ReferencedContainer = "container:Meduman_SwiftUI.xcodeproj">
