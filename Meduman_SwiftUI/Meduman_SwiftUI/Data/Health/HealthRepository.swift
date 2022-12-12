@@ -65,13 +65,11 @@ class HealthRepository: HealthRepoProtocol {
     func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError> {
         Future { promise in
             if let record = record {
-                guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-                    fatalError("Step Count Type is no longer available in HealthKit")
-                }
+                guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
                 let unit = HKUnit(from: "mg/dL")
                 let quantity = HKQuantity(unit: unit, doubleValue: record)
                 let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
-                self.healthStore?.save(sample, withCompletion: { success, error in
+                self.healthStore?.save([sample], withCompletion: { success, error in
                     guard error == nil else {
                         promise(.failure(.unableToWriteHealthRecord))
                         return
