@@ -33,8 +33,8 @@ class HealthRepositoryTests: XCTestCase {
         sut.requestAuthorization()
             .sink { completion in
                 print("COMPLETION: \(completion)")
-                expectation.fulfill()
             } receiveValue: { success in
+                expectation.fulfill()
                 XCTAssertTrue(success)
             }
             .store(in: &cancellables)
@@ -43,13 +43,13 @@ class HealthRepositoryTests: XCTestCase {
     
     func test_writeQuantityTypeSample_canSuccessfullyWrite() {
         let record = 18.00
-        let expectation = expectation(description: "")
+        let expectation = expectation(description: "\'writeQuantityTypeSample\' can successfully write quantity sample.")
         sut.writeQuantityTypeSample(record: record)
             .sink { completion in
                 print("COMPLETION: \(completion)")
-                expectation.fulfill()
             } receiveValue: { success in
                 print("SUCCESS: \(success)")
+                expectation.fulfill()
                 XCTAssertTrue(success)
             }
             .store(in: &cancellables)
