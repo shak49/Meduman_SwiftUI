@@ -30,6 +30,7 @@
 		6D82EFA827739A020010E25B /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EFA727739A020010E25B /* AuthError.swift */; };
 		6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
+		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepositoryTests.swift; sourceTree = "<group>"; };
 		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreMock.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */,
+				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
 			);
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
+				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

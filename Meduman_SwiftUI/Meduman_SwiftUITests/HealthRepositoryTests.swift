@@ -14,17 +14,19 @@ import HealthKit
 class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
     var sut: HealthRepository!
+    var mock: HKHealthStore!
     private var cancellables = Set<AnyCancellable>()
 
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = HealthRepository(healthStore: HKHealthStore())
+        self.mock = HealthStoreMock()
+        self.sut = HealthRepository(healthStore: self.mock)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-        
+        self.sut = nil
     }
 
     //MARK: - Functions
