@@ -20,7 +20,7 @@ protocol HealthRepoProtocol {
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
-    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError>
+    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError>
     //func readQuantityTypeSample()
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
@@ -45,10 +45,6 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError> {
         Future { [weak self] promise in
-            guard HKHealthStore.isHealthDataAvailable() else {
-                promise(.failure(.unableToAccessRecordsForThisDevice))
-                return
-            }
             self?.healthStore?.requestAuthorization(toShare: self?.allTypes, read: self?.allTypes, completion: { success, error in
                 guard error == nil else {
                     print("Request Auth Error: \(error)")
@@ -61,16 +57,10 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError> {
+    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
-            if let record = record {
-                guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-                    fatalError("Step Count Type is no longer available in HealthKit")
-                }
-                let unit: HKUnit = HKUnit(from: "mg/dL")
-                let quantity = HKQuantity(unit: unit, doubleValue: record)
-                let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
-                self.healthStore?.save(sample) { success, error in
+            if let object = object {
+                self.healthStore?.save(object) { success, error in
                     if let error = error {
                         print(error.localizedDescription)
                         promise(.failure(.unableToWriteHealthRecord))

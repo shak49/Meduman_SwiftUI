@@ -23,10 +23,8 @@ class HealthStoreMock: HKHealthStore {
     }
     
     func save(_ object: HKObject, withCompletion completion: @escaping (Bool?, Error?) -> Void) {
-        if object != nil {
-            let success = self.success
-            let error = self.error
-            completion(success, error)
-        }
+        let success = self.success
+        let error = self.error
+        completion(success, error)
     }
 }
