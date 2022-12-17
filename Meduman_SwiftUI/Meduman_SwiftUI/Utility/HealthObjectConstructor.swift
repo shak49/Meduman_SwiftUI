@@ -22,7 +22,7 @@ class HealthObjectConstructor {
         return sample
     }
     
-    func quarySample() -> HKSampleQuery {
+    func quarySample() {
         
     }
     
