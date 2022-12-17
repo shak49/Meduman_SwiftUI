@@ -20,7 +20,7 @@ protocol HealthRepoProtocol {
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
-    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError>
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
     //func readQuantityTypeSample()
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
@@ -57,7 +57,7 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError> {
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
             if let object = object {
                 self.healthStore?.save(object) { success, error in

@@ -12,14 +12,14 @@ class HealthObjectBuilder {
     //MARK: - Properties
     
     //MARK: - Functions
-    func bloodGlucose(record: Double?) -> HKQuantitySample? {
+    func quantityType(record: Double?, typeId: HKQuantityTypeIdentifier, unit: String) -> HKQuantitySample? {
         guard let record = record else { return nil }
-        guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-            fatalError("Step Count Type is no longer available in HealthKit")
+        guard let type = HKQuantityType.quantityType(forIdentifier: typeId) else {
+            fatalError("This quantity type is no longer available.")
         }
-        let unit: HKUnit = HKUnit(from: "mg/dL")
+        let unit: HKUnit = HKUnit(from: unit)
         let quantity = HKQuantity(unit: unit, doubleValue: record)
-        let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
+        let sample = HKQuantitySample(type: type, quantity: quantity, start: Date(), end: Date())
         return sample
     }
 }

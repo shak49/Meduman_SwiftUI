@@ -27,4 +27,5 @@ class HealthStoreMock: HKHealthStore {
         let error = self.error
         completion(success, error)
     }
+    
 }

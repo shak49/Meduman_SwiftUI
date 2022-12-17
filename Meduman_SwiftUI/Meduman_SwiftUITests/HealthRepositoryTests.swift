@@ -45,11 +45,11 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeQuantityTypeSample_canSuccessfullyWrite() {
-        let expectation = expectation(description: "\'writeQuantityTypeSample\' can successfully write quantity sample.")
+    func test_writeHealthRecord_canSuccessfullyWrite() {
+        let expectation = expectation(description: "\'writeHealthRecord\' can successfully write quantity sample.")
         let record = 188.00
-        let object = self.objectBuilder.bloodGlucose(record: record)
-        self.sut.writeQuantityTypeSample(object: object)
+        let object = self.objectBuilder.quantityType(record: record, typeId: .bloodGlucose, unit: "mg/dL")
+        self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
                 expectation.fulfill()
@@ -61,24 +61,7 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_WriteQuantityTypeSample_CanReturnError() {
-//        let expectation = expectation(description: "\'writeQuantityTypeSample\' can successfully throuwn error.")
-//        let record = 188.00
-//        guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-//            fatalError("Step Count Type is no longer available in HealthKit")
-//        }
-//        let unit: HKUnit = HKUnit(from: "mg/dL")
-//        let quantity = HKQuantity(unit: unit, doubleValue: record)
-//        let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
-//        self.sut.writeQuantityTypeSample(object: sample)
-//            .sink { completion in
-//                print("COMPLETION: \(completion)")
-//                expectation.fulfill()
-//            } receiveValue: { error in
-//                print("---\(error)---")
-//                XCTAssertNotNil(error)
-//            }
-//            .store(in: &cancellables)
-//        wait(for: [expectation], timeout: 2)
+    func test_readHealthRecord_CanSuccessfullyRead() {
+        
     }
 }
