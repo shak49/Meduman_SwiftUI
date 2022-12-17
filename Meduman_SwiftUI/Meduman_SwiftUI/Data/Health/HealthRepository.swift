@@ -12,7 +12,7 @@ import Combine
 protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
-//    var healthQuary: HKSampleQuery? { get }
+    var healthQuary: HKSampleQuery? { get }
 //    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Lifecycles
@@ -20,8 +20,8 @@ protocol HealthRepoProtocol {
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
-    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError>
-    //func readQuantityTypeSample()
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
+    func readHealthRecord() -> AnyPublisher<[Health], HKError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeCategoryTypeSample()
@@ -32,6 +32,7 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
+    var healthQuary: HKSampleQuery?
     let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
@@ -57,7 +58,7 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeQuantityTypeSample(object: HKObject?) -> Future<Bool, HKError> {
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
             if let object = object {
                 self.healthStore?.save(object) { success, error in
@@ -69,6 +70,13 @@ class HealthRepository: HealthRepoProtocol {
                     promise(.success(success))
                 }
             }
+        }
+    }
+    
+    func readHealthRecord() -> AnyPublisher<[Health], HKError> {
+        let subject = PassthroughSubject<[Health], HKError>()
+        if let quarySample = quarySample {
+            self.healthQuary = HKSampleQuery(sampleType: <#T##HKSampleType#>, predicate: <#T##NSPredicate?#>, limit: <#T##Int#>, sortDescriptors: <#T##[NSSortDescriptor]?#>, resultsHandler: <#T##(HKSampleQuery, [HKSample]?, Error?) -> Void#>)
         }
     }
 }
