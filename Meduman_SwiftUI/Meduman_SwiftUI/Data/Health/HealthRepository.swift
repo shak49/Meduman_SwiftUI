@@ -16,12 +16,12 @@ protocol HealthRepoProtocol {
 //    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Lifecycles
-    init(healthStore: HKHealthStore)
+    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
-    func readHealthRecord() -> AnyPublisher<[Health], HKError>
+    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeCategoryTypeSample()
@@ -39,8 +39,9 @@ class HealthRepository: HealthRepoProtocol {
     ])
     
     //MARK: - Lifecycles
-    required init(healthStore: HKHealthStore) {
+    required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?) {
         self.healthStore = healthStore
+        self.healthQuary = healthQuery
     }
     
     //MARK: - Functions
@@ -73,10 +74,19 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func readHealthRecord() -> AnyPublisher<[Health], HKError> {
+    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError> {
         let subject = PassthroughSubject<[Health], HKError>()
-        if let quarySample = quarySample {
-            self.healthQuary = HKSampleQuery(sampleType: <#T##HKSampleType#>, predicate: <#T##NSPredicate?#>, limit: <#T##Int#>, sortDescriptors: <#T##[NSSortDescriptor]?#>, resultsHandler: <#T##(HKSampleQuery, [HKSample]?, Error?) -> Void#>)
+        if let type = type {
+            self.healthQuary = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort, resultsHandler: { query, samples, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    subject.send(completion: .failure(.unableToReadHealthRecord))
+                }
+                guard let samples = samples as? [Health] else { return }
+                subject.send(samples)
+            })
+            //self.healthStore?.execute(healthQuary)
         }
+        return subject.eraseToAnyPublisher()
     }
 }
