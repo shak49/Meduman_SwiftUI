@@ -13,15 +13,18 @@ import HealthKit
 
 class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
-    var sut: HealthRepository!
-    var mock: HKHealthStore!
+    private var sut: HealthRepository!
+    private var objectBuilder: HealthObjectConstructor!
+    private var healthStoreMock: HealthStoreMock!
+    private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
 
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.mock = HealthStoreMock()
-        self.sut = HealthRepository(healthStore: self.mock)
+        self.healthStoreMock = HealthStoreMock()
+        self.objectBuilder = HealthObjectConstructor()
+        self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
     override func tearDownWithError() throws {
@@ -43,22 +46,33 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeQuantityTypeSample_canSuccessfullyWrite() {
-        let record = 18.00
-        let expectation = expectation(description: "\'writeQuantityTypeSample\' can successfully write quantity sample.")
-        sut.writeQuantityTypeSample(record: record)
+    func test_writeHealthRecord_canSuccessfullyWrite() {
+        let expectation = expectation(description: "\'writeHealthRecord\' can successfully write quantity sample.")
+        let record = 188.00
+        let object = self.objectBuilder.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
+        self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
+                expectation.fulfill()
             } receiveValue: { success in
                 print("SUCCESS: \(success)")
-                expectation.fulfill()
                 XCTAssertTrue(success)
             }
             .store(in: &cancellables)
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_WriteQuantityTypeSample_CanReturnError() {
-        
+    func test_readHealthRecord_CanSuccessfullyRead() {
+        let expectation = expectation(description: "")
+        let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
+        let predicate: NSPredicate? = nil
+        let limit = HKObjectQueryNoLimit
+        let sort: [NSSortDescriptor]? = nil
+        sut.readHealthRecord(type: type, predicate: predicate, limit: limit, sort: sort)
+            .map { samples in
+                expectation.fulfill()
+                XCTAssertNotNil(samples)
+            }
+        wait(for: [expectation], timeout: 2)
     }
 }

@@ -12,16 +12,16 @@ import Combine
 protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
-//    var healthQuary: HKSampleQuery? { get }
+    var healthQuary: HKSampleQuery? { get }
 //    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Lifecycles
-    init(healthStore: HKHealthStore)
+    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
-    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError>
-    //func readQuantityTypeSample()
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
+    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeCategoryTypeSample()
@@ -32,23 +32,21 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
+    var healthQuary: HKSampleQuery?
     let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
     ])
     
     //MARK: - Lifecycles
-    required init(healthStore: HKHealthStore) {
+    required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?) {
         self.healthStore = healthStore
+        self.healthQuary = healthQuery
     }
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError> {
         Future { [weak self] promise in
-            guard HKHealthStore.isHealthDataAvailable() else {
-                promise(.failure(.unableToAccessRecordsForThisDevice))
-                return
-            }
             self?.healthStore?.requestAuthorization(toShare: self?.allTypes, read: self?.allTypes, completion: { success, error in
                 guard error == nil else {
                     print("Request Auth Error: \(error)")
@@ -61,16 +59,10 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeQuantityTypeSample(record: Double?) -> Future<Bool, HKError> {
+    func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
-            if let record = record {
-                guard let bloodGlucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
-                    fatalError("Step Count Type is no longer available in HealthKit")
-                }
-                let unit: HKUnit = HKUnit(from: "mg/dL")
-                let quantity = HKQuantity(unit: unit, doubleValue: record)
-                let sample = HKQuantitySample(type: bloodGlucose, quantity: quantity, start: Date(), end: Date())
-                self.healthStore?.save(sample) { success, error in
+            if let object = object {
+                self.healthStore?.save(object) { success, error in
                     if let error = error {
                         print(error.localizedDescription)
                         promise(.failure(.unableToWriteHealthRecord))
@@ -80,5 +72,21 @@ class HealthRepository: HealthRepoProtocol {
                 }
             }
         }
+    }
+    
+    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError> {
+        let subject = PassthroughSubject<[Health], HKError>()
+        if let type = type {
+            self.healthQuary = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort, resultsHandler: { query, samples, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    subject.send(completion: .failure(.unableToReadHealthRecord))
+                }
+                guard let samples = samples as? [Health] else { return }
+                subject.send(samples)
+            })
+            //self.healthStore?.execute(healthQuary)
+        }
+        return subject.eraseToAnyPublisher()
     }
 }

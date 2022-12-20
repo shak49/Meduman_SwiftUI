@@ -31,8 +31,8 @@ class HealthManager: HealthManagerProtocol {
     //MARK: - Functions
     func requestAuthorization() {
         repo.requestAuthorization()
-            .sink { error in
-                print(error)
+            .sink { completion in
+                print(completion)
             } receiveValue: { result in
                 print("RESULT FOR REQ AUTH: \(result)")
             }
