@@ -15,15 +15,16 @@ class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
     private var sut: HealthRepository!
     private var objectBuilder: HealthObjectConstructor!
-    private var mock: HKHealthStore!
+    private var healthStoreMock: HealthStoreMock!
+    private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
 
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.mock = HealthStoreMock()
+        self.healthStoreMock = HealthStoreMock()
         self.objectBuilder = HealthObjectConstructor()
-        self.sut = HealthRepository(healthStore: self.mock)
+        self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
     override func tearDownWithError() throws {
@@ -62,6 +63,16 @@ class HealthRepositoryTests: XCTestCase {
     }
     
     func test_readHealthRecord_CanSuccessfullyRead() {
-        
+        let expectation = expectation(description: "")
+        let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
+        let predicate: NSPredicate? = nil
+        let limit = HKObjectQueryNoLimit
+        let sort: [NSSortDescriptor]? = nil
+        sut.readHealthRecord(type: type, predicate: predicate, limit: limit, sort: sort)
+            .map { samples in
+                expectation.fulfill()
+                XCTAssertNotNil(samples)
+            }
+        wait(for: [expectation], timeout: 2)
     }
 }
