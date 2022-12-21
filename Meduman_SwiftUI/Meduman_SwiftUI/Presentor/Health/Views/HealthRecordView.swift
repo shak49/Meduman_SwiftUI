@@ -12,7 +12,8 @@ struct HealthRecordView: View {
     //MARK: - Properties
     @ObservedObject private var model: HealthRecordViewModel
     static var healthStore = HKHealthStore()
-    static var repo = HealthRepository(healthStore: healthStore)
+    static var healthQuery: HKSampleQuery?
+    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var manager = HealthManager(repo: repo)
     
     //MARK: - Lifecycles

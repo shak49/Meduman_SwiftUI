@@ -12,7 +12,7 @@ import Combine
 protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
-    var healthQuary: HKSampleQuery? { get }
+    var healthQuery: HKSampleQuery? { get }
 //    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Lifecycles
@@ -32,7 +32,7 @@ protocol HealthRepoProtocol {
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
-    var healthQuary: HKSampleQuery?
+    var healthQuery: HKSampleQuery?
     let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
@@ -41,7 +41,7 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Lifecycles
     required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?) {
         self.healthStore = healthStore
-        self.healthQuary = healthQuery
+        self.healthQuery = healthQuery
     }
     
     //MARK: - Functions
@@ -77,15 +77,18 @@ class HealthRepository: HealthRepoProtocol {
     func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError> {
         let subject = PassthroughSubject<[Health], HKError>()
         if let type = type {
-            self.healthQuary = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort, resultsHandler: { query, samples, error in
+            self.healthQuery = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort, resultsHandler: { query, samples, error in
                 if let error = error {
                     print(error.localizedDescription)
                     subject.send(completion: .failure(.unableToReadHealthRecord))
                 }
                 guard let samples = samples as? [Health] else { return }
+                subject.send(completion: .finished)
                 subject.send(samples)
             })
-            //self.healthStore?.execute(healthQuary)
+        }
+        if let healthQuery = healthQuery {
+            self.healthStore?.execute(healthQuery)
         }
         return subject.eraseToAnyPublisher()
     }
