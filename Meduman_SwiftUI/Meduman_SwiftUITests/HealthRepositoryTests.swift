@@ -63,16 +63,18 @@ class HealthRepositoryTests: XCTestCase {
     }
     
     func test_readHealthRecord_CanSuccessfullyRead() {
-        let expectation = expectation(description: "")
+        let expectation = expectation(description: "\'readHealthRecord\' can successfully read query of health records.")
         let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
         let predicate: NSPredicate? = nil
         let limit = HKObjectQueryNoLimit
         let sort: [NSSortDescriptor]? = nil
         sut.readHealthRecord(type: type, predicate: predicate, limit: limit, sort: sort)
             .map { samples in
+                print(samples)
                 expectation.fulfill()
                 XCTAssertNotNil(samples)
             }
+            .eraseToAnyPublisher()
         wait(for: [expectation], timeout: 2)
     }
 }
