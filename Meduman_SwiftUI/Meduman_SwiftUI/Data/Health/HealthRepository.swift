@@ -21,7 +21,7 @@ protocol HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
-    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
 //    func writeCharacteristicTypeSample()
 //    func readCharacteristicTypeSample()
 //    func writeCategoryTypeSample()
@@ -68,23 +68,25 @@ class HealthRepository: HealthRepoProtocol {
                         promise(.failure(.unableToWriteHealthRecord))
                         return
                     }
+                    print("SUCCESS:", success)
                     promise(.success(success))
                 }
             }
         }
     }
     
-    func readHealthRecord(type: HKSampleType?, predicate: NSPredicate?, limit: Int, sort: [NSSortDescriptor]?) -> AnyPublisher<[Health], HKError> {
-        let subject = PassthroughSubject<[Health], HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError> {
+        let subject = PassthroughSubject<[HKSample]?, HKError>()
         if let type = type {
-            self.healthQuery = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort, resultsHandler: { query, samples, error in
+            self.healthQuery = HKSampleQuery(sampleType: type, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { query, samples, error in
                 if let error = error {
                     print(error.localizedDescription)
                     subject.send(completion: .failure(.unableToReadHealthRecord))
                 }
-                guard let samples = samples as? [Health] else { return }
-                subject.send(completion: .finished)
+                guard let samples = samples else { return }
+                print("SAMPLES:", samples)
                 subject.send(samples)
+                subject.send(completion: .finished)
             })
         }
         if let healthQuery = healthQuery {

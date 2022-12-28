@@ -23,6 +23,7 @@ class HealthRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
+        //self.healthQueryMock = HealthQueryMock()
         self.objectBuilder = HealthObjectConstructor()
         self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
@@ -53,9 +54,8 @@ class HealthRepositoryTests: XCTestCase {
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
-                expectation.fulfill()
             } receiveValue: { success in
-                print("SUCCESS: \(success)")
+                expectation.fulfill()
                 XCTAssertTrue(success)
             }
             .store(in: &cancellables)
@@ -64,17 +64,16 @@ class HealthRepositoryTests: XCTestCase {
     
     func test_readHealthRecord_CanSuccessfullyRead() {
         let expectation = expectation(description: "\'readHealthRecord\' can successfully read query of health records.")
-        let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
-        let predicate: NSPredicate? = nil
-        let limit = HKObjectQueryNoLimit
-        let sort: [NSSortDescriptor]? = nil
-        sut.readHealthRecord(type: type, predicate: predicate, limit: limit, sort: sort)
-            .map { samples in
-                print(samples)
+        guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
+        sut.readHealthRecord(type: type)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                print("COMPLETION:", completion)
+            } receiveValue: { results in
                 expectation.fulfill()
-                XCTAssertNotNil(samples)
+                XCTAssertNotNil(results)
             }
-            .eraseToAnyPublisher()
+            .store(in: &cancellables)
         wait(for: [expectation], timeout: 2)
     }
 }
