@@ -13,7 +13,6 @@ protocol HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore? { get }
     var healthQuery: HKSampleQuery? { get }
-//    var healthTypes: Set<HKObjectType> { get }
     
     //MARK: - Lifecycles
     init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
@@ -22,10 +21,6 @@ protocol HealthRepoProtocol {
     func requestAuthorization() -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
-//    func writeCharacteristicTypeSample()
-//    func readCharacteristicTypeSample()
-//    func writeCategoryTypeSample()
-//    func readCategoryTypeSample()
 }
 
 
@@ -64,7 +59,7 @@ class HealthRepository: HealthRepoProtocol {
             if let object = object {
                 self.healthStore?.save(object) { success, error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        print("ERROR: \(error.localizedDescription)")
                         promise(.failure(.unableToWriteHealthRecord))
                         return
                     }

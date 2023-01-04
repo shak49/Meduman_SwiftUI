@@ -23,7 +23,6 @@ class HealthRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
-        //self.healthQueryMock = HealthQueryMock()
         self.objectBuilder = HealthObjectConstructor()
         self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
@@ -62,8 +61,8 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_readHealthRecord_CanSuccessfullyRead() {
-        let expectation = expectation(description: "\'readHealthRecord\' can successfully read query of health records.")
+    func test_readHealthRecord_canSuccessfullyRead() {
+        let expectation = expectation(description: "\'readHealthRecord\' can successfully read health records.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
         sut.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)

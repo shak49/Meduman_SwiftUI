@@ -30,6 +30,6 @@ class HealthRecordViewModel: ObservableObject, HealthRecordVMProtocol {
     
     //MARK: - Functions
     func authorize() {
-        manager.requestAuthorization()
+        manager.authorizeAccess()
     }
 }
