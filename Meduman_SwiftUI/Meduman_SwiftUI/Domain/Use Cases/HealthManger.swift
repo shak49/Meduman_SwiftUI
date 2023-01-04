@@ -6,6 +6,7 @@
 //
 
 import HealthKit
+import Combine
 
 
 protocol HealthManagerProtocol {
@@ -16,12 +17,13 @@ protocol HealthManagerProtocol {
     init(repo: HealthRepository)
     
     //MARK: - Functions
-    func requestAuthorization()
+    func authorizeAccess()
 }
 
 class HealthManager: HealthManagerProtocol {
     //MARK: - Properties
     var repo: HealthRepository
+    private var cancellables = Set<AnyCancellable>()
     
     //MARK: - Lifecycles
     required init(repo: HealthRepository) {
@@ -29,13 +31,14 @@ class HealthManager: HealthManagerProtocol {
     }
     
     //MARK: - Functions
-    func requestAuthorization() {
+    func authorizeAccess() {
         repo.requestAuthorization()
             .sink { completion in
                 print(completion)
             } receiveValue: { result in
                 print("RESULT FOR REQ AUTH: \(result)")
             }
-            
+            .store(in: &cancellables)
     }
+
 }
