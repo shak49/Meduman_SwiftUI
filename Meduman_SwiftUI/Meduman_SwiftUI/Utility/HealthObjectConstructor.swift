@@ -23,8 +23,4 @@ class HealthObjectConstructor {
         let sample = HKQuantitySample(type: type, quantity: quantity, start: Date(), end: Date())
         return sample
     }
-    
-    func quarySample() {
-        
-    }
 }
