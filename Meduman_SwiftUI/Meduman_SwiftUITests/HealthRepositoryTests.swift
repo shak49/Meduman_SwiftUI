@@ -33,36 +33,40 @@ class HealthRepositoryTests: XCTestCase {
     }
 
     //MARK: - Functions
-    func test_requestAuthorization_canAuthorizeAccess() {
-        let expectation = expectation(description: "\'requestAuthorization\' can successfully authorize access.")
-        sut.requestAuthorization()
+    func test_requestAuthorization_canReturnTrue() {
+        let allTypes: Set<HKSampleType> = Set([
+            HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
+            HKSampleType.quantityType(forIdentifier: .heartRate)!,
+        ])
+        let expectation = expectation(description: "\'requestAuthorization\' can successfully return true.")
+        sut.requestAuthorization(types: allTypes)
             .sink { completion in
                 print("COMPLETION: \(completion)")
-            } receiveValue: { success in
+            } receiveValue: { result in
                 expectation.fulfill()
-                XCTAssertTrue(success)
+                XCTAssertTrue(result)
             }
             .store(in: &cancellables)
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeHealthRecord_canSuccessfullyWrite() {
-        let expectation = expectation(description: "\'writeHealthRecord\' can successfully write quantity sample.")
+    func test_writeHealthRecord_canReturnTrue() {
+        let expectation = expectation(description: "\'writeHealthRecord\' can successfully return true.")
         let record = 188.00
         let object = self.objectBuilder.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
-            } receiveValue: { success in
+            } receiveValue: { result in
                 expectation.fulfill()
-                XCTAssertTrue(success)
+                XCTAssertTrue(result)
             }
             .store(in: &cancellables)
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_readHealthRecord_canSuccessfullyRead() {
-        let expectation = expectation(description: "\'readHealthRecord\' can successfully read health records.")
+    func test_readHealthRecord_canReturnObjects() {
+        let expectation = expectation(description: "\'readHealthRecord\' can successfully return true.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
         sut.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)

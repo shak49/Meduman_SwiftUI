@@ -24,6 +24,10 @@ class HealthManager: HealthManagerProtocol {
     //MARK: - Properties
     var repo: HealthRepository
     private var cancellables = Set<AnyCancellable>()
+    let allTypes: Set<HKSampleType> = Set([
+        HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
+        HKSampleType.quantityType(forIdentifier: .heartRate)!,
+    ])
     
     //MARK: - Lifecycles
     required init(repo: HealthRepository) {
@@ -32,7 +36,7 @@ class HealthManager: HealthManagerProtocol {
     
     //MARK: - Functions
     func authorizeAccess() {
-        repo.requestAuthorization()
+        repo.requestAuthorization(types: self.allTypes)
             .sink { completion in
                 print(completion)
             } receiveValue: { result in

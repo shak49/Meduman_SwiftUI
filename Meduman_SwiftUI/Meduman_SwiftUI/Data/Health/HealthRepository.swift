@@ -18,7 +18,7 @@ protocol HealthRepoProtocol {
     init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
     
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HKError>
+    func requestAuthorization(types: Set<HKSampleType>?) -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
 }
@@ -28,10 +28,6 @@ class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
     var healthStore: HKHealthStore?
     var healthQuery: HKSampleQuery?
-    let allTypes: Set<HKSampleType> = Set([
-        HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
-        HKSampleType.quantityType(forIdentifier: .heartRate)!,
-    ])
     
     //MARK: - Lifecycles
     required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?) {
@@ -40,9 +36,9 @@ class HealthRepository: HealthRepoProtocol {
     }
     
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HKError> {
+    func requestAuthorization(types: Set<HKSampleType>?) -> Future<Bool, HKError> {
         Future { [weak self] promise in
-            self?.healthStore?.requestAuthorization(toShare: self?.allTypes, read: self?.allTypes, completion: { success, error in
+            self?.healthStore?.requestAuthorization(toShare: types, read: types, completion: { success, error in
                 guard error == nil else {
                     print("Request Auth Error: \(error)")
                     promise(.failure(.unableToAuthorizeAccess))
