@@ -12,8 +12,8 @@ enum HKError: LocalizedError {
     case unableToAccessRecordsForThisDevice
     case unableToAuthorizeAccess
     case unableToWriteHealthRecord
-    case thrownError(Error)
     case unableToReadHealthRecord
+    case thrownError(Error)
     
     var errorDescription: String {
         switch self {
@@ -23,10 +23,10 @@ enum HKError: LocalizedError {
             return "Unable to authorize access."
         case .unableToWriteHealthRecord:
             return "Unable to create the user."
-        case .thrownError(let error):
-            return "Error: \(error.localizedDescription) -> \(error)"
         case .unableToReadHealthRecord:
             return "The server responded with no data."
+        case .thrownError(let error):
+            return "Error: \(error.localizedDescription) -> \(error)"
         }
     }
 }
