@@ -31,6 +31,7 @@
 		6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
+		6DC23641296A055A00E10311 /* HealthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23640296A055A00E10311 /* HealthManagerTests.swift */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 		6DD5CAAC294BF92E00CB66CC /* HealthObjectConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* HealthObjectConstructor.swift */; };
@@ -73,6 +74,7 @@
 		6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepositoryTests.swift; sourceTree = "<group>"; };
 		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreMock.swift; sourceTree = "<group>"; };
+		6DC23640296A055A00E10311 /* HealthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManagerTests.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DD5CAAB294BF92D00CB66CC /* HealthObjectConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthObjectConstructor.swift; sourceTree = "<group>"; };
@@ -124,7 +126,7 @@
 		6D63A36528CA6CB70076BB1E /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A37128CC029B0076BB1E /* Utility */,
+				6D63A37128CC029B0076BB1E /* Utilities */,
 				6D63A39828CEC7240076BB1E /* Entities */,
 				6D63A37028CBEFF20076BB1E /* Use Cases */,
 			);
@@ -166,11 +168,11 @@
 			path = "Use Cases";
 			sourceTree = "<group>";
 		};
-		6D63A37128CC029B0076BB1E /* Utility */ = {
+		6D63A37128CC029B0076BB1E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Utility;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		6D63A39528CEC37D0076BB1E /* Views */ = {
@@ -209,14 +211,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		6D63A3A628D9433D0076BB1E /* Utility */ = {
+		6D63A3A628D9433D0076BB1E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				6D82EFA727739A020010E25B /* AuthError.swift */,
 				6D63A3B828E9287E0076BB1E /* HKError.swift */,
 				6DD5CAAB294BF92D00CB66CC /* HealthObjectConstructor.swift */,
 			);
-			path = Utility;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		6D63A3AE28E3DF140076BB1E /* Health */ = {
@@ -256,7 +258,7 @@
 				6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */,
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
-				6D63A3A628D9433D0076BB1E /* Utility */,
+				6D63A3A628D9433D0076BB1E /* Utilities */,
 				6D63A36428CA6CA40076BB1E /* Data */,
 				6D63A36528CA6CB70076BB1E /* Domain */,
 				6D63A36628CA6CC30076BB1E /* Presentor */,
@@ -276,11 +278,28 @@
 		6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
+				6DC2363C296A049D00E10311 /* Health */,
+			);
+			path = Meduman_SwiftUITests;
+			sourceTree = "<group>";
+		};
+		6DC2363C296A049D00E10311 /* Health */ = {
+			isa = PBXGroup;
+			children = (
 				6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */,
+				6DC23640296A055A00E10311 /* HealthManagerTests.swift */,
+				6DC2363D296A04D200E10311 /* Helpers & Utillities */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		6DC2363D296A04D200E10311 /* Helpers & Utillities */ = {
+			isa = PBXGroup;
+			children = (
 				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
 				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
 			);
-			path = Meduman_SwiftUITests;
+			path = "Helpers & Utillities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +438,7 @@
 				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
 				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
+				6DC23641296A055A00E10311 /* HealthManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
