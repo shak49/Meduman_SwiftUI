@@ -8,7 +8,9 @@
 import XCTest
 import HealthKit
 import Combine
+import Cuckoo
 @testable import Meduman_SwiftUI
+
 
 class HealthManagerTests: XCTestCase {
     //MARK: - Properties
