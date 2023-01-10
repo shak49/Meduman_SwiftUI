@@ -32,6 +32,7 @@
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
 		6DC23641296A055A00E10311 /* HealthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23640296A055A00E10311 /* HealthManagerTests.swift */; };
+		6DC23644296D271B00E10311 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 6DC23643296D271B00E10311 /* Cuckoo */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 		6DD5CAAC294BF92E00CB66CC /* HealthObjectConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* HealthObjectConstructor.swift */; };
@@ -88,6 +89,7 @@
 			files = (
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
+				6DC23644296D271B00E10311 /* Cuckoo in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
 				6D63A3A328D2D1560076BB1E /* FirebaseFirestoreSwift in Frameworks */,
 				6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */,
@@ -323,6 +325,7 @@
 				6D63A39E28D2D1560076BB1E /* FirebaseAuth */,
 				6D63A3A028D2D1560076BB1E /* FirebaseFirestore */,
 				6D63A3A228D2D1560076BB1E /* FirebaseFirestoreSwift */,
+				6DC23643296D271B00E10311 /* Cuckoo */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -376,6 +379,7 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -729,6 +733,14 @@
 				kind = branch;
 			};
 		};
+		6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -751,6 +763,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		6DC23643296D271B00E10311 /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
