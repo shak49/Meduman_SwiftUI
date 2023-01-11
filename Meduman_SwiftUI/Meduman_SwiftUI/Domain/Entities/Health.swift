@@ -9,8 +9,8 @@ import HealthKit
 
 
 struct Health {
-    let id: String?
-    let date: Date?
+    //let id: String?
+    //let date: Date?
     let bloodType: HKCharacteristicType?
     let bloodGlucose: HKQuantity?
     let bloodPressure: HKQuantity?
