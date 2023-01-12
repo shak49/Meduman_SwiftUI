@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-protocol UserManagerProtocol {
+protocol UserUseCaseProtocol {
     //MARK: - Properties
     var user: User? { get }
     
@@ -22,7 +22,7 @@ protocol UserManagerProtocol {
 }
 
 
-class UserManager: UserManagerProtocol {
+class UserUseCase: UserUseCaseProtocol {
     //MARK: - Properties
     var authRepo: AuthRepository
     var firestoreRepo: FirestoreRepository

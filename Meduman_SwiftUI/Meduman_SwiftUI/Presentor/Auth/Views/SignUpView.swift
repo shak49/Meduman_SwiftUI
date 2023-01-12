@@ -18,10 +18,10 @@ struct SignUpView: View {
     @State private var isVisible: Bool = false
     static let authRepo = AuthRepository()
     static let firestoreRepo = FirestoreRepository()
-    static let manager = UserManager(authRepo: authRepo, firestoreRepo: firestoreRepo)
+    static let manager = UserUseCase(authRepo: authRepo, firestoreRepo: firestoreRepo)
     
     //MARK: - Lifecycles
-    init(manager: UserManager = manager) {
+    init(manager: UserUseCase = manager) {
         self.model = AuthViewModel(manager: manager)
     }
     

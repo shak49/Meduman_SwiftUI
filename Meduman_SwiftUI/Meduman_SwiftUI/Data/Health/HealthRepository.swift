@@ -52,16 +52,15 @@ class HealthRepository: HealthRepoProtocol {
     
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
-            if let object = object {
-                self.healthStore?.save(object) { success, error in
-                    if let error = error {
-                        print("ERROR: \(error.localizedDescription)")
-                        promise(.failure(.unableToWriteHealthRecord))
-                        return
-                    }
-                    print("SUCCESS:", success)
-                    promise(.success(success))
+            guard let object = object else { return promise(.success(false)) }
+            self.healthStore?.save(object) { success, error in
+                if let error = error {
+                    print("ERROR: \(error.localizedDescription)")
+                    promise(.failure(.unableToWriteHealthRecord))
+                    return
                 }
+                print("SUCCESS:", success)
+                promise(.success(success))
             }
         }
     }

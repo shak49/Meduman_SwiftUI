@@ -14,7 +14,7 @@ import HealthKit
 class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
     private var sut: HealthRepository!
-    private var objectBuilder: HealthObjectConstructor!
+    private var healthSample: HealthSampleConstructor!
     private var healthStoreMock: HealthStoreMock!
     private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
@@ -23,7 +23,7 @@ class HealthRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
-        self.objectBuilder = HealthObjectConstructor()
+        self.healthSample = HealthSampleConstructor()
         self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
@@ -33,12 +33,12 @@ class HealthRepositoryTests: XCTestCase {
     }
 
     //MARK: - Functions
-    func test_requestAuthorization_canReturnTrue() {
+    func test_requestAuthorization_canAuthorizeAccess() {
         let allTypes: Set<HKSampleType> = Set([
             HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
             HKSampleType.quantityType(forIdentifier: .heartRate)!,
         ])
-        let expectation = expectation(description: "\'requestAuthorization\' can successfully return true.")
+        let expectation = expectation(description: "\'requestAuthorization\' can successfully authorize access.")
         sut.requestAuthorization(types: allTypes)
             .sink { completion in
                 print("COMPLETION: \(completion)")
@@ -50,10 +50,10 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeHealthRecord_canReturnTrue() {
-        let expectation = expectation(description: "\'writeHealthRecord\' can successfully return true.")
+    func test_writeHealthRecord_objectAvailable() {
+        let expectation = expectation(description: "\'writeHealthRecord\' can successfully save in health store when object is available.")
         let record = 188.00
-        let object = self.objectBuilder.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
+        let object = self.healthSample.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
@@ -65,8 +65,21 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
+    func test_writeHealthRecord_objectNil() {
+        let expectation = expectation(description: "\'writeHealthRecord\' cannot successfully save object in health store.")
+        self.sut.writeHealthRecord(object: nil)
+            .sink { completion in
+                print("COMPLETION: \(completion)")
+            } receiveValue: { result in
+                expectation.fulfill()
+                XCTAssertFalse(result)
+            }
+            .store(in: &cancellables)
+        wait(for: [expectation], timeout: 2)
+    }
+    
     func test_readHealthRecord_canReturnObjects() {
-        let expectation = expectation(description: "\'readHealthRecord\' can successfully return true.")
+        let expectation = expectation(description: "\'readHealthRecord\' can successfully return objects.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
         sut.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)

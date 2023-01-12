@@ -8,28 +8,29 @@
 import HealthKit
 
 
-protocol HealthRecordVMProtocol {
+protocol HealthViewModelProtocol {
     //MARK: - Properties
-    var manager: HealthManager { get }
+    var useCase: HealthUseCase { get }
     
     //MARK: - Lifecycles
-    init(manager: HealthManager)
+    init(useCase: HealthUseCase)
     
     //MARK: - Functions
     func authorize()
 }
 
-class HealthRecordViewModel: ObservableObject, HealthRecordVMProtocol {
+class HealthViewModel: ObservableObject, HealthViewModelProtocol {
     //MARK: - Properties
-    var manager: HealthManager
+    var useCase: HealthUseCase
     
     //MARK: - Lifecycles
-    required init(manager: HealthManager) {
-        self.manager = manager
+    required init(useCase: HealthUseCase) {
+        self.useCase = useCase
     }
     
     //MARK: - Functions
     func authorize() {
-        manager.authorizeAccess()
+        useCase.authorizeAccess()
     }
+    
 }

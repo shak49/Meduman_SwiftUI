@@ -10,15 +10,15 @@ import HealthKit
 
 struct HealthRecordView: View {
     //MARK: - Properties
-    @ObservedObject private var model: HealthRecordViewModel
+    @ObservedObject private var model: HealthViewModel
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    var manager = HealthManager(repo: repo)
+    var useCase = HealthUseCase(repo: repo)
     
     //MARK: - Lifecycles
     init() {
-        self.model = HealthRecordViewModel(manager: manager)
+        self.model = HealthViewModel(useCase: useCase)
     }
     
     //MARK: - Body
