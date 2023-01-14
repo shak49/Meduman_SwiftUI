@@ -16,11 +16,11 @@ protocol AuthViewModelProtocol {
 
 class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     //MARK: - Properties
-    var manager: UserManager
+    var manager: UserUseCase
     @Published var isAuthenticated: Bool = false
     
     //MARK: - Lifecycles
-    init(manager: UserManager) {
+    init(manager: UserUseCase) {
         self.manager = manager
     }
     

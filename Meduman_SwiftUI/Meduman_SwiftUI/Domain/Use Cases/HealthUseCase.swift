@@ -9,7 +9,7 @@ import HealthKit
 import Combine
 
 
-protocol HealthManagerProtocol {
+protocol HealthUseCaseProtocol {
     //MARK: - Properties
     var repo: HealthRepository? { get }
     
@@ -22,7 +22,7 @@ protocol HealthManagerProtocol {
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
 }
 
-class HealthManager: HealthManagerProtocol {
+class HealthUseCase: HealthUseCaseProtocol {
     //MARK: - Properties
     var repo: HealthRepository?
     private var cancellables = Set<AnyCancellable>()
@@ -64,12 +64,8 @@ class HealthManager: HealthManagerProtocol {
         if let type = type {
             self.repo?.readHealthRecord(type: type)
                 .sink(receiveCompletion: { error in
-                    if error != nil {
-                        print(error)
-                        subject.send(completion: error)
-                    }
+                    subject.send(completion: error)
                 }, receiveValue: { samples in
-                    guard let samples = samples else { return }
                     subject.send(samples)
                 })
         }
