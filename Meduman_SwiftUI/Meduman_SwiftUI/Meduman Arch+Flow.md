@@ -4,7 +4,7 @@
 - Structure
         
     - Data
-        - Firebase
+        - User
             - AuthRepo
             - FirestoreRepo
             
@@ -26,11 +26,6 @@
             - RealmRepo
         
     - Domain
-        - Utility
-            - Extensions
-            - Helpers
-                - Constant
-                
         - Entity
             - User
             - Record

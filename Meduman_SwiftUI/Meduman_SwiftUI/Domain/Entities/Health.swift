@@ -11,9 +11,9 @@ import HealthKit
 struct Health {
     //let id: String?
     //let date: Date?
-    let bloodType: HKCharacteristicType?
-    let bloodGlucose: HKQuantity?
-    let bloodPressure: HKQuantity?
-    let heartRate: HKQuantity?
-    let sleepStatus: HKCategoryType?
+    //let bloodType: HKCharacteristicType?
+    let bloodGlucose: Double?
+    //let bloodPressure: HKQuantity?
+    //let heartRate: HKQuantity?
+    //let sleepStatus: HKCategoryType?
 }
