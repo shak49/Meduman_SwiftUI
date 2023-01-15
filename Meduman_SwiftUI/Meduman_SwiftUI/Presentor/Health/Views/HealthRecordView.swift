@@ -8,9 +8,10 @@
 import SwiftUI
 import HealthKit
 
+
 struct HealthRecordView: View {
     //MARK: - Properties
-    @ObservedObject private var model: HealthViewModel
+    @ObservedObject private var model: HealthRecordViewModel
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
@@ -18,7 +19,7 @@ struct HealthRecordView: View {
     
     //MARK: - Lifecycles
     init() {
-        self.model = HealthViewModel(useCase: useCase)
+        self.model = HealthRecordViewModel(useCase: useCase)
     }
     
     //MARK: - Body

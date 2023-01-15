@@ -12,7 +12,7 @@ struct Health {
     //let id: String?
     //let date: Date?
     //let bloodType: HKCharacteristicType?
-    let bloodGlucose: Double?
+    let bloodGlucose: HKSample
     //let bloodPressure: HKQuantity?
     //let heartRate: HKQuantity?
     //let sleepStatus: HKCategoryType?
