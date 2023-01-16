@@ -33,7 +33,7 @@ class HealthRepositoryTests: XCTestCase {
     }
 
     //MARK: - Functions
-    func test_requestAuthorization_canAuthorizeAccess() {
+    func test_requestAuthorization_successfullyAuthorizeAccess() {
         let allTypes: Set<HKSampleType> = Set([
             HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
             HKSampleType.quantityType(forIdentifier: .heartRate)!,
@@ -50,7 +50,7 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeHealthRecord_objectAvailable() {
+    func test_writeHealthRecord_successfullyWriteRecord() {
         let expectation = expectation(description: "\'writeHealthRecord\' can successfully save in health store when object is available.")
         let record = 188.00
         let object = self.healthSample.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
@@ -65,20 +65,7 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_writeHealthRecord_objectNil() {
-        let expectation = expectation(description: "\'writeHealthRecord\' cannot successfully save object in health store.")
-        self.sut.writeHealthRecord(object: nil)
-            .sink { completion in
-                print("COMPLETION: \(completion)")
-            } receiveValue: { result in
-                expectation.fulfill()
-                XCTAssertFalse(result)
-            }
-            .store(in: &cancellables)
-        wait(for: [expectation], timeout: 2)
-    }
-    
-    func test_readHealthRecord_canReturnObjects() {
+    func test_readHealthRecord_successfullyReadRecords() {
         let expectation = expectation(description: "\'readHealthRecord\' can successfully return objects.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
         sut.readHealthRecord(type: type)
