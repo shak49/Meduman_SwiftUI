@@ -12,8 +12,8 @@ class HealthSampleConstructor {
     //MARK: - Properties
     
     //MARK: - Functions
-    func quantitySample(record: Double? = 0.0, typeId: HKQuantityTypeIdentifier, unit: String) -> HKQuantitySample? {
-        guard let record = record else { return nil }
+    func quantitySample(record: Double? = 0.0, typeId: HKQuantityTypeIdentifier?, unit: String) -> HKQuantitySample? {
+        guard let record = record, let typeId = typeId else { return nil }
         guard let type = HKQuantityType.quantityType(forIdentifier: typeId) else {
             fatalError("This quantity type is no longer available.")
         }

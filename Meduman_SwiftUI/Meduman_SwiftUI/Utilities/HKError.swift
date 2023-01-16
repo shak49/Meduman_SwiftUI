@@ -9,6 +9,7 @@ import Foundation
 
 
 enum HKError: LocalizedError {
+    case typeNotAvailable
     case unableToAccessRecordsForThisDevice
     case unableToAuthorizeAccess
     case unableToWriteHealthRecord
@@ -17,6 +18,8 @@ enum HKError: LocalizedError {
     
     var errorDescription: String {
         switch self {
+        case .typeNotAvailable:
+            return "Type is not available."
         case .unableToAccessRecordsForThisDevice:
             return "Unable to access health records for this device."
         case .unableToAuthorizeAccess:

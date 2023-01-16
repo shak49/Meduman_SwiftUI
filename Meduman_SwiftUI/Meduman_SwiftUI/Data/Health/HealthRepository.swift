@@ -52,7 +52,7 @@ class HealthRepository: HealthRepoProtocol {
     
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError> {
         Future { promise in
-            guard let object = object else { return promise(.success(false)) }
+            guard let object = object else { return }
             self.healthStore?.save(object) { success, error in
                 if let error = error {
                     print("ERROR: \(error.localizedDescription)")
