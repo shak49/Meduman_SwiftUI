@@ -11,11 +11,13 @@ import HealthKit
 
 struct HealthRecordView: View {
     //MARK: - Properties
-    @ObservedObject private var model: HealthRecordViewModel
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var useCase = HealthUseCase(repo: repo)
+    @ObservedObject private var model: HealthRecordViewModel
+    @State private var isPresented = false
+    @State private var bloodGlucoseRecord = ""
     
     //MARK: - Lifecycles
     init() {
@@ -25,10 +27,22 @@ struct HealthRecordView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
+            
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                .navigationTitle(Text("Health Records"))
+                .toolbar(content: {
+                    Button {
+                        self.isPresented = true
+                    } label: {
+                        Text("add")
+                    }
+                    .accessibilityIdentifier("addButton")
+                })
+                .sheet(isPresented: self.$isPresented, content: {
+                    RecordCreationPopupView()
+                })
                 .onAppear(perform: model.authorize)
         }
-        .navigationTitle(Text("Health Records"))
     }
 }
 

@@ -31,9 +31,10 @@
 		6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
-		6DC23644296D271B00E10311 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 6DC23643296D271B00E10311 /* Cuckoo */; };
-		6DC23650296F926200E10311 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6DC2364F296F926200E10311 /* Alamofire */; };
 		6DC23657297365B400E10311 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23656297365B400E10311 /* Units.swift */; };
+		6DC2367B29778F8200E10311 /* HealthRecordViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC2367A29778F8200E10311 /* HealthRecordViewUITests.swift */; };
+		6DC2367E2978D91200E10311 /* RecordCreationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC2367D2978D91100E10311 /* RecordCreationPopupView.swift */; };
+		6DC236822978DC0D00E10311 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 		6DD5CAAC294BF92E00CB66CC /* HealthSampleConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* HealthSampleConstructor.swift */; };
@@ -42,6 +43,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		6D96C702294165FA00A9AA4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D82EF55277266AA0010E25B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D82EF5C277266AA0010E25B;
+			remoteInfo = Meduman_SwiftUI;
+		};
+		6DC2367429778F2100E10311 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6D82EF55277266AA0010E25B /* Project object */;
 			proxyType = 1;
@@ -77,6 +85,9 @@
 		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreMock.swift; sourceTree = "<group>"; };
 		6DC23656297365B400E10311 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		6DC2366E29778F2100E10311 /* Meduman_SwiftUI_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUI_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DC2367A29778F8200E10311 /* HealthRecordViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewUITests.swift; sourceTree = "<group>"; };
+		6DC2367D2978D91100E10311 /* RecordCreationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreationPopupView.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DD5CAAB294BF92D00CB66CC /* HealthSampleConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSampleConstructor.swift; sourceTree = "<group>"; };
@@ -89,9 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
-				6DC23650296F926200E10311 /* Alamofire in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
-				6DC23644296D271B00E10311 /* Cuckoo in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
 				6D63A3A328D2D1560076BB1E /* FirebaseFirestoreSwift in Frameworks */,
 				6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */,
@@ -103,6 +112,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DC2366B29778F2100E10311 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC236822978DC0D00E10311 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */,
+				6DC2367D2978D91100E10311 /* RecordCreationPopupView.swift */,
 				6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */,
 			);
 			path = Views;
@@ -231,6 +249,7 @@
 				6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */,
+				6DC2366F29778F2100E10311 /* Meduman_SwiftUI_UITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
 				6D2CB5B5293E8D10002BF0A4 /* Frameworks */,
 			);
@@ -242,6 +261,7 @@
 			children = (
 				6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */,
 				6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */,
+				6DC2366E29778F2100E10311 /* Meduman_SwiftUI_UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -306,6 +326,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		6DC2366F29778F2100E10311 /* Meduman_SwiftUI_UITests */ = {
+			isa = PBXGroup;
+			children = (
+				6DC2367929778F4100E10311 /* Health */,
+			);
+			path = Meduman_SwiftUI_UITests;
+			sourceTree = "<group>";
+		};
+		6DC2367929778F4100E10311 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				6DC2367A29778F8200E10311 /* HealthRecordViewUITests.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,8 +363,6 @@
 				6D63A39E28D2D1560076BB1E /* FirebaseAuth */,
 				6D63A3A028D2D1560076BB1E /* FirebaseFirestore */,
 				6D63A3A228D2D1560076BB1E /* FirebaseFirestoreSwift */,
-				6DC23643296D271B00E10311 /* Cuckoo */,
-				6DC2364F296F926200E10311 /* Alamofire */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -352,6 +386,26 @@
 			productReference = 6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		6DC2366D29778F2100E10311 /* Meduman_SwiftUI_UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DC2367629778F2100E10311 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUI_UITests" */;
+			buildPhases = (
+				6DC2366A29778F2100E10311 /* Sources */,
+				6DC2366B29778F2100E10311 /* Frameworks */,
+				6DC2366C29778F2100E10311 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DC2367529778F2100E10311 /* PBXTargetDependency */,
+			);
+			name = Meduman_SwiftUI_UITests;
+			packageProductDependencies = (
+			);
+			productName = Meduman_SwiftUI_UITests;
+			productReference = 6DC2366E29778F2100E10311 /* Meduman_SwiftUI_UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -369,6 +423,11 @@
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 6D82EF5C277266AA0010E25B;
 					};
+					6DC2366D29778F2100E10311 = {
+						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
+						TestTargetID = 6D82EF5C277266AA0010E25B;
+					};
 				};
 			};
 			buildConfigurationList = 6D82EF58277266AA0010E25B /* Build configuration list for PBXProject "Meduman_SwiftUI" */;
@@ -382,8 +441,6 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */,
-				6DC2364E296F926200E10311 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -391,6 +448,7 @@
 			targets = (
 				6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */,
 				6D96C6FD294165FA00A9AA4C /* Meduman_SwiftUITests */,
+				6DC2366D29778F2100E10311 /* Meduman_SwiftUI_UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -413,6 +471,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DC2366C29778F2100E10311 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -421,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */,
+				6DC2367E2978D91200E10311 /* RecordCreationPopupView.swift in Sources */,
 				6D63A3B428E694AF0076BB1E /* Health.swift in Sources */,
 				6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */,
 				6D63A3B228E4BBE90076BB1E /* HealthRepository.swift in Sources */,
@@ -450,6 +516,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DC2366A29778F2100E10311 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC2367B29778F8200E10311 /* HealthRecordViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -457,6 +531,11 @@
 			isa = PBXTargetDependency;
 			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
 			targetProxy = 6D96C702294165FA00A9AA4C /* PBXContainerItemProxy */;
+		};
+		6DC2367529778F2100E10311 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D82EF5C277266AA0010E25B /* Meduman_SwiftUI */;
+			targetProxy = 6DC2367429778F2100E10311 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -696,6 +775,53 @@
 			};
 			name = Release;
 		};
+		6DC2367729778F2100E10311 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6T94248RU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shakfeizi.Meduman-SwiftUI-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Meduman_SwiftUI;
+			};
+			name = Debug;
+		};
+		6DC2367829778F2100E10311 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6T94248RU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shakfeizi.Meduman-SwiftUI-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Meduman_SwiftUI;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -726,6 +852,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6DC2367629778F2100E10311 /* Build configuration list for PBXNativeTarget "Meduman_SwiftUI_UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DC2367729778F2100E10311 /* Debug */,
+				6DC2367829778F2100E10311 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -735,22 +870,6 @@
 			requirement = {
 				branch = master;
 				kind = branch;
-			};
-		};
-		6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.1;
-			};
-		};
-		6DC2364E296F926200E10311 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.6.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -775,16 +894,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
-		};
-		6DC23643296D271B00E10311 /* Cuckoo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DC23642296D271B00E10311 /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = Cuckoo;
-		};
-		6DC2364F296F926200E10311 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DC2364E296F926200E10311 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

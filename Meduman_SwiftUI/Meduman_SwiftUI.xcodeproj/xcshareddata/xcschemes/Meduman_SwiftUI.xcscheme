@@ -46,6 +46,16 @@
                ReferencedContainer = "container:Meduman_SwiftUI.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6DC2365B297785E500E10311"
+               BuildableName = "Meduman_SwiftUI_UITests.xctest"
+               BlueprintName = "Meduman_SwiftUI_UITests"
+               ReferencedContainer = "container:Meduman_SwiftUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
