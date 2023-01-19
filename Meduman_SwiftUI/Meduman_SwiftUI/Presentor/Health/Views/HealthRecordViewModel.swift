@@ -36,6 +36,10 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         self.useCase.authorizeAccess()
     }
     
+    func createRecord() {
+        
+    }
+    
     func saveRecord(record: Double?, type: HKQuantityTypeIdentifier, unit: HealthUnit) {
         let object = self.sampleConstructor.quantitySample(record: record, typeId: type, unit: unit.rawValue)
         self.useCase.createHealthRecord(record: object)
