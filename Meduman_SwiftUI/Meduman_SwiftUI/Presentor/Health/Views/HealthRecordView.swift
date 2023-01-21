@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import XCTest
 
 
 struct HealthRecordView: View {
@@ -17,7 +18,6 @@ struct HealthRecordView: View {
     var useCase = HealthUseCase(repo: repo)
     @ObservedObject private var model: HealthRecordViewModel
     @State private var isPresented = false
-    @State private var bloodGlucoseRecord = ""
     
     //MARK: - Lifecycles
     init() {
@@ -27,8 +27,7 @@ struct HealthRecordView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
-            
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("HEALTH RECORD VIEW")
                 .navigationTitle(Text("Health Records"))
                 .toolbar(content: {
                     Button {
@@ -39,7 +38,7 @@ struct HealthRecordView: View {
                     .accessibilityIdentifier("addButton")
                 })
                 .sheet(isPresented: self.$isPresented, content: {
-                    RecordCreationPopupView()
+                    CreateRecordView(isPresented: self.$isPresented)
                 })
                 .onAppear(perform: model.authorize)
         }
