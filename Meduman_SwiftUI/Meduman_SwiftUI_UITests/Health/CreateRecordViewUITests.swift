@@ -7,6 +7,7 @@
 
 import XCTest
 
+
 class CreateRecordViewUITests: XCTestCase {
     //MARK: - Properties
     var app: XCUIApplication!
@@ -16,16 +17,17 @@ class CreateRecordViewUITests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         self.app = XCUIApplication()
+        self.app.launch()
 
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-        //self.app = nil
+        self.app = nil
     }
 
     //MARK: - Functions
-    func test_createHealthRecord_successfullyCreateRecord() {
-        
+    func test_addingHealthRecordEntry() {
+
     }
 }
