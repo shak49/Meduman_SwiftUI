@@ -26,7 +26,7 @@ struct Meduman_SwiftUIApp: App {
         WindowGroup {
             //SignInView()
             //SignUpView()
-            HealthRecordView()
+            HealthRecordsView()
         }
     }
 }

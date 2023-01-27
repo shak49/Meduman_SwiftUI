@@ -11,7 +11,7 @@
 		6D2CB4D5292DCF00002BF0A4 /* HealthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D4292DCF00002BF0A4 /* HealthUseCase.swift */; };
 		6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */; };
 		6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */; };
-		6D63A36328C52D0E0076BB1E /* HealthRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */; };
+		6D63A36328C52D0E0076BB1E /* HealthRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */; };
 		6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */; };
 		6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */; };
 		6D63A37328CC03050076BB1E /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A37228CC03050076BB1E /* UserUseCase.swift */; };
@@ -65,7 +65,7 @@
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
 		6D2CB5AD293E8978002BF0A4 /* Meduman-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Meduman-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordView.swift; sourceTree = "<group>"; };
+		6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordsView.swift; sourceTree = "<group>"; };
 		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 		6D63A39A28CEC7840076BB1E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A36228C52D0E0076BB1E /* HealthRecordView.swift */,
+				6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */,
 				6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */,
 				6DC23686297A389B00E10311 /* CreateRecordView.swift */,
 			);
@@ -496,7 +496,7 @@
 				6D63A3B928E9287E0076BB1E /* HKError.swift in Sources */,
 				6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */,
 				6DC23657297365B400E10311 /* Units.swift in Sources */,
-				6D63A36328C52D0E0076BB1E /* HealthRecordView.swift in Sources */,
+				6D63A36328C52D0E0076BB1E /* HealthRecordsView.swift in Sources */,
 				6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */,
 				6D2CB4D5292DCF00002BF0A4 /* HealthUseCase.swift in Sources */,
 				6D82EF91277271270010E25B /* User.swift in Sources */,

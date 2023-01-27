@@ -27,7 +27,8 @@ class CreateRecordViewUITests: XCTestCase {
     }
 
     //MARK: - Functions
-    func test_addingHealthRecordEntry() {
-
+    func test_addHealthRecord() {
+        
     }
+
 }
