@@ -9,6 +9,6 @@ import HealthKit
 
 
 enum HealthUnit: String {
-    case glucoseUnit = "mg/dL"
-    case heartRateUnit
+    case glucose = "mg/dL"
+    case heartRate
 }

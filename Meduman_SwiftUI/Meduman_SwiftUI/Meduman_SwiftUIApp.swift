@@ -7,9 +7,18 @@
 
 import SwiftUI
 import Firebase
+import HealthKit
 
 @main
 struct Meduman_SwiftUIApp: App {
+    //MARK: - Properties
+    static var healthStore = HKHealthStore()
+    static var healthQuery: HKSampleQuery?
+    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
+    static var useCase = HealthUseCase(repo: repo)
+    @StateObject private var healthModel = HealthRecordViewModel(useCase: useCase)
+    
+    //MARK: - Lifecycles
     init() {
         FirebaseApp.configure()
         if ProcessInfo.processInfo.environment["unit_tests"] == "true" {
@@ -26,7 +35,8 @@ struct Meduman_SwiftUIApp: App {
         WindowGroup {
             //SignInView()
             //SignUpView()
-            HealthRecordView()
+            HealthRecordsView()
+                .environmentObject(healthModel)
         }
     }
 }

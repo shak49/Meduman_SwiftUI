@@ -36,8 +36,9 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         self.useCase.authorizeAccess()
     }
     
-    func createRecord() {
-        
+    func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String) {
+        guard let record = record else { return }
+        saveRecord(record: record, type: .bloodGlucose, unit: .glucose)
     }
     
     func saveRecord(record: Double?, type: HKQuantityTypeIdentifier, unit: HealthUnit) {

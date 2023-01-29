@@ -72,7 +72,7 @@ struct SignInView: View {
                     .background(.black)
                     .cornerRadius(10)
                     .padding(.top, 50)
-                    .fullScreenCover(isPresented: $model.isAuthenticated, content: HealthRecordView.init)
+                    .fullScreenCover(isPresented: $model.isAuthenticated, content: HealthRecordsView.init)
 //                    ZStack {
 //                        Divider()
 //                        Text("or sign in with")

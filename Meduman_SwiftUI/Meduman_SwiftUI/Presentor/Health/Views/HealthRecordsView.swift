@@ -10,7 +10,7 @@ import HealthKit
 import XCTest
 
 
-struct HealthRecordView: View {
+struct HealthRecordsView: View {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
@@ -27,7 +27,7 @@ struct HealthRecordView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
-            Text("HEALTH RECORD VIEW")
+            Text("HEALTH RECORDS VIEW")
                 .navigationTitle(Text("Health Records"))
                 .toolbar(content: {
                     Button {
@@ -41,12 +41,13 @@ struct HealthRecordView: View {
                     CreateRecordView(isPresented: self.$isPresented)
                 })
                 .onAppear(perform: model.authorize)
+                .accessibilityIdentifier("createRecordSheet")
         }
     }
 }
 
-struct HealthRecordView_Previews: PreviewProvider {
+struct HealthRecordsView_Previews: PreviewProvider {
     static var previews: some View {
-        HealthRecordView()
+        HealthRecordsView()
     }
 }
