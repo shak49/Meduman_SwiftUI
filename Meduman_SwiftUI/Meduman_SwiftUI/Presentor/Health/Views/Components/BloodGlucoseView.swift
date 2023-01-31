@@ -10,7 +10,7 @@ import SwiftUI
 struct BloodGlucoseView: View {
     //MARK: - Properties
     var mealTime: Binding<MealTime>
-    var record: Binding<String>
+    var record: Binding<Double>
     var dateAndTime: Binding<Date>
     
     var body: some View {
@@ -26,7 +26,7 @@ struct BloodGlucoseView: View {
             .padding(.horizontal, 32)
             .padding(.vertical, 4)
             .accessibilityIdentifier("recordSegment")
-            TextField("Enter a new record...", text: self.record)
+            TextField("Enter a new record...", value: self.record, format: .number)
                 .frame(height: 35)
                 .background(Color(.systemGray6))
                 .cornerRadius(7)
@@ -47,6 +47,6 @@ struct BloodGlucoseView: View {
 
 struct BloodGlucoseView_Previews: PreviewProvider {
     static var previews: some View {
-        BloodGlucoseView(mealTime: .constant(.beforeMeal), record: .constant(""), dateAndTime: .constant(Date.now))
+        BloodGlucoseView(mealTime: .constant(.beforeMeal), record: .constant(0.0), dateAndTime: .constant(Date.now))
     }
 }

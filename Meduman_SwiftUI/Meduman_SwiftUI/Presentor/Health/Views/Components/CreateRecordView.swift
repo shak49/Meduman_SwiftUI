@@ -24,7 +24,7 @@ struct CreateRecordView: View {
     @EnvironmentObject private var model: HealthRecordViewModel
     @Binding var isPresented: Bool
     @State private var recordView = RecordView.bloodGlucose
-    @State private var record = ""
+    @State private var record = 0.0
     @State private var dateAndTime = Date()
     @State private var mealTime = MealTime.beforeMeal
     
@@ -63,7 +63,10 @@ struct CreateRecordView: View {
                             self.isPresented = false
                         }
                         Button("Create") {
-                            
+                            if recordView == .bloodGlucose {
+                                self.model.createBloodGlucose(record: self.record, dateAndTime: self.dateAndTime, mealTime: self.mealTime.rawValue)
+                                self.isPresented = false
+                            }
                         }
                         .accessibilityIdentifier("createButton")
                     }
