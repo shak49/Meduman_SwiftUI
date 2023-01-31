@@ -17,14 +17,13 @@ protocol HealthRecordViewModelProtocol {
     
     //MARK: - Functions
     func authorize()
-    func saveRecord(record: Double?, type: HKQuantityTypeIdentifier, unit: HealthUnit)
+    func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String)
     func readRecord(type: HKSampleType?)
 }
 
 class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase
-    var sampleConstructor = HealthSampleConstructor()
     
     //MARK: - Lifecycles
     required init(useCase: HealthUseCase) {
@@ -38,11 +37,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     
     func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String) {
         guard let record = record else { return }
-        saveRecord(record: record, type: .bloodGlucose, unit: .glucose)
-    }
-    
-    func saveRecord(record: Double?, type: HKQuantityTypeIdentifier, unit: HealthUnit) {
-        let object = self.sampleConstructor.quantitySample(record: record, typeId: type, unit: unit.rawValue)
+        let object = Constructor.shared.quantitySample(record: record, typeId: .bloodGlucose, unit: HealthUnit.glucose.rawValue, date: dateAndTime)
         self.useCase.createHealthRecord(record: object)
     }
     

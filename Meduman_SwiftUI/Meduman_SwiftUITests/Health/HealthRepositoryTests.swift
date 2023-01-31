@@ -14,7 +14,6 @@ import HealthKit
 class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
     private var sut: HealthRepository!
-    private var healthSample: HealthSampleConstructor!
     private var healthStoreMock: HealthStoreMock!
     private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
@@ -23,7 +22,6 @@ class HealthRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
-        self.healthSample = HealthSampleConstructor()
         self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
@@ -53,7 +51,7 @@ class HealthRepositoryTests: XCTestCase {
     func test_writeHealthRecord_successfullyWriteRecord() {
         let expectation = expectation(description: "\'writeHealthRecord\' can successfully save in health store when object is available.")
         let record = 188.00
-        let object = self.healthSample.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL")
+        let object = Constructor.shared.quantitySample(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
