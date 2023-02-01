@@ -19,7 +19,7 @@ protocol HealthUseCaseProtocol {
     //MARK: - Functions
     func authorizeAccess()
     func createHealthRecord(record: HKObject?)
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[Health]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError>
 }
 
 class HealthUseCase: HealthUseCaseProtocol {
@@ -51,19 +51,19 @@ class HealthUseCase: HealthUseCaseProtocol {
         if let record = record {
             self.repo?.writeHealthRecord(object: record)
                 .sink(receiveCompletion: { completion in
-                    print(completion)
+                    print("COMPLETION:", completion)
                 }, receiveValue: { result in
-                    print(result)
+                    print("SAVED:", result)
                 })
                 .store(in: &cancellables)
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[Health]?, HKError> {
-        let subject = PassthroughSubject<[Health]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError> {
+        let subject = PassthroughSubject<[HKObject]?, HKError>()
         if let type = type {
             self.repo?.readHealthRecord(type: type)
-                .compactMap { subject.send($0?.compactMap(Health.init)) }
+                .compactMap { subject.send($0) }
                 .eraseToAnyPublisher()
         }
         return subject.eraseToAnyPublisher()

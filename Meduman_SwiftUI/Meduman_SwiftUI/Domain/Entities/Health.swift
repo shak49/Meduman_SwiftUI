@@ -8,12 +8,10 @@
 import HealthKit
 
 
-struct Health {
-    //let id: String?
-    //let date: Date?
-    //let bloodType: HKCharacteristicType?
-    let bloodGlucose: HKSample
-    //let bloodPressure: HKQuantity?
-    //let heartRate: HKQuantity?
-    //let sleepStatus: HKCategoryType?
+struct Health: Identifiable {
+    let id: String = UUID().uuidString
+    let record: Double?
+    let typeId: HKQuantityTypeIdentifier
+    let unit: String
+    let date: Date
 }
