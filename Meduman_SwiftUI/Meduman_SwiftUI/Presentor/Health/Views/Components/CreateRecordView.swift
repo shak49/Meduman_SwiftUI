@@ -66,6 +66,10 @@ struct CreateRecordView: View {
                             if recordView == .bloodGlucose {
                                 self.model.createBloodGlucose(record: self.record, dateAndTime: self.dateAndTime, mealTime: self.mealTime.rawValue)
                                 self.isPresented = false
+                            } else if recordView == .heartRate {
+                                
+                            } else {
+                                
                             }
                         }
                         .accessibilityIdentifier("createButton")

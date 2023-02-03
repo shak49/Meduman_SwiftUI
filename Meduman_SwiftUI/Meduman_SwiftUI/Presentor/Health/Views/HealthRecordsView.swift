@@ -10,6 +10,12 @@ import HealthKit
 import XCTest
 
 
+enum RecordsView: String {
+    case bloodGlucose = "Blood Glucose"
+    case heartRate = "Heart Rate"
+    case bloodPressure = "Blood Pressure"
+}
+
 struct HealthRecordsView: View {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
@@ -17,6 +23,7 @@ struct HealthRecordsView: View {
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var useCase = HealthUseCase(repo: repo)
     @ObservedObject private var model: HealthRecordViewModel
+    @State private var recordsView = RecordsView.bloodGlucose
     @State private var isPresented = false
     
     //MARK: - Lifecycles
@@ -27,7 +34,31 @@ struct HealthRecordsView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
-            Text("HEALTH RECORDS VIEW")
+            VStack {
+                Picker("Records Lists", selection: self.$recordsView) {
+                    Text(RecordsView.bloodGlucose.rawValue)
+                        .tag(RecordView.bloodGlucose)
+                    Text(RecordsView.heartRate.rawValue)
+                        .tag(RecordView.heartRate)
+                    Text(RecordsView.bloodPressure.rawValue)
+                        .tag(RecordView.bloodPressure)
+                }
+                .pickerStyle(.segmented)
+                .foregroundColor(.white)
+                .cornerRadius(7)
+                .padding(.horizontal, 32)
+                .padding(.top, 32)
+                ForEach(self.model.records, id: \.id) { record in
+                    if recordsView == .bloodGlucose {
+                        Text("Hello, World!")
+                    } else if recordsView == .heartRate {
+                        
+                    } else {
+                        
+                    }
+                }
+                Spacer()
+            }
                 .navigationTitle(Text("Health Records"))
                 .toolbar(content: {
                     Button {
