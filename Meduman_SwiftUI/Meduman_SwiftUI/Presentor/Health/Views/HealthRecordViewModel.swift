@@ -6,12 +6,13 @@
 //
 
 import HealthKit
+import Combine
 
 
 protocol HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase { get }
-    var records: [HealthViewModel] { get }
+    var records: [HKSample] { get }
     
     //MARK: - Lifecycles
     init(useCase: HealthUseCase)
@@ -19,7 +20,7 @@ protocol HealthRecordViewModelProtocol {
     //MARK: - Functions
     func authorize()
     func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String)
-    //func readRecord(type: HKSampleType?)
+    func readRecord(type: HKSampleType?)
 }
 
 struct HealthViewModel: Identifiable {
@@ -45,13 +46,12 @@ struct HealthViewModel: Identifiable {
 class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase
-    @Published var records: [HealthViewModel] = []
-    let bloodGlucoseSample = HKSampleType.quantityType(forIdentifier: .bloodGlucose)
+    private var cancellables = Set<AnyCancellable>()
+    @Published var records: [HKSample] = []
     
     //MARK: - Lifecycles
     required init(useCase: HealthUseCase) {
         self.useCase = useCase
-        //self.readRecord(type: bloodGlucoseSample)
     }
     
     //MARK: - Functions
@@ -66,9 +66,15 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         self.useCase.createHealthRecord(record: object)
     }
     
-//    func readRecord(type: HKSampleType?) {
-//        self.useCase.readHealthRecord(type: type)
-//            .compactMap { self.records = $0?.compactMap(HealthViewModel.init)}
-//            .eraseToAnyPublisher()
-//    }
+    func readRecord(type: HKSampleType?) {
+        self.useCase.readHealthRecord(type: type)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { records in
+                guard let records = records else { return }
+                self.records = records
+            })
+            .store(in: &cancellables)
+    }
 }

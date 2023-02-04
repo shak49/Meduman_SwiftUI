@@ -20,7 +20,7 @@ protocol HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization(types: Set<HKSampleType>?) -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
 }
 
 
@@ -40,11 +40,9 @@ class HealthRepository: HealthRepoProtocol {
         Future { [weak self] promise in
             self?.healthStore?.requestAuthorization(toShare: types, read: types, completion: { success, error in
                 guard error == nil else {
-                    print("Request Auth Error: \(error)")
                     promise(.failure(.unableToAuthorizeAccess))
                     return
                 }
-                print("SUCCESS: \(success)")
                 promise(.success(success))
             })
         }
@@ -54,8 +52,7 @@ class HealthRepository: HealthRepoProtocol {
         Future { promise in
             guard let object = object else { return }
             self.healthStore?.save(object) { success, error in
-                if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+                if error != nil {
                     promise(.failure(.unableToWriteHealthRecord))
                     return
                 }
@@ -64,8 +61,8 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError> {
-        let subject = PassthroughSubject<[HKObject]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError> {
+        let subject = PassthroughSubject<[HKSample]?, HKError>()
         if let type = type {
             self.healthQuery = HKSampleQuery(sampleType: type, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { query, samples, error in
                 if let error = error {
@@ -73,7 +70,6 @@ class HealthRepository: HealthRepoProtocol {
                     subject.send(completion: .failure(.unableToReadHealthRecord))
                 }
                 guard let samples = samples else { return }
-                print("SAMPLES:", samples)
                 subject.send(samples)
                 subject.send(completion: .finished)
             })

@@ -43,19 +43,17 @@ struct HealthRecordsView: View {
                     Text(RecordsView.bloodPressure.rawValue)
                         .tag(RecordView.bloodPressure)
                 }
-                .pickerStyle(.segmented)
-                .foregroundColor(.white)
-                .cornerRadius(7)
-                .padding(.horizontal, 32)
-                .padding(.top, 32)
-                ForEach(self.model.records, id: \.id) { record in
-                    if recordsView == .bloodGlucose {
-                        Text("Hello, World!")
-                    } else if recordsView == .heartRate {
-                        
-                    } else {
-                        
-                    }
+                    .pickerStyle(.segmented)
+                    .foregroundColor(.white)
+                    .cornerRadius(7)
+                    .padding(.horizontal, 32)
+                    .padding(.top, 32)
+                if recordsView == .bloodGlucose {
+                    BloodGlucoseListView()
+                } else if recordsView == .heartRate {
+                    
+                } else {
+                    
                 }
                 Spacer()
             }
