@@ -19,7 +19,7 @@ protocol HealthUseCaseProtocol {
     //MARK: - Functions
     func authorizeAccess()
     func createHealthRecord(record: HKObject?)
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
 }
 
 class HealthUseCase: HealthUseCaseProtocol {
@@ -40,9 +40,14 @@ class HealthUseCase: HealthUseCaseProtocol {
     func authorizeAccess() {
         self.repo?.requestAuthorization(types: self.allTypes)
             .sink { completion in
-                print(completion)
-            } receiveValue: { result in
-                print("RESULT FOR REQ AUTH: \(result)")
+                switch  completion {
+                case .finished:
+                    print("AUTHORIZE COMPLETION:", completion)
+                case .failure(let error):
+                    print("ERROR:", error.localizedDescription)
+                }
+            } receiveValue: { success in
+                print("SUCCESS: \(success)")
             }
             .store(in: &cancellables)
     }
@@ -51,7 +56,12 @@ class HealthUseCase: HealthUseCaseProtocol {
         if let record = record {
             self.repo?.writeHealthRecord(object: record)
                 .sink(receiveCompletion: { completion in
-                    print("COMPLETION:", completion)
+                    switch  completion {
+                    case .finished:
+                        print("CREATE COMPLETION:", completion)
+                    case .failure(let error):
+                        print("ERROR:", error.localizedDescription)
+                    }
                 }, receiveValue: { result in
                     print("SAVED:", result)
                 })
@@ -59,12 +69,25 @@ class HealthUseCase: HealthUseCaseProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKObject]?, HKError> {
-        let subject = PassthroughSubject<[HKObject]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError> {
+        let subject = PassthroughSubject<[HKSample]?, HKError>()
         if let type = type {
             self.repo?.readHealthRecord(type: type)
-                .compactMap { subject.send($0) }
-                .eraseToAnyPublisher()
+                .sink(receiveCompletion: { completion in
+                    switch  completion {
+                    case .finished:
+                        print("READ COMPLETION:", completion)
+                    case .failure(let error):
+                        print("ERROR:", error.localizedDescription)
+                    }
+                }, receiveValue: { samples in
+                    if let samples = samples {
+                        print("SAMPLES:", samples)
+                        subject.send(samples)
+                    }
+                })
+                .store(in: &cancellables)
+                
         }
         return subject.eraseToAnyPublisher()
     }
