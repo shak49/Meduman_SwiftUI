@@ -20,7 +20,7 @@ protocol HealthRepoProtocol {
     //MARK: - Functions
     func requestAuthorization(types: Set<HKSampleType>?) -> Future<Bool, HKError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HKError>
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError>
 }
 
 
@@ -61,8 +61,8 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError> {
-        let subject = PassthroughSubject<[HKSample]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError> {
+        let subject = PassthroughSubject<[HKQuantitySample]?, HKError>()
         if let type = type {
             self.healthQuery = HKSampleQuery(sampleType: type, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { query, samples, error in
                 if let error = error {
@@ -70,7 +70,7 @@ class HealthRepository: HealthRepoProtocol {
                     subject.send(completion: .failure(.unableToReadHealthRecord))
                 }
                 guard let samples = samples else { return }
-                subject.send(samples)
+                subject.send(samples as? [HKQuantitySample])
                 subject.send(completion: .finished)
             })
         }

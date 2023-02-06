@@ -12,7 +12,7 @@ import Combine
 protocol HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase { get }
-    var records: [HKSample] { get }
+    var records: [HKQuantitySample] { get }
     
     //MARK: - Lifecycles
     init(useCase: HealthUseCase)
@@ -47,11 +47,13 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase
     private var cancellables = Set<AnyCancellable>()
-    @Published var records: [HKSample] = []
+    let bloodGlucoseSample = HKSampleType.quantityType(forIdentifier: .bloodGlucose)
+    @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
     required init(useCase: HealthUseCase) {
         self.useCase = useCase
+        self.readRecord(type: bloodGlucoseSample)
     }
     
     //MARK: - Functions

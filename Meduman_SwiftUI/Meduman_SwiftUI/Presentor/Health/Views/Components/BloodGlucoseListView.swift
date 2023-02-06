@@ -12,17 +12,22 @@ import HealthKit
 struct BloodGlucoseListView: View {
     //MARK: - Properties
     @EnvironmentObject private var healthModel: HealthRecordViewModel
-    let bloodGlucoseSample = HKSampleType.quantityType(forIdentifier: .bloodGlucose)
     
     var body: some View {
         List(self.healthModel.records, id: \.uuid) { record in
-            Text("\(record)")
+            VStack(alignment: .leading) {
+                Text("\(record.quantity)")
+                Spacer()
+                HStack {
+                    Text("\(record.startDate.formatted(date: .numeric, time: .omitted))")
+                    Text("\(record.endDate.formatted(date: .numeric, time: .omitted))")
+                }
+                .foregroundColor(.gray)
+                .font(.subheadline)
+            }
+            .padding(.leading, 15)
         }
-        .onAppear(perform: readRecords)
-    }
-    
-    func readRecords() {
-        self.healthModel.readRecord(type: bloodGlucoseSample)
+        .listStyle(.insetGrouped)
     }
 }
 
