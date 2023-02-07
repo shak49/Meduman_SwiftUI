@@ -50,6 +50,7 @@ struct HealthRecordsView: View {
                     .padding(.top, 32)
                 if recordsView == .bloodGlucose {
                     BloodGlucoseListView()
+                        .padding(.top, 32)
                 } else if recordsView == .heartRate {
                     
                 } else {

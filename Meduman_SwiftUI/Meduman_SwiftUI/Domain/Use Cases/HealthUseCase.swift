@@ -19,7 +19,7 @@ protocol HealthUseCaseProtocol {
     //MARK: - Functions
     func authorizeAccess()
     func createHealthRecord(record: HKObject?)
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError>
 }
 
 class HealthUseCase: HealthUseCaseProtocol {
@@ -69,8 +69,8 @@ class HealthUseCase: HealthUseCaseProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKSample]?, HKError> {
-        let subject = PassthroughSubject<[HKSample]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError> {
+        let subject = PassthroughSubject<[HKQuantitySample]?, HKError>()
         if let type = type {
             self.repo?.readHealthRecord(type: type)
                 .sink(receiveCompletion: { completion in
