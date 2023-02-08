@@ -63,7 +63,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     
     func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String) {
         guard let record = record else { return }
-        let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: dateAndTime)
+        let health = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
         let object = Constructor.shared.quantitySample(health: health)
         self.useCase.createHealthRecord(record: object)
     }

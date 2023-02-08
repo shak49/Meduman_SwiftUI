@@ -35,27 +35,29 @@ struct HealthRecordsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Records Lists", selection: self.$recordsView) {
-                    Text(RecordsView.bloodGlucose.rawValue)
-                        .tag(RecordView.bloodGlucose)
-                    Text(RecordsView.heartRate.rawValue)
-                        .tag(RecordView.heartRate)
-                    Text(RecordsView.bloodPressure.rawValue)
-                        .tag(RecordView.bloodPressure)
+                List {
+                    ForEach(self.model.records, id: \.uuid) { record in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("\(record.quantity)")
+                                Spacer()
+                                HStack {
+                                    Text("\(record.startDate.formatted(date: .numeric, time: .omitted))")
+                                    Text("\(record.endDate.formatted(date: .numeric, time: .omitted))")
+                                }
+                                .foregroundColor(.gray)
+                                .font(.subheadline)
+                            }
+                            Spacer()
+                            Rectangle()
+                                .frame(width: 5, height: 50)
+                                .foregroundColor(Color(.systemRed))
+                        }
+                        .padding(.leading, 15)
+                    }
                 }
-                    .pickerStyle(.segmented)
-                    .foregroundColor(.white)
-                    .cornerRadius(7)
-                    .padding(.horizontal, 32)
-                    .padding(.top, 32)
-                if recordsView == .bloodGlucose {
-                    BloodGlucoseListView()
-                        .padding(.top, 32)
-                } else if recordsView == .heartRate {
-                    
-                } else {
-                    
-                }
+                .listStyle(.inset)
+                .padding(.top, 32)
                 Spacer()
             }
                 .navigationTitle(Text("Health Records"))
