@@ -10,25 +10,18 @@ import HealthKit
 import XCTest
 
 
-enum RecordsView: String {
-    case bloodGlucose = "Blood Glucose"
-    case heartRate = "Heart Rate"
-    case bloodPressure = "Blood Pressure"
-}
-
 struct HealthRecordsView: View {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var useCase = HealthUseCase(repo: repo)
-    @ObservedObject private var model: HealthRecordViewModel
-    @State private var recordsView = RecordsView.bloodGlucose
+    @ObservedObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     
     //MARK: - Lifecycles
     init() {
-        self.model = HealthRecordViewModel(useCase: useCase)
+        self.healthModel = HealthRecordViewModel(useCase: useCase)
     }
     
     //MARK: - Body
@@ -36,24 +29,25 @@ struct HealthRecordsView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(self.model.records, id: \.uuid) { record in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("\(record.quantity)")
-                                Spacer()
-                                HStack {
-                                    Text("\(record.startDate.formatted(date: .numeric, time: .omitted))")
-                                    Text("\(record.endDate.formatted(date: .numeric, time: .omitted))")
-                                }
-                                .foregroundColor(.gray)
-                                .font(.subheadline)
-                            }
+                    ForEach(self.healthModel.records, id: \.uuid) { record in
+                        VStack(alignment: .leading) {
+                            Text("\(record.quantity)")
+                                .font(.title3)
                             Spacer()
-                            Rectangle()
-                                .frame(width: 5, height: 50)
-                                .foregroundColor(Color(.systemRed))
+                            HStack {
+                                Text("\(record.endDate.formatted(date: .numeric, time: .omitted))")
+                                    .foregroundColor(Color(.systemBlue))
+                                    .font(.caption)
+                                    .padding(3)
+                                    .border(Color(.systemBlue), width: 1)
+                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "")
+                                    .foregroundColor(Color(.systemOrange))
+                                    .font(.caption)
+                                    .padding(3)
+                                    .border(Color(.systemOrange), width: 1)
+                            }
                         }
-                        .padding(.leading, 15)
+                            .padding(.leading, 32)
                     }
                 }
                 .listStyle(.inset)
@@ -72,7 +66,7 @@ struct HealthRecordsView: View {
                 .sheet(isPresented: self.$isPresented, content: {
                     CreateRecordView(isPresented: self.$isPresented)
                 })
-                .onAppear(perform: model.authorize)
+                .onAppear(perform: healthModel.authorize)
                 .accessibilityIdentifier("createRecordSheet")
         }
     }

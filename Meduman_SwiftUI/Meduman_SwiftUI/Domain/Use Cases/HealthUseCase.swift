@@ -18,7 +18,7 @@ protocol HealthUseCaseProtocol {
     
     //MARK: - Functions
     func authorizeAccess()
-    func createHealthRecord(record: HKObject?)
+    func createHealthRecord(object: HKObject?)
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError>
 }
 
@@ -52,9 +52,9 @@ class HealthUseCase: HealthUseCaseProtocol {
             .store(in: &cancellables)
     }
     
-    func createHealthRecord(record: HKObject?) {
-        if let record = record {
-            self.repo?.writeHealthRecord(object: record)
+    func createHealthRecord(object: HKObject?) {
+        if let object = object {
+            self.repo?.writeHealthRecord(object: object)
                 .sink(receiveCompletion: { completion in
                     switch  completion {
                     case .finished:

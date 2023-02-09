@@ -19,7 +19,8 @@ protocol HealthRecordViewModelProtocol {
     
     //MARK: - Functions
     func authorize()
-    func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String)
+    func createBloodGlucose(record: Double?, dateAndTime: Date)
+    func createHeartRate(record: Double?, dateAndTime: Date)
     func readRecord(type: HKSampleType?)
 }
 
@@ -47,13 +48,18 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
     var useCase: HealthUseCase
     private var cancellables = Set<AnyCancellable>()
-    let bloodGlucoseSample = HKSampleType.quantityType(forIdentifier: .bloodGlucose)
+    let healthSamples = [
+        HKSampleType.quantityType(forIdentifier: .bloodGlucose),
+        HKSampleType.quantityType(forIdentifier: .heartRate)
+    ]
     @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
     required init(useCase: HealthUseCase) {
         self.useCase = useCase
-        self.readRecord(type: bloodGlucoseSample)
+        for sample in healthSamples {
+            self.readRecord(type: sample)
+        }
     }
     
     //MARK: - Functions
@@ -61,11 +67,18 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         self.useCase.authorizeAccess()
     }
     
-    func createBloodGlucose(record: Double?, dateAndTime: Date, mealTime: String) {
+    func createBloodGlucose(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
-        let health = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
-        let object = Constructor.shared.quantitySample(health: health)
-        self.useCase.createHealthRecord(record: object)
+        let bloodGlucose = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
+        let object = Constructor.shared.quantitySample(health: bloodGlucose)
+        self.useCase.createHealthRecord(object: object)
+    }
+    
+    func createHeartRate(record: Double?, dateAndTime: Date) {
+        guard let record = record else { return }
+        let heartRate = Health(record: record, typeId: .heartRate, unit: HealthUnit.heartRate.rawValue, date: dateAndTime)
+        let object = Constructor.shared.quantitySample(health: heartRate)
+        self.useCase.createHealthRecord(object: object)
     }
     
     func readRecord(type: HKSampleType?) {
@@ -75,7 +88,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
                 print(completion)
             }, receiveValue: { records in
                 guard let records = records else { return }
-                self.records = records
+                records.compactMap { self.records.append($0) }
             })
             .store(in: &cancellables)
     }
