@@ -28,4 +28,10 @@ class HealthStoreMock: HKHealthStore {
         completion(success, error)
     }
     
+    func delete(_ object: HKObject, withCompletion completion: @escaping (Bool?, Error?) -> Void) {
+        let success = self.success
+        let error = self.error
+        completion(success, error)
+    }
+    
 }

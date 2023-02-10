@@ -78,4 +78,19 @@ class HealthRepositoryTests: XCTestCase {
             .store(in: &cancellables)
         wait(for: [expectation], timeout: 2)
     }
+    
+    func test_removeHealthRecord_successfullyRemovedRecord() {
+        let expectation = expectation(description: "\'removeRecord\' can successfully remove records from health repository.")
+        let record = 188.00
+        let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
+        let sample = Constructor.shared.quantitySample(health: health)
+        sut.removeHealthRecord(object: sample)
+            .sink { completion in
+                print("COMPLETION:", completion)
+            } receiveValue: { result in
+                expectation.fulfill()
+                XCTAssertTrue(result)
+            }
+        wait(for: [expectation], timeout: 2)
+    }
 }
