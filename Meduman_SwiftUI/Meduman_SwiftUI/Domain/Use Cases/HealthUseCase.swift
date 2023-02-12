@@ -19,7 +19,8 @@ protocol HealthUseCaseProtocol {
     //MARK: - Functions
     func authorizeAccess()
     func createHealthRecord(object: HKObject?)
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError>
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError>
+    func removeHealthRecord(health: Health)
 }
 
 class HealthUseCase: HealthUseCaseProtocol {
@@ -29,6 +30,7 @@ class HealthUseCase: HealthUseCaseProtocol {
     let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
+        HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)!
     ])
     
     //MARK: - Lifecycles
@@ -47,7 +49,7 @@ class HealthUseCase: HealthUseCaseProtocol {
                     print("ERROR:", error.localizedDescription)
                 }
             } receiveValue: { success in
-                print("SUCCESS: \(success)")
+                print("AUTHORIZED: \(success)")
             }
             .store(in: &cancellables)
     }
@@ -60,7 +62,7 @@ class HealthUseCase: HealthUseCaseProtocol {
                     case .finished:
                         print("CREATE COMPLETION:", completion)
                     case .failure(let error):
-                        print("ERROR:", error.localizedDescription)
+                        print("ERROR:", error)
                     }
                 }, receiveValue: { result in
                     print("SAVED:", result)
@@ -69,8 +71,8 @@ class HealthUseCase: HealthUseCaseProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HKError> {
-        let subject = PassthroughSubject<[HKQuantitySample]?, HKError>()
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError> {
+        let subject = PassthroughSubject<[HKQuantitySample]?, HealthError>()
         if let type = type {
             self.repo?.readHealthRecord(type: type)
                 .sink(receiveCompletion: { completion in
@@ -91,5 +93,15 @@ class HealthUseCase: HealthUseCaseProtocol {
         }
         return subject.eraseToAnyPublisher()
     }
-
+    
+    func removeHealthRecord(health: Health) {
+        let object = Constructor.shared.quantitySample(health: health)
+        self.repo?.removeHealthRecord(object: object)
+            .sink(receiveCompletion: { completion in
+                print("DELETE COMPLETION:", completion)
+            }, receiveValue: { result in
+                print("DELETE:", result)
+            })
+            .store(in: &cancellables)
+    }
 }

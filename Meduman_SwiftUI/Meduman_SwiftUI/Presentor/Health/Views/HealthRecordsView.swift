@@ -40,7 +40,7 @@ struct HealthRecordsView: View {
                                     .font(.caption)
                                     .padding(3)
                                     .border(Color(.systemBlue), width: 1)
-                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "")
+                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "BLOOD PRESSURE")
                                     .foregroundColor(Color(.systemOrange))
                                     .font(.caption)
                                     .padding(3)
@@ -49,9 +49,13 @@ struct HealthRecordsView: View {
                         }
                             .padding(.leading, 32)
                     }
+                    .onDelete { indexSet in
+                        //self.healthModel.removeRecord(index: indexSet)
+                    }
                 }
-                .listStyle(.inset)
-                .padding(.top, 32)
+                    .accessibilityIdentifier("recordsList")
+                    .listStyle(.inset)
+                    .padding(.top, 32)
                 Spacer()
             }
                 .navigationTitle(Text("Health Records"))
@@ -66,7 +70,6 @@ struct HealthRecordsView: View {
                 .sheet(isPresented: self.$isPresented, content: {
                     CreateRecordView(isPresented: self.$isPresented)
                 })
-                .onAppear(perform: healthModel.authorize)
                 .accessibilityIdentifier("createRecordSheet")
         }
     }

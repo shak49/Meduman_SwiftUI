@@ -8,13 +8,14 @@
 import Foundation
 
 
-enum HKError: LocalizedError {
+enum HealthError: LocalizedError {
     case typeNotAvailable
     case unableToAccessRecordsForThisDevice
     case unableToAuthorizeAccess
     case unableToWriteHealthRecord
     case unableToReadHealthRecord
-    case thrownError(Error)
+    case unableToRemoveHealthRecord
+    case serverError(Error)
     
     var errorDescription: String {
         switch self {
@@ -25,11 +26,13 @@ enum HKError: LocalizedError {
         case .unableToAuthorizeAccess:
             return "Unable to authorize access."
         case .unableToWriteHealthRecord:
-            return "Unable to create the user."
+            return "Unable to write health record."
         case .unableToReadHealthRecord:
-            return "The server responded with no data."
-        case .thrownError(let error):
-            return "Error: \(error.localizedDescription) -> \(error)"
+            return "The \'HealthKit\' responded with no data."
+        case .unableToRemoveHealthRecord:
+            return "Unable to remove health record."
+        case .serverError(let error):
+            return "Error: \(error.localizedDescription)"
         }
     }
 }
