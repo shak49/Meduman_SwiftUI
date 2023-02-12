@@ -20,7 +20,7 @@ protocol HealthUseCaseProtocol {
     func authorizeAccess()
     func createHealthRecord(object: HKObject?)
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError>
-    func removeHealthRecord(health: Health)
+    func removeHealthRecord(sample: HKQuantitySample)
 }
 
 class HealthUseCase: HealthUseCaseProtocol {
@@ -44,12 +44,12 @@ class HealthUseCase: HealthUseCaseProtocol {
             .sink { completion in
                 switch  completion {
                 case .finished:
-                    print("AUTHORIZE COMPLETION:", completion)
+                    print("> AUTHORIZE COMPLETION:", completion)
                 case .failure(let error):
-                    print("ERROR:", error.localizedDescription)
+                    print("> ERROR:", error.localizedDescription)
                 }
             } receiveValue: { success in
-                print("AUTHORIZED: \(success)")
+                print("> AUTHORIZED: \(success)")
             }
             .store(in: &cancellables)
     }
@@ -60,12 +60,12 @@ class HealthUseCase: HealthUseCaseProtocol {
                 .sink(receiveCompletion: { completion in
                     switch  completion {
                     case .finished:
-                        print("CREATE COMPLETION:", completion)
+                        print("> CREATE COMPLETION:", completion)
                     case .failure(let error):
-                        print("ERROR:", error)
+                        print("> ERROR:", error)
                     }
                 }, receiveValue: { result in
-                    print("SAVED:", result)
+                    print("> SAVED:", result)
                 })
                 .store(in: &cancellables)
         }
@@ -78,13 +78,13 @@ class HealthUseCase: HealthUseCaseProtocol {
                 .sink(receiveCompletion: { completion in
                     switch  completion {
                     case .finished:
-                        print("READ COMPLETION:", completion)
+                        print("> READ COMPLETION:", completion)
                     case .failure(let error):
-                        print("ERROR:", error.localizedDescription)
+                        print("> ERROR:", error.localizedDescription)
                     }
                 }, receiveValue: { samples in
                     if let samples = samples {
-                        print("SAMPLES:", samples)
+                        print("> SAMPLES:", samples)
                         subject.send(samples)
                     }
                 })
@@ -94,13 +94,12 @@ class HealthUseCase: HealthUseCaseProtocol {
         return subject.eraseToAnyPublisher()
     }
     
-    func removeHealthRecord(health: Health) {
-        let object = Constructor.shared.quantitySample(health: health)
-        self.repo?.removeHealthRecord(object: object)
+    func removeHealthRecord(sample: HKQuantitySample) {
+        self.repo?.removeHealthRecord(object: sample)
             .sink(receiveCompletion: { completion in
-                print("DELETE COMPLETION:", completion)
+                print("> DELETE COMPLETION:", completion)
             }, receiveValue: { result in
-                print("DELETE:", result)
+                print("> DELETE:", result)
             })
             .store(in: &cancellables)
     }

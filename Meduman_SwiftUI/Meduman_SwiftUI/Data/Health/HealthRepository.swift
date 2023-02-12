@@ -21,7 +21,7 @@ protocol HealthRepoProtocol {
     func requestAuthorization(types: Set<HKSampleType>?) -> Future<Bool, HealthError>
     func writeHealthRecord(object: HKObject?) -> Future<Bool, HealthError>
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError>
-    func removeHealthRecord(object: HKObject?) -> Future<Bool, HealthError>
+    func removeHealthRecord(object: HKQuantitySample?) -> Future<Bool, HealthError>
 }
 
 
@@ -81,11 +81,12 @@ class HealthRepository: HealthRepoProtocol {
         return subject.eraseToAnyPublisher()
     }
     
-    func removeHealthRecord(object: HKObject?) -> Future<Bool, HealthError> {
+    func removeHealthRecord(object: HKQuantitySample?) -> Future<Bool, HealthError> {
         Future { promise in
             guard let object = object else { return }
             self.healthStore?.delete(object, withCompletion: { success, error in
-                if error != nil {
+                if let error = error {
+                    print("ERROR:", error.localizedDescription)
                     promise(.failure(.unableToRemoveHealthRecord))
                     return
                 }

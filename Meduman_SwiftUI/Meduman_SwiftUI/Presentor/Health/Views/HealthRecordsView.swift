@@ -16,12 +16,12 @@ struct HealthRecordsView: View {
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var useCase = HealthUseCase(repo: repo)
-    @ObservedObject var healthModel: HealthRecordViewModel
+    @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     
     //MARK: - Lifecycles
     init() {
-        self.healthModel = HealthRecordViewModel(useCase: useCase)
+        
     }
     
     //MARK: - Body
@@ -45,12 +45,16 @@ struct HealthRecordsView: View {
                                     .font(.caption)
                                     .padding(3)
                                     .border(Color(.systemOrange), width: 1)
+
                             }
                         }
                             .padding(.leading, 32)
+                            .onTapGesture(perform: {
+                                print("GESTURE")
+                            })
                     }
                     .onDelete { indexSet in
-                        //self.healthModel.removeRecord(index: indexSet)
+                        self.healthModel.removeRecord(indexSet: indexSet)
                     }
                 }
                     .accessibilityIdentifier("recordsList")
