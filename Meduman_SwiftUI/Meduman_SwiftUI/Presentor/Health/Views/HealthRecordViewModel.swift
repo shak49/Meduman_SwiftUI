@@ -23,7 +23,7 @@ protocol HealthRecordViewModelProtocol {
     func createHeartRate(record: Double?, dateAndTime: Date)
     func createBloodPressure(record: Double?, dateAndTime: Date)
     func readRecord(type: HKSampleType?)
-    func removeRecord(index: IndexSet?)
+    func removeRecord(indexSet: IndexSet)
 }
 
 struct HealthViewModel: Identifiable {
@@ -55,6 +55,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     ]
     var useCase: HealthUseCase
     private var cancellables = Set<AnyCancellable>()
+    private var currentQuantitySample: HKQuantitySample?
     @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
@@ -108,10 +109,10 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
             .store(in: &cancellables)
     }
     
-    func removeRecord(index: IndexSet?) {
-        guard let index = index else { return }
-//        index.forEach { healthRecord in
-//            self.useCase.removeHealthRecord(health: healthRecord)
-//        }
+    func removeRecord(indexSet: IndexSet) {
+        indexSet.forEach { index in
+            self.useCase.removeHealthRecord(sample: self.records[index].self)
+            self.records.remove(at: index)
+        }
     }
 }
