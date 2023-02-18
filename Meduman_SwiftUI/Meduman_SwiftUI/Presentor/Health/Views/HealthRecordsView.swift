@@ -16,12 +16,12 @@ struct HealthRecordsView: View {
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     var useCase = HealthUseCase(repo: repo)
-    @ObservedObject var healthModel: HealthRecordViewModel
+    @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     
     //MARK: - Lifecycles
     init() {
-        self.healthModel = HealthRecordViewModel(useCase: useCase)
+        
     }
     
     //MARK: - Body
@@ -40,18 +40,26 @@ struct HealthRecordsView: View {
                                     .font(.caption)
                                     .padding(3)
                                     .border(Color(.systemBlue), width: 1)
-                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "")
+                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "BLOOD PRESSURE")
                                     .foregroundColor(Color(.systemOrange))
                                     .font(.caption)
                                     .padding(3)
                                     .border(Color(.systemOrange), width: 1)
+
                             }
                         }
                             .padding(.leading, 32)
+                            .onTapGesture(perform: {
+                                print("GESTURE")
+                            })
+                    }
+                    .onDelete { indexSet in
+                        self.healthModel.removeRecord(indexSet: indexSet)
                     }
                 }
-                .listStyle(.inset)
-                .padding(.top, 32)
+                    .accessibilityIdentifier("recordsList")
+                    .listStyle(.inset)
+                    .padding(.top, 32)
                 Spacer()
             }
                 .navigationTitle(Text("Health Records"))
@@ -66,7 +74,6 @@ struct HealthRecordsView: View {
                 .sheet(isPresented: self.$isPresented, content: {
                     CreateRecordView(isPresented: self.$isPresented)
                 })
-                .onAppear(perform: healthModel.authorize)
                 .accessibilityIdentifier("createRecordSheet")
         }
     }

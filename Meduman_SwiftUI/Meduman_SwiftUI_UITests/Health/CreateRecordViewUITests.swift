@@ -27,23 +27,21 @@ class CreateRecordViewUITests: XCTestCase {
 
     //MARK: - Functions
     func test_addHealthRecord() {
-        let addButton = self.app.navigationBars["Health Records"]
-        addButton.tap()
+        let addButton = self.app.navigationBars["Health Records"].buttons["addButton"]
         let recordViewNavLabel = self.app.navigationBars["Record"].staticTexts["Record"]
-        let mealTimeSegment = self.app.segmentedControls["recordSegment"].buttons["Before Meal"]
-        mealTimeSegment.tap()
+        let healthTypeSegment = self.app.segmentedControls["healthTypeSegment"]
         let textField = self.app.textFields["recordTextField"]
-        textField.tap()
-        let bloodGlucoseRecord = app.keys["188"]
-        bloodGlucoseRecord.tap()
+        let record = app.keys["188"]
         let datePicker = self.app.datePickers["recordDatePicker"]
-        datePicker.tap()
-        let createButton = self.app.navigationBars["Record"].buttons["createButton"]
-        createButton.tap()
+        let createButton = self.app.buttons["createButton"]
         let healthRecordsNabLabel = self.app.navigationBars["Health Records"].staticTexts["Health Records"]
-        // Here we need to check wheather cell has created or not after doing all the actions
-        // 1) let cell =
-        // 2) XCTAssertTrue(cell.exists)
+        let recordCell = self.app.tableRows["recordsList"]
+        addButton.tap()
+        healthTypeSegment.tap()
+        textField.tap()
+        datePicker.tap()
+        createButton.tap()
+        XCTAssertTrue(recordCell.exists)
     }
 
 }

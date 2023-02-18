@@ -34,6 +34,7 @@ struct CreateRecordView: View {
                             .tag(type)
                     }
                 }
+                    .accessibilityIdentifier("healthTypeSegment")
                     .pickerStyle(.segmented)
                     .padding(.horizontal, 32)
                     .padding(.top, 64)
@@ -66,7 +67,7 @@ struct CreateRecordView: View {
                             } else if healthType == .heartRate {
                                 self.healthModel.createHeartRate(record: self.record, dateAndTime: self.dateAndTime)
                             } else {
-                                
+                                self.healthModel.createBloodPressure(record: self.record, dateAndTime: self.dateAndTime)
                             }
                             self.isPresented = false
                         }
