@@ -20,38 +20,14 @@ struct HealthRecordsView: View {
     @State private var isPresented = false
     
     //MARK: - Lifecycles
-    init() {
-        
-    }
     
     //MARK: - Body
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(self.healthModel.records, id: \.uuid) { record in
-                        VStack(alignment: .leading) {
-                            Text("\(record.quantity)")
-                                .font(.title3)
-                            Spacer()
-                            HStack {
-                                Text("\(record.endDate.formatted(date: .numeric, time: .omitted))")
-                                    .foregroundColor(Color(.systemBlue))
-                                    .font(.caption)
-                                    .padding(3)
-                                    .border(Color(.systemBlue), width: 1)
-                                Text(record.sampleType == HKQuantityType.quantityType(forIdentifier: .bloodGlucose) ? "BLOOD GLUCOSE" : record.sampleType == HKQuantityType.quantityType(forIdentifier: .heartRate) ? "HEART RATE" : "BLOOD PRESSURE")
-                                    .foregroundColor(Color(.systemOrange))
-                                    .font(.caption)
-                                    .padding(3)
-                                    .border(Color(.systemOrange), width: 1)
-
-                            }
-                        }
-                            .padding(.leading, 32)
-                            .onTapGesture(perform: {
-                                print("GESTURE")
-                            })
+                    ForEach(self.healthModel.records, id: \.id) { record in
+                        RecordCellView(sampleRecord: record)
                     }
                     .onDelete { indexSet in
                         self.healthModel.removeRecord(indexSet: indexSet)

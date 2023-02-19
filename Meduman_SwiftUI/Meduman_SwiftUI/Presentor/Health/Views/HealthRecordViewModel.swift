@@ -26,25 +26,25 @@ protocol HealthRecordViewModelProtocol {
     func removeRecord(indexSet: IndexSet)
 }
 
-struct HealthViewModel: Identifiable {
-    //MARK: - Properties
-    private var health: Health?
-    var id: String? {
-        return health?.id
-    }
-    var record: Double? {
-        return health?.record
-    }
-    var typeId: String? {
-        return "\(health?.typeId)"
-    }
-    var unit: String? {
-        return health?.unit
-    }
-    var date: Date? {
-        return health?.date
-    }
-}
+//struct HealthViewModel: Identifiable {
+//    //MARK: - Properties
+//    private var health: Health?
+//    var id: String? {
+//        return health?.id
+//    }
+//    var record: Double? {
+//        return health?.record
+//    }
+//    var typeId: String? {
+//        return "\(health?.typeId)"
+//    }
+//    var unit: String? {
+//        return health?.unit
+//    }
+//    var date: Date? {
+//        return health?.date
+//    }
+//}
 
 class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
@@ -79,21 +79,24 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     func createBloodGlucose(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodGlucose = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
-        let object = Constructor.shared.quantitySample(health: bloodGlucose)
+        guard let object = Constructor.shared.quantitySample(health: bloodGlucose) else { return }
+        self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }
     
     func createHeartRate(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let heartRate = Health(record: record, typeId: .heartRate, unit: HealthUnit.heartRate.rawValue, date: dateAndTime)
-        let object = Constructor.shared.quantitySample(health: heartRate)
+        guard let object = Constructor.shared.quantitySample(health: heartRate) else { return }
+        self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }
     
     func createBloodPressure(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodPressure = Health(record: record, typeId: .bloodPressureSystolic, unit: HealthUnit.bloodPressure.rawValue, date: dateAndTime)
-        let object = Constructor.shared.quantitySample(health: bloodPressure)
+        guard let object = Constructor.shared.quantitySample(health: bloodPressure) else { return }
+        self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }
     
