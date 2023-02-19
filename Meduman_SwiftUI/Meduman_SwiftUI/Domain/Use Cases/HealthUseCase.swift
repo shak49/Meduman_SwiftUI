@@ -99,7 +99,7 @@ class HealthUseCase: HealthUseCaseProtocol {
             .sink(receiveCompletion: { completion in
                 print("> DELETE COMPLETION:", completion)
             }, receiveValue: { result in
-                print("> DELETE:", result)
+                print("> DELETED:", result)
             })
             .store(in: &cancellables)
     }

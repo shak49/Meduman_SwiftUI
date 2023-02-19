@@ -67,7 +67,7 @@ class HealthRepositoryTests: XCTestCase {
     func test_readHealthRecord_successfullyReadRecords() {
         let expectation = expectation(description: "\'readHealthRecord\' can successfully return objects.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
-        sut.readHealthRecord(type: type)
+        self.sut.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 print("COMPLETION:", completion)
@@ -81,10 +81,10 @@ class HealthRepositoryTests: XCTestCase {
     
     func test_removeHealthRecord_successfullyRemovedRecord() {
         let expectation = expectation(description: "\'removeRecord\' can successfully remove records from health repository.")
-        let record = 135.00
-        let healthSample = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: Date())
-        let object = Constructor.shared.quantitySample(health: healthSample)
-        sut.removeHealthRecord(object: object)
+        let record = 188.00
+        let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
+        let object = Constructor.shared.quantitySample(health: health)
+        self.sut.removeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION:", completion)
             } receiveValue: { result in
