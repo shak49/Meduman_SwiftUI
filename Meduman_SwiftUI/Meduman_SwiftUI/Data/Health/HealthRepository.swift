@@ -86,7 +86,6 @@ class HealthRepository: HealthRepoProtocol {
             guard let object = object else { return }
             self.healthStore?.delete(object, withCompletion: { success, error in
                 if let error = error {
-                    print("ERROR:", error.localizedDescription)
                     promise(.failure(.unableToRemoveHealthRecord))
                     return
                 }

@@ -37,7 +37,7 @@ class HealthRepositoryTests: XCTestCase {
             HKSampleType.quantityType(forIdentifier: .heartRate)!,
         ])
         let expectation = expectation(description: "\'requestAuthorization\' can successfully authorize access.")
-        sut.requestAuthorization(types: allTypes)
+        self.sut.requestAuthorization(types: allTypes)
             .sink { completion in
                 print("COMPLETION: \(completion)")
             } receiveValue: { result in
@@ -67,7 +67,7 @@ class HealthRepositoryTests: XCTestCase {
     func test_readHealthRecord_successfullyReadRecords() {
         let expectation = expectation(description: "\'readHealthRecord\' can successfully return objects.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
-        sut.readHealthRecord(type: type)
+        self.sut.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 print("COMPLETION:", completion)
@@ -82,9 +82,9 @@ class HealthRepositoryTests: XCTestCase {
     func test_removeHealthRecord_successfullyRemovedRecord() {
         let expectation = expectation(description: "\'removeRecord\' can successfully remove records from health repository.")
         let record = 135.00
-        let healthSample = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: Date())
+        let healthSample = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: Date.now)
         let object = Constructor.shared.quantitySample(health: healthSample)
-        sut.removeHealthRecord(object: object)
+        self.sut.removeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION:", completion)
             } receiveValue: { result in
