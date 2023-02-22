@@ -20,9 +20,6 @@ struct HealthRecordsView: View {
     @State private var isPresented = false
     
     //MARK: - Lifecycles
-    init() {
-        
-    }
     
     //MARK: - Body
     var body: some View {
