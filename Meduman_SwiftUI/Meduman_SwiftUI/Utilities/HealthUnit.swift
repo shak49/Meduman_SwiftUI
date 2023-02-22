@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import HealthKit
 
 
 enum HealthUnit: String {
-    //MARK: - Quantity Type
     case bloodGlucose = "mg/dL"
     case heartRate = "count/min"
     case bloodPressure = "mmHg"
