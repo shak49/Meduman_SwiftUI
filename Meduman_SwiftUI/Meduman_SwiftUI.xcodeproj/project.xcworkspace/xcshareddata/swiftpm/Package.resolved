@@ -19,15 +19,6 @@
       }
     },
     {
-      "identity" : "cuckoo",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Brightify/Cuckoo.git",
-      "state" : {
-        "revision" : "fa66b6a0a07a7b592b10376e960981b8df494bd6",
-        "version" : "1.10.1"
-      }
-    },
-    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
