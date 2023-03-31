@@ -42,8 +42,9 @@
 		6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F07C29A1B6E500FE8C1E /* RecordCellView.swift */; };
 		6DE5F08029A4751E00FE8C1E /* HKQuantitySample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F07F29A4751E00FE8C1E /* HKQuantitySample.swift */; };
 		6DE5F08A29C9468E00FE8C1E /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F08929C9468E00FE8C1E /* XCUIElement.swift */; };
-		6DE5F08D29D3F2F600FE8C1E /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE5F08C29D3F2F600FE8C1E /* Cuckoo */; };
 		6DE5F08F29D3F4D500FE8C1E /* ArticlesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F08E29D3F4D500FE8C1E /* ArticlesUnitTests.swift */; };
+		6DE5F09929D7384500FE8C1E /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */; };
+		6DE5F09B29D73A6D00FE8C1E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09A29D73A6D00FE8C1E /* URLSessionMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		6DE5F07F29A4751E00FE8C1E /* HKQuantitySample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQuantitySample.swift; sourceTree = "<group>"; };
 		6DE5F08929C9468E00FE8C1E /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		6DE5F08E29D3F4D500FE8C1E /* ArticlesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUnitTests.swift; sourceTree = "<group>"; };
+		6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
+		6DE5F09A29D73A6D00FE8C1E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +113,6 @@
 			files = (
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
-				6DE5F08D29D3F2F600FE8C1E /* Cuckoo in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
 				6D63A3A328D2D1560076BB1E /* FirebaseFirestoreSwift in Frameworks */,
 				6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */,
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				6D63A3B128E4BBE90076BB1E /* HealthRepository.swift */,
+				6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			children = (
 				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
 				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
+				6DE5F09A29D73A6D00FE8C1E /* URLSessionMock.swift */,
 			);
 			path = "Helpers & Utillities";
 			sourceTree = "<group>";
@@ -393,7 +397,6 @@
 				6D63A39E28D2D1560076BB1E /* FirebaseAuth */,
 				6D63A3A028D2D1560076BB1E /* FirebaseFirestore */,
 				6D63A3A228D2D1560076BB1E /* FirebaseFirestoreSwift */,
-				6DE5F08C29D3F2F600FE8C1E /* Cuckoo */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -472,7 +475,6 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				6DE5F08B29D3F2F300FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -518,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */,
+				6DE5F09929D7384500FE8C1E /* ArticleRepository.swift in Sources */,
 				6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */,
 				6D63A3B428E694AF0076BB1E /* Health.swift in Sources */,
 				6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */,
@@ -544,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DE5F09B29D73A6D00FE8C1E /* URLSessionMock.swift in Sources */,
 				6DE5F08F29D3F4D500FE8C1E /* ArticlesUnitTests.swift in Sources */,
 				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
@@ -910,14 +914,6 @@
 				kind = branch;
 			};
 		};
-		6DE5F08B29D3F2F300FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -940,11 +936,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
-		};
-		6DE5F08C29D3F2F600FE8C1E /* Cuckoo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DE5F08B29D3F2F300FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = Cuckoo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
