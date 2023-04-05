@@ -32,7 +32,7 @@ class DataRequestMock {
     private var eventMonitor: EventMonitor?
     private var interceptor: RequestInterceptor?
     private var delegate: RequestDelegate?
-    private var response: HTTPURLResponse?
+    var response: HTTPURLResponse?
     let url: URL!
     let statusCode: Int!
     let httpVersion: String?
