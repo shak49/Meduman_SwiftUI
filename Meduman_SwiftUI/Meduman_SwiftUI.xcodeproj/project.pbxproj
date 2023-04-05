@@ -47,7 +47,7 @@
 		6DE5F09D29DB33A200FE8C1E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09C29DB33A100FE8C1E /* NetworkError.swift */; };
 		6DE5F09F29DB593B00FE8C1E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09E29DB593B00FE8C1E /* Article.swift */; };
 		6DE5F0A229DC870300FE8C1E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE5F0A129DC870300FE8C1E /* Alamofire */; };
-		6DE5F0A429DC88B400FE8C1E /* AlamofireMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F0A329DC88B400FE8C1E /* AlamofireMock.swift */; };
+		6DE5F0A429DC88B400FE8C1E /* SessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F0A329DC88B400FE8C1E /* SessionMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +108,7 @@
 		6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
 		6DE5F09C29DB33A100FE8C1E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		6DE5F09E29DB593B00FE8C1E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		6DE5F0A329DC88B400FE8C1E /* AlamofireMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireMock.swift; sourceTree = "<group>"; };
+		6DE5F0A329DC88B400FE8C1E /* SessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +337,7 @@
 			children = (
 				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
 				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
-				6DE5F0A329DC88B400FE8C1E /* AlamofireMock.swift */,
+				6DE5F0A329DC88B400FE8C1E /* SessionMock.swift */,
 			);
 			path = "Helpers & Utillities";
 			sourceTree = "<group>";
@@ -563,7 +563,7 @@
 				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
 				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
-				6DE5F0A429DC88B400FE8C1E /* AlamofireMock.swift in Sources */,
+				6DE5F0A429DC88B400FE8C1E /* SessionMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
