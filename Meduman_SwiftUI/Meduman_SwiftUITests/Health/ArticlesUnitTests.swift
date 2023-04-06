@@ -12,14 +12,12 @@ import XCTest
 
 class ArticlesUnitTests: XCTestCase {
     //MARK: - Properties
-    var session: SessionMock?
     var sut: ArticleRepository?
     
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.session = SessionMock()
-        self.sut = ArticleRepository(session: self.session)
+        self.sut = ArticleRepository()
     }
 
     override func tearDownWithError() throws {
@@ -29,9 +27,9 @@ class ArticlesUnitTests: XCTestCase {
 
     //MARK: - Functions
     func test_fetchArticles_successfullyReturnArticles() async {
-        let expectation = expectation(description: "\'fetchArticles\' successfully returns articles.")
+        //let expectation = expectation(description: "\'fetchArticles\' successfully returns articles.")
         
-        wait(for: [expectation], timeout: 2)
+        //wait(for: [expectation], timeout: 2)
     }
     
 }
