@@ -11,10 +11,10 @@ import Combine
 
 protocol ArticleRepositoryProtocol {
     //MARK: - Properties
-    var session: URLSession? { get }
+    var session: URLSessionProtocol? { get }
     
     //MARK: - Lifecycles
-    init(session: URLSession?)
+    init(session: URLSessionProtocol?)
     
     //MARK: - Functions
     func fetchArticles(queryItems: [URLQueryItem]?) async -> AnyPublisher<[Article]?, NetworkError>?
@@ -22,10 +22,10 @@ protocol ArticleRepositoryProtocol {
 
 class ArticleRepository: ArticleRepositoryProtocol {
     //MARK: - Properties
-    var session: URLSession?
+    var session: URLSessionProtocol?
     
     //MARK: - Lifecycles
-    required init(session: URLSession?) {
+    required init(session: URLSessionProtocol?) {
         self.session = session
     }
     
@@ -39,7 +39,11 @@ class ArticleRepository: ArticleRepositoryProtocol {
         }
         return self.session?.dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: [Article]?.self, decoder: JSONDecoder())
+            .decode(type: Result.self, decoder: JSONDecoder())
+            .map(\.item?.articles)
+            .map({ articles in
+                return articles
+            })
             .mapError({ error -> NetworkError in
                 return .invalidServerResponse
             })

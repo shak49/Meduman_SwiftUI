@@ -14,8 +14,10 @@ struct HealthRecordsView: View {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
-    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    var useCase = HealthUseCase(repo: repo)
+    static var session = URLSession()
+    static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
+    static var articleRepo = ArticleRepository(session: session)
+    var useCase = HealthUseCase(healthRepo: healthRepo, articleRepo: articleRepo)
     @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     

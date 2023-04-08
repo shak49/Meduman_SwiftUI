@@ -3,4 +3,134 @@
    uuid = "6B00BEE0-2399-4ACF-9E81-3400AF33F99F"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DAE3DEE-003C-4E11-8430-BC42ACBABD1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "test_fetchArticles_successfullyReturnArticles()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B304193D-DF68-4D88-854D-B8B553497A1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "test_fetchArticles_successfullyReturnArticles()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD633FC5-6815-4F8A-8DC7-F229CD14461C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "test_fetchArticles_successfullyReturnArticles()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DD633FC5-6815-4F8A-8DC7-F229CD14461C - 21e76e59cdd7e0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Meduman_SwiftUITests.ArticlesUnitTests.test_fetchArticles_successfullyReturnArticles() async -&gt; ()"
+                  moduleName = "Meduman_SwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shakfeizi/Documents/Meduman_SwiftUI/Meduman_SwiftUI/Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+               <Location
+                  uuid = "DD633FC5-6815-4F8A-8DC7-F229CD14461C - eea7f83ad0814a98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for Meduman_SwiftUITests.ArticlesUnitTests.test_fetchArticles_successfullyReturnArticles() async -&gt; ()"
+                  moduleName = "Meduman_SwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shakfeizi/Documents/Meduman_SwiftUI/Meduman_SwiftUI/Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "516">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E91A812-2252-43DC-82A5-DCD29745B3C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "test_fetchArticles_successfullyReturnArticles()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8E91A812-2252-43DC-82A5-DCD29745B3C7 - 21e76e59cdd7e2b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Meduman_SwiftUITests.ArticlesUnitTests.test_fetchArticles_successfullyReturnArticles() async -&gt; ()"
+                  moduleName = "Meduman_SwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shakfeizi/Documents/Meduman_SwiftUI/Meduman_SwiftUI/Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1436">
+               </Location>
+               <Location
+                  uuid = "8E91A812-2252-43DC-82A5-DCD29745B3C7 - eea7f83ad0814ab9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for Meduman_SwiftUITests.ArticlesUnitTests.test_fetchArticles_successfullyReturnArticles() async -&gt; ()"
+                  moduleName = "Meduman_SwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shakfeizi/Documents/Meduman_SwiftUI/Meduman_SwiftUI/Meduman_SwiftUITests/Health/ArticlesUnitTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "696">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

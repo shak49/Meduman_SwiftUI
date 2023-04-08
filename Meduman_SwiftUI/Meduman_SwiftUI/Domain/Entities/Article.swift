@@ -8,6 +8,28 @@
 import Foundation
 
 
-struct Article: Codable {
+struct Result: Codable {
+    enum CodingKeys: String, CodingKey {
+        case item = "Items"
+    }
     
+    var item: Item?
+}
+
+struct Item: Codable {
+    enum CodingKeys: String, CodingKey {
+        case articles = "Item"
+    }
+    
+    var articles: [Article]?
+}
+
+struct Article: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case title = "Title"
+    }
+    
+    var id: String?
+    var title: String
 }
