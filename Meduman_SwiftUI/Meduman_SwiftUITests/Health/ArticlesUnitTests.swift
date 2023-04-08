@@ -6,18 +6,21 @@
 //
 
 @testable import Meduman_SwiftUI
-import Foundation
 import XCTest
+import Combine
+import Mockingbird
 
 
 class ArticlesUnitTests: XCTestCase {
     //MARK: - Properties
+    var sessionMock: URLSession?
     var sut: ArticleRepository?
     
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.sut = ArticleRepository()
+        self.sessionMock = mock(URLSession.self)
+        self.sut = ArticleRepository(session: self.sessionMock)
     }
 
     override func tearDownWithError() throws {
@@ -27,9 +30,18 @@ class ArticlesUnitTests: XCTestCase {
 
     //MARK: - Functions
     func test_fetchArticles_successfullyReturnArticles() async {
-        //let expectation = expectation(description: "\'fetchArticles\' successfully returns articles.")
-        
-        //wait(for: [expectation], timeout: 2)
+        let expectation = expectation(description: "\'fetchArticles\' successfully returns articles.")
+        var queryItems = [
+            URLQueryItem(name: "Type", value: "topic"),
+            URLQueryItem(name: "Lang", value: "en"),
+            URLQueryItem(name: "Lang", value: "en"),
+        ]
+        let articles = try await self.sut?.fetchArticles(queryItems: queryItems)
+            .flatMap({ articles in
+                expectation.fulfill()
+                XCTAssertNotNil(articles)
+            })
+        wait(for: [expectation], timeout: 2)
     }
     
 }

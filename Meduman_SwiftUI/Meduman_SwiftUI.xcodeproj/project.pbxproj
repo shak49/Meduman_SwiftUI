@@ -46,8 +46,8 @@
 		6DE5F09929D7384500FE8C1E /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */; };
 		6DE5F09D29DB33A200FE8C1E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09C29DB33A100FE8C1E /* NetworkError.swift */; };
 		6DE5F09F29DB593B00FE8C1E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F09E29DB593B00FE8C1E /* Article.swift */; };
-		6DE5F0A229DC870300FE8C1E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE5F0A129DC870300FE8C1E /* Alamofire */; };
-		6DE5F0A729DE685900FE8C1E /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE5F0A629DE685900FE8C1E /* Cuckoo */; };
+		6DE5F0B729DF6F8B00FE8C1E /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE5F0B629DF6F8B00FE8C1E /* Mockingbird */; };
+		77002CE1F30B2B2ACA1CFFE9 /* Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20100D4AEB1509D3423384D2 /* Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20100D4AEB1509D3423384D2 /* Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift"; path = "MockingbirdMocks/Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift"; sourceTree = "<group>"; };
 		6D2C0AB027862DE5003D36DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		6D2CB4D4292DCF00002BF0A4 /* HealthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthUseCase.swift; sourceTree = "<group>"; };
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		6DE5F09829D7384400FE8C1E /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
 		6DE5F09C29DB33A100FE8C1E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		6DE5F09E29DB593B00FE8C1E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		6DE5F0AA29DE729F00FE8C1E /* CuckooScrip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CuckooScrip.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +119,9 @@
 				6D63A39D28D2D1560076BB1E /* FirebaseAnalytics in Frameworks */,
 				6D63A39F28D2D1560076BB1E /* FirebaseAuth in Frameworks */,
 				6D63A3A128D2D1560076BB1E /* FirebaseFirestore in Frameworks */,
-				6DE5F0A229DC870300FE8C1E /* Alamofire in Frameworks */,
 				6D63A3A328D2D1560076BB1E /* FirebaseFirestoreSwift in Frameworks */,
 				6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */,
-				6DE5F0A729DE685900FE8C1E /* Cuckoo in Frameworks */,
+				6DE5F0B729DF6F8B00FE8C1E /* Mockingbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +274,7 @@
 				6DC2366F29778F2100E10311 /* Meduman_SwiftUI_UITests */,
 				6D82EF5E277266AA0010E25B /* Products */,
 				6D2CB5B5293E8D10002BF0A4 /* Frameworks */,
+				71D592DCC91ECE11556B2BA2 /* Generated Mocks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -319,7 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC2363C296A049D00E10311 /* Health */,
-				6DE5F0AA29DE729F00FE8C1E /* CuckooScrip.sh */,
+				6DC2363D296A04D200E10311 /* Helpers & Utillities */,
 			);
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
@@ -329,7 +329,6 @@
 			children = (
 				6D96C7072941662200A9AA4C /* HealthRepositoryTests.swift */,
 				6DE5F08E29D3F4D500FE8C1E /* ArticlesUnitTests.swift */,
-				6DC2363D296A04D200E10311 /* Helpers & Utillities */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -347,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC2367929778F4100E10311 /* Health */,
+				6DE5F08829C9466A00FE8C1E /* Extensions */,
 			);
 			path = Meduman_SwiftUI_UITests;
 			sourceTree = "<group>";
@@ -355,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				6DC23688297A3C3800E10311 /* HealthRecordCreationUITests.swift */,
-				6DE5F08829C9466A00FE8C1E /* Extensions */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -385,6 +384,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		71D592DCC91ECE11556B2BA2 /* Generated Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				20100D4AEB1509D3423384D2 /* Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift */,
+			);
+			name = "Generated Mocks";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,8 +413,7 @@
 				6D63A39E28D2D1560076BB1E /* FirebaseAuth */,
 				6D63A3A028D2D1560076BB1E /* FirebaseFirestore */,
 				6D63A3A228D2D1560076BB1E /* FirebaseFirestoreSwift */,
-				6DE5F0A129DC870300FE8C1E /* Alamofire */,
-				6DE5F0A629DE685900FE8C1E /* Cuckoo */,
+				6DE5F0B629DF6F8B00FE8C1E /* Mockingbird */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -417,10 +423,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D96C704294165FA00A9AA4C /* Build configuration list for PBXNativeTarget "Meduman_SwiftUITests" */;
 			buildPhases = (
+				4BF1F4DF62D7DC7E4D2D8D15 /* Generate Mockingbird Mocks */,
 				6D96C6FA294165FA00A9AA4C /* Sources */,
 				6D96C6FB294165FA00A9AA4C /* Frameworks */,
 				6D96C6FC294165FA00A9AA4C /* Resources */,
-				6DE5F0A929DE708500FE8C1E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -446,8 +452,6 @@
 				6DC2367529778F2100E10311 /* PBXTargetDependency */,
 			);
 			name = Meduman_SwiftUI_UITests;
-			packageProductDependencies = (
-			);
 			productName = Meduman_SwiftUI_UITests;
 			productReference = 6DC2366E29778F2100E10311 /* Meduman_SwiftUI_UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -487,8 +491,7 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				6DE5F0A029DC870300FE8C1E /* XCRemoteSwiftPackageReference "Alamofire" */,
-				6DE5F0A529DE685800FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */,
+				6DE5F0B529DF6F8B00FE8C1E /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -529,22 +532,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6DE5F0A929DE708500FE8C1E /* ShellScript */ = {
+		4BF1F4DF62D7DC7E4D2D8D15 /* Generate Mockingbird Mocks */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
-			outputFileListPaths = (
-			);
+			name = "Generate Mockingbird Mocks";
 			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n/bin/sh /Users/shakfeizi/Documents/Meduman_SwiftUI/Meduman_SwiftUI/Meduman_SwiftUITests/CuckooScrip.sh\n";
+			shellScript = "set -eu\n\n# Prevent Xcode 13 from running this script while indexing.\n[[ \"${ACTION}\" == \"indexbuild\" ]] && exit 0\n\n# Infer the derived data location from the build environment.\n[[ -z \"${DERIVED_DATA+x}\" ]] && DERIVED_DATA=\"$(echo \"${BUILD_ROOT}\" | sed -n 's|\\(.*\\)/Build/.*|\\1|p')\"\n\n\"${DERIVED_DATA}/SourcePackages/checkouts/mockingbird/mockingbird\" generate --targets \"Meduman_SwiftUI\" --outputs \"${SRCROOT}/MockingbirdMocks/Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -587,6 +589,7 @@
 				6D96C7082941662200A9AA4C /* HealthRepositoryTests.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
 				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
+				77002CE1F30B2B2ACA1CFFE9 /* Meduman_SwiftUITests-Meduman_SwiftUIMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,20 +952,12 @@
 				kind = branch;
 			};
 		};
-		6DE5F0A029DC870300FE8C1E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		6DE5F0B529DF6F8B00FE8C1E /* XCRemoteSwiftPackageReference "mockingbird" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/birdrides/mockingbird";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		6DE5F0A529DE685800FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 0.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -988,15 +983,10 @@
 			package = 6D63A39B28D2D1560076BB1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		6DE5F0A129DC870300FE8C1E /* Alamofire */ = {
+		6DE5F0B629DF6F8B00FE8C1E /* Mockingbird */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6DE5F0A029DC870300FE8C1E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		6DE5F0A629DE685900FE8C1E /* Cuckoo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6DE5F0A529DE685800FE8C1E /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = Cuckoo;
+			package = 6DE5F0B529DF6F8B00FE8C1E /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
