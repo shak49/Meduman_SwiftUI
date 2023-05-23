@@ -18,7 +18,7 @@ protocol HealthUseCaseProtocol {
     init(healthRepo: HealthRepository?, articleRepo: ArticleRepository?)
     
     //MARK: - Functions
-    func getArticles()
+    func fetchArticles() async
     func authorizeAccess()
     func createHealthRecord(object: HKObject?)
     func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError>
@@ -43,8 +43,19 @@ class HealthUseCase: HealthUseCaseProtocol {
     }
     
     //MARK: - Functions
-    func getArticles() {
-        
+    func fetchArticles() async {
+        let queryItems = [
+            URLQueryItem(name: "Type", value: "topic"),
+            URLQueryItem(name: "Lang", value: "en"),
+            URLQueryItem(name: "Lang", value: "en")
+        ]
+        await self.articleRepo?.fetchArticles(queryItems: queryItems)?
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { articles in
+                print(articles)
+            })
+            .store(in: &self.cancellables)
     }
     
     func authorizeAccess() {

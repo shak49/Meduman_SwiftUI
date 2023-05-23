@@ -10,7 +10,7 @@ import Foundation
 
 enum NetworkError: LocalizedError, Error {
     case badUrl
-    case unableToFindData
+    case unableToFindServer
     case unableToDecode
     case noDataAvailable
     case invalidServerResponse
@@ -19,15 +19,15 @@ enum NetworkError: LocalizedError, Error {
     var errorDescription: String {
         switch self {
         case .badUrl:
-            return "Bad URL."
-        case .unableToFindData:
-            return "Unable to find server."
+            return Constraint.shared.localizedString(key: "Network_URL_Error")
+        case .unableToFindServer:
+            return Constraint.shared.localizedString(key: "Network_Server_Error")
         case .unableToDecode:
-            return "Unable to decode."
+            return Constraint.shared.localizedString(key: "Network_Decode_Error")
         case .noDataAvailable:
-            return "No data found."
+            return Constraint.shared.localizedString(key: "Network_Data_Error")
         case .invalidServerResponse:
-            return "Invalid server response."
+            return Constraint.shared.localizedString(key: "Network_Respnse_Error")
         case .thrownError(let error):
             return "Error: \(error.localizedDescription) -> \(error)."
         }

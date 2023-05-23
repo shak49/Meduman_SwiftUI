@@ -18,6 +18,7 @@ protocol HealthRecordViewModelProtocol {
     init(useCase: HealthUseCase)
     
     //MARK: - Functions
+    func fetchArticles() async
     func authorize()
     func createBloodGlucose(record: Double?, dateAndTime: Date)
     func createHeartRate(record: Double?, dateAndTime: Date)
@@ -56,6 +57,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     var useCase: HealthUseCase
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
+    private var articles: [Article] = []
     @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
@@ -72,6 +74,10 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         }
     }
     
+    func fetchArticles() async {
+        await self.useCase.fetchArticles()
+    }
+    
     func authorize() {
         self.useCase.authorizeAccess()
     }
@@ -79,7 +85,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     func createBloodGlucose(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodGlucose = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
-        guard let object = Constructor.shared.quantitySample(health: bloodGlucose) else { return }
+        guard let object = Constraint.shared.quantitySample(health: bloodGlucose) else { return }
         self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }
@@ -87,7 +93,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     func createHeartRate(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let heartRate = Health(record: record, typeId: .heartRate, unit: HealthUnit.heartRate.rawValue, date: dateAndTime)
-        guard let object = Constructor.shared.quantitySample(health: heartRate) else { return }
+        guard let object = Constraint.shared.quantitySample(health: heartRate) else { return }
         self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }
@@ -95,7 +101,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     func createBloodPressure(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodPressure = Health(record: record, typeId: .bloodPressureSystolic, unit: HealthUnit.bloodPressure.rawValue, date: dateAndTime)
-        guard let object = Constructor.shared.quantitySample(health: bloodPressure) else { return }
+        guard let object = Constraint.shared.quantitySample(health: bloodPressure) else { return }
         self.records.append(object)
         self.useCase.createHealthRecord(object: object)
     }

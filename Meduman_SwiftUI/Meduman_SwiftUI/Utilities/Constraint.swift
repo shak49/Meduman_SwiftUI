@@ -9,21 +9,18 @@ import Foundation
 import HealthKit
 
 
-class Constructor {
+class Constraint {
     //MARK: - Properties
-    static let shared = Constructor()
+    static let shared = Constraint()
     
     //MARK: - Functions
-    func url(scheme: String, host: String, path: String, queryItems: [URLQueryItem]?, token: String?, headerField: String?) -> URLRequest? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme
-        urlComponents.host = host
-        urlComponents.path = path
-        urlComponents.queryItems = queryItems
-        var urlRequest = URLRequest(url: urlComponents.url!)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(token, forHTTPHeaderField: "")
-        return urlRequest
+    func localizedString(key: String) -> String {
+        let result = Bundle.main.localizedString(forKey: key, value: nil, table: nil)
+        if result == key {
+            Bundle.main.localizedString(forKey: key, value: nil, table: "Local")
+        }
+        print(result)
+        return result
     }
     
     func quantitySample(health: Health?) -> HKQuantitySample? {
