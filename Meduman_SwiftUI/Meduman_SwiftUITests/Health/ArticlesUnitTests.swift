@@ -8,18 +8,18 @@
 @testable import Meduman_SwiftUI
 import XCTest
 import Combine
-import Mockingbird
 
 
 class ArticlesUnitTests: XCTestCase {
     //MARK: - Properties
-    var sessionMock: URLSession?
+    var sessionMock: URLSessionMock?
     var sut: ArticleRepository?
+    var cancellables = Set<AnyCancellable>()
     
     //MARK: - Lifecycles
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.sessionMock = mock(URLSession.self)
+        self.sessionMock = URLSessionMock()
         self.sut = ArticleRepository(session: self.sessionMock)
     }
 
@@ -30,18 +30,21 @@ class ArticlesUnitTests: XCTestCase {
 
     //MARK: - Functions
     func test_fetchArticles_successfullyReturnArticles() async {
-        let expectation = expectation(description: "\'fetchArticles\' successfully returns articles.")
-        var queryItems = [
+        let expectation = expectation(description: "\'fetchArticles\' successfully returns articles")
+        let queryItems = [
             URLQueryItem(name: "Type", value: "topic"),
             URLQueryItem(name: "Lang", value: "en"),
-            URLQueryItem(name: "Lang", value: "en"),
+            URLQueryItem(name: "Lang", value: "en")
         ]
-        let articles = try await self.sut?.fetchArticles(queryItems: queryItems)
-            .flatMap({ articles in
+        await self.sut?.fetchArticles(queryItems: queryItems)?
+            .receive(on: DispatchQueue.main)
+            .map({ articles in
+                print(articles)
                 expectation.fulfill()
                 XCTAssertNotNil(articles)
             })
-        wait(for: [expectation], timeout: 2)
+            .eraseToAnyPublisher()
+        wait(for: [expectation], timeout: 5)
     }
     
 }

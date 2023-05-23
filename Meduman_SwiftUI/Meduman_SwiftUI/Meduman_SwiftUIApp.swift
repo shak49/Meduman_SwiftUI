@@ -14,8 +14,10 @@ struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
-    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    static var useCase = HealthUseCase(repo: repo)
+    static var session = URLSession()
+    static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
+    static var articleRepo = ArticleRepository(session: session)
+    static var useCase = HealthUseCase(healthRepo: healthRepo, articleRepo: articleRepo)
     @StateObject var healthModel = HealthRecordViewModel(useCase: useCase)
     
     //MARK: - Lifecycles
@@ -35,7 +37,7 @@ struct Meduman_SwiftUIApp: App {
         WindowGroup {
             //SignInView()
             //SignUpView()
-            HealthRecordsView()
+            HealthArticlesView()
                 .environmentObject(healthModel)
         }
     }

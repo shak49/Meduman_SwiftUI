@@ -25,7 +25,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
     var session: URLSession?
     
     //MARK: - Lifecycles
-    required init(session: URLSession?) {
+    required init(session: URLSession? = .shared) {
         self.session = session
     }
     
@@ -33,13 +33,23 @@ class ArticleRepository: ArticleRepositoryProtocol {
     func fetchArticles(queryItems: [URLQueryItem]?) async -> AnyPublisher<[Article]?, NetworkError>? {
         guard let queryItems = queryItems else {
             return nil }
-        guard let url = Constructor.shared.url(scheme: "https", host: "health.gov", path: "/v3/itemlist.json", queryItems: queryItems, token: nil, headerField: nil) else {
+        guard let url = URL(string: Constraint.shared.localizedString(key: "Articles") + "Type=topic&Lang=en&Lang=en") else {
             return Fail(error: .badUrl)
                 .eraseToAnyPublisher()
         }
-        return self.session?.dataTaskPublisher(for: url)
+        let request = URLRequest(url: url)
+        return self.session?.dataTaskPublisher(for: request)
+            //.receive(on: DispatchQueue.main)
             .map(\.data)
-            .decode(type: [Article]?.self, decoder: JSONDecoder())
+            .decode(type: Result.self, decoder: JSONDecoder())
+            .mapError({ error -> NetworkError in
+                return .unableToDecode
+            })
+            .map(\.item?.articles)
+            .map({ articles in
+                print(articles)
+                return articles
+            })
             .mapError({ error -> NetworkError in
                 return .invalidServerResponse
             })

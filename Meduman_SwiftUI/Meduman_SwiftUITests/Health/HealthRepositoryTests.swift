@@ -52,7 +52,7 @@ class HealthRepositoryTests: XCTestCase {
         let expectation = expectation(description: "\'writeHealthRecord\' can successfully save in health store when object is available.")
         let record = 188.00
         let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
-        let object = Constructor.shared.quantitySample(health: health)
+        let object = Constraint.shared.quantitySample(health: health)
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
