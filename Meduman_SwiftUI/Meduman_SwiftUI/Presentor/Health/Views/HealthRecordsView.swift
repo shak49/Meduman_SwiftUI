@@ -28,7 +28,6 @@ struct HealthRecordsView: View {
                 List {
                     ForEach(self.healthModel.records, id: \.id) { record in
                         RecordCellView(sampleRecord: record)
-                            .accessibilityIdentifier("recordCell")
                     }
                     .onDelete { indexSet in
                         self.healthModel.removeRecord(indexSet: indexSet)
@@ -50,8 +49,8 @@ struct HealthRecordsView: View {
                 })
                 .sheet(isPresented: self.$isPresented, content: {
                     CreateRecordView(isPresented: self.$isPresented)
-                        .accessibilityIdentifier("createRecordSheet")
                 })
+                .accessibilityIdentifier("createRecordSheet")
         }
     }
 }
