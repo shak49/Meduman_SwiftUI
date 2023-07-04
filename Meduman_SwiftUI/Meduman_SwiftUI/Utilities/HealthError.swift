@@ -20,17 +20,17 @@ enum HealthError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .typeNotAvailable:
-            return "Type is not available."
+            return Constraint.shared.localizedString(key: "Health_Unavailable_Error")
         case .unableToAccessRecordsForThisDevice:
-            return "Unable to access health records for this device."
+            return Constraint.shared.localizedString(key: "Health_Access_Error")
         case .unableToAuthorizeAccess:
-            return "Unable to authorize access."
+            return Constraint.shared.localizedString(key: "Health_Authorize_Error")
         case .unableToWriteHealthRecord:
-            return "Unable to write health record."
+            return Constraint.shared.localizedString(key: "Health_Write_Error")
         case .unableToReadHealthRecord:
-            return "The \'HealthKit\' responded with no data."
+            return Constraint.shared.localizedString(key: "Health_Read_Error")
         case .unableToRemoveHealthRecord:
-            return "Unable to remove health record."
+            return Constraint.shared.localizedString(key: "Health_Remove_Error")
         case .serverError(let error):
             return "Error: \(error.localizedDescription)"
         }

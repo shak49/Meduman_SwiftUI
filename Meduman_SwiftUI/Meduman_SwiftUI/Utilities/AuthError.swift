@@ -16,11 +16,11 @@ enum AuthError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .unableToCreateUser:
-            return "Unable to create the user."
+            return Constraint.shared.localizedString(key: "User_Creation_Error")
         case .thrownError(let error):
-            return "Error: \(error.localizedDescription) -> \(error)"
+            return "Error: \(error.localizedDescription)"
         case .noUser:
-            return "The server responded with no data."
+            return Constraint.shared.localizedString(key: "User_NotFound_Error")
         }
     }
 }
