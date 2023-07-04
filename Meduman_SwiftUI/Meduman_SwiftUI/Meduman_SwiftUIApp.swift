@@ -14,8 +14,8 @@ struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
-    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    static var useCase = HealthUseCase(repo: repo)
+    static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
+    static var useCase = HealthUseCase(healthRepo: healthRepo)
     @StateObject var healthModel = HealthRecordViewModel(useCase: useCase)
     
     //MARK: - Lifecycles
