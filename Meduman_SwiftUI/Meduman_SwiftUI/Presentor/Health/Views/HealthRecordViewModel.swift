@@ -18,7 +18,6 @@ protocol HealthRecordViewModelProtocol {
     init(useCase: HealthUseCase)
     
     //MARK: - Functions
-    func fetchArticles() async
     func authorize()
     func createBloodGlucose(record: Double?, dateAndTime: Date)
     func createHeartRate(record: Double?, dateAndTime: Date)
@@ -57,7 +56,6 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     var useCase: HealthUseCase
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
-    private var articles: [Article] = []
     @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
@@ -72,10 +70,6 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         for sample in healthSamples {
             self.readRecord(type: sample)
         }
-    }
-    
-    func fetchArticles() async {
-        await self.useCase.fetchArticles()
     }
     
     func authorize() {
