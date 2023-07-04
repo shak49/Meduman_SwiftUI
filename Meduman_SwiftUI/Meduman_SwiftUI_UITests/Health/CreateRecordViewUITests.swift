@@ -8,7 +8,7 @@
 import XCTest
 
 
-class HealthRecordCreationUITests: XCTestCase {
+class CreateRecordViewUITests: XCTestCase {
     //MARK: - Properties
     var app = XCUIApplication()
 
@@ -17,6 +17,7 @@ class HealthRecordCreationUITests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         self.app.launch()
+
     }
 
     override func tearDownWithError() throws {
@@ -33,14 +34,14 @@ class HealthRecordCreationUITests: XCTestCase {
         let record = app.keys["188"]
         let datePicker = self.app.datePickers["recordDatePicker"]
         let createButton = self.app.buttons["createButton"]
-        let healthRecordsNavLabel = self.app.navigationBars["Health Records"].staticTexts["Health Records"]
-        let recordList = self.app.tables["recordsList"]
-        let recordCell = recordList.cells["135 mmHg, 2/21/2023, BLOOD PRESSURE"]
+        let healthRecordsNabLabel = self.app.navigationBars["Health Records"].staticTexts["Health Records"]
+        let recordCell = self.app.tableRows["recordsList"]
         addButton.tap()
         healthTypeSegment.tap()
         textField.tap()
         datePicker.tap()
-        createButton.forceTapElement()
+        createButton.tap()
         XCTAssertTrue(recordCell.exists)
     }
+
 }

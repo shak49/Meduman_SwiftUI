@@ -14,8 +14,8 @@ struct HealthRecordsView: View {
     //MARK: - Properties
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
-    static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    var useCase = HealthUseCase(healthRepo: healthRepo, articleRepo: nil)
+    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
+    var useCase = HealthUseCase(repo: repo)
     @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     
@@ -28,7 +28,6 @@ struct HealthRecordsView: View {
                 List {
                     ForEach(self.healthModel.records, id: \.id) { record in
                         RecordCellView(sampleRecord: record)
-                            .accessibilityIdentifier("recordCell")
                     }
                     .onDelete { indexSet in
                         self.healthModel.removeRecord(indexSet: indexSet)
@@ -50,8 +49,8 @@ struct HealthRecordsView: View {
                 })
                 .sheet(isPresented: self.$isPresented, content: {
                     CreateRecordView(isPresented: self.$isPresented)
-                        .accessibilityIdentifier("createRecordSheet")
                 })
+                .accessibilityIdentifier("createRecordSheet")
         }
     }
 }
