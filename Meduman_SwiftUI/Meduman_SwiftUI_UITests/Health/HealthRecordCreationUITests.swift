@@ -8,23 +8,22 @@
 import XCTest
 
 
-class CreateRecordViewUITests: XCTestCase {
-    //MARK: - Properties
-    var app = XCUIApplication()
+class HealthRecordCreationUITests: XCTestCase {
+     //MARK: - Properties
+     var app = XCUIApplication()
 
     //MARK: - Lifecycles
     override func setUpWithError() throws {
-        try super.setUpWithError()
-        continueAfterFailure = false
-        self.app.launch()
+         try super.setUpWithError()
+         continueAfterFailure = false
+         self.app.launch()
+     }
 
-    }
-
-    override func tearDownWithError() throws {
+     override func tearDownWithError() throws {
         try super.tearDownWithError()
         
     }
-
+    
     //MARK: - Functions
     func test_addHealthRecord() {
         let addButton = self.app.navigationBars["Health Records"].buttons["addButton"]
@@ -34,14 +33,14 @@ class CreateRecordViewUITests: XCTestCase {
         let record = app.keys["188"]
         let datePicker = self.app.datePickers["recordDatePicker"]
         let createButton = self.app.buttons["createButton"]
-        let healthRecordsNabLabel = self.app.navigationBars["Health Records"].staticTexts["Health Records"]
-        let recordCell = self.app.tableRows["recordsList"]
+        let healthRecordsNavLabel = self.app.navigationBars["Health Records"].staticTexts["Health Records"]
+        let recordList = self.app.tables["recordsList"]
+        let recordCell = recordList.cells["0 count/min, 7/5/2023, HEART RATE"]
         addButton.tap()
         healthTypeSegment.tap()
         textField.tap()
         datePicker.tap()
-        createButton.tap()
+        createButton.forceTapElement()
         XCTAssertTrue(recordCell.exists)
-    }
-
-}
+     }
+ }

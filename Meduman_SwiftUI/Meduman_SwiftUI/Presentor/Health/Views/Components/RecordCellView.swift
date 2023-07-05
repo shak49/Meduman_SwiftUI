@@ -33,9 +33,9 @@ struct RecordCellView: View {
                 }
             }
             .padding(.leading, 32)
-            .onTapGesture(perform: {
-                print("GESTURE")
-            })
+//            .onTapGesture(perform: {
+//                print("GESTURE")
+//            })
         }
     }
 }
