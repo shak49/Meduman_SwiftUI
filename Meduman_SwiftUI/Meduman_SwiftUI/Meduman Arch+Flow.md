@@ -2,61 +2,19 @@
 
 
 - Structure
-        
-    - Data
-        - User
-            - AuthRepo
-            - FirestoreRepo
+
+    - App
+        - Auth
+            - Services
+            _ Views
             
         - Health
-            - HealthRepo
-            
-        - Notification
-            - Local-NotificationRepo
-            - Push-NotificationRepo
-            
-        - Networks
-            - HealthInfoNetworkServiceRepo
-            - Covid19NetworkServiceRepo
-            
-        - DataBase
-            - CoreDataRepo
-            - KeychainRepo
-            - UserDefaultRepo
-            - RealmRepo
+            - Services
+            - Views
         
-    - Domain
-        - Entity
-            - User
-            - Record
-            - Reminder
-            
-        - Use Cases
-            - UserAuthUseCase
-            - UserProfileUseCase
-            - HealthRecordUseCase
-            - ReminderUseCase
-
-    - Presentor(MVVM)
-        - Utility
-            - Helpers
-                - Constant
-                - Formatter
-                
-        - Auth
-            - Views
-                - View
-                - ViewModel
-                
-        - Record
-            - Views
-                - View
-                - ViewModel
-                
-        - Reminder
-            - Views
-                - View
-                - ViewModel
+    - Models
+        - User
+        - Health
                 
     - Utility
         - Constant

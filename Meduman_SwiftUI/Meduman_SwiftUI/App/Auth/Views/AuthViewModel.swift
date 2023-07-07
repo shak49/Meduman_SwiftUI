@@ -16,42 +16,44 @@ protocol AuthViewModelProtocol {
 
 class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     //MARK: - Properties
-    var manager: UserUseCase
+    var authRepo: AuthRepository = AuthRepository()
+    var firestoreRepo: FirestoreRepository = FirestoreRepository()
+    //var manager: UserUseCase
     @Published var isAuthenticated: Bool = false
     
     //MARK: - Lifecycles
-    init(manager: UserUseCase) {
-        self.manager = manager
-    }
-    
+
     //MARK: - Functions
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
         let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
-        manager.signUp(user: user, completion: { (user, error) in
+        authRepo.signUp(user: user) { (user, error) in
             if let error = error {
-                print("VM ERROR: \(error)!")
+                print("ERROR: \(error)!")
                 return
             }
-            if let user = user {
-                self.isAuthenticated = true
-                print("VM USER: \(user)!")
-            }
-        })
+            print("USER: \(user)")
+        }
+        self.createUserProfile(user: user)
     }
     
     func signIn(email: String, password: String) {
-        manager.signIn(email: email, password: password, completion: { user, error in
+        authRepo.signIn(email: email, password: password) { user, error in
             if let error = error {
-                print("ERROR: \(error)")
+                print("Error: \(error)")
             }
-            if let user = user {
-                self.isAuthenticated = true
-                print("USER: \(user)")
-            }
-        })
+            print("USER: \(user?.uid)")
+        }
     }
     
     func signOut() {
         
+    }
+    
+    func createUserProfile(user: User?) {
+        let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
+        firestoreRepo.createUserProfile(user: user) { user, error in
+            print("Create Profile Error: \(error)!")
+            print("Profile User: \(user?.email)!")
+        }
     }
 }
