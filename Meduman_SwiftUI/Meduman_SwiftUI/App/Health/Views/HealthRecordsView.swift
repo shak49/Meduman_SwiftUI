@@ -15,7 +15,6 @@ struct HealthRecordsView: View {
     static var healthStore = HKHealthStore()
     static var healthQuery: HKSampleQuery?
     static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    var useCase = HealthUseCase(repo: repo)
     @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     

@@ -16,16 +16,13 @@ struct SignUpView: View {
     @State private var password: String = ""
     @State private var phoneNumber: String = ""
     @State private var isVisible: Bool = false
-    static let authRepo = AuthRepository()
-    static let firestoreRepo = FirestoreRepository()
-    static let manager = UserUseCase(authRepo: authRepo, firestoreRepo: firestoreRepo)
     
     //MARK: - Lifecycles
-    init(manager: UserUseCase = manager) {
-        self.model = AuthViewModel(manager: manager)
+    init() {
+        self.model = AuthViewModel()
     }
     
-    // SHAK: Body
+    //MARK: - Body
     var body: some View {
         NavigationView {
             ZStack {

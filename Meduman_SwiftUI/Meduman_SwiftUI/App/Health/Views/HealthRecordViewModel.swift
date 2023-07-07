@@ -11,69 +11,42 @@ import Combine
 
 protocol HealthRecordViewModelProtocol {
     //MARK: - Properties
-    var useCase: HealthUseCase { get }
+    var repo: HealthRepository? { get }
     var records: [HKQuantitySample] { get }
     
     //MARK: - Lifecycles
-    init(useCase: HealthUseCase)
+    init(repo: HealthRepository?)
     
     //MARK: - Functions
-    func authorize()
-    func createBloodGlucose(record: Double?, dateAndTime: Date)
-    func createHeartRate(record: Double?, dateAndTime: Date)
-    func createBloodPressure(record: Double?, dateAndTime: Date)
+    func createHealthRecord(object: HKObject?)
     func readRecord(type: HKSampleType?)
     func removeRecord(indexSet: IndexSet)
 }
 
-//struct HealthViewModel: Identifiable {
-//    //MARK: - Properties
-//    private var health: Health?
-//    var id: String? {
-//        return health?.id
-//    }
-//    var record: Double? {
-//        return health?.record
-//    }
-//    var typeId: String? {
-//        return "\(health?.typeId)"
-//    }
-//    var unit: String? {
-//        return health?.unit
-//    }
-//    var date: Date? {
-//        return health?.date
-//    }
-//}
-
 class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
     //MARK: - Properties
+    var repo: HealthRepository?
+    private var cancellables = Set<AnyCancellable>()
+    private var currentQuantitySample: HKQuantitySample?
+    @Published var records: [HKQuantitySample] = []
     let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
-    var useCase: HealthUseCase
-    private var cancellables = Set<AnyCancellable>()
-    private var currentQuantitySample: HKQuantitySample?
-    @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
-    required init(useCase: HealthUseCase) {
-        self.useCase = useCase
-        self.authorize()
-        populateList()
+    required init(repo: HealthRepository?) {
+        self.repo = repo
+        self.repo?.requestAuthorization()
+        getSamples()
     }
     
     //MARK: - Functions
-    func populateList() {
+    func getSamples() {
         for sample in healthSamples {
-            self.readRecord(type: sample)
+            readRecord(type: sample)
         }
-    }
-    
-    func authorize() {
-        self.useCase.authorizeAccess()
     }
     
     func createBloodGlucose(record: Double?, dateAndTime: Date) {
@@ -81,7 +54,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         let bloodGlucose = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
         guard let object = Constructor.shared.quantitySample(health: bloodGlucose) else { return }
         self.records.append(object)
-        self.useCase.createHealthRecord(object: object)
+        createHealthRecord(object: object)
     }
     
     func createHeartRate(record: Double?, dateAndTime: Date) {
@@ -89,7 +62,7 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         let heartRate = Health(record: record, typeId: .heartRate, unit: HealthUnit.heartRate.rawValue, date: dateAndTime)
         guard let object = Constructor.shared.quantitySample(health: heartRate) else { return }
         self.records.append(object)
-        self.useCase.createHealthRecord(object: object)
+        createHealthRecord(object: object)
     }
     
     func createBloodPressure(record: Double?, dateAndTime: Date) {
@@ -97,24 +70,48 @@ class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
         let bloodPressure = Health(record: record, typeId: .bloodPressureSystolic, unit: HealthUnit.bloodPressure.rawValue, date: dateAndTime)
         guard let object = Constructor.shared.quantitySample(health: bloodPressure) else { return }
         self.records.append(object)
-        self.useCase.createHealthRecord(object: object)
+        createHealthRecord(object: object)
+    }
+    
+    func createHealthRecord(object: HKObject?) {
+        if let object = object {
+            self.repo?.writeHealthRecord(object: object)
+                .sink(receiveCompletion: { completion in
+                    switch  completion {
+                    case .finished:
+                        print("> CREATE COMPLETION:", completion)
+                    case .failure(let error):
+                        print("> ERROR:", error)
+                    }
+                }, receiveValue: { result in
+                    print("> SAVED:", result)
+                })
+                .store(in: &cancellables)
+        }
     }
     
     func readRecord(type: HKSampleType?) {
-        self.useCase.readHealthRecord(type: type)
+        guard let type = type else { return }
+        self.repo?.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
-                print(completion)
-            }, receiveValue: { records in
-                guard let records = records else { return }
-                records.compactMap { self.records.append($0) }
+                switch  completion {
+                case .finished:
+                    print(completion)
+                case .failure(let error):
+                    print("> ERROR:", error.localizedDescription)
+                }
+            }, receiveValue: { samples in
+                guard let samples = samples else { return }
+                samples.compactMap {
+                    self.records.append($0) }
             })
             .store(in: &cancellables)
     }
     
     func removeRecord(indexSet: IndexSet) {
         indexSet.forEach { index in
-            self.useCase.removeHealthRecord(sample: self.records[index].self)
+            self.repo?.removeHealthRecord(object: self.records[index].self)
             self.records.remove(at: index)
         }
     }
