@@ -8,9 +8,9 @@
 import HealthKit
 
 
-class Constructor {
+class Constraint {
     //MARK: - Properties
-    static let shared = Constructor()
+    static let shared = Constraint()
     
     //MARK: - Functions
     func quantitySample(health: Health?) -> HKQuantitySample? {

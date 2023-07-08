@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  Meduman_SwiftUI
+
+  Created by Shak Feizi on 7/7/23.
+  
+*/
+
+
+// UNIT
+ "Health_Blood_Glucose"      = "mg/dL";
+ "Health_Blood_Pressure"     = "mmHg";
+ "Health_Heart_Rate"         = "count/min";
+
+ // ERROR
+ "User_Creation_Error"       = "Unable to create the user.";
+ "User_NotFound_Error"       = "The server responded with no data.";
+
+ "Health_Unavailable_Error"  = "Health type is not available.";
+ "Health_Access_Error"       = "Unable to access health records.";
+ "Health_Authorize_Error"    = "Unable to authorize access.";
+ "Health_Write_Error"        = "Unable to write health record.";
+ "Health_Read_Error"         = "Unable to read health record.";
+ "Health_Remove_Error"       = "Unable to remove health record.";
+
+ "Network_URL_Error"         = "Bad URL.";
+ "Network_Server_Error"      = "Unable to find server.";
+ "Network_Decode_Error"      = "Unable to decode.";
+ "Network_Data_Error"        = "No data found.";
+ "Network_Respnse_Error"     = "Invalid server response.";
+
+ // API
+
+ // ALERT
