@@ -28,6 +28,7 @@ struct CreateMedicationReminderView: View {
     //MARK: - Properties
     @State private var medicine: String = ""
     @State private var dosage: String = ""
+    @State private var repeats: Bool = false
     @State private var frequency: Frequency = Frequency.day
     @State private var mealTime: MealTime = MealTime.beforeMeal
     @State private var dateAndTime: Date = Date()
@@ -54,19 +55,24 @@ struct CreateMedicationReminderView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                Picker("", selection: self.$frequency) {
-                    ForEach(Frequency.allCases) { type in
-                        Text(type.rawValue)
-                            .tag(type)
-                    }
+                HStack {
+                    Toggle("Repeat:", isOn: self.$repeats)
+                        .frame(width: 150)
+                    DatePicker("", selection: self.$dateAndTime, displayedComponents: .hourAndMinute)  
                 }
-                .pickerStyle(.segmented)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                DatePicker("", selection: self.$dateAndTime)
-                    .datePickerStyle(.graphical)
+                if self.repeats {
+                    Picker("", selection: self.$frequency) {
+                        ForEach(Frequency.allCases) { type in
+                                Text(type.rawValue)
+                                    .tag(type)
+                        }
+                    }
+                    .pickerStyle(.segmented)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
+                }
                 Picker("", selection: self.$mealTime) {
                     ForEach(MealTime.allCases) { time in
                         Text(time.rawValue)

@@ -140,9 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				6D1D17C92A5789AF00B4A13D /* Auth */,
-				6D1D17CC2A578B0600B4A13D /* Dashboard */,
+				6D310E8F2A637C2C005F7630 /* Dashboard */,
 				6D1D17CA2A5789C200B4A13D /* Health */,
-				6D1D17CB2A578AD100B4A13D /* Med Reminder */,
+				6D1D17CB2A578AD100B4A13D /* Reminder */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -151,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */,
-				6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */,
 				6D63A39528CEC37D0076BB1E /* Views */,
 			);
 			path = Auth;
@@ -166,19 +165,12 @@
 			path = Health;
 			sourceTree = "<group>";
 		};
-		6D1D17CB2A578AD100B4A13D /* Med Reminder */ = {
+		6D1D17CB2A578AD100B4A13D /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
 				6D1D17D92A58B7B100B4A13D /* Views */,
 			);
-			path = "Med Reminder";
-			sourceTree = "<group>";
-		};
-		6D1D17CC2A578B0600B4A13D /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dashboard;
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 		6D1D17D92A58B7B100B4A13D /* Views */ = {
@@ -198,6 +190,13 @@
 				6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D310E8F2A637C2C005F7630 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		6D63A39528CEC37D0076BB1E /* Views */ = {
@@ -264,6 +263,7 @@
 				6D1D17C82A57898D00B4A13D /* App */,
 				6DE5F07E29A474FE00FE8C1E /* Extensions */,
 				6D82EF66277266AD0010E25B /* Preview Content */,
+				6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */,
 				6DD5CAAB294BF92D00CB66CC /* Constraint.swift */,
 				6D82EFA727739A020010E25B /* AuthError.swift */,
 				6D63A3B828E9287E0076BB1E /* HealthError.swift */,
