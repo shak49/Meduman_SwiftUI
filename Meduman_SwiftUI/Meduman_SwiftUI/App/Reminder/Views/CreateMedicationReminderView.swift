@@ -26,12 +26,14 @@ enum MealTime: String, CaseIterable, Identifiable {
 
 struct CreateMedicationReminderView: View {
     //MARK: - Properties
+    @ObservedObject private var viewModel = MedicationReminderViewModel()
     @State private var medicine: String = ""
     @State private var dosage: String = ""
+    @State private var date: Date = Date()
     @State private var frequency: Frequency = Frequency.day
-    @State private var mealTime: MealTime = MealTime.beforeMeal
-    @State private var dateAndTime: Date = Date()
-    @State private var note: String = ""
+    @State private var time: Date = Date()
+    @State private var afterMeal: MealTime = MealTime.beforeMeal
+    @State private var descpription: String = ""
     @Binding var isSheetPresented: Bool
     
     //MARK: - Body
@@ -58,7 +60,7 @@ struct CreateMedicationReminderView: View {
                     Text("Start Date")
                         .padding(.horizontal, 16)
                         .padding(.top, 8)
-                    DatePicker("", selection: self.$dateAndTime, displayedComponents: .date)
+                    DatePicker("", selection: self.$date, displayedComponents: .date)
                         .datePickerStyle(.graphical)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -82,7 +84,7 @@ struct CreateMedicationReminderView: View {
                         .padding(.leading, 8)
                 }
                 .padding(.horizontal, 16)
-                Picker("", selection: self.$mealTime) {
+                Picker("", selection: self.$afterMeal) {
                     ForEach(MealTime.allCases) { time in
                         Text(time.rawValue)
                             .tag(time)
@@ -91,7 +93,7 @@ struct CreateMedicationReminderView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                TextEditor(text: self.$note)
+                TextEditor(text: self.$descpription)
                     .frame(height: 250)
                     .font(.body)
                     .border(Color(.systemGray6), width: 2)
@@ -105,6 +107,7 @@ struct CreateMedicationReminderView: View {
                         self.isSheetPresented = false
                     }
                     Button("Save") {
+                        self.viewModel.createReminder(medicine: self.medicine, dosage: self.dosage, date: self.date, frequency: self.frequency.rawValue, time: self.time, afterMeal: self.afterMeal.rawValue, description: self.descpription)
                         self.isSheetPresented = false
                     }
                 }

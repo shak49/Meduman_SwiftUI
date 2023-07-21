@@ -13,11 +13,13 @@ import FirebaseFirestoreSwift
 protocol FirestoreProtocol {
     // SHAK: Properties
     var firestore: Firestore { get }
-    typealias CompletionHandler = (User?, AuthError?) -> Void
+    typealias AuthHandler = (User?, AuthError?) -> Void
+    typealias ReminderHandler = (Bool?, ReminderError?) -> Void
     
     // SHAK: Functions
-    func createUserProfile(user: User?, completion: @escaping CompletionHandler)
-    func fetchUserProfile(userId: String?, completion: @escaping CompletionHandler)
+    func createUserProfile(user: User?, completion: @escaping AuthHandler)
+    func fetchUserProfile(userId: String?, completion: @escaping AuthHandler)
+    func createReminder(reminder: Reminder?, completion: ReminderHandler)
 }
 
 
@@ -28,10 +30,10 @@ class FirestoreRepository: FirestoreProtocol {
     //MARK: - Lifecycles
     
     //MARK: - Functions
-    func createUserProfile(user: User?, completion: @escaping CompletionHandler) {
+    func createUserProfile(user: User?, completion: @escaping AuthHandler) {
         guard let user = user else { return }
         do {
-            try firestore.collection("user").document(user.id ?? "").setData(from: user)
+            try firestore.collection("users").document(user.id ?? "").setData(from: user)
             completion(user, .unableToCreateUser)
         } catch let error {
             print("Error writing user to Firestore: \(error)")
@@ -39,11 +41,33 @@ class FirestoreRepository: FirestoreProtocol {
         }
     }
     
-    func fetchUserProfile(userId: String?, completion: @escaping CompletionHandler) {
+    func fetchUserProfile(userId: String?, completion: @escaping AuthHandler) {
         guard let userId = userId else { return }
-        firestore.collection("User").document(userId).getDocument { [weak self] (snapshot, error) in
+        firestore.collection("users").document(userId).getDocument { [weak self] (snapshot, error) in
             let userProfile = try? snapshot?.data(as: User.self)
             completion(userProfile, .noUser)
         }
+    }
+    
+    func createReminder(reminder: Reminder?, completion: ReminderHandler) {
+        guard let reminder = reminder else {
+            completion(nil, .unableToFindReminder)
+            return
+        }
+        self.firestore.collection("reminders").document(reminder.id ?? "").setData([
+            "id" : reminder.id,
+            "medicine" : reminder.medicine,
+            "dosage" : reminder.dosage,
+            "date" : reminder.date,
+            "frequency" : reminder.frequency,
+            "time" : reminder.time,
+            "afterMeal" : reminder.afterMeal,
+            "description" : reminder.description
+        ]) { error in
+            if error != nil {
+                completion(nil, .unableToCreateReminder)
+            }
+        }
+        completion(true, nil)
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MedicineReminderListView: View {
     //MARK: - Properties
+    @ObservedObject private var viewModel = MedicationReminderViewModel()
     @State private var isPresented: Bool = false
     
     //MARK: - Body
