@@ -9,12 +9,15 @@ import Foundation
 
 
 enum ReminderError: LocalizedError {
+    case noSnapshotAvailable
     case unableToFindReminder
     case unableToCreateReminder
     case unableToFetchListOfReminders
     
     var description: String {
         switch self {
+        case .noSnapshotAvailable:
+            return "There is no snapshot available."
         case .unableToFindReminder:
             return "Unable to find reminder."
         case .unableToCreateReminder:

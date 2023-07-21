@@ -17,7 +17,9 @@ struct MedicineReminderListView: View {
     var body: some View {
         NavigationView {
             List {
-                
+                ForEach(self.viewModel.reminders) { reminder in
+                    Text(reminder.medicine)
+                }
             }
             .toolbar(content: {
                 Button("Add") {

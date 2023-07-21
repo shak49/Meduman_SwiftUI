@@ -11,15 +11,23 @@ import Foundation
 class MedicationReminderViewModel: ObservableObject {
     //MARK: - Properties
     var repo = FirestoreRepository()
+    @Published var reminders = [Reminder]()
     
     //MARK: - Lifecycles
     init() {
-        fetchListOfReminders()
+        fetchReminders()
     }
     
     //MARK: - Functions
-    func fetchListOfReminders() {
-        
+    func fetchReminders() {
+        self.repo.fetchListOfReminders { reminder, error in
+            if error != nil {
+                print(error)
+            }
+            guard let reminder = reminder else { return }
+            print(reminder)
+            self.reminders.append(reminder)
+        }
     }
     
     func createReminder(medicine: String?, dosage: String?, date: Date?, frequency: String?, time: Date?, afterMeal: String?, description: String?) {

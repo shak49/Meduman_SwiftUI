@@ -14,12 +14,13 @@ protocol FirestoreProtocol {
     // SHAK: Properties
     var firestore: Firestore { get }
     typealias AuthHandler = (User?, AuthError?) -> Void
-    typealias ReminderHandler = (Bool?, ReminderError?) -> Void
+    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler)
     func fetchUserProfile(userId: String?, completion: @escaping AuthHandler)
-    func createReminder(reminder: Reminder?, completion: ReminderHandler)
+    func fetchListOfReminders(completion: @escaping ReminderHandler)
+    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
 
@@ -49,7 +50,20 @@ class FirestoreRepository: FirestoreProtocol {
         }
     }
     
-    func createReminder(reminder: Reminder?, completion: ReminderHandler) {
+    func fetchListOfReminders(completion: @escaping ReminderHandler) {
+        firestore.collection("reminders").getDocuments { snapshot, error in
+            if error != nil {
+                completion(nil, .unableToFetchListOfReminders)
+            }
+            guard let documents = snapshot?.documents else { return }
+            for document in documents {
+                let reminder = try? document.data(as: Reminder.self)
+                completion(reminder, nil)
+            }
+        }
+    }
+    
+    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void) {
         guard let reminder = reminder else {
             completion(nil, .unableToFindReminder)
             return
