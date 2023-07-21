@@ -24,7 +24,7 @@ struct MedicineReminderListView: View {
                 }
             })
             .sheet(isPresented: self.$isPresented, content: {
-                CreateMedicationReminderView(isPresented: self.$isPresented)
+                CreateMedicationReminderView(isSheetPresented: self.$isPresented)
             })
             .navigationTitle("Reminders")
         }
