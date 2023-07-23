@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Reminder: Codable, Identifiable {
-    var id: String?
+    var id: String
     var medicine: String
     var dosage: String
     var date: Date
@@ -18,7 +18,7 @@ struct Reminder: Codable, Identifiable {
     var afterMeal: String
     var description: String
     
-    init(id: String? = UUID().uuidString, medicine: String, dosage: String, date: Date, frequency: String, time: Date, afterMeal: String, description: String) {
+    init(id: String = UUID().uuidString, medicine: String, dosage: String, date: Date, frequency: String, time: Date, afterMeal: String, description: String) {
         self.id = id
         self.medicine = medicine
         self.dosage = dosage
