@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Firebase
 
 
-struct Reminder: Codable, Identifiable {
+struct Reminder: Identifiable, Codable {
     var id: String
     var medicine: String
     var dosage: String

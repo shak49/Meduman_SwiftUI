@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MedicineReminderListView: View {
     //MARK: - Properties
-    @ObservedObject private var viewModel = MedicationReminderViewModel()
+    @ObservedObject var viewModel = MedicationReminderViewModel()
     @State private var isPresented: Bool = false
     
     //MARK: - Body
@@ -21,13 +21,13 @@ struct MedicineReminderListView: View {
                     Text(reminder.medicine)
                 }
             }
+            .sheet(isPresented: self.$isPresented, content: {
+                CreateMedicationReminderView(isSheetPresented: self.$isPresented)
+            })
             .toolbar(content: {
                 Button("Add") {
                     self.isPresented = true
                 }
-            })
-            .sheet(isPresented: self.$isPresented, content: {
-                CreateMedicationReminderView(isSheetPresented: self.$isPresented)
             })
             .navigationTitle("Reminders")
         }

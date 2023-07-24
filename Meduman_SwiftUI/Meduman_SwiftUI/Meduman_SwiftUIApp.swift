@@ -36,7 +36,7 @@ struct Meduman_SwiftUIApp: App {
 //            SignUpView()
 //            HealthRecordsView()
 //                .environmentObject(healthModel)
-            MedicineReminderListView()
+            MedicineReminderListView(viewModel: MedicationReminderViewModel())
         }
     }
 }
