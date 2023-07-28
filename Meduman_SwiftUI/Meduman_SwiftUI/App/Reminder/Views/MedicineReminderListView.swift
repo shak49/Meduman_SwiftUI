@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MedicineReminderListView: View {
     //MARK: - Properties
-    @ObservedObject var viewModel: MedicationReminderViewModel
+    @EnvironmentObject var viewModel: MedicationReminderViewModel
     @State var isPresented: Bool = false
     
     //MARK: - Body
@@ -38,6 +38,6 @@ struct MedicineReminderListView: View {
 
 struct MedicineReminderListView_Previews: PreviewProvider {
     static var previews: some View {
-        MedicineReminderListView(viewModel: MedicationReminderViewModel())
+        MedicineReminderListView()
     }
 }

@@ -16,6 +16,7 @@ struct Meduman_SwiftUIApp: App {
     static var healthQuery: HKSampleQuery?
     static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     @StateObject var healthModel = HealthRecordViewModel(repo: healthRepo)
+    @StateObject var reminderModel = MedicationReminderViewModel()
     
     //MARK: - Lifecycles
     init() {
@@ -36,7 +37,8 @@ struct Meduman_SwiftUIApp: App {
 //            SignUpView()
 //            HealthRecordsView()
 //                .environmentObject(healthModel)
-            MedicineReminderListView(viewModel: MedicationReminderViewModel())
+            MedicineReminderListView()
+                .environmentObject(reminderModel)
         }
     }
 }
