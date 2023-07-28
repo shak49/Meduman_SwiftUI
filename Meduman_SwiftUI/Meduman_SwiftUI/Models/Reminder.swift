@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Firebase
 
 
-struct Reminder {
-    var id: String?
+struct Reminder: Identifiable, Codable {
+    var id: String = UUID().uuidString
     var medicine: String
     var dosage: String
     var date: Date
@@ -17,15 +18,4 @@ struct Reminder {
     var time: Date
     var afterMeal: String
     var description: String
-    
-    init(id: String? = UUID().uuidString, medicine: String, dosage: String, date: Date, frequency: String, time: Date, afterMeal: String, description: String) {
-        self.id = id
-        self.medicine = medicine
-        self.dosage = dosage
-        self.date = date
-        self.frequency = frequency
-        self.time = time
-        self.afterMeal = afterMeal
-        self.description = description
-    }
 }

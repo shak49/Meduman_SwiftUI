@@ -34,6 +34,7 @@ struct CreateMedicationReminderView: View {
     @State private var time: Date = Date()
     @State private var afterMeal: MealTime = MealTime.beforeMeal
     @State private var descpription: String = ""
+    @State private var isTimeDisplayed: Bool = false
     @Binding var isSheetPresented: Bool
     
     //MARK: - Body
@@ -83,7 +84,15 @@ struct CreateMedicationReminderView: View {
                     Text("Time")
                         .padding(.leading, 8)
                 }
+                .onTapGesture {
+                    self.isTimeDisplayed = true
+                }
                 .padding(.horizontal, 16)
+                if self.isTimeDisplayed {
+                    DatePicker("", selection: self.$time, displayedComponents: .hourAndMinute)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                }
                 Picker("", selection: self.$afterMeal) {
                     ForEach(MealTime.allCases) { time in
                         Text(time.rawValue)

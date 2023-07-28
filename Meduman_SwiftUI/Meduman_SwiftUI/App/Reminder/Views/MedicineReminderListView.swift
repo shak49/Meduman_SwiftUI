@@ -10,15 +10,19 @@ import SwiftUI
 
 struct MedicineReminderListView: View {
     //MARK: - Properties
-    @ObservedObject private var viewModel = MedicationReminderViewModel()
-    @State private var isPresented: Bool = false
+    @ObservedObject var viewModel: MedicationReminderViewModel
+    @State var isPresented: Bool = false
     
     //MARK: - Body
     var body: some View {
         NavigationView {
-            List {
-                
+            List(self.viewModel.reminders) { reminder in
+                VStack {
+                    Text(reminder.medicine)
+                    Text(reminder.description)
+                }
             }
+            .listStyle(.plain)
             .toolbar(content: {
                 Button("Add") {
                     self.isPresented = true
@@ -34,6 +38,6 @@ struct MedicineReminderListView: View {
 
 struct MedicineReminderListView_Previews: PreviewProvider {
     static var previews: some View {
-        MedicineReminderListView()
+        MedicineReminderListView(viewModel: MedicationReminderViewModel())
     }
 }
