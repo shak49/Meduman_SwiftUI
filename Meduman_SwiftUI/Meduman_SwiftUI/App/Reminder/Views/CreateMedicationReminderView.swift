@@ -26,7 +26,7 @@ enum MealTime: String, CaseIterable, Identifiable {
 
 struct CreateMedicationReminderView: View {
     //MARK: - Properties
-    @ObservedObject private var viewModel = MedicationReminderViewModel()
+    @EnvironmentObject var viewModel: MedicationReminderViewModel
     @State private var medicine: String = ""
     @State private var dosage: String = ""
     @State private var date: Date = Date()
