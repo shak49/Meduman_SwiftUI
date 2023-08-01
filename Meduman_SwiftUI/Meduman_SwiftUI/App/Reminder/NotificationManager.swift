@@ -9,6 +9,26 @@ import Foundation
 import UserNotifications
 
 
+enum RepeatFrequency: Double {
+    case daily
+    case weekly
+    case monthly
+    case annualy
+    
+    var value: Double {
+        switch self {
+        case .daily:
+            return 60 * 1440
+        case .weekly:
+            return (60 * 1440) * 7
+        case .monthly:
+            return (60 * 1440) * 30
+        case .annualy:
+            return (60 * 1440) * 365
+        }
+    }
+}
+
 class NotificationManager {
     //MARK: - Properties
     static let shared = NotificationManager()
@@ -26,9 +46,23 @@ class NotificationManager {
             content.title = reminder.medicine
             content.body = reminder.description
             let timeInterval = reminder.time.timeIntervalSinceNow
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-            let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request)
+            if reminder.frequency == "Week" {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.weekly.rawValue, repeats: true)
+                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            } else if reminder.frequency == "Month" {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.monthly.rawValue, repeats: true)
+                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            } else if reminder.frequency == "Year" {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.annualy.rawValue, repeats: true)
+                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            } else {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.daily.rawValue, repeats: true)
+                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            }
         }
     }
     
