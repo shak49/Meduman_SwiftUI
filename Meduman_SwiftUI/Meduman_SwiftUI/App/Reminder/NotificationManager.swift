@@ -18,13 +18,13 @@ enum RepeatFrequency: Double {
     var value: Double {
         switch self {
         case .daily:
-            return 60 * 1440
+            return (60 * 1_440)
         case .weekly:
-            return (60 * 1440) * 7
+            return (60 * 1_440) * 7
         case .monthly:
-            return (60 * 1440) * 30
+            return (60 * 1_440) * 30
         case .annualy:
-            return (60 * 1440) * 365
+            return (60 * 1_440) * 365
         }
     }
 }
@@ -47,7 +47,7 @@ class NotificationManager {
             content.body = reminder.description
             let timeInterval = reminder.time.timeIntervalSinceNow
             if reminder.frequency == "Week" {
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.weekly.rawValue, repeats: true)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.weekly.rawValue ?? 60.0, repeats: true)
                 let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
             } else if reminder.frequency == "Month" {

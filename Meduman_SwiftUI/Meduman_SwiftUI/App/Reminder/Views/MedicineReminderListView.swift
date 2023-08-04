@@ -9,6 +9,13 @@ import SwiftUI
 
 
 struct MedicineReminderListView: View {
+    //MARK: - Parameters
+    enum Parameters {
+        static let borderWidth: CGFloat = 2
+        static let afterMealColor: Color = Color(.systemOrange)
+        static let beforeMealColor: Color = Color(.systemBlue)
+    }
+    
     //MARK: - Properties
     @EnvironmentObject var viewModel: MedicationReminderViewModel
     @State var isPresented: Bool = false
@@ -17,10 +24,30 @@ struct MedicineReminderListView: View {
     var body: some View {
         NavigationView {
             List(self.viewModel.reminders) { reminder in
-                VStack {
-                    Text(reminder.medicine)
-                    Text(reminder.description)
+                HStack {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(reminder.medicine)
+                            .font(.system(size: 24))
+                        Capsule()
+                            .frame(width: 100, height: 15)
+                            .foregroundColor(reminder.mealTime == "After Meal" ? Parameters.afterMealColor : Parameters.beforeMealColor)
+                            .overlay {
+                                Text(reminder.mealTime)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 12))
+                                    .padding(5)
+                            }
+                    }
+                    Spacer()
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 75, height: 75)
+                        .foregroundColor(Color(.systemGray6))
+                        .overlay {
+                            Text("\(reminder.time.timeIntervalSince1970)")
+                        }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
             }
             .listStyle(.plain)
             .toolbar(content: {

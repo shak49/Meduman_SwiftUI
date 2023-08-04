@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -57,7 +58,8 @@ class FirestoreRepository: FirestoreProtocol {
             }
             guard let documents = snapshot?.documents else { return }
             for document in documents {
-                let reminder = try? document.data(as: Reminder.self)
+                let data = document.data()
+                let reminder = Reminder(medicine: data["medicine"] as? String ?? "", dosage: data["dosage"] as? String ?? "", date: data["date"] as? Date ?? Date(), frequency: data["frequency"] as? String ?? "", time: data["time"] as? Date ?? Date(), mealTime: data["mealTime"] as? String ?? "", description: data["description"] as? String ?? "")
                 completion(reminder, nil)
             }
         }
@@ -75,7 +77,7 @@ class FirestoreRepository: FirestoreProtocol {
             "date" : reminder.date,
             "frequency" : reminder.frequency,
             "time" : reminder.time,
-            "afterMeal" : reminder.afterMeal,
+            "mealTime" : reminder.mealTime,
             "description" : reminder.description
         ]) { error in
             if error != nil {
