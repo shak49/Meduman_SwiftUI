@@ -32,6 +32,7 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
                 return
             }
             print("USER: \(user)")
+            self.isAuthenticated = true
         }
         self.createUserProfile(user: user)
     }
@@ -42,6 +43,7 @@ class AuthViewModel: ObservableObject, AuthViewModelProtocol {
                 print("Error: \(error)")
             }
             print("USER: \(user?.uid)")
+            self.isAuthenticated = true
         }
     }
     

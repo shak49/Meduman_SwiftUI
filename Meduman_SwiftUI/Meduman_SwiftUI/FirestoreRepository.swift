@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -52,13 +53,17 @@ class FirestoreRepository: FirestoreProtocol {
     
     func fetchListOfReminders(completion: @escaping ReminderHandler) {
         firestore.collection("reminders").getDocuments { snapshot, error in
-            if error != nil {
+            if let error = error {
                 completion(nil, .unableToFetchListOfReminders)
             }
             guard let documents = snapshot?.documents else { return }
-            for document in documents {
-                let reminder = try? document.data(as: Reminder.self)
-                completion(reminder, nil)
+            documents.map { document in
+                do {
+                    let reminder = try document.data(as: Reminder.self)
+                    completion(reminder, nil)
+                } catch {
+                    print("Error decoding reminders!")
+                }
             }
         }
     }
@@ -75,7 +80,7 @@ class FirestoreRepository: FirestoreProtocol {
             "date" : reminder.date,
             "frequency" : reminder.frequency,
             "time" : reminder.time,
-            "afterMeal" : reminder.afterMeal,
+            "mealTime" : reminder.mealTime,
             "description" : reminder.description
         ]) { error in
             if error != nil {

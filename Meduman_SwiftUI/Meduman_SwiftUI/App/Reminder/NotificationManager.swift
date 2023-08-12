@@ -9,6 +9,26 @@ import Foundation
 import UserNotifications
 
 
+enum RepeatFrequency: Double {
+    case daily
+    case weekly
+    case monthly
+    case annualy
+    
+    var value: Double {
+        switch self {
+        case .daily:
+            return (60 * 1_440)
+        case .weekly:
+            return (60 * 1_440) * 7
+        case .monthly:
+            return (60 * 1_440) * 30
+        case .annualy:
+            return (60 * 1_440) * 365
+        }
+    }
+}
+
 class NotificationManager {
     //MARK: - Properties
     static let shared = NotificationManager()

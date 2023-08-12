@@ -25,6 +25,19 @@ enum MealTime: String, CaseIterable, Identifiable {
 }
 
 struct CreateMedicationReminderView: View {
+    //MARK: - Parameters
+    private enum Parameters {
+        static let textfieldWidth: CGFloat = 200
+        static let horizontalPadding: CGFloat = 16
+        static let verticalPadding: CGFloat = 8
+        static let listPaddingTop: CGFloat = 32
+        static let iconWidth: CGFloat = 25
+        static let buttonColor: Color = Color(.systemGreen)
+        static let textEditorHeight: CGFloat = 250
+        static let textEditorBorderColor: Color = Color(.systemGray6)
+        static let textEditorBorderWidth: CGFloat = 2
+    }
+    
     //MARK: - Properties
     @EnvironmentObject var viewModel: MedicationReminderViewModel
     @State private var medicine: String = ""
@@ -45,53 +58,53 @@ struct CreateMedicationReminderView: View {
                     Text("Medicine")
                     Spacer()
                     TextField("Enter medicine name...", text: self.$medicine)
-                        .frame(width: 200, alignment: .trailing)
+                        .frame(width: Parameters.textfieldWidth, alignment: .trailing)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+                .padding(.horizontal, Parameters.horizontalPadding)
+                .padding(.vertical, Parameters.verticalPadding)
                 HStack {
                     Text("Dosage")
                     Spacer()
                     TextField("Enter medicine dosage...", text: self.$dosage)
-                        .frame(width: 200, alignment: .trailing)
+                        .frame(width: Parameters.textfieldWidth, alignment: .trailing)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                VStack {
-                    Text("Start Date")
-                        .padding(.horizontal, 16)
-                        .padding(.top, 8)
-                    DatePicker("", selection: self.$date, displayedComponents: .date)
-                        .datePickerStyle(.graphical)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                }
-                Picker("", selection: self.$frequency) {
-                    ForEach(Frequency.allCases) { type in
-                        Text(type.rawValue)
-                            .tag(type)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+                .padding(.horizontal, Parameters.horizontalPadding)
+                .padding(.vertical, Parameters.verticalPadding)
+//                VStack {
+//                    Text("Start Date")
+//                        .padding(.horizontal, Parameters.horizontalPadding)
+//                        .padding(.top, Parameters.verticalPadding)
+//                    DatePicker("", selection: self.$date, displayedComponents: .date)
+//                        .datePickerStyle(.graphical)
+//                        .padding(.horizontal, Parameters.horizontalPadding)
+//                        .padding(.vertical, Parameters.verticalPadding)
+//                }
+//                Picker("", selection: self.$frequency) {
+//                    ForEach(Frequency.allCases) { type in
+//                        Text(type.rawValue)
+//                            .tag(type)
+//                    }
+//                }
+//                .pickerStyle(.segmented)
+//                .padding(.horizontal, Parameters.horizontalPadding)
+//                .padding(.vertical, Parameters.verticalPadding)
                 HStack {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25)
-                        .cornerRadius(12.5)
-                        .foregroundColor(Color(.systemGreen))
+                        .frame(width: Parameters.iconWidth, height: Parameters.iconWidth)
+                        .foregroundColor(Parameters.buttonColor)
                     Text("Time")
-                        .padding(.leading, 8)
+                        .padding(.leading, Parameters.verticalPadding)
                 }
                 .onTapGesture {
                     self.isTimeDisplayed = true
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, Parameters.horizontalPadding)
                 if self.isTimeDisplayed {
                     DatePicker("", selection: self.$time, displayedComponents: .hourAndMinute)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .datePickerStyle(.wheel)
+                        .padding(.horizontal, Parameters.horizontalPadding)
+                        .padding(.vertical, Parameters.verticalPadding)
                 }
                 Picker("", selection: self.$afterMeal) {
                     ForEach(MealTime.allCases) { time in
@@ -100,16 +113,16 @@ struct CreateMedicationReminderView: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+                .padding(.horizontal, Parameters.horizontalPadding)
+                .padding(.vertical, Parameters.verticalPadding)
                 TextEditor(text: self.$descpription)
-                    .frame(height: 250)
+                    .frame(height: Parameters.textEditorHeight)
                     .font(.body)
-                    .border(Color(.systemGray6), width: 2)
-                    .padding(.horizontal, 16)
+                    .border(Parameters.textEditorBorderColor, width: Parameters.textEditorBorderWidth)
+                    .padding(.horizontal, Parameters.horizontalPadding)
             }
             .listStyle(.plain)
-            .padding(.top, 32)
+            .padding(.top, Parameters.listPaddingTop)
             .toolbar(content: {
                 HStack {
                     Button("Dismiss") {
