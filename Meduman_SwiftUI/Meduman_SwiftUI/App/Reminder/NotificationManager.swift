@@ -46,23 +46,9 @@ class NotificationManager {
             content.title = reminder.medicine
             content.body = reminder.description
             let timeInterval = reminder.time.timeIntervalSinceNow
-            if reminder.frequency == "Week" {
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.weekly.rawValue ?? 60.0, repeats: true)
-                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            } else if reminder.frequency == "Month" {
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.monthly.rawValue, repeats: true)
-                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            } else if reminder.frequency == "Year" {
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.annualy.rawValue, repeats: true)
-                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            } else {
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval * RepeatFrequency.daily.rawValue, repeats: true)
-                let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            }
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let request = UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
         }
     }
     

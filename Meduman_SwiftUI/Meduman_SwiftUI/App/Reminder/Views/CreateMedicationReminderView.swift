@@ -70,24 +70,24 @@ struct CreateMedicationReminderView: View {
                 }
                 .padding(.horizontal, Parameters.horizontalPadding)
                 .padding(.vertical, Parameters.verticalPadding)
-                VStack {
-                    Text("Start Date")
-                        .padding(.horizontal, Parameters.horizontalPadding)
-                        .padding(.top, Parameters.verticalPadding)
-                    DatePicker("", selection: self.$date, displayedComponents: .date)
-                        .datePickerStyle(.graphical)
-                        .padding(.horizontal, Parameters.horizontalPadding)
-                        .padding(.vertical, Parameters.verticalPadding)
-                }
-                Picker("", selection: self.$frequency) {
-                    ForEach(Frequency.allCases) { type in
-                        Text(type.rawValue)
-                            .tag(type)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal, Parameters.horizontalPadding)
-                .padding(.vertical, Parameters.verticalPadding)
+//                VStack {
+//                    Text("Start Date")
+//                        .padding(.horizontal, Parameters.horizontalPadding)
+//                        .padding(.top, Parameters.verticalPadding)
+//                    DatePicker("", selection: self.$date, displayedComponents: .date)
+//                        .datePickerStyle(.graphical)
+//                        .padding(.horizontal, Parameters.horizontalPadding)
+//                        .padding(.vertical, Parameters.verticalPadding)
+//                }
+//                Picker("", selection: self.$frequency) {
+//                    ForEach(Frequency.allCases) { type in
+//                        Text(type.rawValue)
+//                            .tag(type)
+//                    }
+//                }
+//                .pickerStyle(.segmented)
+//                .padding(.horizontal, Parameters.horizontalPadding)
+//                .padding(.vertical, Parameters.verticalPadding)
                 HStack {
                     Image(systemName: "plus.circle.fill")
                         .resizable()

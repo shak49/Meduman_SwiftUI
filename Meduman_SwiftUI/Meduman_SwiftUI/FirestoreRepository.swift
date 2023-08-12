@@ -59,7 +59,15 @@ class FirestoreRepository: FirestoreProtocol {
             guard let documents = snapshot?.documents else { return }
             for document in documents {
                 let data = document.data()
-                let reminder = Reminder(medicine: data["medicine"] as? String ?? "", dosage: data["dosage"] as? String ?? "", date: data["date"] as? Date ?? Date(), frequency: data["frequency"] as? String ?? "", time: data["time"] as? Date ?? Date(), mealTime: data["mealTime"] as? String ?? "", description: data["description"] as? String ?? "")
+                let reminder = Reminder(
+                    medicine: data["medicine"] as? String ?? "",
+                    dosage: data["dosage"] as? String ?? "",
+                    date: data["date"] as? Date ?? Date(),
+                    frequency: data["frequency"] as? String ?? "",
+                    time: data["time"] as? Date ?? Date(),
+                    mealTime: data["mealTime"] as? String ?? "",
+                    description: data["description"] as? String ?? ""
+                )
                 completion(reminder, nil)
             }
         }
@@ -70,6 +78,7 @@ class FirestoreRepository: FirestoreProtocol {
             completion(nil, .unableToFindReminder)
             return
         }
+        print("TIME: \(reminder.time)")
         self.firestore.collection("reminders").document(reminder.id ?? "").setData([
             "id" : reminder.id,
             "medicine" : reminder.medicine,
