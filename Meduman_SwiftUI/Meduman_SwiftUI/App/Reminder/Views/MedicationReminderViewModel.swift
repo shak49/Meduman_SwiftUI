@@ -27,7 +27,6 @@ class MedicationReminderViewModel: ObservableObject {
                     print(error)
                 }
                 guard let reminder = reminder else { return }
-                print(reminder.mealTime)
                 self.reminders.append(reminder)
             }
         }

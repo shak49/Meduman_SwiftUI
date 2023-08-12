@@ -29,12 +29,12 @@ struct MedicineReminderListView: View {
                         Text(reminder.medicine)
                             .font(.system(size: 24))
                         Capsule()
-                            .frame(width: 95, height: 25)
+                            .frame(width: 85, height: 20)
                             .foregroundColor(reminder.mealTime == "After Meal" ? Parameters.afterMealColor : Parameters.beforeMealColor)
                             .overlay {
                                 Text(reminder.mealTime)
                                     .foregroundColor(.white)
-                                    .font(.system(size: 14))
+                                    .font(.system(size: 12))
                                     .padding(5)
                             }
                     }
@@ -48,7 +48,6 @@ struct MedicineReminderListView: View {
                         }
                 }
                 .padding(.horizontal, 16)
-                .padding(.vertical, 8)
             }
             .listStyle(.plain)
             .toolbar(content: {

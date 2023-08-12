@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import Firebase
 
 
-struct Reminder: Identifiable {
+struct Reminder: Codable, Identifiable {
     var id: String = UUID().uuidString
     var medicine: String
     var dosage: String
