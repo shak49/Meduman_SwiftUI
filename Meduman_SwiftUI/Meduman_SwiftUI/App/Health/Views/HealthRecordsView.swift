@@ -12,9 +12,6 @@ import XCTest
 
 struct HealthRecordsView: View {
     //MARK: - Properties
-    static var healthStore = HKHealthStore()
-    static var healthQuery: HKSampleQuery?
-    static var repo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
     @EnvironmentObject var healthModel: HealthRecordViewModel
     @State private var isPresented = false
     

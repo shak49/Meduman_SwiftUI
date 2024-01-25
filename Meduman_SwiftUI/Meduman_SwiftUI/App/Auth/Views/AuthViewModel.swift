@@ -8,17 +8,10 @@
 import Foundation
 
 
-protocol AuthViewModelProtocol {
-    func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String)
-    func signIn(email: String, password: String)
-}
-
-
 class AuthViewModel: ObservableObject, AuthViewModelProtocol {
     //MARK: - Properties
-    var authRepo: AuthRepository = AuthRepository()
-    var firestoreRepo: FirestoreRepository = FirestoreRepository()
-    //var manager: UserUseCase
+    private var authRepo: AuthRepository = AuthRepository()
+    private var firestoreRepo: FirestoreRepository = FirestoreRepository()
     @Published var isAuthenticated: Bool = false
     
     //MARK: - Lifecycles
