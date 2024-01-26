@@ -27,7 +27,7 @@ protocol FirestoreProtocol {
 
 class FirestoreRepository: FirestoreProtocol {
     //MARK: - Properties
-    private var firestore = Firestore.firestore()
+    var firestore = Firestore.firestore()
     
     //MARK: - Lifecycles
     

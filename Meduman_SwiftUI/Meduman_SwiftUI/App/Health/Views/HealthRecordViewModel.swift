@@ -9,9 +9,9 @@ import HealthKit
 import Combine
 
 
-class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
+class HealthRecordViewModel: ObservableObject {
     //MARK: - Properties
-    var repo: HealthRepository? = HealthRepository()
+    private var repo: HealthRepository? = HealthRepository()
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
     @Published var records: [HKQuantitySample] = []

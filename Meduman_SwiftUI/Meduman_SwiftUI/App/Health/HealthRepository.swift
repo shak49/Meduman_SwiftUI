@@ -15,7 +15,6 @@ protocol HealthRepoProtocol {
     var healthQuery: HKSampleQuery? { get }
     
     //MARK: - Lifecycles
-    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError>
@@ -36,10 +35,6 @@ class HealthRepository: HealthRepoProtocol {
     ])
     
     //MARK: - Lifecycles
-    required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?) {
-        self.healthStore = healthStore
-        self.healthQuery = healthQuery
-    }
     
     //MARK: - Functions
     func requestAuthorization() -> Future<Bool, HealthError> {

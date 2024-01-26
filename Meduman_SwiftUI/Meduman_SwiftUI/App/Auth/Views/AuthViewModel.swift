@@ -8,7 +8,7 @@
 import Foundation
 
 
-class AuthViewModel: ObservableObject, AuthViewModelProtocol {
+class AuthViewModel: ObservableObject {
     //MARK: - Properties
     private var authRepo: AuthRepository = AuthRepository()
     private var firestoreRepo: FirestoreRepository = FirestoreRepository()
