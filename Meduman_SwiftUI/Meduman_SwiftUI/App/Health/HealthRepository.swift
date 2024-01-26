@@ -11,8 +11,6 @@ import Combine
 
 protocol HealthRepoProtocol {
     //MARK: - Properties
-    var healthStore: HKHealthStore? { get }
-    var healthQuery: HKSampleQuery? { get }
     
     //MARK: - Lifecycles
     
@@ -26,9 +24,9 @@ protocol HealthRepoProtocol {
 
 class HealthRepository: HealthRepoProtocol {
     //MARK: - Properties
-    var healthStore: HKHealthStore?
-    var healthQuery: HKSampleQuery?
-    let allTypes: Set<HKSampleType> = Set([
+    private var healthStore: HKHealthStore?
+    private var healthQuery: HKSampleQuery?
+    private let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)!
