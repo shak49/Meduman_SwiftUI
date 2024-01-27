@@ -12,10 +12,7 @@ import HealthKit
 @main
 struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
-    static var healthStore = HKHealthStore()
-    static var healthQuery: HKSampleQuery?
-    static var healthRepo = HealthRepository(healthStore: healthStore, healthQuery: healthQuery)
-    @StateObject var healthModel = HealthRecordViewModel(repo: healthRepo)
+    @StateObject var healthModel = HealthRecordViewModel()
     @StateObject var reminderModel = MedicationReminderViewModel()
     
     //MARK: - Lifecycles

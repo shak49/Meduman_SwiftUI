@@ -9,35 +9,20 @@ import HealthKit
 import Combine
 
 
-protocol HealthRecordViewModelProtocol {
+class HealthRecordViewModel: ObservableObject {
     //MARK: - Properties
-    var repo: HealthRepository? { get }
-    var records: [HKQuantitySample] { get }
-    
-    //MARK: - Lifecycles
-    init(repo: HealthRepository?)
-    
-    //MARK: - Functions
-    func createHealthRecord(object: HKObject?)
-    func readRecord(type: HKSampleType?)
-    func removeRecord(indexSet: IndexSet)
-}
-
-class HealthRecordViewModel: ObservableObject, HealthRecordViewModelProtocol {
-    //MARK: - Properties
-    var repo: HealthRepository?
+    private var repo: HealthRepository? = HealthRepository()
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
-    @Published var records: [HKQuantitySample] = []
-    let healthSamples = [
+    private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
+    @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
-    required init(repo: HealthRepository?) {
-        self.repo = repo
+    init() {
         self.repo?.requestAuthorization()
         getSamples()
     }

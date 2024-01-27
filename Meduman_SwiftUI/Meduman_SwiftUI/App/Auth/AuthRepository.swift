@@ -11,8 +11,6 @@ import FirebaseAuth
 
 protocol AuthProtocol {
     // SHAK: Properties
-    var auth: Auth? { get }
-    var user: User? { get }
     
     // SHAK: Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
@@ -23,8 +21,8 @@ protocol AuthProtocol {
 
 class AuthRepository: AuthProtocol {
     //MARK: - Properties
-    var auth: Auth? = Auth.auth()
-    var user: User?
+    private var auth: Auth? = Auth.auth()
+    private var user: User?
     
     //MARK: - Lifecycles
     
