@@ -14,12 +14,12 @@ class HealthRecordViewModel: ObservableObject {
     private var repo: HealthRepository? = HealthRepository()
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
-    @Published var records: [HKQuantitySample] = []
-    let healthSamples = [
+    private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
+    @Published var records: [HKQuantitySample] = []
     
     //MARK: - Lifecycles
     init() {
