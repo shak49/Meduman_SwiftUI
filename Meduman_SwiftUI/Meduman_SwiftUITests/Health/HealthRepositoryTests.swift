@@ -13,7 +13,7 @@ import HealthKit
 
 class HealthRepositoryTests: XCTestCase {
     //MARK: - Properties
-    private var sut: HealthRepository!
+    private var sut: HealthService!
     private var healthStoreMock: HealthStoreMock!
     private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
@@ -22,7 +22,7 @@ class HealthRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
-        self.sut = HealthRepository(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
+        self.sut = HealthService(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
     override func tearDownWithError() throws {

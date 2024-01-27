@@ -10,8 +10,8 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     //MARK: - Properties
-    private var authRepo: AuthRepository = AuthRepository()
-    private var firestoreRepo: FirestoreRepository = FirestoreRepository()
+    private var authRepo: AuthService = AuthService()
+    private var firestoreRepo: FirestoreService = FirestoreService()
     @Published var isAuthenticated: Bool = false
     
     //MARK: - Lifecycles

@@ -25,11 +25,9 @@ protocol FirestoreProtocol {
 }
 
 
-class FirestoreRepository: FirestoreProtocol {
+class FirestoreService: FirestoreProtocol {
     //MARK: - Properties
     var firestore = Firestore.firestore()
-    
-    //MARK: - Lifecycles
     
     //MARK: - Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler) {

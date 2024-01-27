@@ -11,7 +11,7 @@ import Combine
 
 class HealthRecordViewModel: ObservableObject {
     //MARK: - Properties
-    private var repo: HealthRepository? = HealthRepository()
+    private var repo: HealthService? = HealthService()
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
     private let healthSamples = [

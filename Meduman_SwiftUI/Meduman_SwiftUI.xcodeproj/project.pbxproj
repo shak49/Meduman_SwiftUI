@@ -17,10 +17,10 @@
 		6D310E932A6B2E66005F7630 /* ReminderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D310E922A6B2E66005F7630 /* ReminderError.swift */; };
 		6D310E952A6C76AC005F7630 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D310E942A6C76AC005F7630 /* NotificationManager.swift */; };
 		6D63A36328C52D0E0076BB1E /* HealthRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */; };
-		6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */; };
-		6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */; };
+		6D63A36C28CAE9CD0076BB1E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36B28CAE9CD0076BB1E /* AuthService.swift */; };
+		6D63A36E28CAE9DF0076BB1E /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A36D28CAE9DE0076BB1E /* FirestoreService.swift */; };
 		6D63A39728CEC38F0076BB1E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */; };
-		6D63A3B228E4BBE90076BB1E /* HealthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B128E4BBE90076BB1E /* HealthRepository.swift */; };
+		6D63A3B228E4BBE90076BB1E /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B128E4BBE90076BB1E /* HealthService.swift */; };
 		6D63A3B428E694AF0076BB1E /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B328E694AF0076BB1E /* Health.swift */; };
 		6D63A3B928E9287E0076BB1E /* HealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B828E9287E0076BB1E /* HealthError.swift */; };
 		6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */; };
@@ -81,11 +81,11 @@
 		6D310E942A6C76AC005F7630 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordsView.swift; sourceTree = "<group>"; };
 		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
-		6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
-		6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
+		6D63A36B28CAE9CD0076BB1E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		6D63A36D28CAE9DE0076BB1E /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meduman_SwiftUI.entitlements; sourceTree = "<group>"; };
-		6D63A3B128E4BBE90076BB1E /* HealthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepository.swift; sourceTree = "<group>"; };
+		6D63A3B128E4BBE90076BB1E /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		6D63A3B328E694AF0076BB1E /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		6D63A3B828E9287E0076BB1E /* HealthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthError.swift; sourceTree = "<group>"; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +160,6 @@
 		6D1D17C92A5789AF00B4A13D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A36B28CAE9CD0076BB1E /* AuthRepository.swift */,
 				6D63A39528CEC37D0076BB1E /* Views */,
 			);
 			path = Auth;
@@ -169,7 +168,6 @@
 		6D1D17CA2A5789C200B4A13D /* Health */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A3B128E4BBE90076BB1E /* HealthRepository.swift */,
 				6D63A39A28CEC7840076BB1E /* Views */,
 			);
 			path = Health;
@@ -274,9 +272,9 @@
 				6D82EF64277266AD0010E25B /* Assets.xcassets */,
 				6D63A39828CEC7240076BB1E /* Models */,
 				6D1D17C82A57898D00B4A13D /* App */,
+				6DEA14062B655E6F00C6CBC7 /* Services */,
 				6DE5F07E29A474FE00FE8C1E /* Extensions */,
 				6D82EF66277266AD0010E25B /* Preview Content */,
-				6D63A36D28CAE9DE0076BB1E /* FirestoreRepository.swift */,
 				6D310E922A6B2E66005F7630 /* ReminderError.swift */,
 				6DD5CAAB294BF92D00CB66CC /* Constraint.swift */,
 				6D82EFA727739A020010E25B /* AuthError.swift */,
@@ -353,6 +351,16 @@
 				6DE5F07F29A4751E00FE8C1E /* HKQuantitySample.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6DEA14062B655E6F00C6CBC7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6D63A36B28CAE9CD0076BB1E /* AuthService.swift */,
+				6D63A36D28CAE9DE0076BB1E /* FirestoreService.swift */,
+				6D63A3B128E4BBE90076BB1E /* HealthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,15 +515,15 @@
 				6DC23687297A389B00E10311 /* CreateRecordView.swift in Sources */,
 				6D1D17DB2A58B7D200B4A13D /* CreateMedicationReminderView.swift in Sources */,
 				6D310E952A6C76AC005F7630 /* NotificationManager.swift in Sources */,
-				6D63A3B228E4BBE90076BB1E /* HealthRepository.swift in Sources */,
+				6D63A3B228E4BBE90076BB1E /* HealthService.swift in Sources */,
 				6D63A3B928E9287E0076BB1E /* HealthError.swift in Sources */,
-				6D63A36C28CAE9CD0076BB1E /* AuthRepository.swift in Sources */,
+				6D63A36C28CAE9CD0076BB1E /* AuthService.swift in Sources */,
 				6D1D17DD2A58B7F500B4A13D /* MedicationReminderViewModel.swift in Sources */,
 				6D63A36328C52D0E0076BB1E /* HealthRecordsView.swift in Sources */,
 				6DE5F08029A4751E00FE8C1E /* HKQuantitySample.swift in Sources */,
 				6D8A268F2993628C00E1DFFC /* HealthUnit.swift in Sources */,
 				6D310E912A6B2DE4005F7630 /* Reminder.swift in Sources */,
-				6D63A36E28CAE9DF0076BB1E /* FirestoreRepository.swift in Sources */,
+				6D63A36E28CAE9DF0076BB1E /* FirestoreService.swift in Sources */,
 				6D82EF91277271270010E25B /* User.swift in Sources */,
 				6D310E932A6B2E66005F7630 /* ReminderError.swift in Sources */,
 				6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */,

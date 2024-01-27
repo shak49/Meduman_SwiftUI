@@ -10,19 +10,18 @@ import Combine
 
 
 protocol HealthRepoProtocol {
-    //MARK: - Properties
-    
-    //MARK: - Lifecycles
-    
+    typealias FutureCompeletion = Future<Bool, HealthError>
+    typealias AnyPublisherCompletion = AnyPublisher<[HKQuantitySample]?, HealthError>
+
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HealthError>
-    func writeHealthRecord(object: HKObject?) -> Future<Bool, HealthError>
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError>
-    func removeHealthRecord(object: HKObject?) -> Future<Bool, HealthError>
+    func requestAuthorization() -> FutureCompeletion
+    func writeHealthRecord(object: HKObject?) -> FutureCompeletion
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisherCompletion
+    func removeHealthRecord(object: HKObject?) -> FutureCompeletion
 }
 
 
-class HealthRepository: HealthRepoProtocol {
+class HealthService: HealthRepoProtocol {
     //MARK: - Properties
     private var healthStore: HKHealthStore?
     private var healthQuery: HKSampleQuery?
@@ -32,10 +31,8 @@ class HealthRepository: HealthRepoProtocol {
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)!
     ])
     
-    //MARK: - Lifecycles
-    
     //MARK: - Functions
-    func requestAuthorization() -> Future<Bool, HealthError> {
+    func requestAuthorization() -> FutureCompeletion {
         Future { [weak self] promise in
             self?.healthStore?.requestAuthorization(toShare: self?.allTypes, read: self?.allTypes, completion: { success, error in
                 guard error == nil else {
@@ -47,7 +44,7 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func writeHealthRecord(object: HKObject?) -> Future<Bool, HealthError> {
+    func writeHealthRecord(object: HKObject?) -> FutureCompeletion {
         Future { promise in
             guard let object = object else { return }
             self.healthStore?.save(object) { success, error in
@@ -60,7 +57,7 @@ class HealthRepository: HealthRepoProtocol {
         }
     }
     
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisher<[HKQuantitySample]?, HealthError> {
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisherCompletion {
         let subject = PassthroughSubject<[HKQuantitySample]?, HealthError>()
         if let type = type {
             self.healthQuery = HKSampleQuery(sampleType: type, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { query, samples, error in
@@ -79,7 +76,7 @@ class HealthRepository: HealthRepoProtocol {
         return subject.eraseToAnyPublisher()
     }
     
-    func removeHealthRecord(object: HKObject?) -> Future<Bool, HealthError> {
+    func removeHealthRecord(object: HKObject?) -> FutureCompeletion {
         Future { promise in
             guard let object = object else { return }
             self.healthStore?.delete(object) { success, error in
