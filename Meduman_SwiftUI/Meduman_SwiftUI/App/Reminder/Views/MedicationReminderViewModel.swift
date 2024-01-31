@@ -11,7 +11,7 @@ import Combine
 
 class MedicationReminderViewModel: ObservableObject {
     //MARK: - Properties
-    private var repo = FirestoreRepository()
+    private var repo = FirestoreService()
     @Published var reminders: [Reminder] = []
     
     //MARK: - Lifecycles

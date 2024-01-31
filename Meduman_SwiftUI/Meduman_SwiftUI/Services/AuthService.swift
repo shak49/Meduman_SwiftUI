@@ -10,8 +10,7 @@ import FirebaseAuth
 
 
 protocol AuthProtocol {
-    // SHAK: Properties
-    
+
     // SHAK: Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
     func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
@@ -19,12 +18,10 @@ protocol AuthProtocol {
 }
 
 
-class AuthRepository: AuthProtocol {
+class AuthService: AuthProtocol {
     //MARK: - Properties
     private var auth: Auth? = Auth.auth()
     private var user: User?
-    
-    //MARK: - Lifecycles
     
     //MARK: - Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
