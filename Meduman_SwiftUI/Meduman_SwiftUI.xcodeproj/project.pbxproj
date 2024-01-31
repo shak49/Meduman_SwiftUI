@@ -79,7 +79,6 @@
 		6D310E922A6B2E66005F7630 /* ReminderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderError.swift; sourceTree = "<group>"; };
 		6D310E942A6C76AC005F7630 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordsView.swift; sourceTree = "<group>"; };
-		6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Meduman Arch+Flow.md"; sourceTree = "<group>"; };
 		6D63A36B28CAE9CD0076BB1E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		6D63A36D28CAE9DE0076BB1E /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -254,7 +253,6 @@
 		6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A36928CA94C40076BB1E /* Meduman Arch+Flow.md */,
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
 				6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */,
 				6D2CB5AD293E8978002BF0A4 /* Meduman-SwiftUI-Info.plist */,
