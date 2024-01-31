@@ -13,8 +13,6 @@ class AuthViewModel: ObservableObject {
     private var authRepo: AuthService = AuthService()
     private var firestoreRepo: FirestoreService = FirestoreService()
     @Published var isAuthenticated: Bool = false
-    
-    //MARK: - Lifecycles
 
     //MARK: - Functions
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {

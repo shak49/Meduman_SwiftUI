@@ -274,12 +274,8 @@
 				6D1D17C82A57898D00B4A13D /* App */,
 				6DEA14062B655E6F00C6CBC7 /* Services */,
 				6DE5F07E29A474FE00FE8C1E /* Extensions */,
+				6DEA14072B6561FB00C6CBC7 /* Helper */,
 				6D82EF66277266AD0010E25B /* Preview Content */,
-				6D310E922A6B2E66005F7630 /* ReminderError.swift */,
-				6DD5CAAB294BF92D00CB66CC /* Constraint.swift */,
-				6D82EFA727739A020010E25B /* AuthError.swift */,
-				6D63A3B828E9287E0076BB1E /* HealthError.swift */,
-				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
 			);
 			path = Meduman_SwiftUI;
 			sourceTree = "<group>";
@@ -361,6 +357,18 @@
 				6D63A3B128E4BBE90076BB1E /* HealthService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6DEA14072B6561FB00C6CBC7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5CAAB294BF92D00CB66CC /* Constraint.swift */,
+				6D82EFA727739A020010E25B /* AuthError.swift */,
+				6D63A3B828E9287E0076BB1E /* HealthError.swift */,
+				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
+				6D310E922A6B2E66005F7630 /* ReminderError.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
