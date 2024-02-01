@@ -12,10 +12,10 @@ import FirebaseFirestoreSwift
 
 
 protocol FirestoreProtocol {
-    // SHAK: Properties
-    var firestore: Firestore { get }
     typealias AuthHandler = (User?, AuthError?) -> Void
     typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
+    // SHAK: Properties
+    var firestore: Firestore { get }
     
     // SHAK: Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler)
