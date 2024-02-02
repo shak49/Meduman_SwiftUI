@@ -24,12 +24,17 @@ protocol HealthRepoProtocol {
 class HealthService: HealthRepoProtocol {
     //MARK: - Properties
     private var healthStore: HKHealthStore?
-    private var healthQuery: HKSampleQuery?
+    private var healthQuery: HKQuery?
     private let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)!
     ])
+    
+    //MARK: - Lifecycles
+    init(healthStore: HKHealthStore?) {
+        self.healthStore = healthStore
+    }
     
     //MARK: - Functions
     func requestAuthorization() -> FutureCompeletion {
