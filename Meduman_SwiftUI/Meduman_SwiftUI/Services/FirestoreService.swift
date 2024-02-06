@@ -14,6 +14,7 @@ import FirebaseFirestoreSwift
 protocol FirestoreProtocol {
     typealias AuthHandler = (User?, AuthError?) -> Void
     typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
+    
     // SHAK: Properties
     var firestore: Firestore { get }
     
