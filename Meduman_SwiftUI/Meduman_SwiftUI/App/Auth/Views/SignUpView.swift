@@ -90,7 +90,7 @@ struct SignUpView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
-                .fullScreenCover(isPresented: $model.isAuthenticated, content: MedicineReminderListView.init)
+                .fullScreenCover(isPresented: $model.isAuthenticated, content: TabContainerView.init)
                 Divider()
             }
             .padding(.top, 50)

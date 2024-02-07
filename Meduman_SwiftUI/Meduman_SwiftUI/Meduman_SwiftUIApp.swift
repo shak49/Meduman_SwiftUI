@@ -30,12 +30,10 @@ struct Meduman_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            SignInView()
-//            SignUpView()
-            HealthRecordsView()
+            SignInView()
+            //TabContainerView()
                 .environmentObject(healthModel)
-//            MedicineReminderListView()
-//                .environmentObject(reminderModel)
+                .environmentObject(reminderModel)
         }
     }
 }

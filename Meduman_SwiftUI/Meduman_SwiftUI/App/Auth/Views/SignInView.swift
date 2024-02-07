@@ -63,7 +63,7 @@ struct SignInView: View {
                 .background(.black)
                 .cornerRadius(10)
                 .padding(.top, 50)
-                .fullScreenCover(isPresented: $model.isAuthenticated, content: MedicineReminderListView.init)
+                .fullScreenCover(isPresented: $model.isAuthenticated, content: TabContainerView.init)
                 Divider()
                     .padding(.top, 25)
                 VStack {
