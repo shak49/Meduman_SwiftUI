@@ -12,6 +12,9 @@ import Combine
 protocol HealthRepoProtocol {
     typealias FutureCompeletion = Future<Bool, HealthError>
     typealias AnyPublisherCompletion = AnyPublisher<[HKQuantitySample]?, HealthError>
+    
+    //MARK: - Lifecycles
+    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
 
     //MARK: - Functions
     func requestAuthorization() -> FutureCompeletion
@@ -24,12 +27,18 @@ protocol HealthRepoProtocol {
 class HealthService: HealthRepoProtocol {
     //MARK: - Properties
     private var healthStore: HKHealthStore?
-    private var healthQuery: HKSampleQuery?
+    private var healthQuery: HKQuery?
     private let allTypes: Set<HKSampleType> = Set([
         HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
         HKSampleType.quantityType(forIdentifier: .heartRate)!,
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)!
     ])
+    
+    //MARK: - Lifecycles
+    required init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery? = nil) {
+        self.healthStore = healthStore
+        self.healthQuery = healthQuery
+    }
     
     //MARK: - Functions
     func requestAuthorization() -> FutureCompeletion {

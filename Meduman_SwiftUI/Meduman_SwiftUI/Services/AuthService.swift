@@ -10,7 +10,6 @@ import FirebaseAuth
 
 
 protocol AuthProtocol {
-
     // SHAK: Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
     func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
