@@ -11,22 +11,26 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-protocol FirestoreProtocol {
+protocol FirestoreUserStorage {
     typealias AuthHandler = (User?, AuthError?) -> Void
-    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
     
-    // SHAK: Properties
+    //MARK: - Properties
     var firestore: Firestore { get }
     
-    // SHAK: Functions
+    //MARK: - Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler)
     func fetchUserProfile(userId: String?, completion: @escaping AuthHandler)
+}
+
+protocol FirebaseReminderStorage {
+    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
+    
+    //MARK: - Functions
     func fetchListOfReminders(completion: @escaping ReminderHandler)
     func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
-
-class FirestoreService: FirestoreProtocol {
+class FirestoreService: FirestoreUserStorage, FirebaseReminderStorage {
     //MARK: - Properties
     var firestore = Firestore.firestore()
     
