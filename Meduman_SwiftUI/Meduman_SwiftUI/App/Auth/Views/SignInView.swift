@@ -64,48 +64,6 @@ struct SignInView: View {
                 .cornerRadius(10)
                 .padding(.top, 50)
                 .fullScreenCover(isPresented: $model.isAuthenticated, content: MedicineReminderListView.init)
-                //                    ZStack {
-                //                        Divider()
-                //                        Text("or sign in with")
-                //                            .frame(width: 125, height: 25)
-                //
-                //                            .foregroundColor(.gray)
-                //                    }
-                //                    HStack {
-                //                        Button {
-                //
-                //                        } label: {
-                //                            Image("google.logo")
-                //                                .resizable()
-                //                                .frame(width: 40, height: 40)
-                //                                .background(.white)
-                //                                .cornerRadius(20)
-                //                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                //                        }
-                //                        .padding()
-                //                        Button {
-                //
-                //                        } label: {
-                //                            Image("apple.logo")
-                //                                .resizable()
-                //                                .frame(width: 40, height: 40)
-                //                                .background(.white)
-                //                                .cornerRadius(20)
-                //                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                //                        }
-                //                        .padding()
-                //                        Button {
-                //
-                //                        } label: {
-                //                            Image("facebook.logo")
-                //                                .resizable()
-                //                                .frame(width: 40, height: 40)
-                //                                .background(.white)
-                //                                .cornerRadius(20)
-                //                                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-                //                        }
-                //                        .padding()
-                //                    }
                 Divider()
                     .padding(.top, 25)
                 VStack {
