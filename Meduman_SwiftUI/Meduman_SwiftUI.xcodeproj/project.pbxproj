@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D11B8C82B732760004026BE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11B8C72B732760004026BE /* HomeView.swift */; };
+		6D11B8CA2B732905004026BE /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11B8C92B732904004026BE /* TabContainerView.swift */; };
 		6D1D17DB2A58B7D200B4A13D /* CreateMedicationReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */; };
 		6D1D17DD2A58B7F500B4A13D /* MedicationReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */; };
 		6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D11B8C72B732760004026BE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6D11B8C92B732904004026BE /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
 		6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMedicationReminderView.swift; sourceTree = "<group>"; };
 		6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationReminderViewModel.swift; sourceTree = "<group>"; };
 		6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineReminderListView.swift; sourceTree = "<group>"; };
@@ -143,9 +147,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D11B8C62B73274F004026BE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6D11B8C72B732760004026BE /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		6D1D17C82A57898D00B4A13D /* App */ = {
 			isa = PBXGroup;
 			children = (
+				6D11B8C92B732904004026BE /* TabContainerView.swift */,
+				6D11B8C62B73274F004026BE /* Home */,
 				6D1D17C92A5789AF00B4A13D /* Auth */,
 				6D1D17CA2A5789C200B4A13D /* Health */,
 				6D1D17CB2A578AD100B4A13D /* Reminder */,
@@ -504,7 +518,9 @@
 			files = (
 				6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */,
 				6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */,
+				6D11B8CA2B732905004026BE /* TabContainerView.swift in Sources */,
 				6D63A3B428E694AF0076BB1E /* Health.swift in Sources */,
+				6D11B8C82B732760004026BE /* HomeView.swift in Sources */,
 				6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */,
 				6DC23687297A389B00E10311 /* CreateRecordView.swift in Sources */,
 				6D1D17DB2A58B7D200B4A13D /* CreateMedicationReminderView.swift in Sources */,
