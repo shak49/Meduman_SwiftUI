@@ -39,7 +39,7 @@
 		6DC23689297A3C3800E10311 /* HealthRecordCreationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23688297A3C3800E10311 /* HealthRecordCreationUITests.swift */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
 		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
-		6DD5CAAC294BF92E00CB66CC /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* Constraint.swift */; };
+		6DD5CAAC294BF92E00CB66CC /* HealthSampleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* HealthSampleFactory.swift */; };
 		6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */; };
 		6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F07C29A1B6E500FE8C1E /* RecordCellView.swift */; };
 		6DE5F08029A4751E00FE8C1E /* HKQuantitySample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F07F29A4751E00FE8C1E /* HKQuantitySample.swift */; };
@@ -104,7 +104,7 @@
 		6DC23688297A3C3800E10311 /* HealthRecordCreationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordCreationUITests.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6DD5CAAB294BF92D00CB66CC /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		6DD5CAAB294BF92D00CB66CC /* HealthSampleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSampleFactory.swift; sourceTree = "<group>"; };
 		6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthQueryMock.swift; sourceTree = "<group>"; };
 		6DE5F07C29A1B6E500FE8C1E /* RecordCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellView.swift; sourceTree = "<group>"; };
 		6DE5F07F29A4751E00FE8C1E /* HKQuantitySample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQuantitySample.swift; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 		6DEA14072B6561FB00C6CBC7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				6DD5CAAB294BF92D00CB66CC /* Constraint.swift */,
+				6DD5CAAB294BF92D00CB66CC /* HealthSampleFactory.swift */,
 				6D82EFA727739A020010E25B /* AuthError.swift */,
 				6D63A3B828E9287E0076BB1E /* HealthError.swift */,
 				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
@@ -521,7 +521,7 @@
 				6D82EF91277271270010E25B /* User.swift in Sources */,
 				6D310E932A6B2E66005F7630 /* ReminderError.swift in Sources */,
 				6D2C0AB127862DE5003D36DC /* SignUpView.swift in Sources */,
-				6DD5CAAC294BF92E00CB66CC /* Constraint.swift in Sources */,
+				6DD5CAAC294BF92E00CB66CC /* HealthSampleFactory.swift in Sources */,
 				6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */,
 				6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */,
 				6D63A39728CEC38F0076BB1E /* AuthViewModel.swift in Sources */,

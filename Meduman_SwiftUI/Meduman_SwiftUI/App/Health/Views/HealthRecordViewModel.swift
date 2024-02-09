@@ -37,7 +37,7 @@ class HealthRecordViewModel: ObservableObject {
     func createBloodGlucose(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodGlucose = Health(record: record, typeId: .bloodGlucose, unit: HealthUnit.bloodGlucose.rawValue, date: dateAndTime)
-        guard let object = Constraint.shared.quantitySample(health: bloodGlucose) else { return }
+        guard let object = HealthSampleFactory.shared.quantitySample(health: bloodGlucose) else { return }
         self.records.append(object)
         createHealthRecord(object: object)
     }
@@ -45,7 +45,7 @@ class HealthRecordViewModel: ObservableObject {
     func createHeartRate(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let heartRate = Health(record: record, typeId: .heartRate, unit: HealthUnit.heartRate.rawValue, date: dateAndTime)
-        guard let object = Constraint.shared.quantitySample(health: heartRate) else { return }
+        guard let object = HealthSampleFactory.shared.quantitySample(health: heartRate) else { return }
         self.records.append(object)
         createHealthRecord(object: object)
     }
@@ -53,7 +53,7 @@ class HealthRecordViewModel: ObservableObject {
     func createBloodPressure(record: Double?, dateAndTime: Date) {
         guard let record = record else { return }
         let bloodPressure = Health(record: record, typeId: .bloodPressureSystolic, unit: HealthUnit.bloodPressure.rawValue, date: dateAndTime)
-        guard let object = Constraint.shared.quantitySample(health: bloodPressure) else { return }
+        guard let object = HealthSampleFactory.shared.quantitySample(health: bloodPressure) else { return }
         self.records.append(object)
         createHealthRecord(object: object)
     }
