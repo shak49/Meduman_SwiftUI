@@ -8,9 +8,9 @@
 import HealthKit
 
 
-class HealthSampleFactory {
+class HealthSampleBuilder {
     //MARK: - Properties
-    static let shared = HealthSampleFactory()
+    static let shared = HealthSampleBuilder()
     
     //MARK: - Functions
     func quantitySample(health: Health?) -> HKQuantitySample? {
