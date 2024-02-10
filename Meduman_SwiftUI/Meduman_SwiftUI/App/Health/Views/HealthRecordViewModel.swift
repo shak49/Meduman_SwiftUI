@@ -11,7 +11,7 @@ import Combine
 
 class HealthRecordViewModel: ObservableObject {
     //MARK: - Properties
-    private var repo: HealthService? = HealthService(healthStore: HKHealthStore())
+    private var service: HealthService? = HealthService(healthStore: HKHealthStore())
     private var cancellables = Set<AnyCancellable>()
     private var currentQuantitySample: HKQuantitySample?
     private let healthSamples = [
@@ -23,7 +23,7 @@ class HealthRecordViewModel: ObservableObject {
     
     //MARK: - Lifecycles
     init() {
-        self.repo?.requestAuthorization()
+        self.service?.requestAuthorization()
         getSamples()
     }
     
@@ -60,7 +60,7 @@ class HealthRecordViewModel: ObservableObject {
     
     func createHealthRecord(object: HKObject?) {
         if let object = object {
-            self.repo?.writeHealthRecord(object: object)
+            self.service?.writeHealthRecord(object: object)
                 .sink(receiveCompletion: { completion in
                     switch  completion {
                     case .finished:
@@ -77,7 +77,7 @@ class HealthRecordViewModel: ObservableObject {
     
     func readRecord(type: HKSampleType?) {
         guard let type = type else { return }
-        self.repo?.readHealthRecord(type: type)
+        self.service?.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch  completion {
@@ -96,7 +96,7 @@ class HealthRecordViewModel: ObservableObject {
     
     func removeRecord(indexSet: IndexSet) {
         indexSet.forEach { index in
-            self.repo?.removeHealthRecord(object: self.records[index].self)
+            self.service?.removeHealthRecord(object: self.records[index].self)
             self.records.remove(at: index)
         }
     }

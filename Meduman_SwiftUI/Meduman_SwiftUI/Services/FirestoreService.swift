@@ -14,9 +14,6 @@ import FirebaseFirestoreSwift
 protocol FirestoreUserStorage {
     typealias AuthHandler = (User?, AuthError?) -> Void
     
-    //MARK: - Properties
-    var firestore: Firestore { get }
-    
     //MARK: - Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler)
     func fetchUserProfile(userId: String?, completion: @escaping AuthHandler)
@@ -32,7 +29,7 @@ protocol FirebaseReminderStorage {
 
 class FirestoreService: FirestoreUserStorage, FirebaseReminderStorage {
     //MARK: - Properties
-    var firestore = Firestore.firestore()
+    private var firestore = Firestore.firestore()
     
     //MARK: - Functions
     func createUserProfile(user: User?, completion: @escaping AuthHandler) {
@@ -50,7 +47,7 @@ class FirestoreService: FirestoreUserStorage, FirebaseReminderStorage {
         guard let userId = userId else { return }
         firestore.collection("users").document(userId).getDocument { [weak self] (snapshot, error) in
             let userProfile = try? snapshot?.data(as: User.self)
-            completion(userProfile, .noUser)
+            completion(userProfile, nil)
         }
     }
     

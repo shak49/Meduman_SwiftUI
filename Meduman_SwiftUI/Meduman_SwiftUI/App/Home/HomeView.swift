@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+import Charts
 
 struct HomeView: View {
+    //MARK: - Properties
+    @ObservedObject var vm = HomeVM()
+    
+    //MARK: - Body
     var body: some View {
-        Text("HOME SCREEN")
-            .font(.system(size: 35))
+        ScrollView {
+            Chart {
+                
+            }
+            .background(.gray)
+        }
     }
 }
 

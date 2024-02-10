@@ -10,8 +10,8 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     //MARK: - Properties
-    private var authRepo: AuthService = AuthService()
-    private var firestoreRepo: FirestoreService = FirestoreService()
+    private var authRepo = AuthService()
+    private var firestoreRepo = FirestoreService()
     @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions
@@ -22,7 +22,6 @@ class AuthViewModel: ObservableObject {
                 print("ERROR: \(error)!")
                 return
             }
-            print("USER: \(user)")
             self.isAuthenticated = true
         }
         self.createUserProfile(user: user)
@@ -33,7 +32,6 @@ class AuthViewModel: ObservableObject {
             if let error = error {
                 print("Error: \(error)")
             }
-            print("USER: \(user?.uid)")
             self.isAuthenticated = true
         }
     }
