@@ -1,5 +1,5 @@
 //
-//  ObjectBuilder.swift
+//  HealthSampleFactory.swift
 //  Meduman_SwiftUI
 //
 //  Created by Shak Feizi on 12/15/22.
@@ -8,9 +8,9 @@
 import HealthKit
 
 
-class Constraint {
+class HealthSampleBuilder {
     //MARK: - Properties
-    static let shared = Constraint()
+    static let shared = HealthSampleBuilder()
     
     //MARK: - Functions
     func quantitySample(health: Health?) -> HKQuantitySample? {
