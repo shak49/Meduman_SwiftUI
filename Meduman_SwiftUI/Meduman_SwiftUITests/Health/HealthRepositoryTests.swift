@@ -32,12 +32,8 @@ class HealthRepositoryTests: XCTestCase {
 
     //MARK: - Functions
     func test_requestAuthorization_successfullyAuthorizeAccess() {
-        let allTypes: Set<HKSampleType> = Set([
-            HKSampleType.quantityType(forIdentifier: .bloodGlucose)!,
-            HKSampleType.quantityType(forIdentifier: .heartRate)!,
-        ])
         let expectation = expectation(description: "\'requestAuthorization\' can successfully authorize access.")
-        sut.requestAuthorization(types: allTypes)
+        sut.requestAuthorization()
             .sink { completion in
                 print("COMPLETION: \(completion)")
             } receiveValue: { result in
@@ -52,7 +48,7 @@ class HealthRepositoryTests: XCTestCase {
         let expectation = expectation(description: "\'writeHealthRecord\' can successfully save in health store when object is available.")
         let record = 188.00
         let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
-        let object = Constructor.shared.quantitySample(health: health)
+        let object = HealthSampleBuilder.shared.quantitySample(health: health)
         self.sut.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
