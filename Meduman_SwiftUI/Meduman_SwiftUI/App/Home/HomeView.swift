@@ -23,6 +23,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .chartLegend(position: .bottom, alignment: .center, spacing: 16)
             .chartXAxis {
                 AxisMarks(values: .stride(by: .year)) { _ in
                     AxisGridLine()
@@ -32,7 +33,7 @@ struct HomeView: View {
                 .frame(height: 200)
             Rectangle()
                 .frame(height: 200)
-                .foregroundColor(.gray)
+                .foregroundColor(.placeholder)
             Spacer()
         }
         .padding(.horizontal, 16)
