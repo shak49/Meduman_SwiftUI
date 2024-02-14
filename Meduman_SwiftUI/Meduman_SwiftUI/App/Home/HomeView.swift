@@ -16,21 +16,15 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Chart {
-                ForEach(vm.records.sorted { $0.key < $1.key }, id: \.key) { key, value in
-                    ForEach(value) { sample in
+                ForEach(vm.records.sorted { $0.key < $1.key }, id: \.key) { type, samples in
+                    ForEach(samples) { sample in
                         LineMark(x: .value("date", sample.endDate), y: .value("record", sample.quantity))
-                            .foregroundStyle(by: .value("type", key))
+                            .foregroundStyle(by: .value("type", type))
                     }
                 }
             }
-            .chartLegend(position: .bottom, alignment: .center, spacing: 16)
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .year)) { _ in
-                    AxisGridLine()
-                    AxisValueLabel(format: .dateTime.year(.defaultDigits))
-                }
-            }
                 .frame(height: 200)
+                .chartLegend(position: .bottom, alignment: .center, spacing: 16)
             Rectangle()
                 .frame(height: 200)
                 .foregroundColor(.placeholder)

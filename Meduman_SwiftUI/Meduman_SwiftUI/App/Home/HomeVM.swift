@@ -13,9 +13,15 @@ import Combine
 struct RecordVM: Hashable, Identifiable {
     var quantitySample: HKQuantitySample?
     var id: String = UUID().uuidString
-    var quantity: String {
-        guard let quantitySample = quantitySample else { return "" }
-        return "\(quantitySample.quantity)"
+    var quantity: Int {
+        guard let quantitySample = quantitySample else { return 0 }
+        var newString = ""
+        for char in "\(quantitySample.quantity)" {
+            if char.isNumber {
+                newString += String(char)
+            }
+        }
+        return Int(newString) ?? 0
     }
     var type: HKQuantityType? {
         guard let quantitySample = quantitySample else { return nil }
@@ -40,11 +46,7 @@ class HomeVM: ObservableObject {
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
-    @Published var records: [String : [RecordVM]] = [
-        "Glucose" : [],
-        "Pressure" : [],
-        "Rate" : []
-    ]
+    @Published var records: [String : [RecordVM]] = ["Glucose" : [], "Pressure" : [], "Heart" : []]
     
     //MARK: - Lifecycles
     init() {
@@ -74,10 +76,13 @@ class HomeVM: ObservableObject {
                 samples.forEach { sample in
                     if sample.quantityType == .init(.bloodGlucose) {
                         self.records["Glucose"]?.append(RecordVM(quantitySample: sample))
+                        self.records["Glucose"]?.sorted { $0.quantity < $1.quantity } ?? []
                     } else if sample.quantityType == .init(.bloodPressureSystolic) {
                         self.records["Pressure"]?.append(RecordVM(quantitySample: sample))
+                        self.records["Pressure"]?.sorted { $0.quantity < $1.quantity } ?? []
                     } else {
-                        self.records["Rate"]?.append(RecordVM(quantitySample: sample))
+                        self.records["Heart"]?.append(RecordVM(quantitySample: sample))
+                        self.records["Heart"]?.sorted { $0.quantity < $1.quantity } ?? []
                     }
                 }
             })
