@@ -17,7 +17,7 @@ struct HomeView: View {
         VStack {
             Chart {
                 ForEach(vm.records.sorted { $0.key < $1.key }, id: \.key) { type, samples in
-                    ForEach(samples) { sample in
+                    ForEach(samples.sorted { $0.quantity < $1.quantity }) { sample in
                         LineMark(x: .value("date", sample.endDate), y: .value("record", sample.quantity))
                             .foregroundStyle(by: .value("type", type))
                     }
