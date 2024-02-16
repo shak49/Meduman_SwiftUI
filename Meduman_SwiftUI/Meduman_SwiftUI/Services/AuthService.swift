@@ -19,8 +19,8 @@ protocol AuthProtocol {
 
 class AuthService: AuthProtocol {
     //MARK: - Properties
-    private var auth: Auth? = Auth.auth()
     private var user: User?
+    private var auth: Auth? = Auth.auth()
     
     //MARK: - Functions
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {

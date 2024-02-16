@@ -30,8 +30,7 @@ struct Meduman_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignInView()
-            //TabContainerView()
+            TabContainerView()
                 .environmentObject(healthModel)
                 .environmentObject(reminderModel)
         }

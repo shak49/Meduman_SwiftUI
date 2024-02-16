@@ -1,5 +1,5 @@
 //
-//  HealthRepositoryTests.swift
+//  HealthServiceTests.swift
 //  Meduman_SwiftUITests
 //
 //  Created by Shak Feizi on 12/7/22.
@@ -11,7 +11,7 @@ import HealthKit
 @testable import Meduman_SwiftUI
 
 
-class HealthRepositoryTests: XCTestCase {
+class HealthServiceTests: XCTestCase {
     //MARK: - Properties
     private var sut: HealthService!
     private var healthStoreMock: HealthStoreMock!
@@ -75,3 +75,4 @@ class HealthRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 }
+
