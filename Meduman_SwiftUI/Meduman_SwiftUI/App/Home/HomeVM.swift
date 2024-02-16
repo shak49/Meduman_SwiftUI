@@ -10,59 +10,77 @@ import HealthKit
 import Combine
 
 
+struct DataLineVM: Identifiable {
+    let id = UUID().uuidString
+    let type: String
+    let samples: [RecordVM]
+}
+
 struct RecordVM: Hashable, Identifiable {
-    var quantitySample: HKQuantitySample?
+    var quantitySample: HKQuantitySample
     var id: String = UUID().uuidString
-    var quantity: Int {
-        guard let quantitySample = quantitySample else { return 0 }
+    var quantity: Double {
         var newString = ""
         for char in "\(quantitySample.quantity)" {
             if char.isNumber {
                 newString += String(char)
             }
         }
-        return Int(newString) ?? 0
+        return Double(newString) ?? 0
     }
-    var type: HKQuantityType? {
-        guard let quantitySample = quantitySample else { return nil }
-        return quantitySample.quantityType
+    var type: String {
+        switch quantitySample.quantityType {
+        case HKQuantityType(.bloodGlucose):
+            return "Glucose"
+        case HKQuantityType(.bloodPressureSystolic):
+            return "Pressure"
+        case HKQuantityType(.heartRate):
+            return "Heart"
+        default:
+            break
+        }
+        return ""
     }
     var sample: HKSampleType? {
-        guard let quantitySample = quantitySample else { return nil  }
         return quantitySample.sampleType
     }
-    var endDate: String {
-        guard let quantitySample = quantitySample else { return "" }
-        return "\(quantitySample.endDate)"
+    var date: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        return dateFormatter.string(from: quantitySample.endDate).capitalized
     }
 }
 
 class HomeVM: ObservableObject {
     //MARK: - Prooperties
-    private var service: HealthService? = HealthService(healthStore: HKHealthStore())
+    private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
+    private var firestoreService = FirestoreService()
     private var cancellables = Set<AnyCancellable>()
     private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
-    @Published var records: [String : [RecordVM]] = ["Glucose" : [], "Pressure" : [], "Heart" : []]
+    @Published var dataLines: [DataLineVM] = []
+    @Published var reminders: [Reminder] = []
+    @Published var isRecordsAvailable: Bool = false
     
     //MARK: - Lifecycles
     init() {
-        getSamples()
+        populateUI()
     }
     
     //MARK: - Functions
-    func getSamples() {
+    func populateUI() {
         for sample in healthSamples {
             readRecord(type: sample)
         }
+        getReminders()
     }
     
     func readRecord(type: HKSampleType?) {
         guard let type = type else { return }
-        self.service?.readHealthRecord(type: type)
+        self.healthService?.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch  completion {
@@ -75,17 +93,39 @@ class HomeVM: ObservableObject {
                 guard let samples = samples else { return }
                 samples.forEach { sample in
                     if sample.quantityType == .init(.bloodGlucose) {
-                        self.records["Glucose"]?.append(RecordVM(quantitySample: sample))
-                        self.records["Glucose"]?.sorted { $0.quantity < $1.quantity } ?? []
+                        var glucoseSamples: [RecordVM] = []
+                        glucoseSamples.append(RecordVM(quantitySample: sample))
+                        let dataLine = DataLineVM(type: "Glucose", samples: glucoseSamples)
+                        self.dataLines.append(dataLine)
+                        self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.bloodPressureSystolic) {
-                        self.records["Pressure"]?.append(RecordVM(quantitySample: sample))
-                        self.records["Pressure"]?.sorted { $0.quantity < $1.quantity } ?? []
-                    } else {
-                        self.records["Heart"]?.append(RecordVM(quantitySample: sample))
-                        self.records["Heart"]?.sorted { $0.quantity < $1.quantity } ?? []
+                        var pressureSamples: [RecordVM] = []
+                        pressureSamples.append(RecordVM(quantitySample: sample))
+                        let dataLine = DataLineVM(type: "Pressure", samples: pressureSamples)
+                        self.dataLines.append(dataLine)
+                        self.isRecordsAvailable = true
+                    } else if sample.quantityType == .init(.heartRate) {
+                        var heartSamples: [RecordVM] = []
+                        heartSamples.append(RecordVM(quantitySample: sample))
+                        let dataLine = DataLineVM(type: "Heart", samples: heartSamples)
+                        self.dataLines.append(dataLine)
+                        self.isRecordsAvailable = true
                     }
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func getReminders() {
+        DispatchQueue.main.async {
+            self.firestoreService.fetchListOfReminders { reminder, error in
+                if error != nil {
+                    print(error)
+                }
+                guard let reminder = reminder else { return }
+                self.reminders.append(reminder)
+                self.reminders.sorted { $0.time < $1.time }
+            }
+        }
     }
 }

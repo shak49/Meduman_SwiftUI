@@ -12,8 +12,8 @@ struct MedicineReminderListView: View {
     //MARK: - Parameters
     enum Parameters {
         static let borderWidth: CGFloat = 2
-        static let afterMealColor: Color = Color(.systemOrange)
-        static let beforeMealColor: Color = Color(.systemBlue)
+        static let afterMealColor: Color = .systemOrange
+        static let beforeMealColor: Color = .systemBlue
     }
     
     //MARK: - Properties
