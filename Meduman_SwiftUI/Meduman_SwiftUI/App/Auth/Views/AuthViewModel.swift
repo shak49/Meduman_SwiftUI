@@ -10,39 +10,37 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     //MARK: - Properties
-    private var authRepo = AuthService()
-    private var firestoreRepo = FirestoreService()
+    private var authService = AuthService()
+    private var firestoreService = FirestoreService()
     @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
         let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
-        authRepo.signUp(user: user) { (user, error) in
+        authService.signUp(user: user) { (user, error) in
             if let error = error {
                 print("ERROR: \(error)!")
                 return
+            } else {
+                self.isAuthenticated = true
             }
-            self.isAuthenticated = true
         }
         self.createUserProfile(user: user)
     }
     
     func signIn(email: String, password: String) {
-        authRepo.signIn(email: email, password: password) { user, error in
+        authService.signIn(email: email, password: password) { user, error in
             if let error = error {
                 print("Error: \(error)")
+            } else {
+                self.isAuthenticated = true
             }
-            self.isAuthenticated = true
         }
-    }
-    
-    func signOut() {
-        
     }
     
     func createUserProfile(user: User?) {
         let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
-        firestoreRepo.createUserProfile(user: user) { user, error in
+        firestoreService.createUserProfile(user: user) { user, error in
             print("Create Profile Error: \(error)!")
             print("Profile User: \(user?.email)!")
         }
