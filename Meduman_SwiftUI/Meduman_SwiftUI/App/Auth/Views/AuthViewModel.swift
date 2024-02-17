@@ -5,13 +5,18 @@
 //  Created by Shak Feizi on 9/11/22.
 //
 
-import Foundation
+import SwiftUI
 
 
-class AuthViewModel: ObservableObject {
+class AuthViewModel: CommonVM, ObservableObject {
     //MARK: - Properties
-    private var authService = AuthService()
-    private var firestoreService = FirestoreService()
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var phoneNumber: String = ""
+    @Published var isPresented: Bool = false
+    @Published var isVisible: Bool = false
     @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions

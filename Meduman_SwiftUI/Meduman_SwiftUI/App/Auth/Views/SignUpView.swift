@@ -9,56 +9,45 @@ import SwiftUI
 
 struct SignUpView: View {
     // SHAK: Properties
-    @ObservedObject private var model: AuthViewModel
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var phoneNumber: String = ""
-    @State private var isVisible: Bool = false
-    
-    //MARK: - Lifecycles
-    init() {
-        self.model = AuthViewModel()
-    }
+    @ObservedObject private var vm = AuthViewModel()
     
     //MARK: - Body
     var body: some View {
         NavigationView {
             VStack {
                 VStack {
-                    TextField("First name...", text: $firstName)
+                    TextField("First name...", text: $vm.firstName)
                         .frame(width: 350, height: 50)
                     Divider()
                 }
                 VStack {
-                    TextField("Last name...", text: $lastName)
+                    TextField("Last name...", text: $vm.lastName)
                         .frame(width: 350, height: 50)
                     Divider()
                 }
                 VStack {
-                    TextField("Email...", text: $email)
+                    TextField("Email...", text: $vm.email)
                         .frame(width: 350, height: 50)
                         .autocapitalization(.none)
                     Divider()
                 }
                 VStack {
                     HStack {
-                        if isVisible {
-                            TextField("Enter your password...", text: $password)
+                        if vm.isVisible {
+                            TextField("Enter your password...", text: $vm.password)
                                 .frame(width: 350, height: 50)
                                 .autocapitalization(.none)
                         } else {
-                            SecureField("Enter your password...", text: $password)
+                            SecureField("Enter your password...", text: $vm.password)
                                 .frame(width: 350, height: 50)
                                 .autocapitalization(.none)
                         }
                     }
                     .overlay(alignment: .trailing) {
-                        Image(systemName: isVisible ? "eye" : "eye.slash")
+                        Image(systemName: vm.isVisible ? "eye" : "eye.slash")
                             .foregroundColor(.gray)
                             .onTapGesture {
-                                self.isVisible.toggle()
+                                vm.isVisible.toggle()
                             }
                     }
                     Divider()
@@ -73,7 +62,7 @@ struct SignUpView: View {
                         }
                         .frame(width: 25, height: 25)
                         .padding()
-                        TextField("Phone number...", text: $phoneNumber)
+                        TextField("Phone number...", text: $vm.phoneNumber)
                             .frame(width: 350, height: 50)
                             .keyboardType(.numberPad)
                     }
@@ -81,7 +70,7 @@ struct SignUpView: View {
                     Divider()
                 }
                 Button {
-                    model.singUp(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
+                    vm.singUp(firstName: vm.firstName, lastName: vm.lastName, email: vm.email, password: vm.password, phoneNumber: vm.phoneNumber)
                 } label: {
                     Text("Sign Up")
                 }
@@ -90,7 +79,7 @@ struct SignUpView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
-                .fullScreenCover(isPresented: $model.isAuthenticated, content: TabContainerView.init)
+                .fullScreenCover(isPresented: $vm.isAuthenticated, content: TabContainerView.init)
                 Divider()
             }
             .padding(.top, 50)
