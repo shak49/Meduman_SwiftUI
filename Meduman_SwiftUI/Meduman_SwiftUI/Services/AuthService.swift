@@ -56,4 +56,10 @@ class AuthService: AuthProtocol {
         }
     }
     
+    func getCurrentUser() async throws -> FirebaseAuth.User {
+        guard let user = auth?.currentUser else {
+            throw AuthError.noUser
+        }
+        return user
+    }
 }
