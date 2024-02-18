@@ -1,5 +1,5 @@
 //
-//  CommonVM.swift
+//  BaseVM.swift
 //  Meduman_SwiftUI
 //
 //  Created by Shak Feizi on 2/17/24.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class CommonVM {
+class BaseVM: ObservableObject {
     //MARK: - Properties
     var authService = AuthService()
     var firestoreService = FirestoreService()

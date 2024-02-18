@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-class AuthViewModel: CommonVM, ObservableObject {
+class AuthViewModel: BaseVM {
     //MARK: - Properties
     @Published var firstName: String = ""
     @Published var lastName: String = ""
