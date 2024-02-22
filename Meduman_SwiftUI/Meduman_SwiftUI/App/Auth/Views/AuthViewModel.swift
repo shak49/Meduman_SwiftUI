@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import CryptoKit
+import FirebaseAuth
+import AuthenticationServices
 
 
 class AuthViewModel: BaseVM {
@@ -20,9 +23,17 @@ class AuthViewModel: BaseVM {
     @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions
+    func requestAuthWithApple(request: ASAuthorizationAppleIDRequest) {
+        
+    }
+    
+    func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
+        
+    }
+    
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
         let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
-        authService.signUp(user: user) { (user, error) in
+        firebaseService.signUp(user: user) { (user, error) in
             if let error = error {
                 print("ERROR: \(error)!")
                 return
@@ -34,7 +45,7 @@ class AuthViewModel: BaseVM {
     }
     
     func signIn(email: String, password: String) {
-        authService.signIn(email: email, password: password) { user, error in
+        firebaseService.signIn(email: email, password: password) { user, error in
             if let error = error {
                 print("Error: \(error)")
             } else {
@@ -45,7 +56,7 @@ class AuthViewModel: BaseVM {
     
     func createUserProfile(user: User?) {
         let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
-        firestoreService.createUserProfile(user: user) { user, error in
+        firebaseService.createUserProfile(user: user) { user, error in
             print("Create Profile Error: \(error)!")
             print("Profile User: \(user?.email)!")
         }

@@ -9,21 +9,21 @@ import Foundation
 import Combine
 
 
-class MedicationReminderViewModel: ObservableObject {
+class MedicationReminderViewModel: BaseVM {
     //MARK: - Properties
-    private var repo = FirestoreService()
     @Published var reminders: [Reminder] = []
     
     //MARK: - Lifecycles
-    init() {
+    override init() {
+        super.init()
         fetchReminders()
     }
     
     //MARK: - Functions
     func fetchReminders() {
         DispatchQueue.main.async {
-            self.repo.fetchListOfReminders { reminder, error in
-                if error != nil {
+            self.firebaseService.fetchListOfReminders { reminder, error in
+                if let error = error {
                     print(error)
                 }
                 guard let reminder = reminder else { return }
@@ -35,7 +35,7 @@ class MedicationReminderViewModel: ObservableObject {
     func createReminder(medicine: String, dosage: String, date: Date, frequency: String, time: Date, afterMeal: String, description: String) {
         let reminder = Reminder(medicine: medicine, dosage: dosage, date: date, frequency: frequency, time: time, mealTime: afterMeal, description: description)
         self.reminders.append(reminder)
-        self.repo.createReminder(reminder: reminder) { success, error in
+        firebaseService.createReminder(reminder: reminder) { success, error in
             if error != nil {
                 print(error)
             }

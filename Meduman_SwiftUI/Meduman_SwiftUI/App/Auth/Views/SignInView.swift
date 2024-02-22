@@ -6,79 +6,47 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 
 struct SignInView: View {
     //MARK: - Properties
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject private var vm = AuthViewModel()
     
     //MARK: - Body
     var body: some View {
-        NavigationView {
-            VStack {
-                VStack {
-                    TextField("Enter your email...", text: $vm.email)
-                        .frame(width: 350, height: 50)
-                        .autocapitalization(.none)
-                    Divider()
-                }
-                VStack {
-                    HStack {
-                        if vm.isVisible {
-                            TextField("Enter your password...", text: $vm.password)
-                                .frame(width: 350, height: 50)
-                                .autocapitalization(.none)
-                        } else {
-                            SecureField("Enter your password...", text: $vm.password)
-                                .frame(width: 350, height: 50)
-                                .autocapitalization(.none)
+        if vm.isAuthenticated {
+            TabContainerView()
+        } else {
+            NavigationView {
+                VStack(spacing: 100) {
+                    Circle()
+                        .frame(width: 300, height: 300)
+                        .foregroundColor(.cyan)
+                        .overlay {
+                            Image(systemName: "person.fill")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .foregroundColor(.placeholder)
                         }
-                    }
-                    .overlay(alignment: .trailing) {
-                        Image(systemName: vm.isVisible ? "eye" : "eye.slash")
-                            .foregroundColor(.gray)
-                            .onTapGesture {
-                                vm.isVisible.toggle()
-                            }
-                    }
-                    Divider()
-                }
-                .padding()
-                Button {
-                    vm.signIn(email: vm.email, password: vm.password)
-                } label: {
-                    Text("Sign In")
-                        .foregroundColor(.white)
-                }
-                .frame(width: 350, height: 50)
-                .background(.black)
-                .cornerRadius(10)
-                .padding(.top, 50)
-                .fullScreenCover(isPresented: $vm.isAuthenticated, content: TabContainerView.init)
-                Divider()
-                    .padding(.top, 25)
-                VStack {
-                    Button {
+                    VStack(spacing: 25) {
+                        // Apple Sign In
+                        SignInWithAppleButton(.continue) { request in
+                            vm.requestAuthWithApple(request: request)
+                        } onCompletion: { result in
+                            vm.handleAppleAuthResult(result: result)
+                        }
+                        .frame(height: 50)
+                        .cornerRadius(10)
+                        // Google Sign In
                         
-                    } label: {
-                        Text("Forgot your password?")
-                            .foregroundColor(.gray)
+                        // Facebook Sign In
                     }
-                    Button {
-                        vm.isPresented.toggle()
-                    } label: {
-                        Text("Create a new account.")
-                            .foregroundColor(.gray)
-                    }
-                    .popover(isPresented: $vm.isPresented, content: {
-                        SignUpView()
-                    })
-                    .padding()
+                    .padding(.horizontal, 32)
                 }
-                .padding(.top, 35)
-            }
-            .padding(.top)
                 .navigationTitle("Sign In")
+            }            
         }
     }
 }
