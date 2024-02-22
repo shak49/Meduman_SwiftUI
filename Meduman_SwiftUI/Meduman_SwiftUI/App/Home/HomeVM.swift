@@ -51,10 +51,9 @@ struct RecordVM: Hashable, Identifiable {
     }
 }
 
-class HomeVM: ObservableObject {
+class HomeVM: BaseVM {
     //MARK: - Prooperties
     private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
-    private var firestoreService = FirestoreService()
     private var cancellables = Set<AnyCancellable>()
     private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
@@ -66,7 +65,8 @@ class HomeVM: ObservableObject {
     @Published var isRecordsAvailable: Bool = false
     
     //MARK: - Lifecycles
-    init() {
+    override init() {
+        super.init()
         populateUI()
     }
     
@@ -118,7 +118,7 @@ class HomeVM: ObservableObject {
     
     func getReminders() {
         DispatchQueue.main.async {
-            self.firestoreService.fetchListOfReminders { reminder, error in
+            self.firebaseService.fetchListOfReminders { reminder, error in
                 if error != nil {
                     print(error)
                 }
