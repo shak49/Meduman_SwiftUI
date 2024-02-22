@@ -24,11 +24,16 @@ class AuthViewModel: BaseVM {
 
     //MARK: - Functions
     func requestAuthWithApple(request: ASAuthorizationAppleIDRequest) {
-        
+        firebaseService.initiateSignInWithAppleFlow(request: request)
     }
     
     func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
-        
+        Task {
+            let result = try await firebaseService.getCredential(result: result)
+            guard let username = result?.displayName else { return }
+            self.username = username
+            self.isAuthenticated = true
+        }
     }
     
     func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {

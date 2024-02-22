@@ -12,7 +12,7 @@ import AuthenticationServices
 struct SignInView: View {
     //MARK: - Properties
     @Environment(\.colorScheme) var colorScheme
-    @ObservedObject private var vm = AuthViewModel()
+    @StateObject private var vm = AuthViewModel()
     
     //MARK: - Body
     var body: some View {

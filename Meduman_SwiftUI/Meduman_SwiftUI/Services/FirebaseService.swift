@@ -52,8 +52,34 @@ class FirebaseService: NSObject, AuthProtocol, FirestoreUserStorage, FirebaseRem
         return user
     }
     
-    func singInWithApple() {
-        startSignInWithAppleFlow()
+    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest) {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+    }
+    
+    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User? {
+        switch result {
+        case .success(let authorization):
+            guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+                throw AuthError.unableToGetCredential
+            }
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            guard let appleIDToken = appleIdCredential.identityToken else {
+                throw AuthError.noIdentityToken
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                throw AuthError.unableToConvertToStringEncoding
+            }
+            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+            return try await signIn(credential: credential)
+        case .failure(let error):
+            print("ERROR: \(error.localizedDescription)")
+        }
+        return nil
     }
     
     func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
@@ -150,18 +176,9 @@ class FirebaseService: NSObject, AuthProtocol, FirestoreUserStorage, FirebaseRem
 
 extension FirebaseService {
     //MARK: - Functions
-    private func startSignInWithAppleFlow() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        //authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+    private func signIn(credential: AuthCredential) async throws -> User {
+        let user = try await auth?.signIn(with: credential).user
+        return User(displayName: user?.displayName, email: user?.email)
     }
     
     private func randomNonceString(length: Int = 32) -> String {
@@ -187,35 +204,4 @@ extension FirebaseService {
         }.joined()
         return hashString
     }
-}
-
-extension FirebaseService: ASAuthorizationControllerDelegate {
-    //MARK: - Functions
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            guard let nonce = currentNonce else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            }
-            guard let appleIDToken = appleIDCredential.identityToken else {
-                print("Unable to fetch identity token")
-                return
-            }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-                return
-            }
-            let credential = OAuthProvider.appleCredential(withIDToken: idTokenString, rawNonce: nonce, fullName: appleIDCredential.fullName)
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-            }
-        }
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("Sign in with Apple errored: \(error)")
-    }
-
 }

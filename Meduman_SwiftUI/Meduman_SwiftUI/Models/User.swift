@@ -12,14 +12,16 @@ class User: Identifiable, Codable {
     let id: String?
     let firstName: String?
     let lastName: String?
+    let displayName: String?
     let email: String?
     let password: String?
     let phoneNumber: String?
     
-    init(id: String? = UUID().uuidString, firstName: String?, lastName: String?, email: String?, password: String? = "", phoneNumber: String?) {
+    init(id: String? = UUID().uuidString, firstName: String? = "", lastName: String? = "", displayName: String? = "", email: String?, password: String? = "", phoneNumber: String? = "") {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
+        self.displayName = displayName
         self.email = email
         self.password = password
         self.phoneNumber = phoneNumber
