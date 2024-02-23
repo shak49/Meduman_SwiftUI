@@ -28,42 +28,11 @@ class AuthViewModel: BaseVM {
     }
     
     func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
-        Task {
+        Task { @MainActor in
             let result = try await firebaseService.getCredential(result: result)
             guard let username = result?.displayName else { return }
             self.username = username
             self.isAuthenticated = true
-        }
-    }
-    
-    func singUp(firstName: String, lastName: String, email: String, password: String, phoneNumber: String) {
-        let user = User(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
-        firebaseService.signUp(user: user) { (user, error) in
-            if let error = error {
-                print("ERROR: \(error)!")
-                return
-            } else {
-                self.isAuthenticated = true
-            }
-        }
-        self.createUserProfile(user: user)
-    }
-    
-    func signIn(email: String, password: String) {
-        firebaseService.signIn(email: email, password: password) { user, error in
-            if let error = error {
-                print("Error: \(error)")
-            } else {
-                self.isAuthenticated = true
-            }
-        }
-    }
-    
-    func createUserProfile(user: User?) {
-        let user = User(id: user?.id, firstName: user?.firstName, lastName: user?.lastName, email: user?.email, password: "Confidential", phoneNumber: user?.phoneNumber)
-        firebaseService.createUserProfile(user: user) { user, error in
-            print("Create Profile Error: \(error)!")
-            print("Profile User: \(user?.email)!")
         }
     }
 }
