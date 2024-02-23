@@ -14,19 +14,12 @@ import FirebaseFirestoreSwift
 import AuthenticationServices
 
 
-protocol AuthProtocol {
+protocol FirestoreAuthStorage {
     // SHAK: Functions
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void)
+    func getCurrentUser() async throws -> FirebaseAuth.User
+    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest)
+    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User?
     func signOut()
-}
-
-protocol FirestoreUserStorage {
-    typealias AuthHandler = (User?, AuthError?) -> Void
-    
-    //MARK: - Functions
-    func createUserProfile(user: User?, completion: @escaping AuthHandler)
-    func fetchUserProfile(userId: String?, completion: @escaping AuthHandler)
 }
 
 protocol FirebaseReminderStorage {
@@ -37,7 +30,7 @@ protocol FirebaseReminderStorage {
     func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
-class FirebaseService: NSObject, AuthProtocol, FirestoreUserStorage, FirebaseReminderStorage {
+class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
     //MARK: - Properties
     private var firestore = Firestore.firestore()
     private var auth: Auth? = Auth.auth()
@@ -82,55 +75,12 @@ class FirebaseService: NSObject, AuthProtocol, FirestoreUserStorage, FirebaseRem
         return nil
     }
     
-    func signUp(user: User?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
-        guard let email = user?.email, let password = user?.password else { return }
-        auth?.createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                print("Error: \(error)")
-                completion(nil, .unableToCreateUser)
-                return
-            }
-            completion(result?.user, nil)
-        }
-    }
-    
-    func signIn(email: String?, password: String?, completion: @escaping(FirebaseAuth.User?, AuthError?) -> Void) {
-        guard let email = email, let password = password else { return }
-        auth?.signIn(withEmail: email, password: password) { [weak self] (result, error) in
-            if let error = error {
-                completion(nil, .noUser)
-                return
-            }
-            guard let result = result else { return }
-            completion(result.user, nil)
-        }
-    }
-    
     func signOut() {
         do {
             try auth?.signOut()
             self.user = nil
         } catch let signOutError as NSError {
             print("Error signning-out: \(signOutError)")
-        }
-    }
-    
-    func createUserProfile(user: User?, completion: @escaping AuthHandler) {
-        guard let user = user else { return }
-        do {
-            try firestore.collection("users").document(user.id ?? "").setData(from: user)
-            completion(user, .unableToCreateUser)
-        } catch let error {
-            print("Error writing user to Firestore: \(error)")
-            completion(nil, error as? AuthError)
-        }
-    }
-    
-    func fetchUserProfile(userId: String?, completion: @escaping AuthHandler) {
-        guard let userId = userId else { return }
-        firestore.collection("users").document(userId).getDocument { [weak self] (snapshot, error) in
-            let userProfile = try? snapshot?.data(as: User.self)
-            completion(userProfile, nil)
         }
     }
     
@@ -178,7 +128,7 @@ extension FirebaseService {
     //MARK: - Functions
     private func signIn(credential: AuthCredential) async throws -> User {
         let user = try await auth?.signIn(with: credential).user
-        return User(displayName: user?.displayName, email: user?.email)
+        return User(authUser: user)
     }
     
     private func randomNonceString(length: Int = 32) -> String {
