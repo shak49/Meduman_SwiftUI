@@ -13,13 +13,6 @@ import AuthenticationServices
 
 class AuthViewModel: BaseVM {
     //MARK: - Properties
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var phoneNumber: String = ""
-    @Published var isPresented: Bool = false
-    @Published var isVisible: Bool = false
     @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions
