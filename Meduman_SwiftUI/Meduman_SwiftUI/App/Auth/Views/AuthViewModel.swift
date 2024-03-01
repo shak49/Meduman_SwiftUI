@@ -17,12 +17,12 @@ class AuthViewModel: BaseVM {
 
     //MARK: - Functions
     func requestAuthWithApple(request: ASAuthorizationAppleIDRequest) {
-        firebaseService.initiateSignInWithAppleFlow(request: request)
+        firebaseService.initiateSignInWithApple(request: request)
     }
     
     func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
         Task { @MainActor in
-            let result = try await firebaseService.getCredential(result: result)
+            let result = try await firebaseService.getAppleCredential(result: result)
             guard let username = result?.displayName else { return }
             self.username = username
             self.isAuthenticated = true

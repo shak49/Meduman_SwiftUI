@@ -7,6 +7,7 @@
 
 import UIKit
 import CryptoKit
+import GoogleSignIn
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
@@ -14,11 +15,11 @@ import FirebaseFirestoreSwift
 import AuthenticationServices
 
 
-protocol FirestoreAuthStorage {
+protocol FirebaseAuthStorage {
     // SHAK: Functions
     func getCurrentUser() async throws -> FirebaseAuth.User
-    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest)
-    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User?
+    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async throws -> User?
     func signOut()
 }
 
@@ -30,7 +31,7 @@ protocol FirebaseReminderStorage {
     func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
-class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
+class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
     //MARK: - Properties
     private var firestore = Firestore.firestore()
     private var auth: Auth? = Auth.auth()
@@ -45,14 +46,14 @@ class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
         return user
     }
     
-    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest) {
+    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest) {
         let nonce = randomNonceString()
         currentNonce = nonce
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
     }
     
-    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User? {
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async throws -> User? {
         switch result {
         case .success(let authorization):
             guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {

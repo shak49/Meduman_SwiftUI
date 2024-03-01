@@ -17,6 +17,9 @@
 		6D1D17DB2A58B7D200B4A13D /* CreateMedicationReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */; };
 		6D1D17DD2A58B7F500B4A13D /* MedicationReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */; };
 		6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */; };
+		6D2A5CD22B9174AE0037F798 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6D2A5CD12B9174AE0037F798 /* GoogleSignIn */; };
+		6D2A5CD42B9174AE0037F798 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D2A5CD32B9174AE0037F798 /* GoogleSignInSwift */; };
+		6D2A5CD62B9175910037F798 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D2A5CD52B9175910037F798 /* GoogleService-Info.plist */; };
 		6D2CB4D7292DD205002BF0A4 /* HealthRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */; };
 		6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */; };
 		6D310E912A6B2DE4005F7630 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D310E902A6B2DE4005F7630 /* Reminder.swift */; };
@@ -41,7 +44,6 @@
 		6DC23687297A389B00E10311 /* CreateRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23686297A389B00E10311 /* CreateRecordView.swift */; };
 		6DC23689297A3C3800E10311 /* HealthRecordCreationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC23688297A3C3800E10311 /* HealthRecordCreationUITests.swift */; };
 		6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7623E277B83E0002ECC8C /* SignInView.swift */; };
-		6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */; };
 		6DD5CAAC294BF92E00CB66CC /* HealthSampleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAB294BF92D00CB66CC /* HealthSampleBuilder.swift */; };
 		6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */; };
 		6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F07C29A1B6E500FE8C1E /* RecordCellView.swift */; };
@@ -81,6 +83,7 @@
 		6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMedicationReminderView.swift; sourceTree = "<group>"; };
 		6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationReminderViewModel.swift; sourceTree = "<group>"; };
 		6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineReminderListView.swift; sourceTree = "<group>"; };
+		6D2A5CD52B9175910037F798 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
 		6D2CB5AD293E8978002BF0A4 /* Meduman-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Meduman-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		6D2CB5B6293E8D10002BF0A4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -109,7 +112,6 @@
 		6DC23686297A389B00E10311 /* CreateRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordView.swift; sourceTree = "<group>"; };
 		6DC23688297A3C3800E10311 /* HealthRecordCreationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordCreationUITests.swift; sourceTree = "<group>"; };
 		6DC7623E277B83E0002ECC8C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DD5CAAB294BF92D00CB66CC /* HealthSampleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSampleBuilder.swift; sourceTree = "<group>"; };
 		6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthQueryMock.swift; sourceTree = "<group>"; };
 		6DE5F07C29A1B6E500FE8C1E /* RecordCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellView.swift; sourceTree = "<group>"; };
@@ -124,9 +126,11 @@
 				6DEA13FD2B634F1300C6CBC7 /* FirebaseAnalytics in Frameworks */,
 				6DEA14012B634F1300C6CBC7 /* FirebaseFirestore in Frameworks */,
 				6DEA14032B634F1300C6CBC7 /* FirebaseMessaging in Frameworks */,
+				6D2A5CD42B9174AE0037F798 /* GoogleSignInSwift in Frameworks */,
 				6DEA13FF2B634F1300C6CBC7 /* FirebaseAuth in Frameworks */,
 				6D2CB5B7293E8D10002BF0A4 /* HealthKit.framework in Frameworks */,
 				6DEA14052B634F9C00C6CBC7 /* FirebaseFirestoreSwift in Frameworks */,
+				6D2A5CD22B9174AE0037F798 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +258,6 @@
 		6D82EF54277266AA0010E25B = {
 			isa = PBXGroup;
 			children = (
-				6DD3A57D28BFAEBA00405C26 /* GoogleService-Info.plist */,
 				6D82EF5F277266AA0010E25B /* Meduman_SwiftUI */,
 				6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */,
 				6DC2366F29778F2100E10311 /* Meduman_SwiftUI_UITests */,
@@ -278,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */,
+				6D2A5CD52B9175910037F798 /* GoogleService-Info.plist */,
 				6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */,
 				6D2CB5AD293E8978002BF0A4 /* Meduman-SwiftUI-Info.plist */,
 				6D11B8CF2B77D0D6004026BE /* Assets.xcassets */,
@@ -405,6 +409,8 @@
 				6DEA14002B634F1300C6CBC7 /* FirebaseFirestore */,
 				6DEA14022B634F1300C6CBC7 /* FirebaseMessaging */,
 				6DEA14042B634F9C00C6CBC7 /* FirebaseFirestoreSwift */,
+				6D2A5CD12B9174AE0037F798 /* GoogleSignIn */,
+				6D2A5CD32B9174AE0037F798 /* GoogleSignInSwift */,
 			);
 			productName = Meduman_SwiftUI;
 			productReference = 6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */;
@@ -483,6 +489,7 @@
 			mainGroup = 6D82EF54277266AA0010E25B;
 			packageReferences = (
 				6DEA13FB2B634F1300C6CBC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6D2A5CD02B9174AE0037F798 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 6D82EF5E277266AA0010E25B /* Products */;
 			projectDirPath = "";
@@ -502,7 +509,7 @@
 			files = (
 				6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */,
 				6D11B8D02B77D0D6004026BE /* Assets.xcassets in Resources */,
-				6DD3A57E28BFAEBA00405C26 /* GoogleService-Info.plist in Resources */,
+				6D2A5CD62B9175910037F798 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +930,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6D2A5CD02B9174AE0037F798 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		6DEA13FB2B634F1300C6CBC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -934,6 +949,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D2A5CD12B9174AE0037F798 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D2A5CD02B9174AE0037F798 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		6D2A5CD32B9174AE0037F798 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D2A5CD02B9174AE0037F798 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		6DEA13FC2B634F1300C6CBC7 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6DEA13FB2B634F1300C6CBC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
