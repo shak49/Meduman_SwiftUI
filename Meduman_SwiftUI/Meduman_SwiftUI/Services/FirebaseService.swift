@@ -19,7 +19,7 @@ protocol FirebaseAuthStorage {
     // SHAK: Functions
     func getCurrentUser() async throws -> FirebaseAuth.User
     func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
-    func getAppleCredential(result: Result<ASAuthorization, Error>) async throws -> User?
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
     func signOut()
 }
 
@@ -53,23 +53,21 @@ class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
         request.nonce = sha256(nonce)
     }
     
-    func getAppleCredential(result: Result<ASAuthorization, Error>) async throws -> User? {
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>? {
         switch result {
         case .success(let authorization):
-            guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-                throw AuthError.unableToGetCredential
-            }
+            guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return .failure(.unableToGetCredential) }
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
-            guard let appleIDToken = appleIdCredential.identityToken else {
-                throw AuthError.noIdentityToken
+            guard let appleIDToken = appleIdCredential.identityToken else { return .failure(.noIdentityToken) }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else { return .failure(.unableToConvertToStringEncoding) }
+            do {
+                let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+                return try await .success(signIn(credential: credential)  )
+            } catch {
+                return .failure(.thrownError(error))
             }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                throw AuthError.unableToConvertToStringEncoding
-            }
-            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            return try await signIn(credential: credential)
         case .failure(let error):
             print("ERROR: \(error.localizedDescription)")
         }

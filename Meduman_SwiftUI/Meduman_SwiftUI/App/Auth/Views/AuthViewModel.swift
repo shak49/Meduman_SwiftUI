@@ -21,11 +21,19 @@ class AuthViewModel: BaseVM {
     }
     
     func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
-        Task { @MainActor in
-            let result = try await firebaseService.getAppleCredential(result: result)
-            guard let username = result?.displayName else { return }
-            self.username = username
-            self.isAuthenticated = true
+        Task {
+            guard let credential = await firebaseService.getAppleCredential(result: result) else { return }
+            switch credential {
+            case .success(let user):
+                await MainActor.run {
+                    guard let username = user?.displayName else { return }
+                    self.username = username
+                    self.isAuthenticated = true
+                }
+            case .failure(let error):
+                print(error)
+                break
+            }
         }
     }
 }
