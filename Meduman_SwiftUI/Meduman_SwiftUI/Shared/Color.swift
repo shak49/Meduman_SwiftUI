@@ -11,6 +11,7 @@ import SwiftUI
 
 extension Color {
     static let placeholder = Color(.systemGray6)
+    static let systemGray = Color(.systemGray4)
     static let systemOrange = Color(.systemOrange)
     static let systemBlue = Color(.systemBlue)
 }

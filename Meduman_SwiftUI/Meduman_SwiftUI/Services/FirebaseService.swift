@@ -20,6 +20,7 @@ protocol FirebaseAuthStorage {
     func getCurrentUser() async throws -> FirebaseAuth.User
     func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
     func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
+    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>?
     func signOut()
 }
 
@@ -74,6 +75,20 @@ class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
         return nil
     }
     
+    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>? {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return .failure(.noClientId) }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        do {
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: view)
+            guard let idToken = result.user.idToken?.tokenString else { return .failure(.noIdentityToken) }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+            return try await .success(signIn(credential: credential))
+        } catch {
+            return .failure(.thrownError(error))
+        }
+    }
+    
     func signOut() {
         do {
             try auth?.signOut()
@@ -81,6 +96,11 @@ class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
         } catch let signOutError as NSError {
             print("Error signning-out: \(signOutError)")
         }
+    }
+    
+    private func signIn(credential: AuthCredential) async throws -> User {
+        let user = try await auth?.signIn(with: credential).user
+        return User(authUser: user)
     }
     
     func fetchListOfReminders(completion: @escaping ReminderHandler) {
@@ -125,11 +145,6 @@ class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
 
 extension FirebaseService {
     //MARK: - Functions
-    private func signIn(credential: AuthCredential) async throws -> User {
-        let user = try await auth?.signIn(with: credential).user
-        return User(authUser: user)
-    }
-    
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         var randomBytes = [UInt8](repeating: 0, count: length)

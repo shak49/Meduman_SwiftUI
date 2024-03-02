@@ -12,7 +12,9 @@ enum AuthError: LocalizedError {
     case unableToCreateUser
     case unableToConvertToStringEncoding
     case unableToGetCredential
+    case unableToGetView
     case thrownError(Error)
+    case noClientId
     case noIdentityToken
     case noUser
     
@@ -24,8 +26,12 @@ enum AuthError: LocalizedError {
             return "Unable to convert to string encoding"
         case .unableToGetCredential:
             return "Unable to get credential."
+        case .unableToGetView:
+            return "Unable to get view!"
         case .thrownError(let error):
             return "Error: \(error.localizedDescription) -> \(error)"
+        case .noClientId:
+            return "Unable to find client id."
         case .noIdentityToken:
             return "Unable to get identity token."
         case .noUser:

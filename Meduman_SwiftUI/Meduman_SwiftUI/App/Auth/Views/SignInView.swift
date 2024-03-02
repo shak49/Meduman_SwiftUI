@@ -30,7 +30,7 @@ struct SignInView: View {
                                 .frame(width: 150, height: 150)
                                 .foregroundColor(.placeholder)
                         }
-                    VStack(spacing: 25) {
+                    VStack(spacing: 20) {
                         // Apple Sign In
                         SignInWithAppleButton(.continue) { request in
                             vm.requestAuthWithApple(request: request)
@@ -40,7 +40,9 @@ struct SignInView: View {
                         .frame(height: 50)
                         .cornerRadius(10)
                         // Google Sign In
-                        
+                        GoogleAuthButton {
+                            vm.signInWithGoogle()
+                        }
                         // Facebook Sign In
                     }
                     .padding(.horizontal, 32)
