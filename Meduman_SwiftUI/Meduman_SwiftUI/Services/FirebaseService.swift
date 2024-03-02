@@ -7,6 +7,7 @@
 
 import UIKit
 import CryptoKit
+import GoogleSignIn
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
@@ -14,11 +15,12 @@ import FirebaseFirestoreSwift
 import AuthenticationServices
 
 
-protocol FirestoreAuthStorage {
+protocol FirebaseAuthStorage {
     // SHAK: Functions
     func getCurrentUser() async throws -> FirebaseAuth.User
-    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest)
-    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User?
+    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
+    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>?
     func signOut()
 }
 
@@ -30,7 +32,7 @@ protocol FirebaseReminderStorage {
     func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
-class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
+class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
     //MARK: - Properties
     private var firestore = Firestore.firestore()
     private var auth: Auth? = Auth.auth()
@@ -45,34 +47,46 @@ class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
         return user
     }
     
-    func initiateSignInWithAppleFlow(request: ASAuthorizationAppleIDRequest) {
+    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest) {
         let nonce = randomNonceString()
         currentNonce = nonce
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
     }
     
-    func getCredential(result: Result<ASAuthorization, Error>) async throws -> User? {
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>? {
         switch result {
         case .success(let authorization):
-            guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-                throw AuthError.unableToGetCredential
-            }
+            guard let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return .failure(.unableToGetCredential) }
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
-            guard let appleIDToken = appleIdCredential.identityToken else {
-                throw AuthError.noIdentityToken
+            guard let appleIDToken = appleIdCredential.identityToken else { return .failure(.noIdentityToken) }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else { return .failure(.unableToConvertToStringEncoding) }
+            do {
+                let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+                return try await .success(signIn(credential: credential)  )
+            } catch {
+                return .failure(.thrownError(error))
             }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                throw AuthError.unableToConvertToStringEncoding
-            }
-            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            return try await signIn(credential: credential)
         case .failure(let error):
             print("ERROR: \(error.localizedDescription)")
         }
         return nil
+    }
+    
+    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>? {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return .failure(.noClientId) }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        do {
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: view)
+            guard let idToken = result.user.idToken?.tokenString else { return .failure(.noIdentityToken) }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+            return try await .success(signIn(credential: credential))
+        } catch {
+            return .failure(.thrownError(error))
+        }
     }
     
     func signOut() {
@@ -82,6 +96,11 @@ class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
         } catch let signOutError as NSError {
             print("Error signning-out: \(signOutError)")
         }
+    }
+    
+    private func signIn(credential: AuthCredential) async throws -> User {
+        let user = try await auth?.signIn(with: credential).user
+        return User(authUser: user)
     }
     
     func fetchListOfReminders(completion: @escaping ReminderHandler) {
@@ -126,11 +145,6 @@ class FirebaseService: NSObject, FirestoreAuthStorage, FirebaseReminderStorage {
 
 extension FirebaseService {
     //MARK: - Functions
-    private func signIn(credential: AuthCredential) async throws -> User {
-        let user = try await auth?.signIn(with: credential).user
-        return User(authUser: user)
-    }
-    
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         var randomBytes = [UInt8](repeating: 0, count: length)

@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import UIKit
 import Firebase
 import HealthKit
+import GoogleSignIn
+
 
 @main
 struct Meduman_SwiftUIApp: App {
@@ -34,5 +37,12 @@ struct Meduman_SwiftUIApp: App {
                 .environmentObject(healthModel)
                 .environmentObject(reminderModel)
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    //MARK: - Methods
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
     }
 }
