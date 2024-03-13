@@ -8,11 +8,6 @@
 import Foundation
 
 
-enum CodableType {
-    case decoder = JSONDecoder()
-    case encoder = JSONEncoder()
-}
-
 class NetworkService {
     //MARK: - Properties
     static let shared = NetworkService()
