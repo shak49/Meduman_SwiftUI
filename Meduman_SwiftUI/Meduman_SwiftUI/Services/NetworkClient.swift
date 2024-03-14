@@ -8,31 +8,27 @@
 import Foundation
 
 
-class NetworkService {
+class NetworkClient {
     //MARK: - Properties
-    static let shared = NetworkService()
+    static let shared = NetworkClient()
     
     //MARK: - Lifecycles
     private init() {}
     
     //MARK: - Functions
-    func request<T: Codable>(endpoint: String, type: T) async -> Result<T, NetworkError>? {
-        guard let url = URL(string: endpoint) else { return .failure(.invalidURL) }
-        let request = URLRequest(url: url)
+    func request<RESP: Codable>(request: URLRequest, type: RESP) async -> Result<RESP, NetworkError> {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let response = response as? HTTPURLResponse, (200...300) ~= response.statusCode else {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode
                 return .failure(.invalidResponse(code: statusCode!))
             }
-            let decoder = JSONDecoder()
-            guard let result = try? decoder.decode(T.self, from: data) else {
+            guard let result = try? JSONDecoder().decode(RESP.self, from: data) else {
                 return .failure(.unableToDecode)
             }
             return .success(result)
         } catch {
             return .failure(.customError(error))
         }
-        return nil
     }
 }
