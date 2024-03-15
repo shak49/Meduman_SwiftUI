@@ -9,20 +9,6 @@ import HealthKit
 import Combine
 
 
-protocol HealthRepoProtocol {
-    typealias FutureCompeletion = Future<Bool, HealthError>
-    typealias AnyPublisherCompletion = AnyPublisher<[HKQuantitySample]?, HealthError>
-    
-    //MARK: - Lifecycles
-    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
-
-    //MARK: - Functions
-    func requestAuthorization() -> FutureCompeletion
-    func writeHealthRecord(object: HKObject?) -> FutureCompeletion
-    func readHealthRecord(type: HKSampleType?) -> AnyPublisherCompletion
-    func removeHealthRecord(object: HKObject?) -> FutureCompeletion
-}
-
 enum HealthError: LocalizedError {
     case typeNotAvailable
     case unableToAccessRecordsForThisDevice
@@ -50,6 +36,20 @@ enum HealthError: LocalizedError {
             return "Error: \(error.localizedDescription)"
         }
     }
+}
+
+protocol HealthRepoProtocol {
+    typealias FutureCompeletion = Future<Bool, HealthError>
+    typealias AnyPublisherCompletion = AnyPublisher<[HKQuantitySample]?, HealthError>
+    
+    //MARK: - Lifecycles
+    init(healthStore: HKHealthStore?, healthQuery: HKSampleQuery?)
+
+    //MARK: - Functions
+    func requestAuthorization() -> FutureCompeletion
+    func writeHealthRecord(object: HKObject?) -> FutureCompeletion
+    func readHealthRecord(type: HKSampleType?) -> AnyPublisherCompletion
+    func removeHealthRecord(object: HKObject?) -> FutureCompeletion
 }
 
 final class HealthService: HealthRepoProtocol {

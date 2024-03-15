@@ -15,23 +15,6 @@ import FirebaseFirestoreSwift
 import AuthenticationServices
 
 
-protocol FirebaseAuthStorage {
-    // SHAK: Functions
-    func getCurrentUser() async throws -> FirebaseAuth.User
-    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
-    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
-    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>?
-    func signOut()
-}
-
-protocol FirebaseReminderStorage {
-    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
-    
-    //MARK: - Functions
-    func fetchListOfReminders(completion: @escaping ReminderHandler)
-    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
-}
-
 enum AuthError: LocalizedError {
     case unableToCreateUser
     case unableToConvertToStringEncoding
@@ -82,6 +65,23 @@ enum ReminderError: LocalizedError {
             return "Firestore repository is unable to fetch list of reminders."
         }
     }
+}
+
+protocol FirebaseAuthStorage {
+    // SHAK: Functions
+    func getCurrentUser() async throws -> FirebaseAuth.User
+    func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
+    func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
+    func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>?
+    func signOut()
+}
+
+protocol FirebaseReminderStorage {
+    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
+    
+    //MARK: - Functions
+    func fetchListOfReminders(completion: @escaping ReminderHandler)
+    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
 final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {

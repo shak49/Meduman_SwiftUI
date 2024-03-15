@@ -18,6 +18,8 @@ enum GenderType: String {
 final class ArticleService {
     //MARK: - Properties
     static let shared = ArticleService()
+    private let endpoint = EndpointBuilder.shared
+    private let client = NetworkClient.shared
     
     //MARK: - Lifecycles
     private init() {}
@@ -28,10 +30,10 @@ final class ArticleService {
             URLQueryItem(name: "age", value: "\(age)"),
             URLQueryItem(name: "sex", value: "\(sex)")
         ]
-        guard let url = EndpointBuilder.shared.build(queries: queries) else { return }
+        guard let url = endpoint.build(queries: queries) else { return }
         Task {
             var request = URLRequest(url: url)
-            await NetworkClient.shared.request(request: request, type: CustomResponse.self)
+            await client.request(request: request, type: CustomResponse.self)
         }
     }
 }
