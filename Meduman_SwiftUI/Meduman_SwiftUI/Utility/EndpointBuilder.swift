@@ -10,9 +10,9 @@ import Foundation
 
 // https://health.gov/myhealthfinder/api/v3/myhealthfinder.json
 
-final class URLEndpointBuilder {
+final class EndpointBuilder {
     //MARK: - Properties
-    static var shared = URLEndpointBuilder()
+    static var shared = EndpointBuilder()
     
     //MARK: - Lifecycles
     private init() {}

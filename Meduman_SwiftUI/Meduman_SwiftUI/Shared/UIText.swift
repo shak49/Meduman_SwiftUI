@@ -8,6 +8,6 @@
 import Foundation
 
 
-struct UIText {
-    
+enum UIText {
+    static let welcomeTo = "Welcome To "
 }

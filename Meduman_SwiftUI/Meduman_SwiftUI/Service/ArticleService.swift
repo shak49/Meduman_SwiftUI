@@ -28,7 +28,7 @@ final class ArticleService {
             URLQueryItem(name: "age", value: "\(age)"),
             URLQueryItem(name: "sex", value: "\(sex)")
         ]
-        guard let url = URLEndpointBuilder.shared.build(queries: queries) else { return }
+        guard let url = EndpointBuilder.shared.build(queries: queries) else { return }
         Task {
             var request = URLRequest(url: url)
             await NetworkClient.shared.request(request: request, type: CustomResponse.self)
