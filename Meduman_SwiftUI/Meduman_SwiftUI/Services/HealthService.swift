@@ -24,7 +24,7 @@ protocol HealthRepoProtocol {
 }
 
 
-class HealthService: HealthRepoProtocol {
+final class HealthService: HealthRepoProtocol {
     //MARK: - Properties
     private var healthStore: HKHealthStore?
     private var healthQuery: HKQuery?

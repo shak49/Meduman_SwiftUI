@@ -32,7 +32,7 @@ protocol FirebaseReminderStorage {
     func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
 }
 
-class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
+final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
     //MARK: - Properties
     private var firestore = Firestore.firestore()
     private var auth: Auth? = Auth.auth()
