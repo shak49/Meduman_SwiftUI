@@ -8,14 +8,11 @@
 import Foundation
 
 
-enum HTTPMethod: String {
-    case GET
-    case POST
-}
-
 enum GenderType: String {
     case female = "Female"
     case male = "Male"
+    
+    var value: String { rawValue }
 }
 
 final class ArticleService {
@@ -26,7 +23,7 @@ final class ArticleService {
     private init() {}
     
     //MARK: - Functions
-    func getArticles(age: Int, sex: GenderType, method: HTTPMethod) {
+    func getArticles(age: Int, sex: GenderType) {
         let queries = [
             URLQueryItem(name: "age", value: "\(age)"),
             URLQueryItem(name: "sex", value: "\(sex)")
@@ -34,7 +31,6 @@ final class ArticleService {
         guard let url = URLEndpointBuilder.shared.build(queries: queries) else { return }
         Task {
             var request = URLRequest(url: url)
-            request.httpMethod = method.rawValue
             await NetworkClient.shared.request(request: request, type: CustomResponse.self)
         }
     }

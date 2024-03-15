@@ -7,7 +7,9 @@
 
 import Foundation
 
-//https://health.gov/myhealthfinder/api/v3/myhealthfinder.json
+
+// https://health.gov/myhealthfinder/api/v3/myhealthfinder.json
+
 final class URLEndpointBuilder {
     //MARK: - Properties
     static var shared = URLEndpointBuilder()
