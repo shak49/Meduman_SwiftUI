@@ -18,8 +18,12 @@ final class EndpointBuilder {
     private init() {}
     
     //MARK: - Functions
-    func build(queries: [URLQueryItem]) -> URL? {
+    func build(age: Int, sex: String) -> URL? {
         var urlComponents = URLComponents()
+        let queries = [
+            URLQueryItem(name: "age", value: "\(age)"),
+            URLQueryItem(name: "sex", value: sex)
+        ]
         urlComponents.scheme = "https"
         urlComponents.host = "health.go"
         urlComponents.path = "/myhealthfinder/api/v3/myhealthfinder.json"

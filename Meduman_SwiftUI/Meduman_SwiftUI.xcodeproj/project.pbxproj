@@ -37,7 +37,6 @@
 		6D9313652BA105610051FE2F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313642BA105610051FE2F /* NetworkClient.swift */; };
 		6D9313692BA3CE400051FE2F /* EndpointBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313682BA3CE400051FE2F /* EndpointBuilder.swift */; };
 		6D93136B2BA3D1670051FE2F /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93136A2BA3D1670051FE2F /* ArticleService.swift */; };
-		6D93136D2BA3D46A0051FE2F /* CustomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93136C2BA3D46A0051FE2F /* CustomResponse.swift */; };
 		6D93136F2BA4A2AE0051FE2F /* UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93136E2BA4A2AE0051FE2F /* UIText.swift */; };
 		6D9313722BA4A4FC0051FE2F /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313712BA4A4FC0051FE2F /* ArticleListView.swift */; };
 		6D9313752BA4B0E30051FE2F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6D9313742BA4B0E30051FE2F /* FirebaseAnalytics */; };
@@ -46,6 +45,7 @@
 		6D93137B2BA4B0E30051FE2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6D93137A2BA4B0E30051FE2F /* FirebaseFirestore */; };
 		6D93137D2BA4B0E30051FE2F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D93137C2BA4B0E30051FE2F /* FirebaseFirestoreSwift */; };
 		6D93137F2BA4B2BB0051FE2F /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93137E2BA4B2BB0051FE2F /* Symbol.swift */; };
+		6D9313812BA522920051FE2F /* ArticleResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313802BA522920051FE2F /* ArticleResponseData.swift */; };
 		6D948A602A5491AF009DB48C /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D948A5F2A5491AF009DB48C /* XCUIElement.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
@@ -109,10 +109,10 @@
 		6D9313642BA105610051FE2F /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		6D9313682BA3CE400051FE2F /* EndpointBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointBuilder.swift; sourceTree = "<group>"; };
 		6D93136A2BA3D1670051FE2F /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
-		6D93136C2BA3D46A0051FE2F /* CustomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomResponse.swift; sourceTree = "<group>"; };
 		6D93136E2BA4A2AE0051FE2F /* UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIText.swift; sourceTree = "<group>"; };
 		6D9313712BA4A4FC0051FE2F /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		6D93137E2BA4B2BB0051FE2F /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		6D9313802BA522920051FE2F /* ArticleResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleResponseData.swift; sourceTree = "<group>"; };
 		6D948A5F2A5491AF009DB48C /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -265,7 +265,7 @@
 				6D82EF90277271270010E25B /* User.swift */,
 				6D63A3B328E694AF0076BB1E /* Health.swift */,
 				6D310E902A6B2DE4005F7630 /* Reminder.swift */,
-				6D93136C2BA3D46A0051FE2F /* CustomResponse.swift */,
+				6D9313802BA522920051FE2F /* ArticleResponseData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -560,7 +560,6 @@
 				6DE5F07D29A1B6E500FE8C1E /* RecordCellView.swift in Sources */,
 				6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */,
 				6D11B8CA2B732905004026BE /* TabContainerView.swift in Sources */,
-				6D93136D2BA3D46A0051FE2F /* CustomResponse.swift in Sources */,
 				6D11B8CE2B76E4B3004026BE /* HomeVM.swift in Sources */,
 				6D93136B2BA3D1670051FE2F /* ArticleService.swift in Sources */,
 				6D63A3B428E694AF0076BB1E /* Health.swift in Sources */,
@@ -582,6 +581,7 @@
 				6D63A36E28CAE9DF0076BB1E /* FirebaseService.swift in Sources */,
 				6D11B8DA2B813E45004026BE /* BaseVM.swift in Sources */,
 				6D82EF91277271270010E25B /* User.swift in Sources */,
+				6D9313812BA522920051FE2F /* ArticleResponseData.swift in Sources */,
 				6D9313692BA3CE400051FE2F /* EndpointBuilder.swift in Sources */,
 				6DD5CAAC294BF92E00CB66CC /* HealthSampleBuilder.swift in Sources */,
 				6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */,

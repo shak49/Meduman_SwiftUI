@@ -25,15 +25,15 @@ final class ArticleService {
     private init() {}
     
     //MARK: - Functions
-    func getArticles(age: Int, sex: GenderType) {
-        let queries = [
-            URLQueryItem(name: "age", value: "\(age)"),
-            URLQueryItem(name: "sex", value: "\(sex)")
-        ]
-        guard let url = endpoint.build(queries: queries) else { return }
-        Task {
-            var request = URLRequest(url: url)
-            await client.request(request: request, type: CustomResponse.self)
+    func getArticles(age: Int, sex: GenderType) async -> Result<[Article], NetworkClient.NetworkError> {
+        let url = endpoint.build(age: age, sex: sex.value)
+        let result = await client.request(url: url, type: ArticleResponseData.self)
+        switch result {
+        case .success(let response):
+            let articles = response.responseData.resource.all.articles
+            return .success(articles)
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }
