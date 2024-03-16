@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ArticleListView: View {
+    //MARK: - Properties
+    @StateObject var vm = ArticleListViewModel()
+    
+    //MARK: - Body
     var body: some View {
-        Text(UIText.welcomeTo + "Article Screen!")
+        NavigationView {
+            ForEach(vm.articles) { article in
+                Text(article.title ?? "")
+            }
+            .navigationTitle("Articles")
+        }
+        .alert("Initial Alert", isPresented: $vm.isPresented) {
+            TextField("Age", text: $vm.age)
+            TextField("Sex", text: $vm.sex)
+        }
     }
 }
 

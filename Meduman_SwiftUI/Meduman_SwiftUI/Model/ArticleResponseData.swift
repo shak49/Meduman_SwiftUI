@@ -36,7 +36,7 @@ struct All: Codable {
     }
 }
 
-struct Article: Codable {
+struct Article: Codable, Identifiable {
     let id: String?
     let title: String?
     let imageUrl: String?

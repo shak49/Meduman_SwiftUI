@@ -46,6 +46,7 @@
 		6D93137D2BA4B0E30051FE2F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D93137C2BA4B0E30051FE2F /* FirebaseFirestoreSwift */; };
 		6D93137F2BA4B2BB0051FE2F /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93137E2BA4B2BB0051FE2F /* Symbol.swift */; };
 		6D9313812BA522920051FE2F /* ArticleResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313802BA522920051FE2F /* ArticleResponseData.swift */; };
+		6D93138A2BA537C60051FE2F /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313892BA537C60051FE2F /* ArticleListViewModel.swift */; };
 		6D948A602A5491AF009DB48C /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D948A5F2A5491AF009DB48C /* XCUIElement.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
 		6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */; };
@@ -113,6 +114,7 @@
 		6D9313712BA4A4FC0051FE2F /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		6D93137E2BA4B2BB0051FE2F /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		6D9313802BA522920051FE2F /* ArticleResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleResponseData.swift; sourceTree = "<group>"; };
+		6D9313892BA537C60051FE2F /* ArticleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
 		6D948A5F2A5491AF009DB48C /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		6D96C6FE294165FA00A9AA4C /* Meduman_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Meduman_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D96C7092941689300A9AA4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				6D9313712BA4A4FC0051FE2F /* ArticleListView.swift */,
+				6D9313892BA537C60051FE2F /* ArticleListViewModel.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */,
 				6D93137F2BA4B2BB0051FE2F /* Symbol.swift in Sources */,
 				6D9313652BA105610051FE2F /* NetworkClient.swift in Sources */,
+				6D93138A2BA537C60051FE2F /* ArticleListViewModel.swift in Sources */,
 				6D63A39728CEC38F0076BB1E /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

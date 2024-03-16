@@ -8,13 +8,6 @@
 import Foundation
 
 
-enum GenderType: String {
-    case female = "Female"
-    case male = "Male"
-    
-    var value: String { rawValue }
-}
-
 final class ArticleService {
     //MARK: - Properties
     static let shared = ArticleService()
@@ -25,8 +18,8 @@ final class ArticleService {
     private init() {}
     
     //MARK: - Functions
-    func getArticles(age: Int, sex: GenderType) async -> Result<[Article], NetworkClient.NetworkError> {
-        let url = endpoint.build(age: age, sex: sex.value)
+    func getArticles(age: String, sex: String) async -> Result<[Article], NetworkClient.NetworkError> {
+        let url = endpoint.build(age: age, sex: sex)
         let result = await client.request(url: url, type: ArticleResponseData.self)
         switch result {
         case .success(let response):

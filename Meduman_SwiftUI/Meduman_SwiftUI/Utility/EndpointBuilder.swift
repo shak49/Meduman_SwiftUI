@@ -18,10 +18,10 @@ final class EndpointBuilder {
     private init() {}
     
     //MARK: - Functions
-    func build(age: Int, sex: String) -> URL? {
+    func build(age: String, sex: String) -> URL? {
         var urlComponents = URLComponents()
         let queries = [
-            URLQueryItem(name: "age", value: "\(age)"),
+            URLQueryItem(name: "age", value: age),
             URLQueryItem(name: "sex", value: sex)
         ]
         urlComponents.scheme = "https"
