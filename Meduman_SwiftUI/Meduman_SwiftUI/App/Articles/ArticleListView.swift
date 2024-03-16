@@ -22,6 +22,7 @@ struct ArticleListView: View {
         .alert("Initial Alert", isPresented: $vm.isPresented) {
             TextField("Age", text: $vm.age)
             TextField("Sex", text: $vm.sex)
+                .textCase(.lowercase)
         }
     }
 }

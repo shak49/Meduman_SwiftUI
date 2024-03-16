@@ -14,6 +14,7 @@ enum UIText {
     static let health = "Health"
     static let home = "Home"
     static let reminder = "Reminder"
+    static let successAlertMessage = "Successfully provided with health recommendations!"
     //MARK: - Not Implemented View Texts
     static let welcomeTo = "Welcome To "
 }

@@ -29,6 +29,7 @@ final class EndpointBuilder {
         urlComponents.path = "/myhealthfinder/api/v3/myhealthfinder.json"
         urlComponents.queryItems = queries
         guard let url = urlComponents.url else { return nil }
+        print(url)
         return url
     }
 }
