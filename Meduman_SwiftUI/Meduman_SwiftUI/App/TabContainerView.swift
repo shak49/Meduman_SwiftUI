@@ -13,15 +13,19 @@ struct TabContainerView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label(UIText.home, systemImage: Symbol.house)
+                }
+            ArticleListView()
+                .tabItem {
+                    Label(UIText.article, systemImage: Symbol.article)
                 }
             HealthRecordsView()
                 .tabItem {
-                    Label("Health", systemImage: "heart")
+                    Label(UIText.health, systemImage: Symbol.heart)
                 }
             MedicineReminderListView()
                 .tabItem {
-                    Label("Reminder", systemImage: "calendar")
+                    Label(UIText.reminder, systemImage: Symbol.calendar)
                 }
         }
     }
