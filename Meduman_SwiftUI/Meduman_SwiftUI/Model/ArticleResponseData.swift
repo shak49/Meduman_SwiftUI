@@ -37,7 +37,13 @@ struct All: Codable {
 }
 
 struct Article: Codable, Identifiable {
-    let id: String?
+    let id: String
     let title: String?
     let imageUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case title = "Title"
+        case imageUrl = "ImageUrl"
+    }
 }
