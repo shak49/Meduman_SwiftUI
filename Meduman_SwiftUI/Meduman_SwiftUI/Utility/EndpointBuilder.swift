@@ -8,7 +8,7 @@
 import Foundation
 
 
-// https://health.gov/myhealthfinder/api/v3/myhealthfinder.json
+// https://health.gov/myhealthfinder/api/v3/myhealthfinder.json?age=29&sex=male
 
 final class EndpointBuilder {
     //MARK: - Properties
@@ -18,15 +18,11 @@ final class EndpointBuilder {
     private init() {}
     
     //MARK: - Functions
-    func build(age: String, sex: String) -> URL? {
+    func build(host: String, path: String, queries: [URLQueryItem]) -> URL? {
         var urlComponents = URLComponents()
-        let queries = [
-            URLQueryItem(name: "age", value: age),
-            URLQueryItem(name: "sex", value: sex)
-        ]
         urlComponents.scheme = "https"
-        urlComponents.host = "health.go"
-        urlComponents.path = "/myhealthfinder/api/v3/myhealthfinder.json"
+        urlComponents.host = host
+        urlComponents.path = path
         urlComponents.queryItems = queries
         guard let url = urlComponents.url else { return nil }
         return url

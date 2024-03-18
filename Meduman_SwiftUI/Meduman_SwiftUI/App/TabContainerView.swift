@@ -15,10 +15,6 @@ struct TabContainerView: View {
                 .tabItem {
                     Label(UIText.home, systemImage: Symbol.house)
                 }
-            ArticleListView()
-                .tabItem {
-                    Label(UIText.article, systemImage: Symbol.article)
-                }
             HealthRecordsView()
                 .tabItem {
                     Label(UIText.health, systemImage: Symbol.heart)

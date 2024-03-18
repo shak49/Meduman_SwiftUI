@@ -37,7 +37,17 @@ struct All: Codable {
 }
 
 struct Article: Codable, Identifiable {
-    let id: String?
+    let id: String
     let title: String?
     let imageUrl: String?
+    var image: URL? {
+        guard let urlString = imageUrl else { return nil }
+        return URL(string: urlString)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case title = "Title"
+        case imageUrl = "ImageUrl"
+    }
 }
