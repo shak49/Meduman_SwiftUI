@@ -17,9 +17,9 @@ final class NetworkClient {
     private init() {}
     
     //MARK: - Functions
-    func request<RESP: Codable>(url: URL?, type: RESP.Type) async -> Result<RESP, NetworkError> {
+    func request<RESP: Codable>(endpoint: Endpoint, type: RESP.Type) async -> Result<RESP, NetworkError> {
         do {
-            guard let url = url else { return .failure(.invalidURL) }
+            guard let url = endpoint.url else { return .failure(.invalidURL) }
             var request = URLRequest(url: url)
             let (data, response) = try await self.session.data(for: request)
             guard let response = response as? HTTPURLResponse, (200...300) ~= response.statusCode else {
@@ -37,7 +37,6 @@ final class NetworkClient {
 }
 
 extension NetworkClient {
-    
     enum NetworkError: LocalizedError {
         case customError(_ error: Error)
         case invalidURL
