@@ -10,6 +10,24 @@ import HealthKit
 import Combine
 
 
+enum GenderType: String {
+    case female = "Female"
+    case male = "Male"
+    
+    var value: String { rawValue }
+}
+
+enum AlertError: LocalizedError {
+    case message(error: String)
+    
+    var description: String? {
+        switch self {
+        case .message(error: let error):
+            return error
+        }
+    }
+}
+
 struct DataLineVM: Identifiable {
     let id = UUID().uuidString
     let type: String
@@ -52,17 +70,24 @@ struct RecordVM: Hashable, Identifiable {
 }
 
 class HomeVM: BaseVM {
-    //MARK: - Prooperties
+    //MARK: - Properties
     private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
+    private var articleService = ArticleService.shared
     private var cancellables = Set<AnyCancellable>()
     private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
-    @Published var dataLines: [DataLineVM] = []
-    @Published var reminders: [Reminder] = []
-    @Published var isRecordsAvailable: Bool = false
+    @Published private(set) var dataLines: [DataLineVM] = []
+    @Published private(set) var articles: [Article] = []
+    @Published private(set) var alertError: AlertError?
+    @Published private(set) var isLoading: Bool = false
+    @Published private(set) var isRecordsAvailable: Bool = false
+    @Published var isFormPresented: Bool = true
+    @Published var isErrorPresented: Bool = false
+    var age: String = ""
+    var sex: String = ""
     
     //MARK: - Lifecycles
     override init() {
@@ -75,7 +100,6 @@ class HomeVM: BaseVM {
         for sample in healthSamples {
             readRecord(type: sample)
         }
-        getReminders()
     }
     
     func readRecord(type: HKSampleType?) {
@@ -116,15 +140,21 @@ class HomeVM: BaseVM {
             .store(in: &cancellables)
     }
     
-    func getReminders() {
-        DispatchQueue.main.async {
-            self.firebaseService.fetchListOfReminders { reminder, error in
-                if error != nil {
-                    print(error)
+    func getArticles(age: String, sex: String) {
+        isLoading = true
+        Task {
+            let result = await articleService.getArticles(age: age, sex: sex)
+            switch result {
+            case .success(let articles):
+                await MainActor.run {
+                    self.articles = articles
+                    isFormPresented = false
+                    isLoading = false
                 }
-                guard let reminder = reminder else { return }
-                self.reminders.append(reminder)
-                self.reminders.sorted { $0.time < $1.time }
+            case .failure(let error):
+                isErrorPresented = true
+                alertError = .message(error: error.localizedDescription)
+                break
             }
         }
     }
