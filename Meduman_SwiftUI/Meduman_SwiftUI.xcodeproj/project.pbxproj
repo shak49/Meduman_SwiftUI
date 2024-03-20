@@ -176,6 +176,7 @@
 		6D11B8D82B813E32004026BE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				6D310E942A6C76AC005F7630 /* NotificationManager.swift */,
 				6D11B8D92B813E45004026BE /* BaseVM.swift */,
 				6D11B8D32B7B111F004026BE /* Color.swift */,
 				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
@@ -200,7 +201,9 @@
 		6D1D17C92A5789AF00B4A13D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A39528CEC37D0076BB1E /* Views */,
+				6DC7623E277B83E0002ECC8C /* SignInView.swift */,
+				6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */,
+				6D2A5CD72B92A9BE0037F798 /* Components */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -208,7 +211,9 @@
 		6D1D17CA2A5789C200B4A13D /* Health */ = {
 			isa = PBXGroup;
 			children = (
-				6D63A39A28CEC7840076BB1E /* Views */,
+				6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */,
+				6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */,
+				6DC2368C2988AC0600E10311 /* Components */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -216,20 +221,11 @@
 		6D1D17CB2A578AD100B4A13D /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				6D310E942A6C76AC005F7630 /* NotificationManager.swift */,
-				6D1D17D92A58B7B100B4A13D /* Views */,
-			);
-			path = Reminder;
-			sourceTree = "<group>";
-		};
-		6D1D17D92A58B7B100B4A13D /* Views */ = {
-			isa = PBXGroup;
-			children = (
 				6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */,
 				6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */,
 				6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */,
 			);
-			path = Views;
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 		6D2A5CD72B92A9BE0037F798 /* Components */ = {
@@ -249,16 +245,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6D63A39528CEC37D0076BB1E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				6DC7623E277B83E0002ECC8C /* SignInView.swift */,
-				6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */,
-				6D2A5CD72B92A9BE0037F798 /* Components */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		6D63A39828CEC7240076BB1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,16 +254,6 @@
 				6D9313802BA522920051FE2F /* ArticleResponseData.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		6D63A39A28CEC7840076BB1E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				6D63A36228C52D0E0076BB1E /* HealthRecordsView.swift */,
-				6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */,
-				6DC2368C2988AC0600E10311 /* Components */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		6D82EF54277266AA0010E25B = {

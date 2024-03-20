@@ -13,6 +13,7 @@ enum Endpoint {
 }
 
 extension Endpoint {
+    var scheme: String { "https" }
     var host: String { "health.gov" }
     var path: String {
         switch self {
@@ -20,7 +21,7 @@ extension Endpoint {
             return "/myhealthfinder/api/v3/myhealthfinder.json"
         }
     }
-    var queries: [URLQueryItem] {
+    var queryItems: [URLQueryItem] {
         switch self {
         case .articles(let age, let sex):
             return [
@@ -34,10 +35,10 @@ extension Endpoint {
 extension Endpoint {
     var url: URL? {
         var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
+        urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.path = path
-        urlComponents.queryItems = queries
+        urlComponents.queryItems = queryItems
         return urlComponents.url
     }
 }
