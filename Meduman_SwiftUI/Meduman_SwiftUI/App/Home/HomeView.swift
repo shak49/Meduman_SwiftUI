@@ -33,7 +33,15 @@ struct HomeView: View {
                     .chartLegend(position: .bottom, alignment: .center, spacing: 16)
                 }
             }
-            ArticleListView(vm: vm)
+            ArticleListView(articles: vm.articles, isLoading: vm.isLoading)
+            .alert("Enter your information", isPresented: $vm.isFormPresented) {
+                TextField("Age", text: $vm.age)
+                TextField("Sex", text: $vm.sex)
+                    .textCase(.lowercase)
+                Button("Submit") {
+                    vm.getArticles(age: vm.age, sex: vm.sex)
+                }
+            }
         }
     }
 }

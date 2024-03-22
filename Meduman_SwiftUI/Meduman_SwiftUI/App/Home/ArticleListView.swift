@@ -9,15 +9,16 @@ import SwiftUI
 
 struct ArticleListView: View {
     //MARK: - Properties
-    @ObservedObject var vm: HomeVM
+    let articles: [Article]
+    let isLoading: Bool
     
     //MARK: - Body
     var body: some View {
-        if vm.isLoading {
+        if isLoading {
             ProgressView()
         } else {
             List {
-                ForEach(vm.articles) { article in
+                ForEach(articles) { article in
                     HStack {
                         AsyncImage(url: article.image) { image in
                             image
@@ -32,23 +33,10 @@ struct ArticleListView: View {
             }
             .listStyle(.plain)
             .padding(.top, 32)
-            .alert("Enter your information", isPresented: $vm.isFormPresented) {
-                TextField("Age", text: $vm.age)
-                TextField("Sex", text: $vm.sex)
-                    .textCase(.lowercase)
-                Button("Ok") {
-                    vm.getArticles(age: vm.age, sex: vm.sex)
-                }
-            }
-            .alert(isPresented: $vm.isErrorPresented, error: vm.alertError) {
-                Button("Ok") {
-                    vm.isErrorPresented = false
-                }
-            }
         }
     }
 }
 
 #Preview {
-    ArticleListView(vm: HomeVM())
+    ArticleListView(articles: [], isLoading: false)
 }
