@@ -11,7 +11,7 @@ import Foundation
 class BaseVM: ObservableObject {
     //MARK: - Properties
     var firebaseService = FirebaseService()
-    var username: String = ""
+    var user: User?
     
     //MARK: - Lifecycles
     init() {
@@ -21,8 +21,8 @@ class BaseVM: ObservableObject {
     //MARK: - Functions
     private func getUserInfo() {
         Task {
-            guard let username = try await firebaseService.getCurrentUser().displayName else { return }
-            self.username = username
+            let user = try await firebaseService.getCurrentUser()
+            self.user = User(authUser: user)
         }
     }
 }
