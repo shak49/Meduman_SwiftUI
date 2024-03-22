@@ -34,14 +34,14 @@ struct HomeView: View {
                 }
             }
             ArticleListView(articles: vm.articles, isLoading: vm.isLoading)
-            .alert("Enter your information", isPresented: $vm.isFormPresented) {
-                TextField("Age", text: $vm.age)
-                TextField("Sex", text: $vm.sex)
-                    .textCase(.lowercase)
-                Button("Submit") {
-                    vm.getArticles(age: vm.age, sex: vm.sex)
+                .alert("Enter your information", isPresented: $vm.isFormPresented) {
+                    TextField("Age", text: $vm.age)
+                    TextField("Sex", text: $vm.sex)
+                        .textCase(.lowercase)
+                    Button("Submit") {
+                        vm.getArticles(age: vm.age, sex: vm.sex)
+                    }
                 }
-            }
         }
     }
 }
@@ -50,3 +50,53 @@ struct HomeView: View {
     HomeView()
 }
 
+struct ArticleListView: View {
+    //MARK: - Properties
+    private let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    let articles: [Article]
+    let isLoading: Bool
+    
+    //MARK: - Body
+    var body: some View {
+        if isLoading {
+            ProgressView()
+        } else {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(articles) { article in
+                        ItemCellView(article: article)
+                    }
+                }
+                .listStyle(.plain)
+                .padding(.top, 32)
+                .padding(.horizontal, 8)
+            }
+        }
+    }
+}
+
+struct ItemCellView: View {
+    //MARK: - Properties
+    var article: Article
+    
+    //MARK: - Body
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            AsyncImage(url: article.image) { image in
+                image
+                    .resizable()
+            } placeholder: {
+                // Placeholder Image
+            }
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.white)
+                    .opacity(0.7)
+                Text(article.title ?? "")
+            }
+            .frame(height: 50)
+        }
+        .frame(height: 170)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
