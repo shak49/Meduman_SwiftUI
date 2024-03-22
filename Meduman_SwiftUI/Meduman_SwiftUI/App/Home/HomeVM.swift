@@ -5,7 +5,7 @@
 //  Created by Shak Feizi on 2/9/24.
 //
 
-import Foundation
+import SwiftUI
 import HealthKit
 import Combine
 
@@ -86,13 +86,19 @@ class HomeVM: BaseVM {
     @Published private(set) var isRecordsAvailable: Bool = false
     @Published var isFormPresented: Bool = true
     @Published var isErrorPresented: Bool = false
-    var age: String = ""
-    var sex: String = ""
+    @AppStorage("age") var age: String = ""
+    @AppStorage("sex") var sex: String = ""
     
     //MARK: - Lifecycles
     override init() {
         super.init()
         populateUI()
+        if age.isEmpty && sex.isEmpty {
+            isFormPresented = true
+        } else {
+            isFormPresented = false
+            getArticles(age: age, sex: sex)
+        }
     }
     
     //MARK: - Functions
