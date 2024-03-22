@@ -92,19 +92,17 @@ class HomeVM: BaseVM {
     //MARK: - Lifecycles
     override init() {
         super.init()
-        populateUI()
-        if age.isEmpty && sex.isEmpty {
-            isFormPresented = true
-        } else {
-            isFormPresented = false
-            getArticles(age: age, sex: sex)
-        }
+        Task { await populateUI() }
     }
     
     //MARK: - Functions
-    func populateUI() {
+    func populateUI() async {
         for sample in healthSamples {
             readRecord(type: sample)
+        }
+        if !age.isEmpty && !sex.isEmpty {
+            isFormPresented = false
+            getArticles(age: age, sex: sex)
         }
     }
     

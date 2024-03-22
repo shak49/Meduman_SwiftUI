@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 
+
 struct HomeView: View {
     //MARK: - Properties
     @StateObject var vm = HomeVM()
@@ -43,6 +44,7 @@ struct HomeView: View {
                     }
                 }
         }
+        .refreshable { await vm.populateUI() }
     }
 }
 
@@ -60,6 +62,7 @@ struct ArticleListView: View {
     var body: some View {
         if isLoading {
             ProgressView()
+                .scaleEffect(1.5)
         } else {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
@@ -85,9 +88,7 @@ struct ItemCellView: View {
             AsyncImage(url: article.image) { image in
                 image
                     .resizable()
-            } placeholder: {
-                // Placeholder Image
-            }
+            } placeholder: {}
             ZStack {
                 Rectangle()
                     .foregroundStyle(.white)
