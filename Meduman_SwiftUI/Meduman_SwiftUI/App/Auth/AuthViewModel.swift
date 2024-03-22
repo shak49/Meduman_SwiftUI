@@ -26,8 +26,8 @@ class AuthViewModel: BaseVM {
             switch credential {
             case .success(let user):
                 await MainActor.run {
-                    guard let username = user?.displayName else { return }
-                    self.username = username
+                    guard let user = user else { return }
+                    self.user = user
                     self.isAuthenticated = true
                 }
             case .failure(let error):
@@ -44,8 +44,8 @@ class AuthViewModel: BaseVM {
             switch credential {
             case .success(let user):
                 await MainActor.run {
-                    guard let username = user?.displayName else { return }
-                    self.username = username
+                    guard let user = user else { return }
+                    self.user = user
                     self.isAuthenticated = true
                 }
             case .failure(let error):

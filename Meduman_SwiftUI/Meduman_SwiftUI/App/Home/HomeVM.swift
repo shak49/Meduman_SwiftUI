@@ -92,11 +92,11 @@ class HomeVM: BaseVM {
     //MARK: - Lifecycles
     override init() {
         super.init()
-        populateUI()
+        Task { await populateUI() }
     }
     
     //MARK: - Functions
-    func populateUI() {
+    func populateUI() async {
         for sample in healthSamples {
             readRecord(type: sample)
         }
