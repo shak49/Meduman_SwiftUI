@@ -18,7 +18,7 @@ final class ArticleService {
     
     //MARK: - Functions
     func getArticles(age: String, sex: String) async -> Result<[Article], NetworkClient.NetworkError> {
-        let result = await client.request(endpoint: .articles(age: age, sex: sex), type: ArticleResponseData.self)
+        let result = await client.request(endpoint: .articles(age: age, sex: sex), type: FirstLevelResponse.self)
         switch result {
         case .success(let response):
             let articles = response.responseData.resource.all.articles
