@@ -13,7 +13,7 @@ import HealthKit
 
 class HealthServiceTests: XCTestCase {
     //MARK: - Properties
-    private var sut: HealthService!
+    private var service: HealthService!
     private var healthStoreMock: HealthStoreMock!
     private var healthQueryMock: HealthQueryMock!
     private var cancellables = Set<AnyCancellable>()
@@ -22,18 +22,19 @@ class HealthServiceTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         self.healthStoreMock = HealthStoreMock()
-        self.sut = HealthService(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
+        self.service = HealthService(healthStore: self.healthStoreMock, healthQuery: self.healthQueryMock)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-        self.sut = nil
+        self.service = nil
     }
 
     //MARK: - Functions
     func test_requestAuthorization_successfullyAuthorizeAccess() {
         let expectation = expectation(description: "\'requestAuthorization\' can successfully authorize access.")
-        sut.requestAuthorization()
+        healthStoreMock.success = true
+        service.requestAuthorization()
             .sink { completion in
                 print("COMPLETION: \(completion)")
             } receiveValue: { result in
@@ -49,7 +50,7 @@ class HealthServiceTests: XCTestCase {
         let record = 188.00
         let health = Health(record: record, typeId: .bloodGlucose, unit: "mg/dL", date: Date.now)
         let object = HealthSampleBuilder.shared.quantitySample(health: health)
-        self.sut.writeHealthRecord(object: object)
+        self.service.writeHealthRecord(object: object)
             .sink { completion in
                 print("COMPLETION: \(completion)")
             } receiveValue: { result in
@@ -63,7 +64,7 @@ class HealthServiceTests: XCTestCase {
     func test_readHealthRecord_successfullyReadRecords() {
         let expectation = expectation(description: "\'readHealthRecord\' can successfully return objects.")
         guard let type = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else { return }
-        self.sut.readHealthRecord(type: type)
+        self.service.readHealthRecord(type: type)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 print("COMPLETION:", completion)

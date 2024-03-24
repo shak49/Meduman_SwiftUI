@@ -1,0 +1,276 @@
+{
+    "Result": {
+        "Error": "False",
+        "Total": 23,
+        "Query": {
+            "ApiVersion": "3",
+            "ApiType": "myhealthfinder",
+            "TopicId": null,
+            "ToolId": null,
+            "CategoryId": null,
+            "PopulationId": null,
+            "Keyword": null,
+            "Who": null,
+            "Age": "66",
+            "Sex": "Male",
+            "Pregnant": null,
+            "TobaccoUse": "No",
+            "SexuallyActive": "No",
+            "Category": null,
+            "Lang": "en",
+            "Type": null,
+            "ReturnType": "json",
+            "Callback": null,
+            "HealthfinderPage": null
+        },
+        "Language": "English",
+        "TakeAction": "",
+        "AboutTheseResults": "<p>The MyHealthfinder recommendations come from the U.S. Preventive Services Task Force (USPSTF), the CDC Advisory Committee on Immunization Practices (ACIP), and the Health Resources and Services Administration (HRSA) as advised by organizations including the American Academy of Pediatrics (through the Bright Futures cooperative agreement) and the National Academies of Sciences, Engineering, and Medicine (formerly the Institute of Medicine). The Affordable Care Act requires most insurance plans to cover these preventive services at no cost to you.</p>\r\n\r\n<p>The MyHealthfinder tool is maintained by the Office of Disease Prevention and Health Promotion (ODPHP) in collaboration with the Agency for Healthcare Research and Quality (AHRQ).</p>\r\n",
+        "MyHFHeading": "Here are important ways for a man age 66 to stay healthy.",
+        "Resources": {
+            "all": {
+                "Resource": [
+                    {
+                        "Type": "Topic",
+                        "Id": "551",
+                        "Title": "Protect Yourself from Seasonal Flu",
+                        "TranslationId": "551",
+                        "TranslationTitle": "",
+                        "Categories": "Vaccines (Shots)",
+                        "Populations": "",
+                        "MyHFTitle": "Get the Seasonal Flu Vaccine",
+                        "MyHFDescription": "<p>Get the flu vaccine every year to protect yourself and others from the flu. (ACIP)</p>\r\n",
+                        "MyHFCategory": "all",
+                        "MyHFCategoryHeading": "<h2 class=\"all\" >Doctors recommend that <span>all</span> men age <span>66</span>:</h2>",
+                        "LastUpdate": "1705701125",
+                        "ImageUrl": "https://health.gov/sites/default/files/2022-06/pyfsf.jpg",
+                        "ImageAlt": "A group of people sitting together smiling.",
+                        "AccessibleVersion": "https://health.gov/myhealthfinder/doctor-visits/vaccines-shots/protect-yourself-seasonal-flu",
+                        "RelatedItems": {
+                            "RelatedItem": [
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30539",
+                                    "Title": "Eat Healthy",
+                                    "Url": "https://health.gov/myhealthfinder/health-conditions/diabetes/eat-healthy"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30533",
+                                    "Title": "Get Enough Sleep",
+                                    "Url": "https://health.gov/myhealthfinder/healthy-living/mental-health-and-relationships/get-enough-sleep"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "543",
+                                    "Title": "Get Vaccines to Protect Your Health (Adults Ages 19 to 49 Years)",
+                                    "Url": "https://health.gov/myhealthfinder/doctor-visits/vaccines-shots/get-vaccines-protect-your-health-adults-ages-19-49-years"
+                                }
+                            ]
+                        },
+                        "Sections": {
+                            "section": [
+                                {
+                                    "Title": "The Basics: Overview",
+                                    "Description": "",
+                                    "Content": "<p>Everyone age 6 months and older &nbsp;needs to get a flu vaccine every year. Seasonal flu vaccines are the best way to protect yourself and others from the flu.</p><p>For many people, seasonal flu is a mild illness. But sometimes, the flu can be serious or even deadly. The flu:</p><ul><li>Is linked to serious infections like pneumonia</li><li>Can make existing health problems worse (for example, long-term heart or lung disease)</li><li>Can lead to hospitalization or death</li></ul><p>Flu vaccines can help prevent people from getting sick with the flu — and lower the risk of hospitalization and death for people who do get sick.</p><p>The flu spreads easily from person to person. So when you get a flu vaccine, you don’t just protect yourself. You also can help protect everyone around you.</p><h4>When do I need to get a seasonal flu vaccine?</h4><p>Most people should get a flu vaccine in September or October each year. After you get vaccinated, it takes about 2 weeks for your body to develop protection against the flu. That’s why it’s a good idea to get a flu vaccine before flu starts to spread in your community.</p><p>Even if you don’t get a flu vaccine by the end of October, getting a vaccine later can still protect you from the flu. Keep in mind that flu season can last as late as May or June.</p>"
+                                },
+                                {
+                                    "Title": "The Basics: Flu Symptoms",
+                                    "Description": "",
+                                    "Content": "<h4>What is the flu?</h4><p>The flu is caused by viruses that can infect your nose, throat, and lungs. Experts think it mainly spreads from person to person when someone with the flu coughs, sneezes, or talks. It's also possible to get sick with the flu by touching a surface or object that has flu virus on it and then touching your mouth, nose, or eyes.</p><p>Signs and symptoms of the flu can include:</p><ul><li>Cough</li><li>Sore throat</li><li>Headache</li><li>Feeling tired</li><li>Runny or stuffy nose</li><li>Muscle or body aches</li><li>Fever or feeling feverish</li><li>Having chills</li></ul><p>For some people, the flu may also cause vomiting (throwing up) and diarrhea (frequent, watery poop). This is more common in children than adults.</p><p>Keep in mind that not everyone with the flu gets a fever.</p>"
+                                },
+                                {
+                                    "Title": "The Basics: Flu Vaccines",
+                                    "Description": "",
+                                    "Content": "<h4>How are flu vaccines given?</h4><p>You can get a flu vaccine as a shot or as a nasal spray.</p><h4>Are there any side effects from seasonal flu vaccines?</h4><p>Flu vaccines can cause side effects, but they're usually mild. They usually start soon after you get the vaccine and last for 1 to 2 days.</p><p>Side effects from the flu shot can include:</p><ul><li>Soreness, redness, or swelling where you got the shot</li><li>Headache</li><li>Fever</li><li>Nausea (feeling sick to your stomach)</li><li>Body aches</li></ul><p>Side effects from the nasal spray vaccine may include:</p><ul><li>Runny nose</li><li>Cough</li><li>Headache</li><li>Sore throat</li></ul><p>These side effects aren’t the flu. You can’t get the flu from flu vaccines.</p>"
+                                },
+                                {
+                                    "Title": "The Basics: Am I at Higher Risk?",
+                                    "Description": "",
+                                    "Content": "<h4>Am I at higher risk for serious complications from the flu?</h4><p>For some people, the flu is more likely to cause serious illness that can lead to hospitalization or even death.</p><p>People at higher risk for serious flu complications include:</p><ul><li>Children younger than 5 years — and especially children younger than 2 years</li><li>People who are pregnant or have had a baby in the last 2 weeks</li><li>Adults age 65 years and older</li><li>People with some long-term health conditions (like asthma, diabetes, or heart disease)</li><li>People with a weakened immune system (like people with HIV)</li><li>People who live in long-term care facilities (like nursing homes)</li><li>People from certain racial and ethnic groups, including people who are African American, Hispanic or Latino, and American Indian or Alaska Native</li><li>People with obesity who have a body mass index (BMI) of 40 or higher</li></ul><p>If you’re at higher risk for serious flu complications, it’s especially important to get a flu vaccine before the flu starts to spread in your community. And if you care for, or spend time with, someone at higher risk for serious flu complications, a flu vaccine can help protect you both.</p><p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.cdc.gov/flu/highrisk/index.htm?_label_=Learn+more+about+who%E2%80%99s+at+high+risk+for+flu+complications\">Learn more about who’s at high risk for flu complications</a>.</p>"
+                                },
+                                {
+                                    "Title": "The Basics: Flu Medicine",
+                                    "Description": "",
+                                    "Content": "<h4>Is there medicine that can treat the flu?</h4><p>Yes. If you get sick with the flu, your doctor may prescribe medicines called flu antiviral drugs. Flu antiviral drugs can help shorten the time that you’re sick. They can also help prevent serious flu complications.</p><p>If you’re at higher risk for serious flu complications and you get flu symptoms, tell your doctor right away.</p><p>Flu antiviral drugs work best if you start taking them in the first 2 days after you get sick. But they may still help if you take them later on, especially if you’re very sick.</p><p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.cdc.gov/flu/treatment/whatyoushould.htm?_label_=Get+the+facts+about+flu+antiviral+drugs\">Get the facts about flu antiviral drugs</a>.</p>"
+                                },
+                                {
+                                    "Title": "Take Action: Get a Flu Vaccine",
+                                    "Description": "",
+                                    "Content": "<h4>Find out where to get a flu vaccine near you.</h4><p>Flu vaccines are available in many locations. You can get a flu vaccine at a doctor’s office, a health clinic, a pharmacy, or your local health department. Your employer may also offer flu vaccines.</p><p>If you’re not sure where to start, call your doctor’s office or local health department. You can also <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.vaccines.gov/find-vaccines/?_label_=use+this+tool+to+find+flu+vaccines+near+you\">use this tool to find flu vaccines near you</a>.&nbsp;</p><h5><strong>What about cost?</strong></h5><p><span>Under the&nbsp;Affordable Care Act, insurance plans must cover seasonal flu vaccines. Depending on your insurance plan, you may be able to get a flu vaccine at no cost to you. Check with your insurance company to find out more.</span></p><p><span>Medicare may also cover flu vaccines at no cost. If you have Medicare,&nbsp;</span><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.medicare.gov/coverage/flu-shots?_label_=%3Cspan%3Elearn+about+Medicare+coverage+for+flu+vaccines%3C%2Fspan%3E\"><span>learn about Medicare coverage for flu vaccines</span></a><span>.</span></p><p><span>If you don’t have insurance, you may still be able get a free or low-cost flu vaccine:</span></p><ul><li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/findahealthcenter.hrsa.gov/?_label_=%3Cspan%3EFind+a+health+center+near+you+and+ask+about+flu+vaccines%3C%2Fspan%3E\"><span>Find a health center near you and ask about flu vaccines</span></a></li><li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.hhs.gov/immunization/get-vaccinated/where/index.html?_label_=%3Cspan%3EFind+a+free+or+low-cost+vaccine+program+in+your+state%3C%2Fspan%3E\"><span>Find a free or low-cost vaccine program in your state</span></a></li></ul><p><span>To learn more, check out these resources:</span></p><ul><li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.healthcare.gov/coverage/preventive-care-benefits/?_label_=%3Cspan%3EFree+preventive+care+covered+by+the+Affordable+Care+Act%3C%2Fspan%3E\"><span>Free preventive care covered by the Affordable Care Act</span></a></li><li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.healthcare.gov/health-care-law-protections/?_label_=%3Cspan%3EHow+the+Affordable+Care+Act+protects+you%3C%2Fspan%3E\"><span>How the Affordable Care Act protects you</span></a></li><li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/marketplace.cms.gov/technical-assistance-resources/c2c-roadmap.pdf?_label_=%3Cspan%3EUnderstanding+your+health+insurance+and+how+to+use+it+%5BPDF+-+698+KB%5D%3C%2Fspan%3E\"><span>Understanding your health insurance and how to use it [PDF - 698 KB]</span></a></li></ul>"
+                                },
+                                {
+                                    "Title": "Take Action: Protect Yourself",
+                                    "Description": "",
+                                    "Content": "<h4>Protect yourself and others from the flu.</h4><p>Getting a flu vaccine is the first and most important step in protecting yourself from the flu.</p><p>Here are some other things you can do to help protect yourself and others from the flu:</p><ul><li>Stay away from people who are sick with the flu</li><li>If you have the flu, stay home — if you have a fever, stay home for at least 24 hours after your fever is gone (without using a fever-reducing medicine), even if you’re feeling better</li><li>When you cough or sneeze, cover your mouth and nose with a tissue (or with your arm) whether or not you have the flu — and then throw the tissue in the trash</li><li>Wash your hands often with soap and water — if soap and water aren’t available, use an alcohol-based hand sanitizer</li><li>Try not to touch your nose, mouth, or eyes — this helps keep germs from spreading</li><li>Clean surfaces and objects that may have flu germs on them, like doorknobs or bathroom counters — use hot, soapy water or a household cleaner</li></ul><p>Most adults with the flu can spread it to others starting the day before they first feel sick — and up to 5 to 7 days after they first notice symptoms. Children may be able to spread the flu for even longer than 7 days after symptoms start.</p>"
+                                }
+                            ]
+                        },
+                        "MoreInfoItems": null,
+                        "HealthfinderLogo": "https://health.gov/themes/custom/healthfinder/images/MyHF.svg",
+                        "HealthfinderUrl": "https://health.gov/myhealthfinder"
+                    }
+                ]
+            },
+            "some": {
+                "Resource": [
+                    {
+                        "Type": "Topic",
+                        "Id": "329",
+                        "Title": "Lower Your Risk of Falling",
+                        "TranslationId": "329",
+                        "TranslationTitle": "",
+                        "Categories": "Safety",
+                        "Populations": "",
+                        "MyHFTitle": "Talk to Your Doctor About Preventing Falls",
+                        "MyHFDescription": "<p>If you are worried about falls, ask how exercise or physical therapy might help you prevent falls. (USPSTF)</p>\r\n",
+                        "MyHFCategory": "some",
+                        "MyHFCategoryHeading": "<h2 class=\"some\" >Based on family history and other risk factors, doctors recommend that <span>some</span> men age <span>66</span>:</h2>",
+                        "LastUpdate": "1693253223",
+                        "ImageUrl": "https://health.gov/sites/default/files/2022-07/lyrof.jpg",
+                        "ImageAlt": "A woman stretches her arms.",
+                        "AccessibleVersion": "https://health.gov/myhealthfinder/healthy-living/safety/lower-your-risk-falling",
+                        "RelatedItems": {
+                            "RelatedItem": [
+                                {
+                                    "Type": "Topic",
+                                    "Id": "534",
+                                    "Title": "Get a Bone Density Test",
+                                    "Url": "https://health.gov/myhealthfinder/doctor-visits/screening-tests/get-bone-density-test"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30607",
+                                    "Title": "Calcium: Shopping List",
+                                    "Url": "https://health.gov/myhealthfinder/healthy-living/nutrition/calcium-shopping-list"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30759",
+                                    "Title": "Preventing Falls: Conversation Starters",
+                                    "Url": "https://health.gov/myhealthfinder/healthy-living/safety/preventing-falls-conversation-starters"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30591",
+                                    "Title": "Oral Health for Older Adults: Quick Tips",
+                                    "Url": "https://health.gov/myhealthfinder/doctor-visits/regular-checkups/oral-health-older-adults-quick-tips"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30595",
+                                    "Title": "Preventing Osteoporosis: Questions for the Doctor",
+                                    "Url": "https://health.gov/myhealthfinder/doctor-visits/talking-doctor/preventing-osteoporosis-questions-doctor"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30616",
+                                    "Title": "Stay Active as You Get Older: Quick Tips",
+                                    "Url": "https://health.gov/myhealthfinder/health-conditions/obesity/stay-active-you-get-older-quick-tips"
+                                }
+                            ]
+                        },
+                        "Sections": {
+                            "section": [
+                                {
+                                    "Title": "The Basics: Overview",
+                                    "Description": "",
+                                    "Content": "<p>More than 1 in 4 older adults fall each year, meaning falls are common. But you can make small changes to help prevent falls.&nbsp;</p>\r\n\r\n<p>Falling can lead to broken bones, trouble getting around, and other problems — especially if you’re age 65 or older. A fracture (broken bone) can cause pain and disability. It can also make it hard to do everyday activities, like cooking or taking a shower, without help. Broken hips may lead to serious health problems — and even death.</p>\r\n\r\n<p>The good news is that there are lots of things you can do to lower your risk of falling. Take these steps:</p>\r\n\r\n<ul>\r\n\t<li>Talk with&nbsp;your doctor about falls and how to prevent them</li>\r\n\t<li>Do exercises to improve your balance and strength</li>\r\n\t<li>Review all medicines with your doctor or pharmacist —&nbsp;some medicines can make you dizzy or&nbsp;sleepy and cause you to fall</li>\r\n\t<li>Get your vision checked by an eye doctor every&nbsp;year&nbsp;— and be sure to update your glasses or contact lenses when your vision changes</li>\r\n\t<li>Make your home safer —&nbsp;for example, add grab bars inside and outside your bathtub or shower and put railings on both sides of stairs</li>\r\n</ul>\r\n"
+                                },
+                                {
+                                    "Title": "The Basics: Am I at Risk?",
+                                    "Description": "",
+                                    "Content": "<h4>What makes falling more likely?</h4>\r\n\r\n<p>As people age, poor balance and weak muscles can lead to falls and fractures. Some older adults also have vision problems or medical conditions that can make a fall more likely. For example, diabetes can reduce feeling in your feet and a stroke can affect your balance. These conditions can make you more likely to fall.</p>\r\n\r\n<p>You may be more likely to fall if you:</p>\r\n\r\n<ul>\r\n\t<li>Have fallen in the past year</li>\r\n\t<li>Have a health condition that makes it hard to walk or affects your balance, like diabetes or heart disease</li>\r\n\t<li>Have trouble walking, getting up from a chair, or stepping up onto a curb</li>\r\n\t<li>Take many different medicines, especially medicines to help you relax or sleep</li>\r\n\t<li>Have trouble seeing or have a vision problem like cataracts or glaucoma</li>\r\n</ul>\r\n\r\n<p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.cdc.gov/steadi/pdf/STEADI-Brochure-StayIndependent-508.pdf?_label_=Use+this+checklist+to+find+out+if+you%E2%80%99re+at+risk+for+falling%26nbsp%3B%5BPDF+-+1.8+MB%5D\">Use this checklist to find out if you’re at risk for falling&nbsp;[PDF - 1.8 MB]</a>.</p>\r\n\r\n<p>If you’re worried about falling, talk to your doctor or nurse about how balance exercises and physical therapy can help.&nbsp;<a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.nia.nih.gov/health/prevent-falls-and-fractures?_label_=Find+out+more+about+preventing+falls+and+fractures\">Find out more about preventing falls and fractures</a>.</p>\r\n"
+                                },
+                                {
+                                    "Title": "Take Action: Get Active",
+                                    "Description": "",
+                                    "Content": "<p>Many falls are preventable. Follow these steps to lower your risk of falling.</p>\r\n\r\n<h4>Get physical activity.</h4>\r\n\r\n<p>Staying active can help you feel better, improve your balance, and make your legs stronger. Learn more:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/health-conditions/obesity/stay-active-you-get-older-quick-tips?_label_=Get+tips+for+staying+active+as+you+get+older\">Get tips for staying active as you get older</a></li>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/sites/default/files/2019-11/PAG_MYW_OlderAdults_FS.pdf?_label_=Find+out+how+staying+active+can+help+you+stay+healthy%26nbsp%3B%5BPDF+-+1.1+MB%5D\">Find out how staying active can help you stay healthy&nbsp;[PDF - 1.1 MB]</a></li>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/order.nia.nih.gov/sites/default/files/2018-07/workout-to-go.pdf?_gl=1*1i26dwx*_ga*OTUwMjg0MTk0LjE2MjgyMDg1NDE.*_ga_TK3CE80DBZ*MTYyODcxOTE3OS45LjEuMTYyODcxOTg3Mi4xNA&_label_=Check+out+this+free+workout+guide+for+older+adults+%5BPDF+-+1.6+MB%5D\">Check out this free workout guide for older adults [PDF - 1.6 MB]</a></li>\r\n</ul>\r\n\r\n<h4>Improve your balance.</h4>\r\n\r\n<p>Exercises that improve your balance can help prevent falls. For example, tai chi is&nbsp;a mind-body exercise that can help with balance. You can:</p>\r\n\r\n<ul>\r\n\t<li>Check with your local community or senior center for physical activity classes that can help your balance</li>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.nia.nih.gov/health/four-types-exercise-can-improve-your-health-and-physical-ability?_hash_=balance&_label_=Try+these+simple+exercises+to+improve+your+balance\">Try these simple exercises to improve your balance</a></li>\r\n</ul>\r\n\r\n<h4>Build your muscle strength.&nbsp;</h4>\r\n\r\n<p>Do muscle-strengthening activities at least 2 days a week. These include lifting weights or using resistance bands (long, stretchy rubber strips).</p>\r\n\r\n<p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.nia.nih.gov/health/four-types-exercise-can-improve-your-health-and-physical-ability?_hash_=strength&_label_=Try+these+strength+exercises+at+home\">Try these strength exercises at home</a>.</p>\r\n"
+                                },
+                                {
+                                    "Title": "Take Action: See a Doctor",
+                                    "Description": "",
+                                    "Content": "<p>There’s a lot your doctor can do to help keep you safe from falls. Talk with your doctor about your risk of&nbsp;falling.</p>\r\n\r\n<h4>Talk with your doctor about using medicines safely.</h4>\r\n\r\n<p>Using medicines safely&nbsp;can help prevent falls. Some medicines can make you sleepy or dizzy and cause you to fall.&nbsp;</p>\r\n\r\n<p>Take all of your medicines (including over-the-counter medicines) to a doctor or pharmacist and ask if any of them could increase your risk of falling.</p>\r\n\r\n<p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/everyday-healthy-living/safety/use-medicines-safely?_label_=Learn+more+about+using+medicines+safely\">Learn more about using medicines safely</a>. You can also <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/medlineplus.gov/ency/patientinstructions/000254.htm?_label_=print+this+list+of+questions+to+ask+your+doctor+about+preventing+falls\">print this list of questions to ask your doctor about preventing falls</a>&nbsp;and take it with you to your next appointment.</p>\r\n\r\n<h4>Get your vision checked.</h4>\r\n\r\n<p>Your vision changes as you get older. And poor vision can increase your chances of falling.</p>\r\n\r\n<p>Get your eyes checked every year to make sure you’re wearing glasses or contact lenses with the right prescription strength. Be sure to update your glasses or contacts if your prescription has changed. <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.nia.nih.gov/health/aging-and-your-eyes?_label_=Read+more+about+keeping+your+vision+healthy\">Read more about keeping your vision healthy</a>.</p>\r\n\r\n<h4>Get a bone density test.</h4>\r\n\r\n<p>If you’re a woman age 65 or older,&nbsp;get a bone density test&nbsp;to measure how strong your bones are. If you’re a woman age 64 or younger and you have gone through menopause, ask your doctor if you need a bone density test. <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/doctor-visits/screening-tests/get-bone-density-test?_label_=Learn+more+about+bone+density+tests\">Learn more about bone density tests</a>.</p>\r\n\r\n<p>If you have weak bones (osteoporosis), ask your doctor or nurse what steps you can take to stop bone loss and lower your risk of fractures.</p>\r\n"
+                                },
+                                {
+                                    "Title": "Take Action: Home Safety",
+                                    "Description": "",
+                                    "Content": "<h4>Help prevent falls at home.</h4>\r\n\r\n<p>Many falls happen inside the home. Take these steps to make your home safer:</p>\r\n\r\n<ul>\r\n\t<li>Have railings put on both sides of all stairs&nbsp;inside and outside of your home</li>\r\n\t<li>Have grab bars put inside and outside your bathtub or shower and next to the toilet</li>\r\n\t<li>Use non-slip mats in the bathtub or shower</li>\r\n\t<li>Remove small rugs or use double-sided tape to keep rugs from slipping</li>\r\n\t<li>Use bright lights throughout your home, especially on the stairs</li>\r\n\t<li>Keep stairs and places where you walk clear of clutter —&nbsp;pick up or move things you can trip over, like cords, papers, shoes, or books</li>\r\n\t<li>Keep kitchen items you use often in easy-to-reach cabinets or shelves</li>\r\n</ul>\r\n\r\n<p><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.cdc.gov/steadi/pdf/STEADI-Brochure-CheckForSafety-508.pdf?_label_=Use+this+checklist+to+help+prevent+falls+at+home\">Use this checklist to help prevent falls at home</a>.&nbsp;</p>\r\n\r\n<p>And be sure to follow these safety tips:</p>\r\n\r\n<ul>\r\n\t<li>Always wear shoes with non-slip soles, even inside your home —&nbsp;don’t walk barefoot or wear slippers or socks instead of shoes</li>\r\n\t<li>When you're getting out of a chair, stand up slowly</li>\r\n\t<li>When you're getting out of bed, sit up first and then stand up slowly</li>\r\n</ul>\r\n"
+                                },
+                                {
+                                    "Title": "Take Action: Healthy Habits",
+                                    "Description": "",
+                                    "Content": "<h4>Get enough calcium.</h4>\r\n\r\n<p>Getting enough calcium can help keep your bones strong and make them less likely to break. You can:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/everyday-healthy-living/nutrition/get-enough-calcium?_label_=Learn+how+to+get+enough+calcium\">Learn how to get enough calcium</a></li>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/everyday-healthy-living/nutrition/calcium-shopping-list?_label_=Check+out+this+shopping+list+of+foods+high+in+calcium\">Check out this shopping list of foods high in calcium</a></li>\r\n</ul>\r\n\r\n<h4>Get plenty of sleep.</h4>\r\n\r\n<p>Getting enough sleep can help you be more alert so you’re less likely to fall. <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/everyday-healthy-living/mental-health-and-relationships/get-enough-sleep?_label_=Find+tips+for+getting+enough+sleep\">Find tips for getting enough sleep</a>.</p>\r\n\r\n<h4>Drink alcohol only in moderation.</h4>\r\n\r\n<p>Alcohol can increase your risk of falling. If you choose to drink alcohol, it’s important to drink only in moderation to help you stay safe and avoid injuries. <a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/health-conditions/heart-health/drink-alcohol-only-moderation?_label_=Read+about+drinking+in+moderation\">Read about drinking in moderation</a>.</p>\r\n"
+                                },
+                                {
+                                    "Title": "Take Action: Caregiver Support",
+                                    "Description": "",
+                                    "Content": "<h4>Help your loved one prevent falls.</h4>\r\n\r\n<p>If you’re a caregiver, there’s a lot you can do to protect your loved ones. You can:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/www.cdc.gov/steadi/pdf/STEADI-CaregiverBrochure.pdf?_label_=Check+out+this+resource+on+helping+loved+ones+prevent+falls+%5BPDF+-+3.6+MB%5D+\">Check out this resource on helping loved ones prevent falls [PDF - 3.6 MB] </a></li>\r\n\t<li><a href=\"https://health.gov/myhealthfinder/api/outlink/myhealthfinder.json/https/health.gov/myhealthfinder/topics/everyday-healthy-living/safety/preventing-falls-conversation-starters?_label_=Use+these+tips+to+start+a+conversation+about+preventing+falls\">Use these tips to start a conversation about preventing falls</a></li>\r\n</ul>\r\n"
+                                }
+                            ]
+                        },
+                        "MoreInfoItems": null,
+                        "HealthfinderLogo": "https://health.gov/themes/custom/healthfinder/images/MyHF.svg",
+                        "HealthfinderUrl": "https://health.gov/myhealthfinder"
+                    }
+                ]
+            },
+            "You may also be interested in these health topics:": {
+                "Resource": [
+                    {
+                        "Type": "Topic",
+                        "Id": "30598",
+                        "Title": "Losing Weight: Conversation Starters",
+                        "TranslationId": "30598",
+                        "TranslationTitle": "",
+                        "Categories": "Helping a Loved One, Helping a Loved One, Helping a Loved One, Helping a Loved One",
+                        "Populations": "",
+                        "MyHFTitle": "Losing Weight: Conversation starters",
+                        "MyHFDescription": "",
+                        "MyHFCategory": "You may also be interested in these health topics:",
+                        "MyHFCategoryHeading": "<h2 class=\"You may also be interested in these health topics:\" ><span>You may also be interested in these health topics:</span></h2>",
+                        "LastUpdate": "1693938158",
+                        "ImageUrl": "https://health.gov/sites/default/files/2023-03/Diabetes-losing-weight_1141392938.jpg",
+                        "ImageAlt": "Two young women smile and laugh while walking together.",
+                        "AccessibleVersion": "https://health.gov/myhealthfinder/health-conditions/diabetes/losing-weight-conversation-starters",
+                        "RelatedItems": {
+                            "RelatedItem": [
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30539",
+                                    "Title": "Eat Healthy",
+                                    "Url": "https://health.gov/myhealthfinder/health-conditions/diabetes/eat-healthy"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30536",
+                                    "Title": "Take Steps to Prevent Type 2 Diabetes",
+                                    "Url": "https://health.gov/myhealthfinder/health-conditions/diabetes/take-steps-prevent-type-2-diabetes"
+                                },
+                                {
+                                    "Type": "Topic",
+                                    "Id": "30551",
+                                    "Title": "Aim for a Healthy Weight",
+                                    "Url": "https://health.gov/myhealthfinder/health-conditions/diabetes/aim-healthy-weight"
+                                }
+                            ]
+                        },
+                        "Sections": {
+                            "section": [
+                                {
+                                    "Title": null,
+                                    "Description": null,
+                                    "Content": "<p>Talking to a family member or friend about losing weight can be hard. Use these tips to start the conversation.</p>\r\n\r\n<h2>Start by saying, “I care about you.”</h2>\r\n\r\n<ul>\r\n\t<li>“You're important to me, and I want you to be around for a long time.”</li>\r\n\t<li>“I want you to have more energy and not worry about your health. That’s why I want to help you reach a healthy weight.”</li>\r\n\t<li>“I’m here for you. Let’s make healthy changes together.”</li>\r\n</ul>\r\n\r\n<h2>Share what has worked for others.</h2>\r\n\r\n<p>Here are some ideas for losing weight in a healthy way:</p>\r\n\r\n<ul>\r\n\t<li>Set manageable goals — start by trying to lose about 1 to 2 pounds each week.</li>\r\n\t<li>Start a food diary to keep track of what and how much you eat and drink.</li>\r\n\t<li>Eat a healthy breakfast every day.</li>\r\n\t<li>Serve yourself smaller portions.</li>\r\n\t<li>Drink water instead of sugary drinks like soda or energy drinks.&nbsp;</li>\r\n\t<li>Do something active every day —&nbsp;take the stairs, go for a walk at lunch, or enjoy a family bike ride.</li>\r\n\t<li>Join a walking club or support group to keep you motivated.</li>\r\n</ul>\r\n\r\n<p>If you have&nbsp;friends, family members, or co-workers who have lost weight by eating healthy and getting active, ask them to share what worked for them.&nbsp;</p>\r\n\r\n<h2>Do more than talk.</h2>\r\n\r\n<p>Find ways to get active and eat healthy together. Here are some ideas:</p>\r\n\r\n<ul>\r\n\t<li>Go food shopping together. Use the <a href=\"https://www.fda.gov/food/new-nutrition-facts-label/how-understand-and-use-nutrition-facts-label\">Nutrition Facts label</a> to find foods and drinks that are low in added sugars and saturated fats.</li>\r\n\t<li>If you go out to eat, split a meal or save half to take home.</li>\r\n\t<li>Go for a walk every day or take an exercise class together.</li>\r\n\t<li>Celebrate your loved one’s weight loss — but avoid using food as a reward.</li>\r\n</ul>\r\n"
+                                }
+                            ]
+                        },
+                        "MoreInfoItems": null,
+                        "HealthfinderLogo": "https://health.gov/themes/custom/healthfinder/images/MyHF.svg",
+                        "HealthfinderUrl": "https://health.gov/myhealthfinder"
+                    }
+                ]
+            }
+        }
+    }
+}
