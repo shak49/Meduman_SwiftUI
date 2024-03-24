@@ -16,27 +16,30 @@ struct HomeView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
-            VStack {
-                if vm.isRecordsAvailable {
-                    RecordChartView(title: "Daily Progress", dataLines: vm.dataLines)
-                }
-                if vm.isLoading {
-                    ProgressView()
-                        .scaleEffect(1.5)
-                } else {
-                    ArticleListView(articles: vm.articles)
-                        .alert("Enter your information", isPresented: $vm.isFormPresented) {
-                            TextField("Age", text: $vm.age)
-                            TextField("Sex", text: $vm.sex)
-                                .textCase(.lowercase)
-                            Button("Submit") {
-                                vm.getArticles(age: vm.age, sex: vm.sex)
+            ScrollView {
+                VStack {
+                    if vm.isRecordsAvailable {
+                        RecordChartView(title: "Daily Progress", dataLines: vm.dataLines)
+                    }
+                    if vm.isLoading {
+                        ProgressView()
+                            .scaleEffect(1.5)
+                    } else {
+                        ArticleListView(articles: vm.articles)
+                            .alert("Enter your information", isPresented: $vm.isFormPresented) {
+                                TextField("Age", text: $vm.age)
+                                TextField("Sex", text: $vm.sex)
+                                    .textCase(.lowercase)
+                                Button("Submit") {
+                                    vm.getArticles(age: vm.age, sex: vm.sex)
+                                }
                             }
-                        }
+                    }
                 }
+                .refreshable { await vm.populateUI() }
+                .navigationTitle("")
+                Spacer()                
             }
-            .refreshable { await vm.populateUI() }
-            .navigationTitle("")
         }
     }
 }
