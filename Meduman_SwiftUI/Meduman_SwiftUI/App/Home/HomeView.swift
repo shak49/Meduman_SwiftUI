@@ -19,26 +19,26 @@ struct HomeView: View {
             ScrollView {
                 VStack {
                     if vm.isRecordsAvailable {
-                        RecordChartView(title: "Daily Progress", dataLines: vm.dataLines)
+                        RecordChartView(title: UIText.dailyProgress, dataLines: vm.dataLines)
                     }
                     if vm.isLoading {
                         ProgressView()
                             .scaleEffect(1.5)
                     } else {
                         ArticleListView(articles: vm.articles)
-                            .alert("Enter your information", isPresented: $vm.isFormPresented) {
-                                TextField("Age", text: $vm.age)
-                                TextField("Sex", text: $vm.sex)
+                            .alert(UIText.alertTitle, isPresented: $vm.isFormPresented) {
+                                TextField(UIText.age, text: $vm.age)
+                                TextField(UIText.sex, text: $vm.sex)
                                     .textCase(.lowercase)
-                                Button("Submit") {
+                                Button(UIText.submit) {
                                     vm.getArticles(age: vm.age, sex: vm.sex)
                                 }
                             }
                     }
                 }
                 .refreshable { await vm.populateUI() }
-                .navigationTitle("")
-                Spacer()                
+                .navigationTitle(UIText.empty)
+                Spacer()
             }
         }
     }
@@ -55,16 +55,16 @@ struct RecordChartView: View {
     
     //MARK: - Body
     var body: some View {
-        GroupBox("Daily Progress") {
+        GroupBox(title) {
             Chart {
                 ForEach(dataLines) { dataLine in
                     ForEach(dataLine.samples) { sample in
                         LineMark(
-                            x: .value("date", sample.date),
-                            y: .value("record", sample.quantity)
+                            x: .value(UIText.date, sample.date),
+                            y: .value(UIText.record, sample.quantity)
                         )
                         .interpolationMethod(.catmullRom)
-                        .foregroundStyle(by: .value("type", sample.type))
+                        .foregroundStyle(by: .value(UIText.type, sample.type))
                     }
                 }
             }
@@ -112,7 +112,7 @@ struct ArticleCellView: View {
                 Rectangle()
                     .foregroundStyle(.white)
                     .opacity(0.7)
-                Text(article.title ?? "")
+                Text(article.title ?? UIText.empty)
                     .foregroundStyle(.black)
             }
             .frame(height: 50)

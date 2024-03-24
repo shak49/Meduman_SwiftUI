@@ -21,11 +21,11 @@ struct ArticleView: View {
                         .scaledToFit()
                 } placeholder: {}
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(article.title ?? "")
+                    Text(article.title ?? UIText.empty)
                         .font(.system(size: 26))
                         .bold()
                     ForEach(article.section?.paragraphs ?? []) { paragraph in
-                        Text(paragraph.body ?? "")
+                        Text(paragraph.body ?? UIText.empty)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -37,5 +37,5 @@ struct ArticleView: View {
 }
 
 #Preview {
-    ArticleView(article: Article(id: "", title: nil, imageString: nil, section: Section(paragraphs: [])))
+    ArticleView(article: Article(id: UIText.empty, title: nil, imageString: nil, section: Section(paragraphs: [])))
 }

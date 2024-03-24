@@ -1,5 +1,5 @@
 //
-//  FirstLevelResponse.swift
+//  ArticleResponse.swift
 //  Meduman_SwiftUI
 //
 //  Created by Shak Feizi on 3/15/24.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct FirstLevelResponse: Codable {
+struct ArticleResponse: Codable {
     let responseData: ResponseData
     
     enum CodingKeys: String, CodingKey {
