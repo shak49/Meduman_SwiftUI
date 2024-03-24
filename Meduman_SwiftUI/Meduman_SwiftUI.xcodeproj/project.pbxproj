@@ -313,8 +313,6 @@
 			children = (
 				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
 				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
-				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
-				6D93138F2BB06B050051FE2F /* ArticleJSONResponse.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -324,6 +322,8 @@
 			children = (
 				6DC2363C296A049D00E10311 /* Health */,
 				6D9313932BB06E940051FE2F /* Mocks */,
+				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
+				6D93138F2BB06B050051FE2F /* ArticleJSONResponse.json */,
 			);
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
