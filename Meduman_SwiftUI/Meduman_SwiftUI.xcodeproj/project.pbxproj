@@ -185,12 +185,13 @@
 			isa = PBXGroup;
 			children = (
 				6D310E942A6C76AC005F7630 /* NotificationManager.swift */,
-				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
 				6D11B8D92B813E45004026BE /* BaseVM.swift */,
 				6D11B8D32B7B111F004026BE /* Color.swift */,
 				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
 				6D93136E2BA4A2AE0051FE2F /* Text.swift */,
 				6D93137E2BA4B2BB0051FE2F /* Symbol.swift */,
+				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
+				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -300,7 +301,6 @@
 				6DEA14062B655E6F00C6CBC7 /* Service */,
 				6DEA14072B6561FB00C6CBC7 /* Utility */,
 				6D11B8D82B813E32004026BE /* Shared */,
-				6D93139F2BB279080051FE2F /* Resources */,
 				6D82EF66277266AD0010E25B /* Preview Content */,
 			);
 			path = Meduman_SwiftUI;
@@ -338,14 +338,6 @@
 				6D93139A2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		6D93139F2BB279080051FE2F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */ = {

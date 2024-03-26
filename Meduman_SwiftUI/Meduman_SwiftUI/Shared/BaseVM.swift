@@ -5,13 +5,15 @@
 //  Created by Shak Feizi on 2/17/24.
 //
 
-import Foundation
+import SwiftUI
 
 
 class BaseVM: ObservableObject {
     //MARK: - Properties
     var firebaseService = FirebaseService()
     var user: User?
+    @AppStorage("age") var age: String = ""
+    @AppStorage("sex") var sex: String = ""
     
     //MARK: - Lifecycles
     init() {

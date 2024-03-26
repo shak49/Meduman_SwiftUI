@@ -86,8 +86,6 @@ class HomeVM: BaseVM {
     @Published private(set) var isRecordsAvailable: Bool = false
     @Published var isFormPresented: Bool = true
     @Published var isErrorPresented: Bool = false
-    @AppStorage("age") var age: String = ""
-    @AppStorage("sex") var sex: String = ""
     
     //MARK: - Lifecycles
     override init() {
