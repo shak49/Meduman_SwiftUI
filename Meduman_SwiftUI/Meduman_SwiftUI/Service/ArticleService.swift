@@ -10,21 +10,34 @@ import Foundation
 
 final class ArticleService {
     //MARK: - Properties
-    static let shared = ArticleService()
-    private let client = NetworkClient.shared
+    private let client: NetworkClientProtocol!
     
     //MARK: - Lifecycles
-    private init() {}
+    init(client: NetworkClientProtocol = NetworkClient(session: .shared)) {
+        self.client = client
+    }
     
     //MARK: - Functions
-    func getArticles(age: String, sex: String) async -> Result<[Article], NetworkClient.NetworkError> {
-        let result = await client.request(endpoint: .articles(age: age, sex: sex), type: ArticleResponse.self)
-        switch result {
-        case .success(let response):
-            let articles = response.responseData.resource.all.articles
+    func getArticles(age: String, sex: String) async -> Result<[Article], ArticleError> {
+        do {
+            let result = try await client.request(endpoint: .articles(age: age, sex: sex), type: ArticleResponse.self)
+            let articles = result.responseData.resource.all.articles
             return .success(articles)
-        case .failure(let error):
-            return .failure(error)
+        } catch {
+            return .failure(.unableToFetchArticles(error: error))
+        }
+    }
+}
+
+extension ArticleService {
+    enum ArticleError: LocalizedError {
+        case unableToFetchArticles(error: Error)
+        
+        var errorDescription: String? {
+            switch self {
+            case .unableToFetchArticles(let error):
+                return "Unable to fetch articles. Error: \(error.localizedDescription)!"
+            }
         }
     }
 }

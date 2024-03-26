@@ -72,7 +72,7 @@ struct RecordVM: Hashable, Identifiable {
 class HomeVM: BaseVM {
     //MARK: - Properties
     private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
-    private var articleService = ArticleService.shared
+    private var articleService = ArticleService()
     private var cancellables = Set<AnyCancellable>()
     private let healthSamples = [
         HKSampleType.quantityType(forIdentifier: .bloodGlucose),
