@@ -17,29 +17,24 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
-                    if vm.isRecordsAvailable {
-                        RecordChartView(title: UIText.dailyProgress, dataLines: vm.dataLines)
-                    }
-                    if vm.isLoading {
-                        ProgressView()
-                            .scaleEffect(1.5)
-                    } else {
-                        ArticleListView(articles: vm.articles)
-                            .alert(UIText.alertTitle, isPresented: $vm.isFormPresented) {
-                                TextField(UIText.age, text: $vm.age)
-                                TextField(UIText.sex, text: $vm.sex)
-                                    .textCase(.lowercase)
-                                Button(UIText.submit) {
-                                    vm.getArticles(age: vm.age, sex: vm.sex)
-                                }
-                            }
-                    }
+                if vm.isRecordsAvailable {
+                    RecordChartView(title: UIText.dailyProgress, dataLines: vm.dataLines)
                 }
-                .refreshable { await vm.populateUI() }
-                .navigationTitle(UIText.empty)
-                Spacer()
+                if vm.isLoading {
+                    ProgressView()
+                } else {
+                    ArticleListView(articles: vm.articles)
+                        .alert(UIText.alertTitle, isPresented: $vm.isFormPresented) {
+                            TextField(UIText.age, text: $vm.age)
+                            TextField(UIText.sex, text: $vm.sex)
+                                .textCase(.lowercase)
+                            Button(UIText.submit) {
+                                vm.getArticles(age: vm.age, sex: vm.sex)
+                            }
+                        }
+                }
             }
+            .refreshable { await vm.populateUI() }
         }
     }
 }

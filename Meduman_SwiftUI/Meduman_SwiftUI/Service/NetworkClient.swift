@@ -8,30 +8,36 @@
 import Foundation
 
 
-final class NetworkClient {
+protocol NetworkClientProtocol {
+    //MARK: - Functions
+    func request<RESP: Codable>(endpoint: Endpoint, type: RESP.Type) async throws -> RESP
+}
+
+final class NetworkClient: NetworkClientProtocol {
     //MARK: - Properties
-    static let shared = NetworkClient()
-    private lazy var session = URLSession.shared
+    var session: URLSession
     
     //MARK: - Lifecycles
-    private init() {}
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
     
     //MARK: - Functions
-    func request<RESP: Codable>(endpoint: Endpoint, type: RESP.Type) async -> Result<RESP, NetworkError> {
+    func request<RESP: Codable>(endpoint: Endpoint, type: RESP.Type) async throws -> RESP {
         do {
-            guard let url = endpoint.url else { return .failure(.invalidURL) }
+            guard let url = endpoint.url else { throw NetworkError.invalidURL }
             var request = URLRequest(url: url)
             let (data, response) = try await self.session.data(for: request)
             guard let response = response as? HTTPURLResponse, (200...300) ~= response.statusCode else {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode
-                return .failure(.invalidResponse(code: statusCode!))
+                throw NetworkError.invalidResponse(code: statusCode!)
             }
             guard let result = try? JSONDecoder().decode(RESP.self, from: data) else {
-                return .failure(.unableToDecode)
+                throw NetworkError.unableToDecode
             }
-            return .success(result)
+            return result
         } catch {
-            return .failure(.customError(error))
+            throw NetworkError.customError(error)
         }
     }
 }
