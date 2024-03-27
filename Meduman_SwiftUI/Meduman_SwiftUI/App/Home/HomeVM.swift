@@ -98,10 +98,10 @@ class HomeVM: BaseVM {
         for sample in healthSamples {
             readRecord(type: sample)
         }
-        if !age.isEmpty && !sex.isEmpty {
-            isFormPresented = false
-            getArticles(age: age, sex: sex)
-        }
+//        if !age.isEmpty && !sex.isEmpty {
+//            isFormPresented = false
+//            getArticles(age: age, sex: sex)
+//        }
     }
     
     func readRecord(type: HKSampleType?) {

@@ -13,4 +13,5 @@ enum Symbol {
     static let article = "list.bullet.rectangle.portrait"
     static let heart = "heart"
     static let calendar = "calendar"
+    static let gear = "gear"
 }
