@@ -23,6 +23,10 @@ struct TabContainerView: View {
                 .tabItem {
                     Label(UIText.reminder, systemImage: Symbol.calendar)
                 }
+            SettingsView()
+                .tabItem {
+                    Label(UIText.settings, systemImage: Symbol.gear)
+                }
         }
     }
 }
