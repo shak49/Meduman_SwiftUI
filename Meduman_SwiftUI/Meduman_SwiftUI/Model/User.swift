@@ -10,7 +10,10 @@ import FirebaseAuth
 
 struct User: Identifiable {
     let authUser: FirebaseAuth.User?
-    let id: String?
+    var id: String? {
+        guard let authUser = authUser else { return nil }
+        return authUser.uid
+    }
     var displayName: String? {
         guard let authUser = authUser else { return nil }
         return authUser.displayName
@@ -20,8 +23,7 @@ struct User: Identifiable {
         return authUser.email
     }
     
-    init(authUser: FirebaseAuth.User?, id: String? = UUID().uuidString) {
+    init(authUser: FirebaseAuth.User?) {
         self.authUser = authUser
-        self.id = id
     }
 }
