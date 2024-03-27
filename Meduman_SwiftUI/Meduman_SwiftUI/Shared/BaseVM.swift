@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-
 class BaseVM: ObservableObject {
     //MARK: - Properties
     var firebaseService = FirebaseService()
-    var user: User?
+    @Published var user: User?
     @AppStorage("age") var age: String = ""
     @AppStorage("sex") var sex: String = ""
     

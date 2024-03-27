@@ -8,7 +8,6 @@
 import Foundation
 import FirebaseAuth
 
-
 struct User: Identifiable {
     let authUser: FirebaseAuth.User?
     let id: String?
@@ -21,7 +20,7 @@ struct User: Identifiable {
         return authUser.email
     }
     
-    init(authUser: FirebaseAuth.User?, id: String? = "") {
+    init(authUser: FirebaseAuth.User?, id: String? = UUID().uuidString) {
         self.authUser = authUser
         self.id = id
     }
