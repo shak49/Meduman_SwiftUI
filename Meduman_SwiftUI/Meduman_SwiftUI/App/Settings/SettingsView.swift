@@ -36,7 +36,6 @@ struct SettingsView: View {
                 }
             }
             .padding(.top, 16)
-            .navigationTitle("Settings")
             .toolbar {
                 Button {
                     vm.signOut()
@@ -50,6 +49,7 @@ struct SettingsView: View {
                         }
                 }
             }
+            .navigationTitle("Settings")
             .background(Color.placeholder)
         }
     }

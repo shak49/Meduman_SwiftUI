@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-
 class BaseVM: ObservableObject {
     //MARK: - Properties
     var firebaseService = FirebaseService()
-    var user: User?
     @AppStorage("age") var age: String = ""
     @AppStorage("sex") var sex: String = ""
+    @Published var user: User?
     
     //MARK: - Lifecycles
     init() {
@@ -21,7 +20,7 @@ class BaseVM: ObservableObject {
     }
     
     //MARK: - Functions
-    private func getUserInfo() {
+    func getUserInfo() {
         Task {
             let user = try await firebaseService.getCurrentUser()
             self.user = User(authUser: user)
