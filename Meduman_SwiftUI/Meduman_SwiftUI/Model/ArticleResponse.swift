@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-struct ArticleResponse: Codable {
+struct ArticleResponse: Codable, Equatable {
     let responseData: ResponseData
     
     enum CodingKeys: String, CodingKey {
@@ -16,7 +15,7 @@ struct ArticleResponse: Codable {
     }
 }
 
-struct ResponseData: Codable {
+struct ResponseData: Codable, Equatable {
     let resource: Resource
     
     enum CodingKeys: String, CodingKey {
@@ -28,7 +27,7 @@ struct Resource: Codable {
     let all: All
 }
 
-struct All: Codable {
+struct All: Codable, Equatable {
     let articles: [Article]
     
     enum CodingKeys: String, CodingKey {
@@ -36,7 +35,7 @@ struct All: Codable {
     }
 }
 
-struct Article: Codable, Identifiable {
+struct Article: Codable, Identifiable, Equatable {
     let id: String
     let title: String?
     let imageString: String?
@@ -54,7 +53,7 @@ struct Article: Codable, Identifiable {
     }
 }
 
-struct Section: Codable {
+struct Section: Codable, Equatable {
     let paragraphs: [Paragraph]?
     
     enum CodingKeys: String, CodingKey {
@@ -62,7 +61,7 @@ struct Section: Codable {
     }
 }
 
-struct Paragraph: Codable, Identifiable {
+struct Paragraph: Codable, Identifiable, Equatable {
     let id: String = UUID().uuidString
     let content: String?
     var body: String? {
@@ -72,6 +71,48 @@ struct Paragraph: Codable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case content = "Content"
+    }
+}
+
+extension ArticleResponse {
+    static func == (lhs: ArticleResponse, rhs: ArticleResponse) -> Bool {
+        return lhs.responseData == rhs.responseData
+    }
+}
+
+extension ResponseData {
+    static func == (lhs: ResponseData, rhs: ResponseData) -> Bool {
+        return lhs.resource == rhs.resource
+    }
+}
+
+extension Resource {
+    static func == (lhs: Resource, rhs: Resource) -> Bool {
+        return lhs.all == rhs.all
+    }
+}
+
+extension All {
+    static func == (lhs: All, rhs: All) -> Bool {
+        return lhs.articles == rhs.articles
+    }
+}
+
+extension Article {
+    static func == (lhs: Article, rhs: Article) -> Bool {
+        return lhs.id == rhs.id && lhs.title == rhs.title && lhs.imageString == rhs.imageString && lhs.image == rhs.image && lhs.section == rhs.section
+    }
+}
+
+extension Section {
+    static func == (lhs: Section, rhs: Section) -> Bool {
+        return lhs.paragraphs == rhs.paragraphs
+    }
+}
+
+extension Paragraph {
+    static func == (lhs: Paragraph, rhs: Paragraph) -> Bool {
+        return lhs.id == rhs.id && lhs.content == rhs.content && lhs.body == rhs.body
     }
 }
 

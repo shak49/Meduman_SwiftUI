@@ -17,6 +17,9 @@
 		6D1D17DB2A58B7D200B4A13D /* CreateMedicationReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */; };
 		6D1D17DD2A58B7F500B4A13D /* MedicationReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */; };
 		6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */; };
+		6D233F512BB657A100FA4BDC /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */; };
+		6D233F522BB657A100FA4BDC /* URLSessionProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D233F4F2BB655A400FA4BDC /* URLSessionProtocolMock.swift */; };
+		6D233F552BB6582900FA4BDC /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D233F542BB6582900FA4BDC /* NetworkClientTests.swift */; };
 		6D2A5CD22B9174AE0037F798 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6D2A5CD12B9174AE0037F798 /* GoogleSignIn */; };
 		6D2A5CD42B9174AE0037F798 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D2A5CD32B9174AE0037F798 /* GoogleSignInSwift */; };
 		6D2A5CD62B9175910037F798 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D2A5CD52B9175910037F798 /* GoogleService-Info.plist */; };
@@ -48,7 +51,6 @@
 		6D93138E2BAE4AFE0051FE2F /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93138D2BAE4AFE0051FE2F /* ArticleView.swift */; };
 		6D9313982BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313972BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift */; };
 		6D93139B2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93139A2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift */; };
-		6D93139E2BB276A00051FE2F /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */; };
 		6D9313A02BB2796E0051FE2F /* ArticleResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D93138F2BB06B050051FE2F /* ArticleResponse.json */; };
 		6D948A602A5491AF009DB48C /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D948A5F2A5491AF009DB48C /* XCUIElement.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
@@ -92,6 +94,8 @@
 		6D1D17DA2A58B7D200B4A13D /* CreateMedicationReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMedicationReminderView.swift; sourceTree = "<group>"; };
 		6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationReminderViewModel.swift; sourceTree = "<group>"; };
 		6D1D17E02A599AB900B4A13D /* MedicineReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineReminderListView.swift; sourceTree = "<group>"; };
+		6D233F4F2BB655A400FA4BDC /* URLSessionProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocolMock.swift; sourceTree = "<group>"; };
+		6D233F542BB6582900FA4BDC /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
 		6D2A5CD52B9175910037F798 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D2A5CD82B92A9DC0037F798 /* GoogleAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthButton.swift; sourceTree = "<group>"; };
 		6D2CB4D6292DD205002BF0A4 /* HealthRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewModel.swift; sourceTree = "<group>"; };
@@ -190,8 +194,6 @@
 				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
 				6D93136E2BA4A2AE0051FE2F /* Text.swift */,
 				6D93137E2BA4B2BB0051FE2F /* Symbol.swift */,
-				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
-				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -236,6 +238,14 @@
 				6D1D17DC2A58B7F500B4A13D /* MedicationReminderViewModel.swift */,
 			);
 			path = Reminder;
+			sourceTree = "<group>";
+		};
+		6D233F532BB657AD00FA4BDC /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				6D233F4F2BB655A400FA4BDC /* URLSessionProtocolMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		6D2A5CD72B92A9BE0037F798 /* Components */ = {
@@ -336,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				6D93139A2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift */,
+				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
+				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -343,6 +355,8 @@
 		6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
+				6D233F542BB6582900FA4BDC /* NetworkClientTests.swift */,
+				6D233F532BB657AD00FA4BDC /* Mocks */,
 				6D9313942BB0B7F00051FE2F /* Article */,
 				6DC2363C296A049D00E10311 /* Health */,
 			);
@@ -581,7 +595,6 @@
 				6D82EF91277271270010E25B /* User.swift in Sources */,
 				6D9313812BA522920051FE2F /* ArticleResponse.swift in Sources */,
 				6DD5CAAC294BF92E00CB66CC /* HealthSampleBuilder.swift in Sources */,
-				6D93139E2BB276A00051FE2F /* StaticJSONMapper.swift in Sources */,
 				6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */,
 				6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */,
 				6D93137F2BA4B2BB0051FE2F /* Symbol.swift in Sources */,
@@ -597,9 +610,12 @@
 			files = (
 				6D11B8D22B794B36004026BE /* HealthServiceTests.swift in Sources */,
 				6D9313982BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift in Sources */,
+				6D233F522BB657A100FA4BDC /* URLSessionProtocolMock.swift in Sources */,
+				6D233F512BB657A100FA4BDC /* StaticJSONMapper.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
 				6D93139B2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift in Sources */,
 				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
+				6D233F552BB6582900FA4BDC /* NetworkClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

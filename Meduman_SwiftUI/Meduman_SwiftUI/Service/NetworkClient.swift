@@ -15,7 +15,7 @@ protocol NetworkClientProtocol {
 
 final class NetworkClient: NetworkClientProtocol {
     //MARK: - Properties
-    var session: URLSession
+    private var session: URLSession
     
     //MARK: - Lifecycles
     init(session: URLSession = .shared) {
