@@ -13,5 +13,6 @@ class SettingsVM: BaseVM {
     //MARK: - Functions
     func signOut() {
         firebaseService.signOut()
+        getUserInfo()
     }
 }

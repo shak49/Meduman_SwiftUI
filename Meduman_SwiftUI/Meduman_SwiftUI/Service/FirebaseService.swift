@@ -144,9 +144,8 @@ final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStor
     func signOut() {
         do {
             try auth?.signOut()
-            self.user = nil
-        } catch let signOutError as NSError {
-            print("Error signing-out: \(signOutError)")
+        } catch {
+            print("Error signing-out: \(error)")
         }
     }
     

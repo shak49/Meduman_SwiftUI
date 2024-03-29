@@ -13,48 +13,44 @@ struct SettingsView: View {
     
     //MARK: - Body
     var body: some View {
-        if vm.user == nil {
-            SignInView()
-        } else {
-            NavigationView {
-                Form {
-                    HStack {
-                        Text("Age")
-                        Spacer()
-                        TextField("", text: vm.$age)
-                            .frame(width: 50, alignment: .center)
-                            .padding(8)
-                            .background(Color.placeholder)
-                            .cornerRadius(10)
-                    }
-                    HStack {
-                        Text("Sex")
-                        Spacer()
-                        TextField("", text: vm.$sex)
-                            .frame(width: 50, alignment: .center)
-                            .textCase(.lowercase)
-                            .padding(8)
-                            .background(Color.placeholder)
-                            .cornerRadius(10)
-                    }
+        NavigationView {
+            Form {
+                HStack {
+                    Text("Age")
+                    Spacer()
+                    TextField("", text: vm.$age)
+                        .frame(width: 50, alignment: .center)
+                        .padding(8)
+                        .background(Color.placeholder)
+                        .cornerRadius(10)
                 }
-                .padding(.top, 16)
-                .toolbar {
-                    Button {
-                        vm.signOut()
-                    } label: {
-                        Text("Sign Out")
-                            .padding(8)
-                            .foregroundStyle(.red)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .stroke(.red)
-                            }
-                    }
+                HStack {
+                    Text("Sex")
+                    Spacer()
+                    TextField("", text: vm.$sex)
+                        .frame(width: 50, alignment: .center)
+                        .textCase(.lowercase)
+                        .padding(8)
+                        .background(Color.placeholder)
+                        .cornerRadius(10)
                 }
-                .navigationTitle("Settings")
-                .background(Color.placeholder)
             }
+            .padding(.top, 16)
+            .toolbar {
+                Button {
+                    vm.signOut()
+                } label: {
+                    Text("Sign Out")
+                        .padding(8)
+                        .foregroundStyle(.red)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                .stroke(.red)
+                        }
+                }
+            }
+            .navigationTitle("Settings")
+            .background(Color.placeholder)
         }
     }
 }
