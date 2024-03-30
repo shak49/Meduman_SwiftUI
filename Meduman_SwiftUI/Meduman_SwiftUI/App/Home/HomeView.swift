@@ -23,7 +23,7 @@ struct HomeView: View {
                 if vm.isLoading {
                     ProgressView()
                 } else {
-                    ArticleListView(articles: vm.articles)
+                    ArticleListView(articles: vm.articles, isLoading: vm.isLoading)
                         .alert(UIText.alertTitle, isPresented: $vm.isFormPresented) {
                             TextField(UIText.age, text: $vm.age)
                             TextField(UIText.sex, text: $vm.sex)
@@ -73,6 +73,7 @@ struct ArticleListView: View {
     //MARK: - Properties
     private let columns = Array(repeating: GridItem(.flexible()), count: 2)
     let articles: [Article]
+    let isLoading: Bool
     
     //MARK: - Body
     var body: some View {
@@ -82,7 +83,7 @@ struct ArticleListView: View {
                     NavigationLink {
                         ArticleView(article: article)
                     } label: {
-                        ArticleCellView(article: article)
+                        ArticleCellView(article: article, isLoading: isLoading)
                     }
                 }
             }
@@ -95,24 +96,29 @@ struct ArticleListView: View {
 struct ArticleCellView: View {
     //MARK: - Properties
     let article: Article
+    let isLoading: Bool
     
     //MARK: - Body
     var body: some View {
-        ZStack(alignment: .bottom) {
-            AsyncImage(url: article.image) { image in
-                image
-                    .resizable()
-            } placeholder: {}
-            ZStack {
-                Rectangle()
-                    .foregroundStyle(.white)
-                    .opacity(0.7)
-                Text(article.title ?? UIText.empty)
-                    .foregroundStyle(.black)
+        if isLoading {
+            ProgressView()
+        } else {
+            ZStack(alignment: .bottom) {
+                AsyncImage(url: article.image) { image in
+                    image
+                        .resizable()
+                } placeholder: {}
+                ZStack {
+                    Rectangle()
+                        .foregroundStyle(.white)
+                        .opacity(0.7)
+                    Text(article.title ?? UIText.empty)
+                        .foregroundStyle(.black)
+                }
+                .frame(height: 50)
             }
-            .frame(height: 50)
+            .frame(height: 170)
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         }
-        .frame(height: 170)
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 }

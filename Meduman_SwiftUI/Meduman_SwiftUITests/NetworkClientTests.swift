@@ -39,7 +39,7 @@ final class NetworkClientTests: XCTestCase {
             let response = HTTPURLResponse(url: self.url, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response!, data)
         }
-        let result = try await service.request(endpoint: .articles(age: "65", sex: "male"), type: ArticleResponse.self)
+        let result = try await service.request(endpoint: .articles(age: "66", sex: "Male"), type: ArticleResponse.self)
         let staticJson = try StaticJSONMapper.decode(file: "ArticleResponse", type: ArticleResponse.self)
         XCTAssertEqual(result, staticJson, "These result must be the same as static json")
     }
