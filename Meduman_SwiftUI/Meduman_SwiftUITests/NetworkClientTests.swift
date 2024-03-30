@@ -29,7 +29,7 @@ final class NetworkClientTests: XCTestCase {
         service = nil
     }
     
-    //MARK: - Properties
+    //MARK: - Functions
     func test_request_withSuccess_returnValidResponse() async throws {
         guard let path = Bundle.main.path(forResource: "ArticleResponse", ofType: "json"), let data = FileManager.default.contents(atPath: path) else {
             XCTFail("Failed to get the static json file")
