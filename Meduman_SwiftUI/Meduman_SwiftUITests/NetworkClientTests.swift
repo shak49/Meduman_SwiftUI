@@ -33,11 +33,7 @@ final class NetworkClientTests: XCTestCase {
     
     //MARK: - Tests
     func test_request_successful_withValidResponse() async throws {
-        
-    }
-    
-    func test_request_successful_whereResponseIsValid() async throws {
-        guard let path = Bundle.main.path(forResource: "ArticleResponse", ofType: "json"), var data = FileManager.default.contents(atPath: path) else {
+        guard let path = Bundle.main.path(forResource: "ArticleResponse", ofType: "json"), let data = FileManager.default.contents(atPath: path) else {
             XCTFail("Failed to get static users file")
             return
         }
