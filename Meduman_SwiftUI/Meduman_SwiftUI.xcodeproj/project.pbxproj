@@ -32,6 +32,9 @@
 		6D63A39728CEC38F0076BB1E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A39628CEC38F0076BB1E /* AuthViewModel.swift */; };
 		6D63A3B228E4BBE90076BB1E /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B128E4BBE90076BB1E /* HealthService.swift */; };
 		6D63A3B428E694AF0076BB1E /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A3B328E694AF0076BB1E /* Health.swift */; };
+		6D6DA1962BB8C53C00CDBEB2 /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */; };
+		6D6DA1982BB8C5C000CDBEB2 /* URLSessionProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA1972BB8C5C000CDBEB2 /* URLSessionProtocolMock.swift */; };
+		6D6DA19A2BB8C6A400CDBEB2 /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA1992BB8C6A400CDBEB2 /* NetworkClientTests.swift */; };
 		6D82EF61277266AA0010E25B /* Meduman_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */; };
 		6D82EF68277266AD0010E25B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D82EF67277266AD0010E25B /* Preview Assets.xcassets */; };
 		6D82EF91277271270010E25B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82EF90277271270010E25B /* User.swift */; };
@@ -50,7 +53,6 @@
 		6D93138E2BAE4AFE0051FE2F /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93138D2BAE4AFE0051FE2F /* ArticleView.swift */; };
 		6D9313982BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313972BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift */; };
 		6D93139B2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93139A2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift */; };
-		6D93139E2BB276A00051FE2F /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */; };
 		6D9313A02BB2796E0051FE2F /* ArticleResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D93138F2BB06B050051FE2F /* ArticleResponse.json */; };
 		6D948A602A5491AF009DB48C /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D948A5F2A5491AF009DB48C /* XCUIElement.swift */; };
 		6D96C70A2941689400A9AA4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D96C7092941689300A9AA4C /* XCTest.framework */; };
@@ -109,6 +111,8 @@
 		6D63A3AA28E33E320076BB1E /* Meduman_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meduman_SwiftUI.entitlements; sourceTree = "<group>"; };
 		6D63A3B128E4BBE90076BB1E /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		6D63A3B328E694AF0076BB1E /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
+		6D6DA1972BB8C5C000CDBEB2 /* URLSessionProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocolMock.swift; sourceTree = "<group>"; };
+		6D6DA1992BB8C6A400CDBEB2 /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
 		6D82EF5D277266AA0010E25B /* Meduman_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meduman_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D82EF60277266AA0010E25B /* Meduman_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meduman_SwiftUIApp.swift; sourceTree = "<group>"; };
 		6D82EF67277266AD0010E25B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -194,8 +198,6 @@
 				6D8A268E2993628C00E1DFFC /* HealthUnit.swift */,
 				6D93136E2BA4A2AE0051FE2F /* Text.swift */,
 				6D93137E2BA4B2BB0051FE2F /* Symbol.swift */,
-				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
-				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -328,20 +330,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6D9313932BB06E940051FE2F /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
-				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		6D9313942BB0B7F00051FE2F /* Article */ = {
 			isa = PBXGroup;
 			children = (
 				6D9313972BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift */,
-				6D9313992BB25D220051FE2F /* Mocks */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -349,7 +341,12 @@
 		6D9313992BB25D220051FE2F /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				6D96C70B2948287800A9AA4C /* HealthStoreMock.swift */,
+				6DD5CAAD29515A2300CB66CC /* HealthQueryMock.swift */,
 				6D93139A2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift */,
+				6D6DA1972BB8C5C000CDBEB2 /* URLSessionProtocolMock.swift */,
+				6D9313912BB06DAE0051FE2F /* StaticJSONMapper.swift */,
+				6D93138F2BB06B050051FE2F /* ArticleResponse.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -357,8 +354,10 @@
 		6D96C6FF294165FA00A9AA4C /* Meduman_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
+				6D6DA1992BB8C6A400CDBEB2 /* NetworkClientTests.swift */,
 				6D9313942BB0B7F00051FE2F /* Article */,
 				6DC2363C296A049D00E10311 /* Health */,
+				6D9313992BB25D220051FE2F /* Mocks */,
 			);
 			path = Meduman_SwiftUITests;
 			sourceTree = "<group>";
@@ -367,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				6D11B8D12B794B36004026BE /* HealthServiceTests.swift */,
-				6D9313932BB06E940051FE2F /* Mocks */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -597,7 +595,6 @@
 				6D82EF91277271270010E25B /* User.swift in Sources */,
 				6D9313812BA522920051FE2F /* ArticleResponse.swift in Sources */,
 				6DD5CAAC294BF92E00CB66CC /* HealthSampleBuilder.swift in Sources */,
-				6D93139E2BB276A00051FE2F /* StaticJSONMapper.swift in Sources */,
 				6D1D17E12A599AB900B4A13D /* MedicineReminderListView.swift in Sources */,
 				6DC7623F277B83E0002ECC8C /* SignInView.swift in Sources */,
 				6D93137F2BA4B2BB0051FE2F /* Symbol.swift in Sources */,
@@ -613,9 +610,12 @@
 			files = (
 				6D11B8D22B794B36004026BE /* HealthServiceTests.swift in Sources */,
 				6D9313982BB25A5A0051FE2F /* ArticleServiceSuccessTests.swift in Sources */,
+				6D6DA1982BB8C5C000CDBEB2 /* URLSessionProtocolMock.swift in Sources */,
+				6D6DA1962BB8C53C00CDBEB2 /* StaticJSONMapper.swift in Sources */,
 				6DD5CAAE29515A2400CB66CC /* HealthQueryMock.swift in Sources */,
 				6D93139B2BB25D580051FE2F /* NetworkClientArticleSuccessMock.swift in Sources */,
 				6D96C70C2948287800A9AA4C /* HealthStoreMock.swift in Sources */,
+				6D6DA19A2BB8C6A400CDBEB2 /* NetworkClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
