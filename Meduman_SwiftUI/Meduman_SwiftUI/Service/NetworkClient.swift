@@ -43,7 +43,7 @@ final class NetworkClient: NetworkClientProtocol {
 }
 
 extension NetworkClient {
-    enum NetworkError: LocalizedError {
+    enum NetworkError: LocalizedError, Equatable {
         case customError(_ error: Error)
         case invalidURL
         case invalidResponse(code: Int)
@@ -63,6 +63,26 @@ extension NetworkClient {
             case .unableToGetData:
                 return "Unable to get data!"
             }
+        }
+    }
+    
+}
+
+extension NetworkClient.NetworkError {
+    static func ==(lhs: NetworkClient.NetworkError, rhs: NetworkClient.NetworkError) -> Bool {
+        switch (lhs, rhs) {
+        case (.customError(let lhsCustom), .customError(let rhsCustom)):
+            return lhsCustom.localizedDescription == rhsCustom.localizedDescription
+        case (.invalidURL, .invalidURL):
+            return true
+        case (.invalidResponse(let lhsCode), .invalidResponse(let rhsCode)):
+            return lhsCode == rhsCode
+        case (.unableToDecode, .unableToDecode):
+            return true
+        case (.unableToGetData, .unableToGetData):
+            return true
+        default:
+            return false
         }
     }
 }

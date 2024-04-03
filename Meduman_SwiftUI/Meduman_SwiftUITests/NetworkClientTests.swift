@@ -34,7 +34,7 @@ final class NetworkClientTests: XCTestCase {
     //MARK: - Tests
     func test_request_successful_withValidResponse() async throws {
         guard let path = Bundle.main.path(forResource: "ArticleResponse", ofType: "json"), let data = FileManager.default.contents(atPath: path) else {
-            XCTFail("Failed to get static users file")
+            XCTFail("Failed to get static article file")
             return
         }
         URLSessionProtocolMock.loadingHandler = {
@@ -44,5 +44,22 @@ final class NetworkClientTests: XCTestCase {
         let result = try await client.request(endpoint: .articles(age: age, sex: sex), type: ArticleResponse.self)
         let staticJSON = try StaticJSONMapper.decode(file: "ArticleResponse", type: ArticleResponse.self)
         XCTAssertEqual(result, staticJSON, "")
+    }
+    
+    func test_request_unsuccessful_withInvalidStatusCodeAndRange() async {
+        let statusCode = 400
+        URLSessionProtocolMock.loadingHandler = {
+            let response = HTTPURLResponse(url: self.url, statusCode: statusCode, httpVersion: nil, headerFields: nil)
+            return (response!, nil)
+        }
+        do {
+            _ = try await client.request(endpoint: .articles(age: age, sex: sex), type: ArticleResponse.self)
+        } catch {
+            guard let networkError = error as? NetworkClient.NetworkError else {
+                XCTFail("Got the wrong type of error, expecting error of type NetworkError")
+                return
+            }
+            XCTAssertEqual(networkError, NetworkClient.NetworkError.invalidResponse(code: statusCode), "Error should be a network error which throws invalid status code")
+        }
     }
 }
