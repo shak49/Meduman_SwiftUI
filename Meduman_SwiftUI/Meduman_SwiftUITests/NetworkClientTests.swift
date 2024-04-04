@@ -59,7 +59,8 @@ final class NetworkClientTests: XCTestCase {
                 XCTFail("Got the wrong type of error, expecting error of type NetworkError")
                 return
             }
-            XCTAssertEqual(networkError, NetworkClient.NetworkError.invalidResponse(code: statusCode), "Error should be a network error which throws invalid status code")
+            let staticStatusCode = NetworkClient.NetworkError.invalidResponse(code: statusCode)
+            XCTAssertEqual(networkError, staticStatusCode, "Error should be a network error which throws invalid status code")
         }
     }
 }
