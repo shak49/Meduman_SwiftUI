@@ -14,7 +14,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import AuthenticationServices
 
-
 enum AuthError: LocalizedError {
     case unableToCreateUser
     case unableToConvertToStringEncoding
