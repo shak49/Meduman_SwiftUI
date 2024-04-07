@@ -8,7 +8,6 @@
 import HealthKit
 import Combine
 
-
 enum HealthError: LocalizedError {
     case typeNotAvailable
     case unableToAccessRecordsForThisDevice

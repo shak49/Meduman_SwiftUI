@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 final class ArticleService {
     //MARK: - Properties
     private let client: NetworkClientProtocol!

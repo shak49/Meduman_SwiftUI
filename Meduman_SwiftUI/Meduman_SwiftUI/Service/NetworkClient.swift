@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol NetworkClientProtocol {
     //MARK: - Functions
     func request<RESP: Codable>(endpoint: Endpoint, type: RESP.Type) async throws -> RESP
