@@ -16,13 +16,13 @@ struct HomeView: View {
     //MARK: - Body
     var body: some View {
         NavigationView {
-            ScrollView {
-                if vm.isRecordsAvailable {
-                    RecordChartView(title: UIText.dailyProgress, dataLines: vm.dataLines)
-                }
-                if vm.isLoading {
-                    ProgressView()
-                } else {
+            if vm.isLoading {
+                ProgressView()
+            } else {
+                ScrollView {
+                    if vm.isRecordsAvailable {
+                        RecordChartView(title: UIText.dailyProgress, dataLines: vm.dataLines)
+                    }
                     ArticleListView(articles: vm.articles)
                         .alert(UIText.alertTitle, isPresented: $vm.isFormPresented) {
                             TextField(UIText.age, text: $vm.age)
@@ -33,8 +33,8 @@ struct HomeView: View {
                             }
                         }
                 }
+                .refreshable { await vm.populateUI() }
             }
-            .refreshable { await vm.populateUI() }
         }
     }
 }
@@ -76,19 +76,17 @@ struct ArticleListView: View {
     
     //MARK: - Body
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(articles) { article in
-                    NavigationLink {
-                        ArticleView(article: article)
-                    } label: {
-                        ArticleCellView(article: article)
-                    }
+        LazyVGrid(columns: columns, spacing: 16) {
+            ForEach(articles) { article in
+                NavigationLink {
+                    ArticleView(article: article)
+                } label: {
+                    ArticleCellView(article: article)
                 }
             }
-            .padding(.top, 32)
-            .padding(.horizontal, 8)
         }
+        .padding(.top, 32)
+        .padding(.horizontal, 8)
     }
 }
 
