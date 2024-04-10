@@ -8,7 +8,6 @@
 import SwiftUI
 import Charts
 
-
 struct HomeView: View {
     //MARK: - Properties
     @StateObject var vm = HomeVM()

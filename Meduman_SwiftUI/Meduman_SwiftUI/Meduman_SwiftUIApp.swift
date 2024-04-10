@@ -17,6 +17,7 @@ struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
     @StateObject var healthModel = HealthRecordViewModel()
     @StateObject var reminderModel = MedicationReminderViewModel()
+    private var navigator = Navigator()
     
     //MARK: - Lifecycles
     init() {
@@ -33,7 +34,8 @@ struct Meduman_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            MainView()
+                .environmentObject(navigator)
                 .environmentObject(healthModel)
                 .environmentObject(reminderModel)
         }

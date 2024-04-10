@@ -13,14 +13,13 @@ import AuthenticationServices
 
 class AuthViewModel: BaseVM {
     //MARK: - Properties
-    @Published var isAuthenticated: Bool = false
 
     //MARK: - Functions
     func requestAuthWithApple(request: ASAuthorizationAppleIDRequest) {
         firebaseService.initiateSignInWithApple(request: request)
     }
     
-    func handleAppleAuthResult(result: Result<ASAuthorization, Error>) {
+    func handleAppleAuthResult(result: Result<ASAuthorization, Error>, push: @escaping (() -> Void)) {
         Task {
             guard let credential = await firebaseService.getAppleCredential(result: result) else { return }
             switch credential {
@@ -28,7 +27,7 @@ class AuthViewModel: BaseVM {
                 await MainActor.run {
                     guard let user = user else { return }
                     self.user = user
-                    self.isAuthenticated = true
+                    push()
                 }
             case .failure(let error):
                 print(error)
@@ -37,7 +36,7 @@ class AuthViewModel: BaseVM {
         }
     }
     
-    func signInWithGoogle() {
+    func signInWithGoogle(push: @escaping (() -> Void)) {
         Task {
             guard let view = await getRootViewController() else { return }
             let credential = await firebaseService.signInWithGoogle(view: view)
@@ -46,7 +45,7 @@ class AuthViewModel: BaseVM {
                 await MainActor.run {
                     guard let user = user else { return }
                     self.user = user
-                    self.isAuthenticated = true
+                    push()
                 }
             case .failure(let error):
                 print(error)
