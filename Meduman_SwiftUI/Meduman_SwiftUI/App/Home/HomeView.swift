@@ -30,10 +30,11 @@ struct HomeView: View {
                                 .textCase(.lowercase)
                             Button(UIText.submit) {
                                 vm.getArticles(age: vm.age, sex: vm.sex)
+                                vm.populateUI()
                             }
                         }
                 }
-                .refreshable { await vm.populateUI() }
+                .refreshable { vm.populateUI() }
             }
         }
     }
@@ -46,7 +47,7 @@ struct HomeView: View {
 struct RecordChartView: View {
     //MARK: - Properties
     let title: String
-    let dataLines: [DataLineVM]
+    let dataLines: [DataLine]
     
     //MARK: - Body
     var body: some View {
