@@ -32,6 +32,7 @@ struct ArticleView: View {
                 .padding(.top, 32)
             }
         }
+        .background(Color.placeholder)
         .ignoresSafeArea()
     }
 }

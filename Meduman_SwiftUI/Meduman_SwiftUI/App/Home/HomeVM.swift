@@ -9,7 +9,6 @@ import SwiftUI
 import HealthKit
 import Combine
 
-
 enum GenderType: String {
     case female = "Female"
     case male = "Male"
@@ -28,7 +27,7 @@ enum AlertError: LocalizedError {
     }
 }
 
-struct DataLineVM: Identifiable {
+struct DataLine: Identifiable {
     let id = UUID().uuidString
     let type: String
     let samples: [RecordVM]
@@ -63,9 +62,8 @@ struct RecordVM: Hashable, Identifiable {
         return quantitySample.sampleType
     }
     var date: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM"
-        return dateFormatter.string(from: quantitySample.endDate).capitalized
+        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().weekday(.abbreviated)))
+        return formattedDate
     }
 }
 
@@ -79,7 +77,7 @@ class HomeVM: BaseVM {
         HKSampleType.quantityType(forIdentifier: .heartRate),
         HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
     ]
-    @Published private(set) var dataLines: [DataLineVM] = []
+    @Published private(set) var dataLines: [DataLine] = []
     @Published private(set) var articles: [Article] = []
     @Published private(set) var alertError: AlertError?
     @Published private(set) var isLoading: Bool = false
@@ -88,20 +86,12 @@ class HomeVM: BaseVM {
     @Published var isErrorPresented: Bool = false
     
     //MARK: - Lifecycles
-    override init() {
-        super.init()
-        Task { await populateUI() }
-    }
     
     //MARK: - Functions
-    func populateUI() async {
+    func populateChart() {
         for sample in healthSamples {
             readRecord(type: sample)
         }
-//        if !age.isEmpty && !sex.isEmpty {
-//            isFormPresented = false
-//            getArticles(age: age, sex: sex)
-//        }
     }
     
     func readRecord(type: HKSampleType?) {
@@ -121,19 +111,19 @@ class HomeVM: BaseVM {
                     if sample.quantityType == .init(.bloodGlucose) {
                         var glucoseSamples: [RecordVM] = []
                         glucoseSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLineVM(type: "Glucose", samples: glucoseSamples)
+                        let dataLine = DataLine(type: "Glucose", samples: glucoseSamples)
                         self.dataLines.append(dataLine)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.bloodPressureSystolic) {
                         var pressureSamples: [RecordVM] = []
                         pressureSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLineVM(type: "Pressure", samples: pressureSamples)
+                        let dataLine = DataLine(type: "Pressure", samples: pressureSamples)
                         self.dataLines.append(dataLine)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.heartRate) {
                         var heartSamples: [RecordVM] = []
                         heartSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLineVM(type: "Heart", samples: heartSamples)
+                        let dataLine = DataLine(type: "Heart", samples: heartSamples)
                         self.dataLines.append(dataLine)
                         self.isRecordsAvailable = true
                     }

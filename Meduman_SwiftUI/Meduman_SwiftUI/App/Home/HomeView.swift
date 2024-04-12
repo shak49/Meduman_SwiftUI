@@ -28,13 +28,19 @@ struct HomeView: View {
                             TextField(UIText.sex, text: $vm.sex)
                                 .textCase(.lowercase)
                             Button(UIText.submit) {
+                                vm.populateChart()
                                 vm.getArticles(age: vm.age, sex: vm.sex)
                             }
                         }
                 }
-                .refreshable { await vm.populateUI() }
+                .refreshable {
+                    vm.populateChart()
+                    vm.getArticles(age: vm.age, sex: vm.sex)
+                }
+                .background(Color.placeholder)
             }
         }
+        .tint(.red)
     }
 }
 
@@ -45,7 +51,7 @@ struct HomeView: View {
 struct RecordChartView: View {
     //MARK: - Properties
     let title: String
-    let dataLines: [DataLineVM]
+    let dataLines: [DataLine]
     
     //MARK: - Body
     var body: some View {
