@@ -51,6 +51,7 @@ struct SignInView: View {
             }
             .navigationTitle("Sign In")
         }
+        .background(Color.placeholder)
     }
 }
 
