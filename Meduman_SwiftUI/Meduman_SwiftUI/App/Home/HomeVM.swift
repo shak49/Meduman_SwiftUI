@@ -62,7 +62,7 @@ struct RecordVM: Hashable, Identifiable {
         return quantitySample.sampleType
     }
     var date: String {
-        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().weekday(.abbreviated)))
+        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().day(.defaultDigits)))
         return formattedDate
     }
 }

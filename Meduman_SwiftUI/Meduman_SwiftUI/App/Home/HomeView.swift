@@ -63,7 +63,6 @@ struct RecordChartView: View {
                             x: .value(UIText.date, sample.date),
                             y: .value(UIText.record, sample.quantity)
                         )
-                        .interpolationMethod(.catmullRom)
                         .foregroundStyle(by: .value(UIText.type, sample.type))
                     }
                 }
