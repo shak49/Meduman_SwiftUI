@@ -16,7 +16,6 @@ import GoogleSignIn
 struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
     @StateObject var healthModel = HealthRecordViewModel()
-    @StateObject var reminderModel = MedicationReminderViewModel()
     private var navigator = Navigator()
     
     //MARK: - Lifecycles
@@ -37,7 +36,6 @@ struct Meduman_SwiftUIApp: App {
             MainView()
                 .environmentObject(navigator)
                 .environmentObject(healthModel)
-                .environmentObject(reminderModel)
         }
     }
 }
