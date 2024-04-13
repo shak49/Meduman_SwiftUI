@@ -9,6 +9,7 @@ import SwiftUI
 
 class SettingsVM: BaseVM {
     //MARK: - Properties
+    @Published var isDarkOn: Bool = false
     
     //MARK: - Functions
     func signOut() {
