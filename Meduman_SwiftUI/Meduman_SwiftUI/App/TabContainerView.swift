@@ -19,10 +19,6 @@ struct TabContainerView: View {
                 .tabItem {
                     Label(UIText.health, systemImage: Symbol.heart)
                 }
-            MedicineReminderListView()
-                .tabItem {
-                    Label(UIText.reminder, systemImage: Symbol.calendar)
-                }
             SettingsView()
                 .tabItem {
                     Label(UIText.settings, systemImage: Symbol.gear)
