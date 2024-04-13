@@ -62,7 +62,7 @@ struct RecordVM: Hashable, Identifiable {
         return quantitySample.sampleType
     }
     var date: String {
-        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().day(.defaultDigits)))
+        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().weekday()))
         return formattedDate
     }
 }
@@ -109,22 +109,16 @@ class HomeVM: BaseVM {
                 guard let samples = samples else { return }
                 samples.forEach { sample in
                     if sample.quantityType == .init(.bloodGlucose) {
-                        var glucoseSamples: [RecordVM] = []
-                        glucoseSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Glucose", samples: glucoseSamples)
-                        self.dataLines.append(dataLine)
+                        let glucose = self.convertSampleToDataLine(type: "Glucose", sample: sample)
+                        self.dataLines.append(glucose)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.bloodPressureSystolic) {
-                        var pressureSamples: [RecordVM] = []
-                        pressureSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Pressure", samples: pressureSamples)
-                        self.dataLines.append(dataLine)
+                        let pressure = self.convertSampleToDataLine(type: "Pressure", sample: sample)
+                        self.dataLines.append(pressure)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.heartRate) {
-                        var heartSamples: [RecordVM] = []
-                        heartSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Heart", samples: heartSamples)
-                        self.dataLines.append(dataLine)
+                        let heartRate = self.convertSampleToDataLine(type: "Heart Rate", sample: sample)
+                        self.dataLines.append(heartRate)
                         self.isRecordsAvailable = true
                     }
                 }
@@ -149,5 +143,13 @@ class HomeVM: BaseVM {
                 break
             }
         }
+    }
+}
+
+extension HomeVM {
+    func convertSampleToDataLine(type: String, sample: HKQuantitySample) -> DataLine {
+        var glucoseSamples: [RecordVM] = []
+        glucoseSamples.append(RecordVM(quantitySample: sample))
+        return DataLine(type: type, samples: glucoseSamples)
     }
 }
