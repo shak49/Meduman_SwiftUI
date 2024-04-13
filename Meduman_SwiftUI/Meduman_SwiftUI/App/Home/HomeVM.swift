@@ -84,9 +84,7 @@ class HomeVM: BaseVM {
     @Published private(set) var isRecordsAvailable: Bool = false
     @Published var isFormPresented: Bool = true
     @Published var isErrorPresented: Bool = false
-    
-    //MARK: - Lifecycles
-    
+
     //MARK: - Functions
     func populateChart() {
         for sample in healthSamples {
