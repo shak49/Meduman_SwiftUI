@@ -72,7 +72,7 @@ protocol FirebaseAuthStorage {
     func initiateSignInWithApple(request: ASAuthorizationAppleIDRequest)
     func getAppleCredential(result: Result<ASAuthorization, Error>) async -> Result<User?, AuthError>?
     func signInWithGoogle(view: UIViewController) async -> Result<User?, AuthError>?
-    func signOut()
+    func signOut() -> Bool?
 }
 
 protocol FirebaseReminderStorage {
@@ -140,12 +140,14 @@ final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStor
         }
     }
     
-    func signOut() {
+    func signOut() -> Bool? {
         do {
             try auth?.signOut()
+            return true
         } catch {
             print("Error signing-out: \(error)")
         }
+        return nil
     }
     
     private func signIn(credential: AuthCredential) async throws -> User {

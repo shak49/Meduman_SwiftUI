@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     //MARK: - Properties
+    @EnvironmentObject var navigator: Navigator
     @StateObject private var vm = SettingsVM()
     
     //MARK: - Body
@@ -51,7 +52,7 @@ struct SettingsView: View {
             .padding(.top, 16)
             .toolbar {
                 Button {
-                    vm.signOut()
+                    vm.signOut { navigator.push(to: .signIn) }
                 } label: {
                     Text("Sign Out")
                         .padding(8)
