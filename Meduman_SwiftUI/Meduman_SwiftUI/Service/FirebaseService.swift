@@ -46,26 +46,6 @@ enum AuthError: LocalizedError {
     }
 }
 
-enum ReminderError: LocalizedError {
-    case noSnapshotAvailable
-    case unableToFindReminder
-    case unableToCreateReminder
-    case unableToFetchListOfReminders
-    
-    var description: String {
-        switch self {
-        case .noSnapshotAvailable:
-            return "There is no snapshot available."
-        case .unableToFindReminder:
-            return "Unable to find reminder."
-        case .unableToCreateReminder:
-            return "Firestore repository is unable to create a reminder."
-        case .unableToFetchListOfReminders:
-            return "Firestore repository is unable to fetch list of reminders."
-        }
-    }
-}
-
 protocol FirebaseAuthStorage {
     // SHAK: Functions
     func getCurrentUser() async throws -> FirebaseAuth.User
@@ -75,15 +55,7 @@ protocol FirebaseAuthStorage {
     func signOut() -> Bool?
 }
 
-protocol FirebaseReminderStorage {
-    typealias ReminderHandler = (Reminder?, ReminderError?) -> Void
-    
-    //MARK: - Functions
-    func fetchListOfReminders(completion: @escaping ReminderHandler)
-    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void)
-}
-
-final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStorage {
+final class FirebaseService: NSObject, FirebaseAuthStorage {
     //MARK: - Properties
     private var firestore = Firestore.firestore()
     private var auth: Auth? = Auth.auth()
@@ -153,45 +125,6 @@ final class FirebaseService: NSObject, FirebaseAuthStorage, FirebaseReminderStor
     private func signIn(credential: AuthCredential) async throws -> User {
         let user = try await auth?.signIn(with: credential).user
         return User(authUser: user)
-    }
-    
-    func fetchListOfReminders(completion: @escaping ReminderHandler) {
-        firestore.collection("reminders").getDocuments { snapshot, error in
-            if let error = error {
-                completion(nil, .unableToFetchListOfReminders)
-            }
-            guard let documents = snapshot?.documents else { return }
-            documents.map { document in
-                do {
-                    let reminder = try document.data(as: Reminder.self)
-                    completion(reminder, nil)
-                } catch {
-                    print("Error decoding reminders!")
-                }
-            }
-        }
-    }
-    
-    func createReminder(reminder: Reminder?, completion: @escaping(Bool?, ReminderError?) -> Void) {
-        guard let reminder = reminder else {
-            completion(nil, .unableToFindReminder)
-            return
-        }
-        self.firestore.collection("reminders").document(reminder.id ?? "").setData([
-            "id" : reminder.id,
-            "medicine" : reminder.medicine,
-            "dosage" : reminder.dosage,
-            "date" : reminder.date,
-            "frequency" : reminder.frequency,
-            "time" : reminder.time,
-            "mealTime" : reminder.mealTime,
-            "description" : reminder.description
-        ]) { error in
-            if error != nil {
-                completion(nil, .unableToCreateReminder)
-            }
-        }
-        completion(true, nil)
     }
 }
 

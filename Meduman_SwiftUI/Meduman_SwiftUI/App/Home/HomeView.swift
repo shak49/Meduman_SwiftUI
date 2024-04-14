@@ -66,9 +66,17 @@ struct RecordChartView: View {
                         .foregroundStyle(by: .value(UIText.type, sample.type))
                     }
                 }
+                RuleMark(x: .value("", dataLines.last!.samples.last!.date))
+                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [CGFloat(10)]))
+                    .foregroundStyle(.gray)
             }
             .frame(height: 200)
             .chartLegend(position: .bottom, alignment: .center, spacing: 16)
+            .chartYAxis {
+                AxisMarks(position: .leading)
+            }
+            .padding(.top, 24)
+            .padding(.horizontal, 8)
         }
     }
 }

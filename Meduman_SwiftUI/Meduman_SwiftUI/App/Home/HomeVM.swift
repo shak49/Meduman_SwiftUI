@@ -27,46 +27,6 @@ enum AlertError: LocalizedError {
     }
 }
 
-struct DataLine: Identifiable {
-    let id = UUID().uuidString
-    let type: String
-    let samples: [RecordVM]
-}
-
-struct RecordVM: Hashable, Identifiable {
-    var quantitySample: HKQuantitySample
-    var id: String = UUID().uuidString
-    var quantity: Double {
-        var newString = ""
-        for char in "\(quantitySample.quantity)" {
-            if char.isNumber {
-                newString += String(char)
-            }
-        }
-        return Double(newString) ?? 0
-    }
-    var type: String {
-        switch quantitySample.quantityType {
-        case HKQuantityType(.bloodGlucose):
-            return "Glucose"
-        case HKQuantityType(.bloodPressureSystolic):
-            return "Pressure"
-        case HKQuantityType(.heartRate):
-            return "Heart"
-        default:
-            break
-        }
-        return ""
-    }
-    var sample: HKSampleType? {
-        return quantitySample.sampleType
-    }
-    var date: String {
-        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().day(.defaultDigits)))
-        return formattedDate
-    }
-}
-
 class HomeVM: BaseVM {
     //MARK: - Properties
     private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
@@ -84,9 +44,7 @@ class HomeVM: BaseVM {
     @Published private(set) var isRecordsAvailable: Bool = false
     @Published var isFormPresented: Bool = true
     @Published var isErrorPresented: Bool = false
-    
-    //MARK: - Lifecycles
-    
+
     //MARK: - Functions
     func populateChart() {
         for sample in healthSamples {
@@ -109,22 +67,16 @@ class HomeVM: BaseVM {
                 guard let samples = samples else { return }
                 samples.forEach { sample in
                     if sample.quantityType == .init(.bloodGlucose) {
-                        var glucoseSamples: [RecordVM] = []
-                        glucoseSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Glucose", samples: glucoseSamples)
-                        self.dataLines.append(dataLine)
+                        let glucose = self.convertSampleToDataLine(type: "Glucose", sample: sample)
+                        self.dataLines.append(glucose)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.bloodPressureSystolic) {
-                        var pressureSamples: [RecordVM] = []
-                        pressureSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Pressure", samples: pressureSamples)
-                        self.dataLines.append(dataLine)
+                        let pressure = self.convertSampleToDataLine(type: "Pressure", sample: sample)
+                        self.dataLines.append(pressure)
                         self.isRecordsAvailable = true
                     } else if sample.quantityType == .init(.heartRate) {
-                        var heartSamples: [RecordVM] = []
-                        heartSamples.append(RecordVM(quantitySample: sample))
-                        let dataLine = DataLine(type: "Heart", samples: heartSamples)
-                        self.dataLines.append(dataLine)
+                        let heartRate = self.convertSampleToDataLine(type: "Heart Rate", sample: sample)
+                        self.dataLines.append(heartRate)
                         self.isRecordsAvailable = true
                     }
                 }
@@ -149,5 +101,13 @@ class HomeVM: BaseVM {
                 break
             }
         }
+    }
+}
+
+extension HomeVM {
+    func convertSampleToDataLine(type: String, sample: HKQuantitySample) -> DataLine {
+        var glucoseSamples: [Record] = []
+        glucoseSamples.append(Record(quantitySample: sample))
+        return DataLine(type: type, samples: glucoseSamples)
     }
 }
