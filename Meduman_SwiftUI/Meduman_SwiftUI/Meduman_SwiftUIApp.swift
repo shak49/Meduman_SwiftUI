@@ -15,7 +15,6 @@ import GoogleSignIn
 @main
 struct Meduman_SwiftUIApp: App {
     //MARK: - Properties
-    @StateObject var healthModel = HealthRecordViewModel()
     private var navigator = Navigator()
     
     //MARK: - Lifecycles
@@ -35,7 +34,6 @@ struct Meduman_SwiftUIApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(navigator)
-                .environmentObject(healthModel)
         }
     }
 }
