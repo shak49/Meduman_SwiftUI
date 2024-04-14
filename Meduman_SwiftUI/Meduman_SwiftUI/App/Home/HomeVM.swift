@@ -27,46 +27,6 @@ enum AlertError: LocalizedError {
     }
 }
 
-struct DataLine: Identifiable {
-    let id = UUID().uuidString
-    let type: String
-    let samples: [RecordVM]
-}
-
-struct RecordVM: Hashable, Identifiable {
-    var quantitySample: HKQuantitySample
-    var id: String = UUID().uuidString
-    var quantity: Double {
-        var newString = ""
-        for char in "\(quantitySample.quantity)" {
-            if char.isNumber {
-                newString += String(char)
-            }
-        }
-        return Double(newString) ?? 0
-    }
-    var type: String {
-        switch quantitySample.quantityType {
-        case HKQuantityType(.bloodGlucose):
-            return "Glucose"
-        case HKQuantityType(.bloodPressureSystolic):
-            return "Pressure"
-        case HKQuantityType(.heartRate):
-            return "Heart"
-        default:
-            break
-        }
-        return ""
-    }
-    var sample: HKSampleType? {
-        return quantitySample.sampleType
-    }
-    var date: String {
-        let formattedDate = String(describing: quantitySample.endDate.formatted(Date.FormatStyle().weekday()))
-        return formattedDate
-    }
-}
-
 class HomeVM: BaseVM {
     //MARK: - Properties
     private var healthService: HealthService? = HealthService(healthStore: HKHealthStore())
@@ -146,8 +106,8 @@ class HomeVM: BaseVM {
 
 extension HomeVM {
     func convertSampleToDataLine(type: String, sample: HKQuantitySample) -> DataLine {
-        var glucoseSamples: [RecordVM] = []
-        glucoseSamples.append(RecordVM(quantitySample: sample))
+        var glucoseSamples: [Record] = []
+        glucoseSamples.append(Record(quantitySample: sample))
         return DataLine(type: type, samples: glucoseSamples)
     }
 }
