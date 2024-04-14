@@ -17,7 +17,7 @@ struct SettingsView: View {
         NavigationView {
             VStack {
                 Form {
-                    VStack {
+                    VStack(spacing: 10) {
                         HStack {
                             Text("Age")
                             Spacer()
